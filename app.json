@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Coplas",
+    "slug": "coplas",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "coplas",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "backgroundColor": "#0B1026",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.codeascent.coplas"
+    },
+    "android": {
+      "package": "com.codeascent.coplas"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

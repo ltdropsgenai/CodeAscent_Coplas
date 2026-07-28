@@ -1,0 +1,42 @@
+/**
+ * Core domain types for Coplas (Lotería Connections).
+ */
+
+/** Difficulty tier of a connection group. 1 = easiest (green) ... 4 = trickiest (purple). */
+export type Tier = 1 | 2 | 3 | 4;
+
+/** A single Lotería card / archetype. */
+export interface Card {
+  /** Stable slug used to reference the card in puzzles, e.g. "el_gallo". */
+  id: string;
+  /** Display name, e.g. "El Gallo". */
+  name: string;
+  /** Traditional deck number (1-54), for reference. */
+  number: number;
+  /** Placeholder glyph shown until commissioned art exists. */
+  emoji?: string;
+}
+
+/** One of the four hidden groups in a puzzle. */
+export interface Group {
+  /** The revealed theme, e.g. "Instrumentos musicales". */
+  theme: string;
+  /** Difficulty tier (drives the color). */
+  tier: Tier;
+  /** Exactly four card ids that belong to this group. */
+  cardIds: string[];
+  /** One-line reveal shown after the group is solved. */
+  explanation: string;
+}
+
+/** A full daily puzzle: 16 cards = the union of four groups of four. */
+export interface Puzzle {
+  /** Unique id, e.g. "coplas-0001". */
+  id: string;
+  /** Sequential puzzle number shown to players (Coplas #1). */
+  number: number;
+  /** ISO date (YYYY-MM-DD) this puzzle is the daily for, America/Mexico_City. */
+  date: string;
+  /** The four groups. */
+  groups: Group[];
+}

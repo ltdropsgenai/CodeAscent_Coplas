@@ -1,0 +1,1022 @@
+[
+  {
+    "id": "coplas-0001",
+    "number": 1,
+    "date": "2026-07-28",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "la_luna",
+          "la_estrella",
+          "el_sol",
+          "el_mundo"
+        ],
+        "explanation": "La Luna, La Estrella, El Sol y El Mundo: todo lo que brilla allá arriba."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 2,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra: la misma terminación."
+      },
+      {
+        "theme": "Animales del agua",
+        "tier": 4,
+        "cardIds": [
+          "la_sirena",
+          "el_camaron",
+          "el_pescado",
+          "la_rana"
+        ],
+        "explanation": "La Sirena, El Camarón, El Pescado y La Rana viven en el agua."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0002",
+    "number": 2,
+    "date": "2026-07-29",
+    "groups": [
+      {
+        "theme": "Aves",
+        "tier": 1,
+        "cardIds": [
+          "el_gallo",
+          "el_pajaro",
+          "la_garza",
+          "el_cotorro"
+        ],
+        "explanation": "El Gallo, El Pájaro, La Garza y El Cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Plantas",
+        "tier": 2,
+        "cardIds": [
+          "la_rosa",
+          "el_nopal",
+          "la_palma",
+          "el_pino"
+        ],
+        "explanation": "Rosa, nopal, palma y pino salen de la tierra."
+      },
+      {
+        "theme": "Animales que no vuelan",
+        "tier": 3,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_venado",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, venado y rana: animales, pero sin alas. (¡Ojo con las aves!)"
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Camarón parecía animal y El Melón, planta: la trampa."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0003",
+    "number": 3,
+    "date": "2026-07-30",
+    "groups": [
+      {
+        "theme": "Personajes",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "La Dama, El Catrín, El Valiente y El Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 2,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo: todos cargan algo líquido."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 4,
+        "cardIds": [
+          "la_muerte",
+          "el_diablito",
+          "el_alacran",
+          "la_arana"
+        ],
+        "explanation": "La Muerte, El Diablito, El Alacrán y La Araña dan escalofríos. La Calavera cabía aquí… pero se fue con las rimas."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0004",
+    "number": 4,
+    "date": "2026-07-31",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 2,
+        "cardIds": [
+          "el_arpa",
+          "el_tambor",
+          "el_violoncello",
+          "el_bandolon"
+        ],
+        "explanation": "Arpa, tambor, violoncello y bandolón."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo."
+      },
+      {
+        "theme": "Plantas",
+        "tier": 4,
+        "cardIds": [
+          "el_nopal",
+          "el_pino",
+          "la_palma",
+          "la_rosa"
+        ],
+        "explanation": "Nopal, pino, palma y rosa."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0005",
+    "number": 5,
+    "date": "2026-08-01",
+    "groups": [
+      {
+        "theme": "Plantas",
+        "tier": 1,
+        "cardIds": [
+          "el_pino",
+          "la_palma",
+          "el_nopal",
+          "la_rosa"
+        ],
+        "explanation": "Pino, palma, nopal y rosa."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 3,
+        "cardIds": [
+          "el_corazon",
+          "el_camaron",
+          "el_melon",
+          "el_bandolon"
+        ],
+        "explanation": "Coraz-ón, camar-ón, mel-ón, bandol-ón."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 4,
+        "cardIds": [
+          "el_cazo",
+          "el_cantarito",
+          "la_botella",
+          "el_barril"
+        ],
+        "explanation": "Cazo, cantarito, botella y barril."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0006",
+    "number": 6,
+    "date": "2026-08-02",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo."
+      },
+      {
+        "theme": "Personas",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "La Dama, El Catrín, El Borracho y El Músico."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_escalera",
+          "la_pera",
+          "la_bandera",
+          "la_calavera"
+        ],
+        "explanation": "Escale-ra, pe-ra, bande-ra, calave-ra."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 4,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "La Sirena, El Pescado, El Camarón y La Chalupa: cosas del mar."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0007",
+    "number": 7,
+    "date": "2026-08-03",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 4,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0008",
+    "number": 8,
+    "date": "2026-08-04",
+    "groups": [
+      {
+        "theme": "Plantas",
+        "tier": 1,
+        "cardIds": [
+          "el_arbol",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 3,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra. La Calavera cabía en «lo macabro»… pero hoy rima."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0009",
+    "number": 9,
+    "date": "2026-08-05",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 3,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 4,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0010",
+    "number": 10,
+    "date": "2026-08-06",
+    "groups": [
+      {
+        "theme": "Aves",
+        "tier": 1,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0011",
+    "number": 11,
+    "date": "2026-08-07",
+    "groups": [
+      {
+        "theme": "Plantas",
+        "tier": 1,
+        "cardIds": [
+          "el_arbol",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Camarón parecía del agua: la trampa."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0012",
+    "number": 12,
+    "date": "2026-08-08",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 3,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Cosas rojas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_diablito"
+        ],
+        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0013",
+    "number": 13,
+    "date": "2026-08-09",
+    "groups": [
+      {
+        "theme": "Guardan líquido",
+        "tier": 1,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Animales",
+        "tier": 2,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Cosas verdes (y una flor)",
+        "tier": 3,
+        "cardIds": [
+          "la_rosa",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Rosa, nopal, pino y palma: del reino vegetal."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 4,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0014",
+    "number": 14,
+    "date": "2026-08-10",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 2,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 4,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0015",
+    "number": 15,
+    "date": "2026-08-11",
+    "groups": [
+      {
+        "theme": "Aves",
+        "tier": 1,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 3,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Melón parecía fruta: la trampa."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0016",
+    "number": 16,
+    "date": "2026-08-12",
+    "groups": [
+      {
+        "theme": "Personajes",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      },
+      {
+        "theme": "Cosas rojas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_diablito"
+        ],
+        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0017",
+    "number": 17,
+    "date": "2026-08-13",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 2,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 4,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0018",
+    "number": 18,
+    "date": "2026-08-14",
+    "groups": [
+      {
+        "theme": "Aves",
+        "tier": 1,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. Camarón y Melón se escapan a las rimas."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0019",
+    "number": 19,
+    "date": "2026-08-15",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 2,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 3,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 4,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0020",
+    "number": 20,
+    "date": "2026-08-16",
+    "groups": [
+      {
+        "theme": "Guardan líquido",
+        "tier": 1,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Cosas verdes (y una flor)",
+        "tier": 2,
+        "cardIds": [
+          "la_rosa",
+          "el_nopal",
+          "el_pino",
+          "la_palma"
+        ],
+        "explanation": "Rosa, nopal, pino y palma: del reino vegetal."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 4,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      }
+    ]
+  }
+]
