@@ -32,3 +32,13 @@ yarn-error.*
 # IDE
 .idea/
 .vscode/
+
+# Google Play service-account key — referenced by eas.json submit config.
+# This is a CREDENTIAL: it can publish releases to your Play Console.
+# Never commit it. Regenerate it in Play Console if it is ever exposed.
+play-service-account.json
+*-service-account.json
+google-services.json
+
+# Scratch
+fp.mjs
