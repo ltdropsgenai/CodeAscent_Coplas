@@ -5,15 +5,25 @@ import { colors, displayFont, floatShadow } from '../src/theme';
 import { useI18n } from '../src/i18n';
 import { getArchivePuzzles } from '../src/data/puzzles';
 import { getResult, type PuzzleResult } from '../src/storage/store';
+import { usePurchases } from '../src/purchases';
 import type { Puzzle } from '../src/types';
 
-/** How many of the most recent puzzles are free to replay. */
-const FREE_WINDOW = 7;
 
+/**
+ * Gating lives entirely in `usePurchases().isLocked(index)`. There is no
+ * free-window constant here on purpose: a bare index cap (this used to be
+ * `index >= 7`) locked older coplas with no way to unlock them — a dead end for
+ * the player and the kind of non-functional gate App Review rejects.
+ *
+ * `isLocked` returns false for every index while IAP_ENABLED is false, so
+ * nothing is capped on any test track. When the unlock ships, a locked row
+ * stays *tappable* and routes to the paywall rather than going inert.
+ */
 export default function Archive() {
   const router = useRouter();
   const navigation = useNavigation();
   const { t } = useI18n();
+  const { isLocked, gateActive, unlocked } = usePurchases();
   const puzzles = getArchivePuzzles();
   const [results, setResults] = useState<Record<string, PuzzleResult | undefined>>({});
 
@@ -38,17 +48,12 @@ export default function Archive() {
   );
 
   const renderItem = ({ item, index }: { item: Puzzle; index: number }) => {
-    const locked = index >= FREE_WINDOW;
+    const locked = isLocked(index);
     const result = results[item.id];
     return (
       <Pressable
-        disabled={locked}
-        onPress={() => router.push(`/play?n=${item.number}`)}
-        style={({ pressed }) => [
-          styles.item,
-          locked && styles.locked,
-          pressed && !locked && styles.pressed,
-        ]}
+        onPress={() => router.push(locked ? '/unlock' : `/play?n=${item.number}`)}
+        style={({ pressed }) => [styles.item, locked && styles.locked, pressed && styles.pressed]}
       >
         <View>
           <Text style={styles.number}>#{item.number}</Text>
@@ -84,7 +89,19 @@ export default function Archive() {
       keyExtractor={(p) => p.id}
       renderItem={renderItem}
       contentContainerStyle={styles.list}
-      ListHeaderComponent={<Text style={styles.note}>{t.archive.note(FREE_WINDOW)}</Text>}
+      ListHeaderComponent={
+        <View>
+          <Text style={styles.note}>{t.archive.note}</Text>
+          {gateActive && !unlocked && (
+            <Pressable
+              onPress={() => router.push('/unlock')}
+              style={({ pressed }) => [styles.unlockCta, pressed && styles.pressed]}
+            >
+              <Text style={styles.unlockCtaText}>{t.iap.lockedCta} ›</Text>
+            </Pressable>
+          )}
+        </View>
+      }
     />
   );
 }
@@ -103,6 +120,16 @@ const styles = StyleSheet.create({
   },
   locked: { opacity: 0.55 },
   pressed: { opacity: 0.75 },
+  unlockCta: {
+    marginBottom: 14,
+    paddingVertical: 11,
+    paddingHorizontal: 14,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: colors.borderGold,
+    alignSelf: 'flex-start',
+  },
+  unlockCtaText: { color: colors.accent, fontWeight: '800', fontSize: 14 },
   number: { color: colors.text, fontFamily: displayFont, fontSize: 19, fontWeight: '700', ...floatShadow },
   date: { color: colors.textDim, fontSize: 12, marginTop: 2, ...floatShadow },
   badge: { fontWeight: '800', fontSize: 14 },

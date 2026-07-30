@@ -25,10 +25,11 @@ export function HeaderBack({
   /** Route to replace with when the history stack is empty. */
   fallback: string;
   /** Which destination the label names. */
-  to: 'home' | 'settings';
+  to: 'home' | 'settings' | 'archive';
 }) {
   const router = useRouter();
   const { t } = useI18n();
+  const label = to === 'home' ? t.nav.home : to === 'archive' ? t.nav.archive : t.nav.settings;
 
   const onPress = useCallback(() => {
     if (router.canGoBack()) router.back();
@@ -40,11 +41,11 @@ export function HeaderBack({
       onPress={onPress}
       hitSlop={14}
       accessibilityRole="button"
-      accessibilityLabel={to === 'home' ? t.nav.home : t.nav.settings}
+      accessibilityLabel={label}
       style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
     >
       <Text style={styles.chevron}>‹</Text>
-      <Text style={styles.label}>{to === 'home' ? t.nav.home : t.nav.settings}</Text>
+      <Text style={styles.label}>{label}</Text>
     </Pressable>
   );
 }

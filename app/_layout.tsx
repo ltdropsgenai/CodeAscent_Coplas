@@ -10,6 +10,7 @@ import { SpaceMono_400Regular, SpaceMono_700Bold } from '@expo-google-fonts/spac
 import { colors, displayFont } from '../src/theme';
 import { I18nProvider } from '../src/i18n';
 import { AudioProvider } from '../src/audio';
+import { PurchasesProvider } from '../src/purchases';
 import { AppBackground } from '../src/components/AppBackground';
 import { HeaderBack } from '../src/components/HeaderBack';
 import { SplashSequence } from '../src/components/SplashSequence';
@@ -98,6 +99,9 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <I18nProvider>
         <AudioProvider>
+          {/* Entitlement state is read by archive/settings/unlock, so it sits
+              above the navigator. Inert while IAP_ENABLED is false. */}
+          <PurchasesProvider>
           <View style={{ flex: 1, backgroundColor: colors.bg }}>
             <AppBackground />
             <StatusBar style="light" />
@@ -145,11 +149,19 @@ export default function RootLayout() {
                 name="legal"
                 options={{ title: '', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
               />
+              {/* Paywall. Pushed from the archive (and from settings); the
+                  route always exists so `coplas://unlock` can't 404, but with
+                  the gate off it renders its "nothing to sell" state. */}
+              <Stack.Screen
+                name="unlock"
+                options={{ title: '', headerLeft: () => <HeaderBack fallback="/archive" to="archive" /> }}
+              />
             </Stack>
             </ThemeProvider>
             </View>
             {showIntro && <SplashSequence onDone={onIntroDone} />}
           </View>
+          </PurchasesProvider>
         </AudioProvider>
       </I18nProvider>
     </SafeAreaProvider>

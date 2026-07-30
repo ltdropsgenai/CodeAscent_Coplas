@@ -7,6 +7,7 @@ import { useI18n, type Lang } from '../src/i18n';
 import { useAudio } from '../src/audio';
 import { NavGroupLabel, NavRow } from '../src/components/NavRow';
 import { UpdateRow } from '../src/components/UpdateRow';
+import { usePurchases } from '../src/purchases';
 import { DEFAULT_SETTINGS, getSettings, saveSettings, type Settings } from '../src/storage/store';
 import type { Difficulty } from '../src/types';
 
@@ -28,8 +29,10 @@ export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const { t, lang, setLang } = useI18n();
   const { soundEnabled, toggleSound } = useAudio();
+  const { gateActive, unlocked, busy, restore } = usePurchases();
   const navigation = useNavigation();
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  const [restoreNote, setRestoreNote] = useState<string | null>(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({ title: t.nav.settings });
@@ -114,6 +117,46 @@ export default function SettingsScreen() {
         value={settings.notifications}
         onValueChange={(v) => update({ notifications: v })}
       />
+
+      {/* Purchase group. The whole block is absent while the gate is off, so a
+          tester never sees a Restore button that can't find anything and never
+          sees a price for something they can't buy. */}
+      {gateActive && (
+        <>
+          <NavGroupLabel>{t.iap.title}</NavGroupLabel>
+          {unlocked ? (
+            <View style={[styles.row, styles.rowFirst]}>
+              <View style={styles.rowText}>
+                <Text style={styles.title}>{t.iap.owned}</Text>
+                <Text style={styles.subtitle}>{t.iap.ownedNote}</Text>
+              </View>
+            </View>
+          ) : (
+            <NavRow
+              href="/unlock"
+              label={t.iap.lockedCta}
+              hint={t.iap.b1}
+              icon="la_llave"
+              first
+            />
+          )}
+          {/* Apple guideline 3.1.1: a non-consumable must be restorable from
+              somewhere the player can find without having hit the paywall. */}
+          <Pressable
+            disabled={busy}
+            onPress={async () => {
+              const ok = await restore();
+              setRestoreNote(ok ? t.iap.restoredOk : t.iap.restoredNone);
+            }}
+            style={({ pressed }) => [styles.row, pressed && styles.pressed]}
+          >
+            <View style={styles.rowText}>
+              <Text style={styles.title}>{t.iap.restore}</Text>
+              <Text style={styles.subtitle}>{restoreNote ?? t.iap.restoreHint}</Text>
+            </View>
+          </Pressable>
+        </>
+      )}
 
       <NavGroupLabel>{t.settings.groupAbout}</NavGroupLabel>
       <NavRow

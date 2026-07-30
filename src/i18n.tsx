@@ -56,13 +56,36 @@ const STRINGS = {
       wrongCheer: '¡Uy! Intenta otra',
     },
     archive: {
-      note: (n: number) =>
-        `Las últimas ${n} coplas son gratis. El archivo completo se desbloqueará con una compra (próximamente).`,
+      note: 'Vuelve a jugar cualquier copla anterior.',
       lock: '🔒 Archivo',
       play: 'Jugar ›',
       perfect: '✨ Perfecto',
       failed: '✗ Fallada',
       err: (n: number) => `✓ ${n} err.`,
+    },
+    // Compra única del archivo. Todo esto queda inerte mientras IAP_ENABLED
+    // sea false (ver src/purchases/config.ts) — nada se bloquea en pruebas.
+    iap: {
+      title: 'Archivo completo',
+      blurb:
+        'La copla de hoy siempre es gratis. Desbloquea el archivo completo y vuelve a jugar cualquier copla anterior, para siempre.',
+      b1: 'Todas las coplas anteriores, sin límite',
+      b2: 'Las 997 cartas de la Lotería, animadas',
+      b3: 'Pago único — sin suscripción, sin anuncios',
+      cta: 'Desbloquear',
+      ctaBusy: 'Procesando…',
+      owned: 'Archivo desbloqueado ✓',
+      ownedNote: 'Gracias. Ya tienes acceso a todas las coplas.',
+      restore: 'Restaurar compra',
+      restoreHint: '¿Ya lo compraste? Recupéralo aquí.',
+      restoredOk: 'Listo, tu archivo está desbloqueado.',
+      restoredNone: 'No encontramos una compra en esta cuenta.',
+      failed: 'No se pudo completar la compra. Inténtalo de nuevo.',
+      unavailable: 'La tienda no está disponible en este momento.',
+      legal:
+        'Pago único a través de tu tienda de aplicaciones. Al comprar aceptas los Términos y la Política de privacidad.',
+      lockedCta: 'Desbloquear el archivo',
+      freeNote: (n: number) => `Las ${n} coplas más recientes son siempre gratis.`,
     },
     stats: {
       played: 'Jugadas',
@@ -149,13 +172,36 @@ const STRINGS = {
       wrongCheer: 'Oops! Try again',
     },
     archive: {
-      note: (n: number) =>
-        `The latest ${n} coplas are free. The full archive unlocks with a purchase (coming soon).`,
+      note: 'Replay any earlier copla.',
       lock: '🔒 Archive',
       play: 'Play ›',
       perfect: '✨ Perfect',
       failed: '✗ Failed',
       err: (n: number) => `✓ ${n} mist.`,
+    },
+    // One-time archive unlock. All of this stays inert while IAP_ENABLED is
+    // false (see src/purchases/config.ts) — nothing is gated during testing.
+    iap: {
+      title: 'Full archive',
+      blurb:
+        "Today's copla is always free. Unlock the full archive and replay any earlier copla, forever.",
+      b1: 'Every past copla, no limit',
+      b2: 'All 997 Lotería cards, animated',
+      b3: 'One-time purchase — no subscription, no ads',
+      cta: 'Unlock',
+      ctaBusy: 'Working…',
+      owned: 'Archive unlocked ✓',
+      ownedNote: 'Thank you. You have access to every copla.',
+      restore: 'Restore purchase',
+      restoreHint: 'Already bought it? Get it back here.',
+      restoredOk: 'Done — your archive is unlocked.',
+      restoredNone: "We couldn't find a purchase on this account.",
+      failed: "That purchase didn't go through. Please try again.",
+      unavailable: 'The store is unavailable right now.',
+      legal:
+        'One-time purchase through your app store. By buying you accept the Terms and the Privacy Policy.',
+      lockedCta: 'Unlock the archive',
+      freeNote: (n: number) => `The ${n} most recent coplas are always free.`,
     },
     stats: {
       played: 'Played',
