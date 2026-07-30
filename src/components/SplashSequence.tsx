@@ -12,15 +12,22 @@
  * Rendered as a full-screen overlay from app/_layout.tsx on every cold start.
  * Pure RN Animated (native driver) — no video, no extra deps.
  */
-import { useEffect, useRef } from 'react';
-import { Animated, Dimensions, Easing, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo, useRef } from 'react';
+import {
+  Animated,
+  Easing,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors, displayFont, monoFont, gradients } from '../theme';
 import { useI18n } from '../i18n';
 
-const { width: W, height: H } = Dimensions.get('window');
 const DURATION = 2600;
-const EMBLEM = Math.min(216, W * 0.56);
 
 type Piece = {
   kind: 'card' | 'ring' | 'spark';
@@ -31,21 +38,37 @@ type Piece = {
   dx?: number; // final offset from centre
 };
 
-// Four cards fan slightly around centre; a ring settles concentric; sparks streak.
-const PIECES: Piece[] = [
-  { kind: 'card', fromX: -W * 0.5, fromY: -H * 0.32, rot: -20, dx: -46, win: [0.02, 0.42] },
-  { kind: 'card', fromX: W * 0.5, fromY: -H * 0.3, rot: 20, dx: 46, win: [0.06, 0.46] },
-  { kind: 'card', fromX: -W * 0.46, fromY: H * 0.34, rot: -8, dx: -16, win: [0.1, 0.5] },
-  { kind: 'card', fromX: W * 0.46, fromY: H * 0.34, rot: 8, dx: 16, win: [0.14, 0.52] },
-  { kind: 'ring', fromX: 0, fromY: 0, rot: 0, win: [0.0, 0.46] },
-  { kind: 'spark', fromX: -W * 0.4, fromY: H * 0.12, rot: 0, dx: -70, win: [0.16, 0.44] },
-  { kind: 'spark', fromX: W * 0.42, fromY: -H * 0.14, rot: 0, dx: 74, win: [0.2, 0.48] },
-  { kind: 'spark', fromX: W * 0.1, fromY: H * 0.4, rot: 0, dx: 8, win: [0.24, 0.5] },
+/**
+ * Where each piece flies in from, as a FRACTION of the window — resolved to
+ * points inside the component against the live size.
+ *
+ * These were previously absolute pixels computed from a module-scope
+ * `Dimensions.get('window')`, i.e. whatever the window happened to be when the
+ * bundle first evaluated. On an iPad in Split View or Stage Manager the pieces
+ * would fly in from the edges of a window that no longer exists — either
+ * visibly inside the frame or far outside it.
+ */
+const PIECE_SPEC: (Omit<Piece, 'fromX' | 'fromY'> & { fx: number; fy: number })[] = [
+  { kind: 'card', fx: -0.5, fy: -0.32, rot: -20, dx: -46, win: [0.02, 0.42] },
+  { kind: 'card', fx: 0.5, fy: -0.3, rot: 20, dx: 46, win: [0.06, 0.46] },
+  { kind: 'card', fx: -0.46, fy: 0.34, rot: -8, dx: -16, win: [0.1, 0.5] },
+  { kind: 'card', fx: 0.46, fy: 0.34, rot: 8, dx: 16, win: [0.14, 0.52] },
+  { kind: 'ring', fx: 0, fy: 0, rot: 0, win: [0.0, 0.46] },
+  { kind: 'spark', fx: -0.4, fy: 0.12, rot: 0, dx: -70, win: [0.16, 0.44] },
+  { kind: 'spark', fx: 0.42, fy: -0.14, rot: 0, dx: 74, win: [0.2, 0.48] },
+  { kind: 'spark', fx: 0.1, fy: 0.4, rot: 0, dx: 8, win: [0.24, 0.5] },
 ];
 
 export function SplashSequence({ onDone }: { onDone: () => void }) {
+  const { width: W, height: H } = useWindowDimensions();
   const { lang } = useI18n();
   const p = useRef(new Animated.Value(0)).current;
+
+  const EMBLEM = useMemo(() => Math.min(216, W * 0.56), [W]);
+  const PIECES: Piece[] = useMemo(
+    () => PIECE_SPEC.map(({ fx, fy, ...rest }) => ({ ...rest, fromX: fx * W, fromY: fy * H })),
+    [W, H]
+  );
   const animRef = useRef<Animated.CompositeAnimation | null>(null);
   const done = useRef(false);
 

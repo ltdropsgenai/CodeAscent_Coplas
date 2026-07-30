@@ -18,7 +18,14 @@
  * Rendered ONCE in app/_layout.tsx, behind everything.
  */
 import React, { Component, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  Animated,
+  Easing,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { usePathname } from 'expo-router';
 import { colors, gradients } from '../theme';
@@ -39,18 +46,23 @@ function sceneIndexFor(path: string): number {
   return h % SCENES.length;
 }
 
-const { height: SCREEN_H } = Dimensions.get('window');
-
 // Soft floating motes — marigold + warm white, very low opacity, drift upward.
+//
+// `below` is how far under the bottom edge each mote starts, NOT an absolute y.
+// This used to bake in `Dimensions.get('window')` read once at module load,
+// which is wrong the moment the window changes size — an iPad in Split View or
+// Stage Manager would drift these through a range sized for a different window.
+// The live height is read in the component and added at render time instead.
 const BOKEH = [
-  { size: 130, left: '8%', startY: SCREEN_H + 60, color: 'rgba(244,185,66,0.06)', dur: 39000 },
-  { size: 78, left: '52%', startY: SCREEN_H + 40, color: 'rgba(255,255,255,0.05)', dur: 43000 },
-  { size: 150, left: '74%', startY: SCREEN_H + 90, color: 'rgba(244,185,66,0.05)', dur: 36000 },
-  { size: 58, left: '30%', startY: SCREEN_H + 30, color: 'rgba(255,240,214,0.06)', dur: 46000 },
-  { size: 104, left: '86%', startY: SCREEN_H + 50, color: 'rgba(228,71,155,0.045)', dur: 41000 },
+  { size: 130, left: '8%', below: 60, color: 'rgba(244,185,66,0.06)', dur: 39000 },
+  { size: 78, left: '52%', below: 40, color: 'rgba(255,255,255,0.05)', dur: 43000 },
+  { size: 150, left: '74%', below: 90, color: 'rgba(244,185,66,0.05)', dur: 36000 },
+  { size: 58, left: '30%', below: 30, color: 'rgba(255,240,214,0.06)', dur: 46000 },
+  { size: 104, left: '86%', below: 50, color: 'rgba(228,71,155,0.045)', dur: 41000 },
 ];
 
 function AppBackgroundInner() {
+  const { height: screenH } = useWindowDimensions();
   const pathname = usePathname();
   const targetIdx = useMemo(() => sceneIndexFor(pathname || '/'), [pathname]);
 
@@ -136,7 +148,13 @@ function AppBackgroundInner() {
         !failed &&
         has &&
         BOKEH.map((b, i) => {
-          const translateY = bokeh[i].interpolate({ inputRange: [0, 1], outputRange: [b.startY, -b.size * 2] });
+          // Only the output range depends on the window; the Animated.Value
+          // and its loop live in a ref, so a resize re-aims the drift without
+          // restarting the animation.
+          const translateY = bokeh[i].interpolate({
+            inputRange: [0, 1],
+            outputRange: [screenH + b.below, -b.size * 2],
+          });
           return (
             <Animated.View
               key={i}

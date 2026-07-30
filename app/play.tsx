@@ -451,14 +451,19 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   container: { paddingHorizontal: 12, paddingTop: 10 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  sub: { color: colors.textDim, fontSize: 15, textAlign: 'center' },
-  session: { color: colors.accent, fontFamily: monoFont, fontSize: 12, letterSpacing: 0.5, textAlign: 'center', marginTop: 4, marginBottom: 12, fontWeight: '700' },
+  // ── Legibility floor ─────────────────────────────────────────────────────
+  // These three lines were 15 / 12 / 13 pt in a dim colour, which reads badly
+  // for anyone whose eyes aren't perfect. iOS treats 17 pt as body and 11 pt as
+  // the absolute floor, so the instruction is now body size, the session strip
+  // is a proper caption, and both sit at higher contrast than before.
+  sub: { color: colors.text, fontSize: 17, textAlign: 'center', opacity: 0.92 },
+  session: { color: colors.accent, fontFamily: monoFont, fontSize: 14, letterSpacing: 0.2, textAlign: 'center', marginTop: 6, marginBottom: 12, fontWeight: '700' },
   grid: { marginTop: 2 },
   row: { flexDirection: 'row' },
   mistakes: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16 },
-  dot: { width: 12, height: 12, borderRadius: 6, marginHorizontal: 4, backgroundColor: colors.border },
+  dot: { width: 14, height: 14, borderRadius: 7, marginHorizontal: 4.5, backgroundColor: colors.border },
   dotUsed: { backgroundColor: colors.danger },
-  oneAway: { color: colors.accent, textAlign: 'center', marginTop: 10, fontWeight: '800' },
+  oneAway: { color: colors.accent, fontSize: 16, textAlign: 'center', marginTop: 10, fontWeight: '800' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 18, justifyContent: 'center', alignItems: 'center' },
   result: {
     marginTop: 22,
@@ -495,8 +500,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   resultActions: { flexDirection: 'row', gap: 10, marginTop: 8, alignItems: 'center' },
-  dim: { color: colors.textDim, fontSize: 13, textAlign: 'center', marginBottom: 4 },
-  hintNote: { color: colors.teal, fontSize: 12, fontFamily: monoFont, textAlign: 'center', marginBottom: 4 },
+  // Also the "Mistakes:" label next to the dots — was 13 pt dim.
+  dim: { color: colors.text, fontSize: 15, textAlign: 'center', marginBottom: 4, opacity: 0.9 },
+  hintNote: { color: colors.teal, fontSize: 13, fontFamily: monoFont, textAlign: 'center', marginBottom: 4 },
   burst: { alignItems: 'center', justifyContent: 'center' },
   burstEmoji: { fontSize: 96 },
   burstLabel: {

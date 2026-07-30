@@ -10,10 +10,23 @@
  * views, offline, pointer-transparent.
  */
 import { useEffect, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  Animated,
+  Easing,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const { width: W, height: H } = Dimensions.get('window');
+// NOTE: window size is read per-component via `useWindowDimensions`, never once
+// at module load. `Dimensions.get('window')` at module scope freezes the value
+// captured when the bundle first evaluates, so on an iPad in Split View or
+// Stage Manager every bean would drift and sit relative to a window that no
+// longer exists. Each bean's x position and travel distance are derived from
+// the live size below; the Animated.Value driving it stays in a ref, so a
+// resize repositions without restarting the loop.
 
 type Bean = { xF: number; size: number; rot: number; op: number; dur: number; delay: number; drift: number };
 
@@ -51,6 +64,7 @@ function useReduceMotion(): boolean {
 }
 
 function Bean({ b, reduce }: { b: Bean; reduce: boolean }) {
+  const { width: W, height: H } = useWindowDimensions();
   const t = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     if (reduce) return;
@@ -102,6 +116,7 @@ function Bean({ b, reduce }: { b: Bean; reduce: boolean }) {
 }
 
 function Spark({ s, reduce }: { s: (typeof SPARKS)[number]; reduce: boolean }) {
+  const { width: W, height: H } = useWindowDimensions();
   const t = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     if (reduce) return;

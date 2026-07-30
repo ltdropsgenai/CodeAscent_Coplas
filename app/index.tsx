@@ -1,5 +1,15 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {
+  Image,
+  PixelRatio,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+  type LayoutChangeEvent,
+} from 'react-native';
 import { useFocusEffect, useNavigation, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CARD_ASPECT, colors, displayFont, floatShadow, monoFont, tierColors } from '../src/theme';
@@ -13,11 +23,95 @@ import { cardThumb } from '../src/data/cardImages';
 import { getTodaysPuzzle } from '../src/data/puzzles';
 import { getResult, getStats, type Stats } from '../src/storage/store';
 
+// ── Fitting home onto one screen ───────────────────────────────────────────
+// Home must never need scrolling to reach the menu. Hard-coding smaller sizes
+// would fix one handset and break others: at full size the block wants ~889 pt,
+// and an iPhone 17 gives its content 819 pt while an iPhone SE gives 603 pt.
+// So we measure the room we actually have and derive one scale factor.
+//
+// It works in two stages, because arithmetic alone is not trustworthy here.
+//
+// STAGE 1 — ESTIMATE. Only part of the layout can shrink. The PLAY button (50),
+// the menu row (74), the scoreboard cell (93) and every piece of body text stay
+// put: that is FIXED_PT. The emblem, hero card, display numerals and vertical
+// gaps scale: SCALABLE_PT. Both were derived by summing the real component
+// sizes, giving 293 + 596 = 889 pt at full size, which matches what the screen
+// actually rendered. Solving FIXED + SCALABLE·s ≤ available gives a scale that
+// is right on the first frame, so nothing visibly jumps.
+//
+// STAGE 2 — MEASURE AND CORRECT. The estimate is blind to everything it wasn't
+// told about: the OS text-size setting, the real font metrics, a translation
+// that wraps to two lines, a non-iOS header, a future edit to any of these
+// styles. So we also measure the viewport and the rendered content and, if the
+// content still overflows, solve again using the MEASURED height. That closes
+// the loop — the constants above only have to be close, not correct.
+const FIXED_PT = 293;
+const SCALABLE_PT = 596;
+const CUSHION_PT = 8; // absorbs per-element rounding so we never land 1 pt over
+const MIN_SCALE = 0.5; // an SE needs ~0.51; below this it stops looking like the design
+const MAX_FIT_PASSES = 4; // hard stop; correction must never loop
+
 export default function Home() {
   const insets = useSafeAreaInsets();
+  const { height: winH } = useWindowDimensions();
   const router = useRouter();
   const navigation = useNavigation();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+
+  // The viewport is MEASURED, not derived: the ScrollView is laid out by the
+  // navigator below the header and inside the safe area, so its own height is
+  // the real room we have on any platform, header style or device. That removes
+  // the need to hardcode a header height (iOS 44 / Android 56) entirely.
+  const [viewportH, setViewportH] = useState(0);
+  // null = "no correction yet, use the estimate". Starting at 1 instead would
+  // flash a full-size layout for one frame after the viewport is measured.
+  const [scale, setScale] = useState<number | null>(null);
+  const passes = useRef(0);
+
+  // Before the first measurement lands, fall back to window arithmetic so frame
+  // one is already the right size.
+  const estAvail = viewportH || winH - insets.top - insets.bottom - 44;
+  const estimate = Math.max(
+    MIN_SCALE,
+    Math.min(1, (estAvail - CUSHION_PT - FIXED_PT) / SCALABLE_PT)
+  );
+  const s = scale ?? estimate;
+
+  // Re-seed whenever the room or the OS text size changes (rotation, iPad split
+  // view, the player turning up Dynamic Type). Without this the screen would
+  // stay stuck at a scale computed for conditions that no longer hold.
+  const fontScale = PixelRatio.getFontScale();
+  useEffect(() => {
+    passes.current = 0;
+    setScale(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewportH, fontScale]);
+
+  const onContentLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      const contentH = e.nativeEvent.layout.height;
+      if (!viewportH || contentH <= viewportH) return; // already fits
+      if (passes.current >= MAX_FIT_PASSES) return; // give up rather than loop
+      passes.current += 1;
+      // Solve again from what we just measured. If H = FIXED + SCALABLE·s then
+      // the scalable part currently on screen is (contentH - FIXED), so the
+      // scale that would fit is s·(room - FIXED) / (contentH - FIXED). Deriving
+      // it from the measurement means an inaccurate FIXED_PT only slows
+      // convergence instead of breaking the result.
+      const shown = contentH - FIXED_PT;
+      if (shown <= 0) return;
+      const next = (s * (viewportH - CUSHION_PT - FIXED_PT)) / shown;
+      const clamped = Math.max(MIN_SCALE, Math.min(1, next));
+      if (clamped < s - 0.005) setScale(clamped);
+    },
+    [viewportH, s]
+  );
+
+  // Boxes and gaps scale freely; TEXT never goes below 11 pt, which is the
+  // smallest size iOS considers legible — shrinking type to win layout is
+  // exactly the trade we're refusing to make.
+  const px = (base: number) => Math.round(base * s);
+  const tx = (base: number) => Math.max(11, Math.round(base * s));
   const { soundEnabled, toggleSound, playHomeMusic } = useAudio();
   const puzzle = getTodaysPuzzle();
   const [stats, setStats] = useState<Stats | null>(null);
@@ -57,57 +151,71 @@ export default function Home() {
   );
 
   return (
+    // flexGrow makes the content fill exactly one screen. The ScrollView stays
+    // as a safety net: at very large Dynamic Type sizes the block can still
+    // exceed the screen, and the menu must never become unreachable.
     <ScrollView
-      contentContainerStyle={[styles.container, { paddingBottom: insets.bottom + 24 }]}
+      onLayout={(e) => setViewportH(e.nativeEvent.layout.height)}
+      contentContainerStyle={[
+        styles.container,
+        { flexGrow: 1, paddingBottom: insets.bottom + px(24) },
+      ]}
     >
-      <View style={styles.hero}>
-        <Image
-          source={require('../assets/icon.png')}
-          style={styles.heroLogo}
-          resizeMode="contain"
-        />
-        <Text style={styles.logo}>Coplas</Text>
-        <View style={styles.rule} />
-        <Text style={styles.tagline}>{t.home.tagline}</Text>
-      </View>
+      {/* One wrapper so a single onLayout reports the true rendered height. */}
+      <View onLayout={onContentLayout} style={styles.fitProbe}>
+        <View style={[styles.hero, { marginVertical: px(20) }]}>
+          <Image
+            source={require('../assets/icon.png')}
+            style={[styles.heroLogo, { width: px(132), height: px(132), marginBottom: px(8) }]}
+            resizeMode="contain"
+          />
+          <Text style={[styles.logo, { fontSize: tx(52), lineHeight: tx(52) * 1.18 }]}>Coplas</Text>
+          <View style={[styles.rule, { marginTop: px(8) }]} />
+          <Text style={[styles.tagline, { marginTop: px(10) }]}>{t.home.tagline}</Text>
+        </View>
 
-      {/* No panel, no border — the copla floats directly on the scene, the way
-          the rest of the CodeAscent apps present content. */}
-      <View style={styles.today}>
-        {!!heroId && (
-          <View style={styles.heroCard}>
-            <CardVideo cardId={heroId} cornerRadius={8} />
-          </View>
-        )}
-        <Text style={styles.cardKicker}>{t.home.todaysCopla}</Text>
-        <Text style={styles.cardNumber}>#{puzzle.number}</Text>
-        <Text style={styles.cardDate}>{formatDate(puzzle.date)}</Text>
+        {/* No panel, no border - the copla floats directly on the scene, the
+            way the rest of the CodeAscent apps present content. */}
+        <View style={styles.today}>
+          {!!heroId && (
+            <View style={[styles.heroCard, { width: px(128), marginBottom: px(16) }]}>
+              <CardVideo cardId={heroId} cornerRadius={8} />
+            </View>
+          )}
+          <Text style={styles.cardKicker}>{t.home.todaysCopla}</Text>
+          <Text style={[styles.cardNumber, { fontSize: tx(48), lineHeight: tx(48) * 1.15 }]}>
+            #{puzzle.number}
+          </Text>
+          <Text style={[styles.cardDate, { marginBottom: px(18) }]}>
+            {formatDate(puzzle.date, lang)}
+          </Text>
 
-        <GradientButton
-          label={t.home.play}
-          onPress={() => router.push('/play')}
-          size="lg"
-          style={{ marginTop: 4 }}
-        />
-      </View>
+          <GradientButton
+            label={t.home.play}
+            onPress={() => router.push('/play')}
+            size="lg"
+            style={{ marginTop: 4 }}
+          />
+        </View>
 
-      {/* Stats float, separated by hairlines — no boxes. Each gets its own card
-          from the deck: El Fuego for the streak, La Corona for your best, La
-          Medalla for wins. */}
-      <View style={styles.scoreboard}>
-        <Stat label={t.home.streak} value={stats ? String(stats.currentStreak) : '–'} icon="el_fuego" />
-        <View style={styles.scoreRule} />
-        <Stat label={t.home.best} value={stats ? String(stats.bestStreak) : '–'} icon="la_corona" />
-        <View style={styles.scoreRule} />
-        <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '–'} icon="la_medalla" />
-      </View>
+        {/* Stats float, separated by hairlines - no boxes. Each gets its own
+            card from the deck: El Fuego for the streak, La Corona for your
+            best, La Medalla for wins. */}
+        <View style={[styles.scoreboard, { marginTop: px(26) }]}>
+          <Stat label={t.home.streak} value={stats ? String(stats.currentStreak) : '-'} icon="el_fuego" />
+          <View style={styles.scoreRule} />
+          <Stat label={t.home.best} value={stats ? String(stats.bestStreak) : '-'} icon="la_corona" />
+          <View style={styles.scoreRule} />
+          <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '-'} icon="la_medalla" />
+        </View>
 
-      {/* Home stays about ONE thing: play today's copla. Everything else — the
-          rules, the archive, stats, preferences and the legal pages — lives
-          behind this single door (app/settings.tsx). La Llave Inglesa from our
-          own deck is the icon; no icon-font dependency. */}
-      <View style={styles.links}>
-        <NavRow href="/settings" label={t.nav.more} hint={t.home.moreHint} icon="la_llave_inglesa" first />
+        {/* Home stays about ONE thing: play today's copla. Everything else -
+            the rules, the archive, stats, preferences and the legal pages -
+            lives behind this single door (app/settings.tsx). La Llave Inglesa
+            from our own deck is the icon; no icon-font dependency. */}
+        <View style={[styles.links, { marginTop: px(26) }]}>
+          <NavRow href="/settings" label={t.nav.more} hint={t.home.moreHint} icon="la_llave_inglesa" first />
+        </View>
       </View>
     </ScrollView>
   );
@@ -130,23 +238,40 @@ function Stat({ label, value, icon }: { label: string; value: string; icon: stri
   );
 }
 
-function formatDate(iso: string): string {
+const MONTHS: Record<'es' | 'en', string[]> = {
+  es: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+  en: ['January', 'February', 'March', 'April', 'May', 'June',
+       'July', 'August', 'September', 'October', 'November', 'December'],
+};
+
+/**
+ * The puzzle date, written the way each language writes dates.
+ *
+ * Deliberately NOT `Intl.DateTimeFormat`: the string is a plain `YYYY-MM-DD`
+ * with no timezone, and handing that to a Date would shift it a day either side
+ * of UTC depending on where the player is. Splitting the string keeps the date
+ * we published the one the player sees.
+ *
+ * Card names stay Spanish by design — this is a Spanish word game — but the
+ * surrounding chrome follows the language setting, and the date is chrome.
+ */
+function formatDate(iso: string, lang: 'es' | 'en'): string {
   const [y, m, d] = iso.split('-').map(Number);
-  const months = [
-    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
-  ];
-  return `${d} de ${months[m - 1]} de ${y}`;
+  const month = MONTHS[lang][m - 1];
+  return lang === 'es' ? `${d} de ${month} de ${y}` : `${month} ${d}, ${y}`;
 }
 
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 16, paddingTop: 8 },
-  hero: { alignItems: 'center', marginVertical: 20 },
+  // Wraps everything so one onLayout reports the true rendered height.
+  fitProbe: { flexGrow: 1 },
+  // Sizes and gaps marked "scaled" below are overridden inline from the fit
+  // calculation at the top of this file; the values here are the full-size
+  // design and what you get on a tall screen.
+  hero: { alignItems: 'center' }, // marginVertical scaled
   heroLogo: {
-    width: 132,
-    height: 132,
-    borderRadius: 30,
-    marginBottom: 8,
+    borderRadius: 30, // width/height/marginBottom scaled
     borderWidth: 1.5,
     borderColor: colors.borderGold,
   },
@@ -160,15 +285,14 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 20,
   },
-  rule: { width: 60, height: 3, borderRadius: 2, backgroundColor: colors.accent, marginTop: 8, opacity: 0.8 },
-  tagline: { color: colors.text, fontSize: 15, marginTop: 10, ...floatShadow },
+  rule: { width: 60, height: 3, borderRadius: 2, backgroundColor: colors.accent, opacity: 0.8 },
+  tagline: { color: colors.text, fontSize: 16, ...floatShadow },
   today: { alignItems: 'center', paddingTop: 4 },
   heroCard: {
-    width: 128,
-    // Match the generated art's own ratio (1792x2400) so 'cover' crops nothing
-    // and the printed name banner at the bottom stays fully visible.
+    // width + marginBottom scaled. Match the generated art's own ratio
+    // (1792x2400) so 'cover' crops nothing and the printed name banner at the
+    // bottom stays fully visible.
     aspectRatio: CARD_ASPECT,
-    marginBottom: 16,
     shadowColor: colors.accent,
     shadowOpacity: 0.35,
     shadowRadius: 14,
@@ -179,8 +303,8 @@ const styles = StyleSheet.create({
     color: colors.accent,
     fontFamily: monoFont,
     textTransform: 'uppercase',
-    letterSpacing: 3,
-    fontSize: 11,
+    letterSpacing: 2.4,
+    fontSize: 12,
     ...floatShadow,
   },
   cardNumber: {
@@ -191,12 +315,11 @@ const styles = StyleSheet.create({
     marginTop: 2,
     ...floatShadow,
   },
-  cardDate: { color: colors.textDim, fontSize: 13, marginBottom: 18, ...floatShadow },
+  cardDate: { color: colors.textDim, fontSize: 14, ...floatShadow },
   playedNote: { color: colors.textDim, fontSize: 12, marginTop: 12 },
   scoreboard: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 26,
   },
   scoreRule: { width: 1, height: 54, backgroundColor: 'rgba(244,185,66,0.28)' },
   statCell: { flex: 1, alignItems: 'center' },
@@ -217,14 +340,16 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     color: colors.textDim,
+    // 11 pt is the floor; 9 pt with wide tracking was below what iOS considers
+    // legible and was the smallest type on the screen.
     fontFamily: monoFont,
-    fontSize: 9,
-    letterSpacing: 1.7,
-    marginTop: 2,
+    fontSize: 11,
+    letterSpacing: 1.4,
+    marginTop: 3,
     ...floatShadow,
   },
 
   // The row itself is NavRow's business; home only sets the group's offset.
-  links: { marginTop: 26 },
+  links: {},
   pressed: { opacity: 0.6 },
 });
