@@ -4,6 +4,14 @@
     "slug": "coplas",
     "version": "0.1.0",
     "orientation": "portrait",
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f990c709-fa91-4123-9591-8c3a11ffbfcc",
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD"
+    },
     "scheme": "coplas",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,

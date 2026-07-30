@@ -1,193 +1,41 @@
+import { CARDS, CARD_BY_ID } from './cards';
+
 /**
- * Animated card clips ("living portrait" videos), self-hosted on Supabase.
+ * Animated card clips.
  *
- * Each listed card has a ~3s silent 720p 3:4 MP4 at the deterministic path
- * `video/<id>.mp4`, generated from that card's baked still art. The motion is
- * deliberately tiny — a breath, a blink, a flicker, drifting light — so the
- * frame and the printed name banner stay rock steady and the clip loops
- * invisibly.
+ * **The entire deck is animated.** All 997 cards have a 3-second "living
+ * portrait" clip in the Supabase `video` bucket, verified by comparing a hash
+ * of the bucket's object names against a hash of the deck's card ids — they
+ * match exactly, with no extras and nothing missing. So this module no longer
+ * carries a hand-maintained allow-list; it derives everything from the deck,
+ * which means adding a card and its clip can never leave the two out of sync in
+ * one direction only.
  *
- * Only a SUBSET of the 997-card deck is animated (156 so far; the rest are
- * being generated). `cardVideo(id)` returns undefined for cards without a clip,
- * and every consumer falls back to the still image — so the deck always renders.
+ * Clips are ~1.3 MB each (1.26 GB total). That is the number to watch: egress,
+ * not storage. Anything that plays many at once should cap how many — see
+ * `MAX_ANIMATED_TILES` in WinCelebration.
  *
- * WEIGHT: clips average ~1.4 MB. Consumers should animate only a handful at a
- * time (see MAX_ANIMATED_TILES in WinCelebration) and always render the still
- * underneath as a poster, so a slow network degrades to the static card.
+ * Every consumer must degrade to the still image when a clip won't load
+ * (CardVideo already renders the still underneath as a poster), so a bad
+ * network or a future card without a clip is a non-event.
  */
-const VIDEO_CDN = 'https://bmybvrqbpachjxrejxdj.supabase.co/storage/v1/object/public/video';
+const VIDEO_CDN =
+  'https://bmybvrqbpachjxrejxdj.supabase.co/storage/v1/object/public/video';
 
-/** Card ids that currently have an animated clip. */
-export const ANIMATED_CARD_IDS: readonly string[] = [
-  'el_aguila',
-  'el_alacran',
-  'el_angel',
-  'el_apache',
-  'el_arbol',
-  'el_astronauta',
-  'el_bombero',
-  'el_bonsai',
-  'el_borracho',
-  'el_buho',
-  'el_burro',
-  'el_caballito_de_mar',
-  'el_caballo',
-  'el_calamar',
-  'el_camaleon',
-  'el_camaron',
-  'el_camello',
-  'el_canguro',
-  'el_carrusel',
-  'el_catrin',
-  'el_cempasuchil',
-  'el_cerdo',
-  'el_charro',
-  'el_chef',
-  'el_cisne',
-  'el_cocodrilo',
-  'el_colibri',
-  'el_cometa',
-  'el_condor',
-  'el_conejo',
-  'el_cotorro',
-  'el_delfin',
-  'el_diablito',
-  'el_doctor',
-  'el_dragon',
-  'el_elefante',
-  'el_erizo',
-  'el_esqueleto',
-  'el_fantasma',
-  'el_fenix',
-  'el_flamenco',
-  'el_fuego',
-  'el_gallo',
-  'el_gato',
-  'el_girasol',
-  'el_globo_aerostatico',
-  'el_gorila',
-  'el_grillo',
-  'el_hada',
-  'el_halcon',
-  'el_helecho',
-  'el_hipopotamo',
-  'el_humo',
-  'el_iceberg',
-  'el_jaguar',
-  'el_koala',
-  'el_lagarto',
-  'el_leon',
-  'el_leopardo',
-  'el_lobo',
-  'el_loto',
-  'el_mago',
-  'el_malabarista',
-  'el_mapache',
-  'el_meteorito',
-  'el_mono',
-  'el_mundo',
-  'el_musico',
-  'el_nopal',
-  'el_ogro',
-  'el_oso',
-  'el_pajaro',
-  'el_papel_picado',
-  'el_pato',
-  'el_pavorreal',
-  'el_payaso',
-  'el_perezoso',
-  'el_perro',
-  'el_pescado',
-  'el_pinguino',
-  'el_pino',
-  'el_pintor',
-  'el_planeta',
-  'el_pulpo',
-  'el_rayo',
-  'el_relampago',
-  'el_rinoceronte',
-  'el_rio',
-  'el_sapo',
-  'el_sol',
-  'el_soldado',
-  'el_tiburon',
-  'el_tigre',
-  'el_torero',
-  'el_tornado',
-  'el_tucan',
-  'el_tulipan',
-  'el_unicornio',
-  'el_valiente',
-  'el_vampiro',
-  'el_vaquero',
-  'el_venado',
-  'el_volcan',
-  'el_zorro',
-  'la_abeja',
-  'la_arana',
-  'la_ardilla',
-  'la_aurora',
-  'la_bailarina',
-  'la_ballena',
-  'la_bandera',
-  'la_bruja',
-  'la_cabra',
-  'la_calavera',
-  'la_cascada',
-  'la_catrina',
-  'la_dalia',
-  'la_dama',
-  'la_enfermera',
-  'la_estrella',
-  'la_foca',
-  'la_fogata',
-  'la_galaxia',
-  'la_garza',
-  'la_gaviota',
-  'la_iguana',
-  'la_jirafa',
-  'la_lechuza',
-  'la_libelula',
-  'la_lluvia',
-  'la_luciernaga',
-  'la_luna',
-  'la_mantis',
-  'la_mariposa',
-  'la_medusa',
-  'la_momia',
-  'la_morsa',
-  'la_muerte',
-  'la_nieve',
-  'la_orca',
-  'la_orquidea',
-  'la_oruga',
-  'la_oveja',
-  'la_palma',
-  'la_paloma',
-  'la_pinata',
-  'la_rana',
-  'la_rosa',
-  'la_rueda_de_la_fortuna',
-  'la_salamandra',
-  'la_serpiente',
-  'la_sirena',
-  'la_tortuga',
-  'la_vaca',
-  'la_veladora',
-  'saturno',
-];
+/** Every card id, in deck order. Used where we want to pick an animated card. */
+export const ANIMATED_CARD_IDS: string[] = CARDS.map((c) => c.id);
 
-const ANIMATED = new Set(ANIMATED_CARD_IDS);
-
-/** True when this card has an animated clip available. */
-export function hasCardVideo(id: string): boolean {
-  return ANIMATED.has(id);
-}
-
-/** Streaming URL for a card's clip, or undefined when it isn't animated yet. */
-export function cardVideo(id: string): string | undefined {
-  return ANIMATED.has(id) ? `${VIDEO_CDN}/${id}.mp4` : undefined;
-}
-
-/** How many of the deck's cards are animated so far. */
 export const ANIMATED_COUNT = ANIMATED_CARD_IDS.length;
+
+/**
+ * Does this card have a clip? True for any id in the deck — the check is on
+ * deck membership rather than a separate list precisely so the two can't drift.
+ */
+export function hasCardVideo(id: string): boolean {
+  return CARD_BY_ID[id] !== undefined;
+}
+
+/** Public URL of a card's clip, or undefined if the id isn't in the deck. */
+export function cardVideo(id: string): string | undefined {
+  return hasCardVideo(id) ? `${VIDEO_CDN}/${id}.mp4` : undefined;
+}

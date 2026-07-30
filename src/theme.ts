@@ -92,6 +92,20 @@ export const radius = { card: 6, tile: 10, button: 5, chip: 4 };
  */
 export const CARD_ASPECT = 1792 / 2400; // 0.74666…
 
+/**
+ * Where the Spanish name is printed on the art, as a fraction of card height,
+ * measured off the rendered 1792×2400 files: the torn-paper label runs from
+ * 85.9% to 92.6%, with 7.4% of clear card below it.
+ *
+ * That band is only 6.8% of the card's height. On the 16-card board a tile is
+ * about 94 pt wide → 126 pt tall, so the printed label lands ~8.6 pt tall and
+ * its lettering is roughly 4.7 pt — well under half of the smallest text iOS
+ * considers legible. Hence `nameParchment` in CardTile: a plate drawn over this
+ * exact band carrying the name as real app text. Large surfaces (the 128 pt
+ * home hero) are fine with the printed label and leave it alone.
+ */
+export const CARD_NAME_BAND = { top: 0.859, bottom: 0.926 };
+
 export const tierColors: Record<Tier, string> = {
   1: '#37D9A0',
   2: '#F4B942',

@@ -2,8 +2,8 @@ import { memo, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { Card } from '../types';
-import { CARD_ASPECT, colors, gradients, radius } from '../theme';
-import { cardImage, isBakedCard } from '../data/cardImages';
+import { CARD_ASPECT, CARD_NAME_BAND, colors, displayFont, gradients, radius } from '../theme';
+import { cardImage } from '../data/cardImages';
 
 interface Props {
   card: Card;
@@ -20,10 +20,15 @@ interface Props {
  * medallion. Selecting it lifts and lights the frame gold; a hint wraps it in
  * a pulsing teal ring.
  *
- * The name label: the expanded deck's art has the Spanish name BAKED into the
- * image (Lotería banner), so those cards draw no name plate — showing it would
- * double the label. The 54 classics keep their overlaid plate (their preview
- * art has no baked name). See `isBakedCard`.
+ * THE NAME. Every card has its Spanish name printed into the art on a torn-paper
+ * label. That reads beautifully at full size and is unreadable on the board: a
+ * tile here is ~94 pt wide, which renders the printed lettering at roughly
+ * 4.7 pt. So we draw our own parchment plate over that exact band
+ * (`CARD_NAME_BAND`) and set the name in the display face at 11 pt — about
+ * 2.3× larger. It is positioned to cover the printed label completely rather
+ * than sit beside it, so the name never appears twice, and it grows upward to a
+ * second line for the ~15% of names too long for one (only 8 names in the whole
+ * deck still need `adjustsFontSizeToFit` to shrink).
  *
  * Remote (streamed) art fades in over a branded loading placeholder, and if a
  * URL fails to load we fall back to the emoji glyph rather than a broken image.
@@ -47,7 +52,6 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
   const pulse = useRef(new Animated.Value(0)).current;
 
   const img = cardImage(card.id);
-  const baked = isBakedCard(card.id);
   const isRemote = typeof img === 'string';
   // Remote images start "unloaded" so we can show the placeholder; bundled
   // images (require → number) are ready immediately.
@@ -141,13 +145,19 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
                 <Text style={styles.medallionText}>{card.number}</Text>
               </View>
 
-              {(!baked || imgError) && (
-                <View style={styles.plate}>
-                  <Text style={styles.name} numberOfLines={1} adjustsFontSizeToFit>
-                    {card.name}
-                  </Text>
-                </View>
-              )}
+              {/* Anchored from the BOTTOM so a one-line plate lands exactly on
+                  the printed label and a two-line plate grows up into the art
+                  instead of drifting off the card. */}
+              <View style={styles.nameParchment}>
+                <Text
+                  style={styles.name}
+                  numberOfLines={2}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.8}
+                >
+                  {card.name}
+                </Text>
+              </View>
             </View>
           </LinearGradient>
         </Pressable>
@@ -229,18 +239,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   medallionText: { color: colors.accent, fontSize: 9, fontWeight: '800' },
-  plate: {
+  // Parchment + sepia ink, matched to the printed label it replaces, so the card
+  // still reads as one object rather than a photo with a UI chip stuck on it.
+  nameParchment: {
     position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(9,8,20,0.82)',
-    paddingVertical: 4,
-    paddingHorizontal: 4,
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(244,185,66,0.35)',
+    left: '4%',
+    right: '4%',
+    // Just below the printed label's lower edge, so the plate covers it fully.
+    bottom: `${(1 - CARD_NAME_BAND.bottom) * 100 - 1.9}%`,
+    backgroundColor: '#F3E9D0',
+    borderWidth: 1,
+    borderColor: '#96763C',
+    borderRadius: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 3,
   },
-  name: { color: colors.text, fontSize: 12, fontWeight: '800', textAlign: 'center', letterSpacing: 0.2 },
+  name: {
+    color: '#3E2A0C',
+    fontFamily: displayFont,
+    fontSize: 11,
+    lineHeight: 13,
+    textAlign: 'center',
+  },
 });
 
 export const CardTile = memo(CardTileBase);

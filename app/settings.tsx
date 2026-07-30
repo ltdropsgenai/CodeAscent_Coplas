@@ -6,6 +6,7 @@ import { colors, displayFont, floatShadow, monoFont } from '../src/theme';
 import { useI18n, type Lang } from '../src/i18n';
 import { useAudio } from '../src/audio';
 import { NavGroupLabel, NavRow } from '../src/components/NavRow';
+import { UpdateRow } from '../src/components/UpdateRow';
 import { DEFAULT_SETTINGS, getSettings, saveSettings, type Settings } from '../src/storage/store';
 import type { Difficulty } from '../src/types';
 
@@ -134,6 +135,8 @@ export default function SettingsScreen() {
         hint={t.settings.privacyHint}
         icon="el_candado"
       />
+      {/* Over-the-air: pulls a JS/asset fix without a new App Store build. */}
+      <UpdateRow />
 
       <Text style={styles.version}>{t.settings.version}</Text>
     </ScrollView>

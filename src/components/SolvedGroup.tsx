@@ -13,6 +13,9 @@ import { useI18n } from '../i18n';
  * hairline, a colored tier ribbon down the left edge, and a serif theme —
  * not a candy-colored rounded block. Animates in on mount.
  */
+/** See the comment on the thumbnail strip below before turning this on. */
+const THUMBS_ANIMATE = false;
+
 export function SolvedGroup({ group, animate }: { group: Group; animate?: boolean }) {
   const { t } = useI18n();
   const anim = useRef(new Animated.Value(0)).current;
@@ -42,12 +45,18 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
           <Text style={styles.theme}>{group.theme}</Text>
           <Text style={[styles.tier, { color }]}>{t.tier[group.tier].toUpperCase()}</Text>
         </View>
-        {/* The four cards you just matched. Only the freshly-solved group
-            animates (at most four players at a time); older plaques show
-            stills, which keeps memory and mobile data in check. */}
+        {/* The four cards you just matched.
+
+            These render 34 pt wide. The clips are deliberately *subtle* — a
+            slow breath, a flicker, drifting dust — and none of that is
+            perceptible at 34 pt, while each clip is ~1.3 MB. Playing four of
+            them per solved group would spend ~21 MB of a player's data over a
+            round to animate something nobody can see. So the thumbnails stay
+            still by default and motion is spent where it reads: the 128 pt home
+            hero and the win celebration. Flip THUMBS_ANIMATE to re-enable. */}
         <View style={styles.thumbs}>
           {group.cardIds.map((id) =>
-            animate && hasCardVideo(id) ? (
+            THUMBS_ANIMATE && animate && hasCardVideo(id) ? (
               <View key={id} style={styles.thumb}>
                 <CardVideo cardId={id} borderColor={color} cornerRadius={4} />
               </View>
