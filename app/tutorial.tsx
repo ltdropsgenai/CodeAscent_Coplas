@@ -91,7 +91,11 @@ export default function Tutorial() {
 
   async function finish() {
     await saveSettings({ tutorialDone: true });
-    router.back();
+    // Opened from first launch or from Ajustes, so popping is normally right —
+    // but a deep link straight to /tutorial has nothing to pop, which would
+    // trap the player in the modal. Fall back to home.
+    if (router.canGoBack()) router.back();
+    else router.replace('/');
   }
 
   function toggle(id: string) {

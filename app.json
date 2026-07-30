@@ -11,7 +11,10 @@
     "icon": "./assets/icon.png",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.codeascent.coplas"
+      "bundleIdentifier": "com.codeascent.coplas",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.codeascent.coplas",
@@ -39,6 +42,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f990c709-fa91-4123-9591-8c3a11ffbfcc"
+      }
     }
   }
 }

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { Group } from '../types';
-import { colors, gradients, radius, tierColors } from '../theme';
+import { CARD_ASPECT, colors, gradients, radius, tierColors } from '../theme';
 import { getCard } from '../data/cards';
 import { cardImage } from '../data/cardImages';
 import { hasCardVideo } from '../data/cardVideos';
@@ -164,7 +164,7 @@ export function WinCelebration({ groups, onDone }: Props) {
   const cols = 4;
   const gap = 8;
   const cardW = (W - 48 - gap * (cols - 1)) / cols;
-  const cardH = cardW / 0.7467; // the art's own ratio, so nothing is cropped
+  const cardH = cardW / CARD_ASPECT; // the art's own ratio, so nothing is cropped
 
   return (
     <Animated.View style={[StyleSheet.absoluteFill, styles.root, { opacity: overlay }]}>

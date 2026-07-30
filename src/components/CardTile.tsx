@@ -2,7 +2,7 @@ import { memo, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { Card } from '../types';
-import { colors, gradients, radius } from '../theme';
+import { CARD_ASPECT, colors, gradients, radius } from '../theme';
 import { cardImage, isBakedCard } from '../data/cardImages';
 
 interface Props {
@@ -27,6 +27,19 @@ interface Props {
  *
  * Remote (streamed) art fades in over a branded loading placeholder, and if a
  * URL fails to load we fall back to the emoji glyph rather than a broken image.
+ *
+ * IMPORTANT — why the shadow and the lift live on two separate Animated.Views:
+ * React Native forbids driving one props node with both a native-driver and a
+ * JS-driver animation. Starting a `useNativeDriver: true` animation on `scale`
+ * flips the whole enclosing AnimatedProps node (and therefore every other
+ * animated value referenced in the same style) to native; a subsequent
+ * `useNativeDriver: false` animation on any of them then THROWS
+ * ("Attempting to run JS driven animation on animated node that has been moved
+ * to native") — a hard crash in a release build. `shadowOpacity`/`shadowRadius`
+ * are not native-driver-supported props, so `glow` must stay JS-driven, which
+ * means it needs its own node, outside the one carrying the transform.
+ * react-native-web ignores useNativeDriver entirely, which is why this never
+ * reproduced in the browser.
  */
 function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
@@ -42,19 +55,22 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    Animated.parallel([
-      Animated.spring(scale, {
-        toValue: selected ? 1.06 : 1,
-        friction: 6,
-        tension: 120,
-        useNativeDriver: true,
-      }),
-      Animated.timing(glow, {
-        toValue: selected ? 1 : 0,
-        duration: 160,
-        useNativeDriver: false,
-      }),
-    ]).start();
+    // Started independently, never inside one Animated.parallel: parallel
+    // starts its children in order, so the native spring would flip `glow`
+    // native before the JS timing ran and the timing would throw. They target
+    // different nodes here, so two plain .start() calls stay in sync visually
+    // without ever sharing a props node.
+    Animated.spring(scale, {
+      toValue: selected ? 1.06 : 1,
+      friction: 6,
+      tension: 120,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(glow, {
+      toValue: selected ? 1 : 0,
+      duration: 160,
+      useNativeDriver: false,
+    }).start();
   }, [selected, scale, glow]);
 
   // Loop a gentle pulse while the card is hinted (and not actively selected).
@@ -82,72 +98,73 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
       style={[
         styles.wrap,
         {
-          transform: [{ scale }],
           shadowOpacity: glow.interpolate({ inputRange: [0, 1], outputRange: [0.25, 0.7] }),
           shadowRadius: glow.interpolate({ inputRange: [0, 1], outputRange: [5, 14] }),
         },
       ]}
     >
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={card.name}
-        accessibilityState={{ selected }}
-        disabled={disabled}
-        onPress={() => onPress(card.id)}
-        style={({ pressed }) => [styles.press, pressed && !disabled && styles.pressed]}
-      >
-        <LinearGradient colors={frame} style={styles.frame} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-          <View style={styles.face}>
-            {showImage ? (
-              <>
-                <Image
-                  source={typeof img === 'string' ? { uri: img } : (img as number)}
-                  style={styles.photo}
-                  resizeMode="cover"
-                  onLoad={() => setImgLoaded(true)}
-                  onError={() => setImgError(true)}
-                />
-                {isRemote && !imgLoaded && (
-                  <LinearGradient colors={gradients.cardFace} style={styles.loading}>
-                    <ActivityIndicator size="small" color={colors.accent} />
-                  </LinearGradient>
-                )}
-              </>
-            ) : (
-              <LinearGradient colors={gradients.cardFace} style={styles.photo}>
-                <Text style={styles.glyph} allowFontScaling={false}>
-                  {card.emoji ?? '🂠'}
-                </Text>
-              </LinearGradient>
-            )}
+      <Animated.View style={[styles.lift, { transform: [{ scale }] }]}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={card.name}
+          accessibilityState={{ selected }}
+          disabled={disabled}
+          onPress={() => onPress(card.id)}
+          style={({ pressed }) => [styles.press, pressed && !disabled && styles.pressed]}
+        >
+          <LinearGradient colors={frame} style={styles.frame} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+            <View style={styles.face}>
+              {showImage ? (
+                <>
+                  <Image
+                    source={typeof img === 'string' ? { uri: img } : (img as number)}
+                    style={styles.photo}
+                    resizeMode="cover"
+                    onLoad={() => setImgLoaded(true)}
+                    onError={() => setImgError(true)}
+                  />
+                  {isRemote && !imgLoaded && (
+                    <LinearGradient colors={gradients.cardFace} style={styles.loading}>
+                      <ActivityIndicator size="small" color={colors.accent} />
+                    </LinearGradient>
+                  )}
+                </>
+              ) : (
+                <LinearGradient colors={gradients.cardFace} style={styles.photo}>
+                  <Text style={styles.glyph} allowFontScaling={false}>
+                    {card.emoji ?? '🂠'}
+                  </Text>
+                </LinearGradient>
+              )}
 
-            <View style={styles.medallion}>
-              <Text style={styles.medallionText}>{card.number}</Text>
-            </View>
-
-            {(!baked || imgError) && (
-              <View style={styles.plate}>
-                <Text style={styles.name} numberOfLines={1} adjustsFontSizeToFit>
-                  {card.name}
-                </Text>
+              <View style={styles.medallion}>
+                <Text style={styles.medallionText}>{card.number}</Text>
               </View>
-            )}
-          </View>
-        </LinearGradient>
-      </Pressable>
 
-      {showHint && (
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.hintRing,
-            {
-              opacity: pulse.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }),
-              transform: [{ scale: pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.045] }) }],
-            },
-          ]}
-        />
-      )}
+              {(!baked || imgError) && (
+                <View style={styles.plate}>
+                  <Text style={styles.name} numberOfLines={1} adjustsFontSizeToFit>
+                    {card.name}
+                  </Text>
+                </View>
+              )}
+            </View>
+          </LinearGradient>
+        </Pressable>
+
+        {showHint && (
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.hintRing,
+              {
+                opacity: pulse.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }),
+                transform: [{ scale: pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.045] }) }],
+              },
+            ]}
+          />
+        )}
+      </Animated.View>
     </Animated.View>
   );
 }
@@ -159,6 +176,9 @@ const styles = StyleSheet.create({
     shadowColor: colors.accent,
     shadowOffset: { width: 0, height: 3 },
   },
+  // Carries the native-driven lift. Separate node from `wrap` so the JS-driven
+  // shadow above it is never dragged onto the native driver.
+  lift: { flex: 1 },
   press: { flex: 1 },
   pressed: { opacity: 0.85 },
   hintRing: {
@@ -173,7 +193,7 @@ const styles = StyleSheet.create({
   },
   frame: {
     width: '100%',
-    aspectRatio: 0.72,
+    aspectRatio: CARD_ASPECT,
     borderRadius: radius.tile,
     padding: 2.5,
   },

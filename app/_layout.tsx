@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Stack, ThemeProvider, DarkTheme, useRouter } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Stack, ThemeProvider, DarkTheme, useRouter, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
@@ -11,6 +11,7 @@ import { colors, displayFont } from '../src/theme';
 import { I18nProvider } from '../src/i18n';
 import { AudioProvider } from '../src/audio';
 import { AppBackground } from '../src/components/AppBackground';
+import { HeaderBack } from '../src/components/HeaderBack';
 import { SplashSequence } from '../src/components/SplashSequence';
 import { getSettings } from '../src/storage/store';
 
@@ -30,6 +31,38 @@ const navTheme = {
   ...DarkTheme,
   colors: { ...DarkTheme.colors, background: 'transparent', card: 'transparent' },
 };
+
+/**
+ * Expo Router picks this export up as the root error boundary.
+ *
+ * Without it, ANY error thrown while rendering or inside an effect goes
+ * unhandled, reaches RCTExceptionsManager and aborts the process — the app just
+ * dies, and in a TestFlight build the crash log contains only the native
+ * backtrace, not the JavaScript message. That is exactly how the round-one
+ * crash on JUGAR presented, and it cost a whole build cycle to identify.
+ *
+ * With this in place the failure degrades into a screen the player can back out
+ * of, and — crucially — it prints the message and stack, so a screenshot from a
+ * tester is enough to diagnose the next one.
+ */
+export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+  return (
+    <View style={styles.errRoot}>
+      <ScrollView contentContainerStyle={styles.errBody}>
+        <Text style={styles.errTitle}>Algo se descosió</Text>
+        <Text style={styles.errDim}>
+          Se produjo un error inesperado. Puedes reintentar; si vuelve a pasar, comparte esta
+          pantalla con nosotros.
+        </Text>
+        <Text style={styles.errMsg}>{error?.message ?? 'Error desconocido'}</Text>
+        {!!error?.stack && <Text style={styles.errStack}>{error.stack.split('\n').slice(0, 12).join('\n')}</Text>}
+        <Pressable onPress={() => retry()} style={styles.errBtn}>
+          <Text style={styles.errBtnText}>REINTENTAR</Text>
+        </Pressable>
+      </ScrollView>
+    </View>
+  );
+}
 
 export default function RootLayout() {
   const router = useRouter();
@@ -88,10 +121,30 @@ export default function RootLayout() {
                 name="tutorial"
                 options={{ presentation: 'modal', headerShown: false }}
               />
-              <Stack.Screen name="play" options={{ title: 'Coplas' }} />
-              <Stack.Screen name="archive" options={{ title: 'Archivo' }} />
-              <Stack.Screen name="stats" options={{ title: 'Estadísticas' }} />
-              <Stack.Screen name="settings" options={{ title: 'Ajustes' }} />
+              {/* Every pushed screen gets an explicit back button naming its
+                  parent, so the way out is never missing (see HeaderBack).
+                  Hierarchy: Home → Ajustes → archive / stats / legal pages. */}
+              <Stack.Screen
+                name="play"
+                options={{ title: 'Coplas', headerLeft: () => <HeaderBack fallback="/" to="home" /> }}
+              />
+              <Stack.Screen
+                name="settings"
+                options={{ title: 'Ajustes', headerLeft: () => <HeaderBack fallback="/" to="home" /> }}
+              />
+              <Stack.Screen
+                name="archive"
+                options={{ title: 'Archivo', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
+              />
+              <Stack.Screen
+                name="stats"
+                options={{ title: 'Estadísticas', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
+              />
+              {/* Title is set per-document by the screen itself. */}
+              <Stack.Screen
+                name="legal"
+                options={{ title: '', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
+              />
             </Stack>
             </ThemeProvider>
             </View>
@@ -110,4 +163,20 @@ const styles = StyleSheet.create({
     maxWidth: 480,
     alignSelf: 'center',
   },
+  errRoot: { flex: 1, backgroundColor: colors.bg },
+  errBody: { padding: 26, paddingTop: 90, gap: 14, maxWidth: 480, width: '100%', alignSelf: 'center' },
+  errTitle: { color: colors.text, fontFamily: displayFont, fontSize: 26 },
+  errDim: { color: colors.textDim, fontSize: 14, lineHeight: 20 },
+  errMsg: { color: colors.accent, fontSize: 14, fontWeight: '700', marginTop: 6 },
+  errStack: { color: colors.textDim, fontSize: 11, lineHeight: 15, opacity: 0.8 },
+  errBtn: {
+    marginTop: 12,
+    alignSelf: 'flex-start',
+    paddingVertical: 12,
+    paddingHorizontal: 22,
+    borderRadius: 5,
+    borderWidth: 1.5,
+    borderColor: colors.borderGold,
+  },
+  errBtnText: { color: colors.text, fontWeight: '800', letterSpacing: 0.6, fontSize: 13 },
 });

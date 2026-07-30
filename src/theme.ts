@@ -81,6 +81,17 @@ export const auroraOrbs = [
 /** Squared, framed — not pills. */
 export const radius = { card: 6, tile: 10, button: 5, chip: 4 };
 
+/**
+ * The exact aspect ratio of the baked card art (1792 × 2400 px).
+ *
+ * Every surface that renders a card MUST use this. If a frame's ratio differs
+ * from the art's, `resizeMode: 'cover'` has to crop one axis to fill — and
+ * because the Spanish name is baked into a banner at the bottom of the art,
+ * cropping vertically shaves the name off. Using the art's own ratio means
+ * `cover` scales without cropping at all.
+ */
+export const CARD_ASPECT = 1792 / 2400; // 0.74666…
+
 export const tierColors: Record<Tier, string> = {
   1: '#37D9A0',
   2: '#F4B942',

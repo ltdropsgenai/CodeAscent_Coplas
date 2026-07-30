@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
-import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, displayFont, monoFont } from '../src/theme';
 import { useI18n, type Strings } from '../src/i18n';
@@ -38,7 +38,6 @@ function penaltyOf(u: CardUse, now: number): number {
 export default function Play() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const router = useRouter();
   const { t } = useI18n();
   const { playSfx, playRoundMusic, playWinFanfare, stopMusic, soundEnabled, toggleSound } = useAudio();
   const { n } = useLocalSearchParams<{ n?: string }>();
@@ -125,37 +124,18 @@ export default function Play() {
   const [showCelebration, setShowCelebration] = useState(false);
   const [resultReady, setResultReady] = useState(false);
 
-  // Always give the player an explicit way out. The stack's implicit back
-  // arrow is unreliable here — it's absent when Play is the first route in
-  // history (a web reload or a deep link straight into /play) — so we render
-  // our own, and fall back to replacing the route when there's nothing to pop.
-  const goHome = useCallback(() => {
-    if (router.canGoBack()) router.back();
-    else router.replace('/');
-  }, [router]);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isArchive ? `Coplas #${puzzle.number}` : `${t.play.round} ${playCount + 1}`,
-      headerLeft: () => (
-        <Pressable
-          onPress={goHome}
-          hitSlop={14}
-          accessibilityRole="button"
-          accessibilityLabel={t.nav.home}
-          style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
-        >
-          <Text style={styles.backChevron}>‹</Text>
-          <Text style={styles.backLabel}>{t.nav.home}</Text>
-        </Pressable>
-      ),
       headerRight: () => (
         <Pressable onPress={toggleSound} hitSlop={12} style={{ paddingHorizontal: 4 }}>
           <Text style={{ fontSize: 18 }}>{soundEnabled ? '🔊' : '🔇'}</Text>
         </Pressable>
       ),
     });
-  }, [navigation, puzzle.number, playCount, isArchive, t.play.round, t.nav.home, soundEnabled, toggleSound, goHome]);
+    // headerLeft (‹ Inicio) is supplied once for every screen by the Stack
+    // options in app/_layout.tsx — don't re-declare it here or it drifts.
+  }, [navigation, puzzle.number, playCount, isArchive, t.play.round, soundEnabled, toggleSound]);
 
   // Each round gets a fresh background genre (rotates, never repeats the last).
   // Keyed on the round id so every new round — including the online-flip
@@ -470,9 +450,6 @@ function chunk<T>(arr: T[], size: number): T[][] {
 const styles = StyleSheet.create({
   root: { flex: 1 },
   container: { paddingHorizontal: 12, paddingTop: 10 },
-  backBtn: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, paddingVertical: 2 },
-  backChevron: { color: colors.accent, fontSize: 30, lineHeight: 32, marginTop: -3 },
-  backLabel: { color: colors.accent, fontSize: 15, fontWeight: '700', marginLeft: 1 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   sub: { color: colors.textDim, fontSize: 15, textAlign: 'center' },
   session: { color: colors.accent, fontFamily: monoFont, fontSize: 12, letterSpacing: 0.5, textAlign: 'center', marginTop: 4, marginBottom: 12, fontWeight: '700' },

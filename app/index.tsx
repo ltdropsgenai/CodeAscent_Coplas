@@ -1,11 +1,12 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Link, useFocusEffect, useNavigation, useRouter } from 'expo-router';
+import { useFocusEffect, useNavigation, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, displayFont, floatShadow, monoFont, tierColors } from '../src/theme';
+import { CARD_ASPECT, colors, displayFont, floatShadow, monoFont, tierColors } from '../src/theme';
 import { useI18n } from '../src/i18n';
 import { useAudio } from '../src/audio';
 import { GradientButton } from '../src/components/GradientButton';
+import { NavRow } from '../src/components/NavRow';
 import { CardVideo } from '../src/components/CardVideo';
 import { ANIMATED_CARD_IDS } from '../src/data/cardVideos';
 import { cardThumb } from '../src/data/cardImages';
@@ -101,15 +102,12 @@ export default function Home() {
         <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '–'} icon="la_medalla" />
       </View>
 
-      {/* The menu's icons are cards from our own deck — El Naipe for the rules,
-          El Archivero for the archive, El Trofeo for stats, La Llave Inglesa for
-          settings. Depictive, unmistakably Coplas, and no icon dependency.
-          Rows are separated by hairlines rather than wrapped in panels. */}
+      {/* Home stays about ONE thing: play today's copla. Everything else — the
+          rules, the archive, stats, preferences and the legal pages — lives
+          behind this single door (app/settings.tsx). La Llave Inglesa from our
+          own deck is the icon; no icon-font dependency. */}
       <View style={styles.links}>
-        <NavLink href="/tutorial" label={t.home.howToPlay} hint={t.home.howToPlayHint} icon="el_naipe" first />
-        <NavLink href="/archive" label={t.nav.archive} hint={t.home.archiveHint} icon="el_archivero" />
-        <NavLink href="/stats" label={t.nav.stats} hint={t.home.statsHint} icon="el_trofeo" />
-        <NavLink href="/settings" label={t.nav.settings} hint={t.home.settingsHint} icon="la_llave_inglesa" />
+        <NavRow href="/settings" label={t.nav.more} hint={t.home.moreHint} icon="la_llave_inglesa" first />
       </View>
     </ScrollView>
   );
@@ -129,44 +127,6 @@ function Stat({ label, value, icon }: { label: string; value: string; icon: stri
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label.toUpperCase()}</Text>
     </View>
-  );
-}
-
-const ICON_W = 36;
-const ICON_H = 48;
-
-function NavLink({
-  href,
-  label,
-  hint,
-  icon,
-  first,
-}: {
-  href: string;
-  label: string;
-  hint: string;
-  icon: string;
-  first?: boolean;
-}) {
-  return (
-    <Link href={href as never} asChild>
-      <Pressable style={({ pressed }) => [styles.navPress, pressed && styles.pressed]}>
-        {/* The row layout lives on this inner View, NOT on the Pressable.
-            expo-router's <Link asChild> clones the Pressable into an <a> on web
-            and does not reliably apply its function style — which silently
-            dropped flexDirection:'row' and left the chevron wrapped onto its
-            own line. */}
-        <View style={[styles.navLink, !first && styles.navDivider]}>
-          <Image source={{ uri: cardThumb(icon, ICON_W, ICON_H) }} style={styles.navIcon} />
-          {/* flex:1 keeps the chevron pinned to the right edge. */}
-          <View style={styles.navBody}>
-            <Text style={styles.navLabel}>{label}</Text>
-            <Text style={styles.navHint}>{hint}</Text>
-          </View>
-          <Text style={styles.navChevron}>›</Text>
-        </View>
-      </Pressable>
-    </Link>
   );
 }
 
@@ -207,7 +167,7 @@ const styles = StyleSheet.create({
     width: 128,
     // Match the generated art's own ratio (1792x2400) so 'cover' crops nothing
     // and the printed name banner at the bottom stays fully visible.
-    aspectRatio: 0.7467,
+    aspectRatio: CARD_ASPECT,
     marginBottom: 16,
     shadowColor: colors.accent,
     shadowOpacity: 0.35,
@@ -264,24 +224,7 @@ const styles = StyleSheet.create({
     ...floatShadow,
   },
 
+  // The row itself is NavRow's business; home only sets the group's offset.
   links: { marginTop: 26 },
-  navPress: { width: '100%' },
-  navLink: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 13,
-  },
-  navDivider: { borderTopWidth: 1, borderTopColor: 'rgba(244,185,66,0.15)' },
-  navIcon: {
-    width: ICON_W,
-    height: ICON_H,
-    borderRadius: 4,
-    marginRight: 14,
-    backgroundColor: 'rgba(0,0,0,0.25)',
-  },
-  navBody: { flex: 1 },
-  navLabel: { color: colors.text, fontFamily: displayFont, fontSize: 18, fontWeight: '700', ...floatShadow },
-  navHint: { color: colors.textDim, fontSize: 12, marginTop: 2, ...floatShadow },
-  navChevron: { color: colors.accent, fontSize: 26, fontWeight: '400', marginLeft: 10, opacity: 0.7 },
   pressed: { opacity: 0.6 },
 });

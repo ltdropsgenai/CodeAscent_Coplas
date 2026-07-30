@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Animated, Image, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useVideoPlayer, VideoView } from 'expo-video';
@@ -31,9 +31,16 @@ export function CardVideo({ cardId, borderColor, cornerRadius, style }: Props) {
   const [ready, setReady] = useState(false);
   const fade = useState(() => new Animated.Value(0))[0];
 
+  /**
+   * `useCaching` lets expo-video persist the clip on device, so replaying a
+   * card (very common — the same cards recur across rounds) costs no network.
+   * These are ~1.4 MB each, so this materially cuts cellular usage.
+   */
+  const source = useMemo(() => (uri ? { uri, useCaching: true } : null), [uri]);
+
   // useVideoPlayer must be called unconditionally (hook rules); a null source
   // simply yields an idle player for cards that aren't animated yet.
-  const player = useVideoPlayer(uri ?? null, (p) => {
+  const player = useVideoPlayer(source, (p) => {
     if (!uri) return;
     try {
       p.loop = true;
@@ -100,6 +107,13 @@ export function CardVideo({ cardId, borderColor, cornerRadius, style }: Props) {
             player={player}
             style={styles.media}
             contentFit="cover"
+            /**
+             * Required workaround: expo-video documents that overlapping
+             * VideoViews using contentFit 'cover' can render out of bounds on
+             * Android (upstream androidx/media issue 1107). We show up to 8 at
+             * once in the celebration, so force a texture view.
+             */
+            surfaceType="textureView"
             nativeControls={false}
             allowsPictureInPicture={false}
           />

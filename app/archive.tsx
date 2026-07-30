@@ -1,7 +1,7 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect, useNavigation, useRouter } from 'expo-router';
-import { colors } from '../src/theme';
+import { colors, displayFont, floatShadow } from '../src/theme';
 import { useI18n } from '../src/i18n';
 import { getArchivePuzzles } from '../src/data/puzzles';
 import { getResult, type PuzzleResult } from '../src/storage/store';
@@ -90,23 +90,21 @@ export default function Archive() {
 }
 
 const styles = StyleSheet.create({
-  list: { padding: 14, gap: 10 },
-  note: { color: colors.textDim, fontSize: 13, marginBottom: 8, lineHeight: 18 },
+  list: { paddingHorizontal: 18, paddingTop: 8, paddingBottom: 34 },
+  note: { color: colors.textDim, fontSize: 13, marginBottom: 14, lineHeight: 19, ...floatShadow },
+  // Hairline-separated rows floating on the scene — no panels (see home).
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderRadius: 8,
-    paddingHorizontal: 18,
-    paddingVertical: 16,
-    borderWidth: 1,
-    borderColor: colors.border,
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(244,185,66,0.15)',
   },
   locked: { opacity: 0.55 },
   pressed: { opacity: 0.75 },
-  number: { color: colors.text, fontSize: 18, fontWeight: '800' },
-  date: { color: colors.textDim, fontSize: 12, marginTop: 2 },
+  number: { color: colors.text, fontFamily: displayFont, fontSize: 19, fontWeight: '700', ...floatShadow },
+  date: { color: colors.textDim, fontSize: 12, marginTop: 2, ...floatShadow },
   badge: { fontWeight: '800', fontSize: 14 },
   lockText: { color: colors.textDim, fontWeight: '700' },
   play: { color: colors.accent, fontWeight: '800', fontSize: 15 },

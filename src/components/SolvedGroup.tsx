@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import type { Group } from '../types';
-import { colors, displayFont, radius, tierColors } from '../theme';
+import { CARD_ASPECT, colors, displayFont, radius, tierColors } from '../theme';
 import { getCard } from '../data/cards';
 import { cardImage } from '../data/cardImages';
 import { hasCardVideo } from '../data/cardVideos';
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   theme: { color: colors.accent, fontFamily: displayFont, fontWeight: '700', fontSize: 17, flex: 1 },
   tier: { fontWeight: '800', fontSize: 10, letterSpacing: 1, marginLeft: 8 },
   thumbs: { flexDirection: 'row', gap: 4, marginTop: 6 },
-  thumb: { width: 34, aspectRatio: 0.7467, borderRadius: 4, overflow: 'hidden' },
+  thumb: { width: 34, aspectRatio: CARD_ASPECT, borderRadius: 4, overflow: 'hidden' },
   thumbStill: { borderWidth: 1, backgroundColor: colors.surfaceSolid },
   thumbImg: { width: '100%', height: '100%' },
   cards: { color: colors.text, fontWeight: '700', fontSize: 13, marginTop: 5 },

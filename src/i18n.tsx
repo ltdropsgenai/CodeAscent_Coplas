@@ -16,7 +16,7 @@ export type Lang = 'es' | 'en';
  */
 const STRINGS = {
   es: {
-    nav: { play: 'Jugar', archive: 'Archivo', stats: 'Estadísticas', settings: 'Ajustes', howToPlay: 'Cómo jugar', home: 'Inicio' },
+    nav: { play: 'Jugar', archive: 'Archivo', stats: 'Estadísticas', settings: 'Ajustes', howToPlay: 'Cómo jugar', home: 'Inicio', more: 'Ajustes y más' },
     home: {
       tagline: 'Agrupa las cartas de la Lotería.',
       todaysCopla: 'Copla de hoy',
@@ -31,6 +31,7 @@ const STRINGS = {
       archiveHint: 'Juega coplas anteriores',
       statsHint: 'Tu racha y aciertos',
       settingsHint: 'Modo relajado, idioma',
+      moreHint: 'Cómo jugar, archivo, estadísticas y ajustes',
     },
     play: {
       subtitle: 'Encuentra los 4 grupos de 4.',
@@ -88,12 +89,21 @@ const STRINGS = {
       difficultyTitle: 'Dificultad',
       difficultySub: 'Qué tan tramposas son las agrupaciones. En Difícil las cartas engañan más.',
       version: 'Coplas · versión 0.1.0 (prototipo)',
+      groupGame: 'El juego',
+      groupPrefs: 'Preferencias',
+      groupAbout: 'Información',
+      terms: 'Términos y condiciones',
+      termsHint: 'Las reglas del servicio',
+      privacy: 'Privacidad',
+      privacyHint: 'Qué datos guardamos (y cuáles no)',
+      about: 'Acerca de Coplas',
+      aboutHint: 'Quién lo hace y con qué',
     },
     diff: { facil: 'Fácil', media: 'Media', dificil: 'Difícil' } as Record<string, string>,
     tier: { 1: 'Fácil', 2: 'Media', 3: 'Difícil', 4: 'Trampa' } as Record<number, string>,
   },
   en: {
-    nav: { play: 'Play', archive: 'Archive', stats: 'Stats', settings: 'Settings', howToPlay: 'How to play', home: 'Home' },
+    nav: { play: 'Play', archive: 'Archive', stats: 'Stats', settings: 'Settings', howToPlay: 'How to play', home: 'Home', more: 'Settings & more' },
     home: {
       tagline: 'Group the Lotería cards.',
       todaysCopla: "Today's copla",
@@ -108,6 +118,7 @@ const STRINGS = {
       archiveHint: 'Play past coplas',
       statsHint: 'Your streak and wins',
       settingsHint: 'Relaxed mode, language',
+      moreHint: 'How to play, archive, stats and settings',
     },
     play: {
       subtitle: 'Find the 4 groups of 4.',
@@ -165,6 +176,15 @@ const STRINGS = {
       difficultyTitle: 'Difficulty',
       difficultySub: 'How tricky the groupings are. Hard leans on decoys and wordplay.',
       version: 'Coplas · version 0.1.0 (prototype)',
+      groupGame: 'The game',
+      groupPrefs: 'Preferences',
+      groupAbout: 'Information',
+      terms: 'Terms & conditions',
+      termsHint: 'The rules of the service',
+      privacy: 'Privacy',
+      privacyHint: 'What we store (and what we don’t)',
+      about: 'About Coplas',
+      aboutHint: 'Who makes it, and with what',
     },
     diff: { facil: 'Easy', media: 'Medium', dificil: 'Hard' } as Record<string, string>,
     tier: { 1: 'Easy', 2: 'Medium', 3: 'Hard', 4: 'Trap' } as Record<number, string>,
