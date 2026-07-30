@@ -5,6 +5,7 @@ import { CARD_ASPECT, colors, displayFont, radius, tierColors } from '../theme';
 import { getCard } from '../data/cards';
 import { cardImage } from '../data/cardImages';
 import { hasCardVideo } from '../data/cardVideos';
+import { groupTheme, groupWhy } from '../data/groupText';
 import { CardVideo } from './CardVideo';
 import { useI18n } from '../i18n';
 
@@ -17,7 +18,7 @@ import { useI18n } from '../i18n';
 const THUMBS_ANIMATE = false;
 
 export function SolvedGroup({ group, animate }: { group: Group; animate?: boolean }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const anim = useRef(new Animated.Value(0)).current;
   const color = tierColors[group.tier];
 
@@ -42,7 +43,10 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
       <View style={[styles.ribbon, { backgroundColor: color }]} />
       <View style={styles.body}>
         <View style={styles.headerRow}>
-          <Text style={styles.theme}>{group.theme}</Text>
+          {/* Localized at render only — `group.theme` stays Spanish everywhere
+              it is used as an identity key (engine.ts, the React key in
+              play.tsx). See src/data/groupText.ts. */}
+          <Text style={styles.theme}>{groupTheme(group.theme, lang)}</Text>
           <Text style={[styles.tier, { color }]}>{t.tier[group.tier].toUpperCase()}</Text>
         </View>
         {/* The four cards you just matched.
@@ -72,7 +76,7 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
           )}
         </View>
         <Text style={styles.cards}>{names}</Text>
-        <Text style={styles.explain}>{group.explanation}</Text>
+        <Text style={styles.explain}>{groupWhy(group.explanation, lang)}</Text>
       </View>
     </Animated.View>
   );
