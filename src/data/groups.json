@@ -71,10 +71,10 @@
       "el_borracho",
       "el_charro",
       "el_musico",
-      "el_apache"
+      "el_albanil"
     ],
     "theme": "Más personajes",
-    "why": "Borracho, Charro, Músico y Apache: también son gente."
+    "why": "Borracho, Charro, Músico y Albañil: también son gente."
   },
   "personas3": {
     "kind": "cat",
@@ -147,22 +147,22 @@
     "cards": [
       "las_jaras",
       "el_soldado",
-      "el_apache",
+      "el_arco",
       "el_valiente"
     ],
     "theme": "Del combate",
-    "why": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+    "why": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
   },
   "armados": {
     "kind": "cat",
     "cards": [
       "el_valiente",
       "el_soldado",
-      "el_apache",
+      "el_policia",
       "el_charro"
     ],
     "theme": "Andan armados",
-    "why": "Valiente, Soldado, Apache y Charro: gente de armas."
+    "why": "Valiente, Soldado, Policía y Charro: gente de armas."
   },
   "frutas": {
     "kind": "cat",
@@ -370,10 +370,10 @@
       "el_arbol",
       "la_arana",
       "el_alacran",
-      "el_apache"
+      "el_arcoiris"
     ],
     "theme": "Empiezan con «A»",
-    "why": "Árbol, Araña, Alacrán y Apache."
+    "why": "Árbol, Araña, Alacrán y Arcoíris."
   },
   "letraB": {
     "kind": "letter",

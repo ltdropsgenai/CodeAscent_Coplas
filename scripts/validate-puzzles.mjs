@@ -6,7 +6,7 @@
  *  - id matches coplas-####, unique
  *  - number unique, date matches YYYY-MM-DD, dates unique
  *  - exactly 4 groups; each group has exactly 4 cardIds
- *  - every cardId exists in the 54-card deck
+ *  - every cardId exists in the full deck (base + expansion)
  *  - no card appears in more than one group within a puzzle (= 16 unique)
  *  - the four tiers are exactly {1,2,3,4}
  *  - difficulty (if present) is facil|media|dificil
@@ -21,15 +21,28 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 
-// Parse the card ids + display names straight out of the TS source.
+// Parse the base card ids + display names straight out of the TS source...
 const cardsSrc = readFileSync(join(root, 'src/data/cards.ts'), 'utf8');
-const cardIds = new Set(
-  [...cardsSrc.matchAll(/id:\s*'([a-z0-9_]+)'/g)].map((m) => m[1])
-);
 /** id -> display name, e.g. el_gallo -> "El Gallo". */
 const cardName = Object.fromEntries(
   [...cardsSrc.matchAll(/id:\s*'([a-z0-9_]+)',\s*name:\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
 );
+
+// ...then merge the expansion, which is where 943 of the ~997 cards live.
+//
+// This script used to read cards.ts alone, so every puzzle that referenced an
+// expansion card reported a phantom "unknown card" and — worse, because it
+// failed quietly — the letter and rhyme trap checks below silently skipped
+// those cards, which is exactly the check you want working. Base wins on an
+// id collision, matching the dedupe in data/cards.ts.
+const expansion = JSON.parse(
+  readFileSync(join(root, 'src/data/expansion.cards.json'), 'utf8')
+);
+for (const c of expansion) {
+  if (!(c.id in cardName)) cardName[c.id] = c.name;
+}
+
+const cardIds = new Set(Object.keys(cardName));
 const stripDiacritics = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 /** The noun (name minus its El/La/Las/Los article). */
 function noun(id) {

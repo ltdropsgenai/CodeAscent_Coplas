@@ -194,7 +194,7 @@ export function SplashSequence({ onDone }: { onDone: () => void }) {
             Coplas
           </Animated.Text>
           <Animated.View style={[styles.rule, { width: ruleW }]} />
-          <Animated.Text style={[styles.tag, { opacity: tagOpacity }]}>LOTERÍA · CONEXIONES</Animated.Text>
+          <Animated.Text style={[styles.tag, { opacity: tagOpacity }]}>CARTAS · CONEXIONES</Animated.Text>
         </View>
       </View>
 

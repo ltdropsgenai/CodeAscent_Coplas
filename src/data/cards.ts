@@ -2,12 +2,21 @@ import type { Card } from '../types';
 import EXPANSION_RAW from './expansion.cards.json';
 
 /**
- * The 54 archetypes of the classic Mexican Lotería deck.
+ * The classic archetypes of the traditional Mexican deck.
  *
- * NOTE ON CARD 26: the traditional deck's card #26 has a name that is
- * offensive by modern standards. It is replaced here with "El Charro"
- * (a culturally fitting Mexican horseman). Finalize all card naming with
- * a cultural review before launch.
+ * TWO CARDS FROM THE TRADITIONAL SET ARE DELIBERATELY ABSENT.
+ * The traditional #26 (El Negrito) and #38 (El Apache) are racial
+ * caricatures. El Negrito is replaced by "El Charro" (a Mexican horseman,
+ * culturally of a piece with the rest of the deck); El Apache is retired
+ * outright, its puzzle slots reassigned per group by scripts/legal-pass.mjs
+ * (El Albañil / El Arco / El Policía / El Arcoiris, chosen so each group's
+ * logic still holds). Modern publishers routinely drop both. Do not
+ * reintroduce either one.
+ *
+ * The `number` written below is NOT what the app shows. Numbers are
+ * reassigned for the whole deck at the bottom of this file so that the
+ * traditional 1-54 sequence is not reproduced anywhere in the product; these
+ * literals survive only as a reading aid for whoever edits this list.
  *
  * `emoji` is a placeholder glyph so the board is legible before the
  * commissioned artwork exists. Real art will replace these via an
@@ -51,7 +60,6 @@ export const BASE_CARDS: Card[] = [
   { id: 'la_estrella', name: 'La Estrella', number: 35, emoji: '⭐' },
   { id: 'el_cazo', name: 'El Cazo', number: 36, emoji: '🍲' },
   { id: 'el_mundo', name: 'El Mundo', number: 37, emoji: '🌎' },
-  { id: 'el_apache', name: 'El Apache', number: 38, emoji: '🪶' },
   { id: 'el_nopal', name: 'El Nopal', number: 39, emoji: '🌵' },
   { id: 'el_alacran', name: 'El Alacrán', number: 40, emoji: '🦂' },
   { id: 'la_rosa', name: 'La Rosa', number: 41, emoji: '🌹' },
@@ -90,7 +98,29 @@ export const EXPANSION_CARDS: Card[] = (EXPANSION_RAW as Card[]).filter(
  * expansion card can actually appear in a round is gated on connectivity by the
  * composer (offline → base 54 only, online → full deck).
  */
-export const CARDS: Card[] = [...BASE_CARDS, ...EXPANSION_CARDS];
+export const CARDS: Card[] = renumber([...BASE_CARDS, ...EXPANSION_CARDS]);
+
+/**
+ * Reassign every card's number, 1..N, in Spanish alphabetical order by name.
+ *
+ * Why this exists: the base list above is the traditional deck in the
+ * traditional order, and that specific numbered sequence is the single most
+ * recognisable piece of a commercial publisher's edition. The names
+ * themselves are ordinary Spanish nouns and the game predates any modern
+ * publisher by a century, but the *arrangement* is theirs, so we don't ship
+ * it. Sorting the merged 997 by name scatters the classics through the deck
+ * and gives us a numbering that is entirely our own.
+ *
+ * Deterministic: same input list, same numbers, every launch and every
+ * device. Nothing persists card numbers (progress is keyed on puzzle number
+ * and card *id*), so this is display-only and safe to change.
+ */
+function renumber(deck: Card[]): Card[] {
+  const collator = new Intl.Collator('es', { sensitivity: 'base' });
+  return [...deck]
+    .sort((a, b) => collator.compare(a.name, b.name) || a.id.localeCompare(b.id))
+    .map((c, i) => ({ ...c, number: i + 1 }));
+}
 
 /** Fast lookup by id. */
 export const CARD_BY_ID: Record<string, Card> = CARDS.reduce(

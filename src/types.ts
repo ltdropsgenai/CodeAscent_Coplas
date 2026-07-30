@@ -1,5 +1,5 @@
 /**
- * Core domain types for Coplas (Lotería Connections).
+ * Core domain types for Coplas — a card-grouping word game.
  */
 
 /** Difficulty tier of a connection group. 1 = easiest (green) ... 4 = trickiest (purple). */
@@ -14,13 +14,17 @@ export type Tier = 1 | 2 | 3 | 4;
  */
 export type Difficulty = 'facil' | 'media' | 'dificil';
 
-/** A single Lotería card / archetype. */
+/** A single card / archetype in the deck. */
 export interface Card {
   /** Stable slug used to reference the card in puzzles, e.g. "el_gallo". */
   id: string;
   /** Display name, e.g. "El Gallo". */
   name: string;
-  /** Traditional deck number (1-54), for reference. */
+  /**
+   * Position in *our* deck, 1..N. Assigned by `renumber()` in data/cards.ts
+   * from a Spanish alphabetical sort — deliberately NOT the traditional
+   * 1-54 sequence. Display only; nothing is persisted against it.
+   */
   number: number;
   /** Placeholder glyph shown until commissioned art exists. */
   emoji?: string;

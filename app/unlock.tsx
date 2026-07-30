@@ -6,6 +6,7 @@ import { colors, displayFont, floatShadow, monoFont } from '../src/theme';
 import { useI18n } from '../src/i18n';
 import { usePurchases } from '../src/purchases';
 import { FREE_ARCHIVE_WINDOW } from '../src/purchases/config';
+import { CARDS } from '../src/data/cards';
 
 /**
  * The paywall.
@@ -73,7 +74,10 @@ export default function Unlock() {
 
       <View style={styles.bullets}>
         <Bullet>{t.iap.b1}</Bullet>
-        <Bullet>{t.iap.b2}</Bullet>
+        {/* Derived, never hardcoded — the deck size moves whenever a card is
+            added or retired, and a paywall that overstates what you get is
+            exactly the kind of claim App Review reads as misleading. */}
+        <Bullet>{t.iap.b2(CARDS.length)}</Bullet>
         <Bullet>{t.iap.b3}</Bullet>
       </View>
 

@@ -13,12 +13,20 @@ export type Lang = 'es' | 'en';
  * All UI copy, in both languages. NOTE: puzzle *content* (group themes and
  * explanations, card names) stays in Spanish by design — this app is a
  * Spanish word game; only the surrounding UI chrome is translated.
+ *
+ * ON THE WORD "LOTERÍA": it is a contested trademark whose owner is actively
+ * litigating, so it does not appear anywhere in this file, in the app name, or
+ * in a store title. It survives only inside full descriptive sentences in
+ * app/legal.tsx ("inspirado en la lotería mexicana"), lowercase, naming the
+ * tradition rather than labelling the product. Keep it that way; the store
+ * keywords field carries the search term instead. See
+ * claude/coplas-monetization.md and the legal notes for the reasoning.
  */
 const STRINGS = {
   es: {
     nav: { play: 'Jugar', archive: 'Archivo', stats: 'Estadísticas', settings: 'Ajustes', howToPlay: 'Cómo jugar', home: 'Inicio', more: 'Ajustes y más' },
     home: {
-      tagline: 'Agrupa las cartas de la Lotería.',
+      tagline: 'Agrupa las cartas de la baraja mexicana.',
       todaysCopla: 'Copla de hoy',
       play: 'Jugar',
       viewResult: 'Ver resultado',
@@ -70,7 +78,7 @@ const STRINGS = {
       blurb:
         'La copla de hoy siempre es gratis. Desbloquea el archivo completo y vuelve a jugar cualquier copla anterior, para siempre.',
       b1: 'Todas las coplas anteriores, sin límite',
-      b2: 'Las 997 cartas de la Lotería, animadas',
+      b2: (n: number) => `Las ${n} cartas de la baraja, animadas`,
       b3: 'Pago único — sin suscripción, sin anuncios',
       cta: 'Desbloquear',
       ctaBusy: 'Procesando…',
@@ -134,7 +142,7 @@ const STRINGS = {
   en: {
     nav: { play: 'Play', archive: 'Archive', stats: 'Stats', settings: 'Settings', howToPlay: 'How to play', home: 'Home', more: 'Settings & more' },
     home: {
-      tagline: 'Group the Lotería cards.',
+      tagline: 'Group the cards of the Mexican deck.',
       todaysCopla: "Today's copla",
       play: 'Play',
       viewResult: 'View result',
@@ -186,7 +194,7 @@ const STRINGS = {
       blurb:
         "Today's copla is always free. Unlock the full archive and replay any earlier copla, forever.",
       b1: 'Every past copla, no limit',
-      b2: 'All 997 Lotería cards, animated',
+      b2: (n: number) => `All ${n} cards in the deck, animated`,
       b3: 'One-time purchase — no subscription, no ads',
       cta: 'Unlock',
       ctaBusy: 'Working…',

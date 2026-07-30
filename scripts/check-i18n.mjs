@@ -28,6 +28,18 @@ for (const g of Object.values(groups)) {
   whys.add(g.why);
 }
 
+// puzzles.json is NOT merely a projection of the group libraries. The earliest
+// boards were authored by hand and their themes/explanations exist nowhere
+// else, so scanning only the generated libraries reported 100% coverage while
+// English players got Spanish reveals on coplas-0001 onward — the very first
+// puzzles anyone plays. What ships is what must be checked.
+for (const p of read('src/data/puzzles.json')) {
+  for (const g of p.groups) {
+    themes.add(g.theme);
+    whys.add(g.explanation);
+  }
+}
+
 const missingThemes = [...themes].filter((t) => !(t in dict.themes)).sort();
 const missingWhys = [...whys].filter((w) => !(w in dict.whys)).sort();
 

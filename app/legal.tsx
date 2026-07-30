@@ -38,7 +38,15 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
       title: 'Acerca de Coplas',
       blocks: [
         {
-          p: 'Coplas es un juego de palabras inspirado en la Lotería mexicana. Cada ronda reparte dieciséis cartas que esconden cuatro grupos de cuatro; tu trabajo es encontrar qué las une — una familia, una rima, un color, una trampa — antes de gastar tus errores.',
+          p: 'Coplas es un juego de palabras inspirado en la lotería mexicana, la tradición popular de cartas ilustradas. Cada ronda reparte dieciséis cartas que esconden cuatro grupos de cuatro; tu trabajo es encontrar qué las une — una familia, una rima, un color, una trampa — antes de gastar tus errores.',
+        },
+        {
+          h: 'Obra independiente',
+          p: 'Coplas es una obra original e independiente. No está afiliado, asociado, autorizado ni patrocinado por Don Clemente, Inc., por Pasatiempos Gallo ni por ningún otro editor de barajas de lotería, ni guarda relación con ellos. Las ' + DECK_SIZE + ' ilustraciones son nuestras, hechas para este juego: no reproducimos el arte, la numeración ni el orden de ninguna edición comercial. Los nombres tradicionales de las cartas son sustantivos comunes del español y los usamos de forma descriptiva. La lotería es una tradición mexicana centenaria y es de todos.',
+        },
+        {
+          h: 'Dos cartas que no verás',
+          p: 'La baraja tradicional incluye dos figuras que hoy leemos como caricaturas raciales. No están aquí: una la sustituimos por El Charro y la otra la retiramos por completo. Preferimos una baraja más grande y más amable que una fiel al pie de la letra.',
         },
         {
           h: 'La baraja',
@@ -62,7 +70,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'Contenido',
-          p: 'Las ilustraciones, la música, los textos y el diseño de Coplas son nuestros o los usamos con licencia. La Lotería como tradición es patrimonio cultural mexicano y es de todos; nuestras versiones concretas de las cartas, no.',
+          p: 'Las ilustraciones, la música, los textos y el diseño de Coplas son nuestros o los usamos con licencia. La lotería como tradición es patrimonio cultural mexicano y es de todos; nuestras versiones concretas de las cartas, no. Cualquier marca registrada de terceros que se mencione pertenece a su titular y se usa únicamente de forma descriptiva.',
         },
         {
           h: 'Sin garantías',
@@ -70,7 +78,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'Compras',
-          p: 'Si en el futuro añadimos compras dentro de la app, las procesa Apple y aplican sus reglas de reembolso, no las nuestras.',
+          p: 'Si en el futuro añadimos compras dentro de la app, las procesa la tienda desde la que instalaste Coplas — App Store o Google Play — y aplican sus reglas de reembolso, no las nuestras.',
         },
         {
           h: 'Cambios',
@@ -112,7 +120,15 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
       title: 'About Coplas',
       blocks: [
         {
-          p: 'Coplas is a word game built on the Mexican Lotería. Each round deals sixteen cards hiding four groups of four; your job is to spot what binds them — a family, a rhyme, a colour, a trap — before your mistakes run out.',
+          p: 'Coplas is a word game inspired by the Mexican lotería, the folk tradition of illustrated picture cards. Each round deals sixteen cards hiding four groups of four; your job is to spot what binds them — a family, a rhyme, a colour, a trap — before your mistakes run out.',
+        },
+        {
+          h: 'An independent work',
+          p: 'Coplas is an original, independent work. It is not affiliated with, associated with, authorised by, sponsored by, or connected to Don Clemente, Inc., Pasatiempos Gallo, or any other publisher of lotería card decks. All ' + DECK_SIZE + ' illustrations are our own, made for this game: we reproduce no commercial edition’s artwork, numbering, or ordering. The traditional card names are ordinary Spanish nouns and are used descriptively. Lotería is a century-old Mexican tradition and belongs to everyone.',
+        },
+        {
+          h: 'Two cards you will not see',
+          p: 'The traditional deck carries two figures that read today as racial caricatures. Neither is here: one we replaced with El Charro, the other we retired outright. We would rather have a bigger, kinder deck than a literally faithful one.',
         },
         {
           h: 'The deck',
@@ -134,7 +150,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'Content',
-          p: 'The illustrations, music, text and design of Coplas are ours or licensed to us. Lotería as a tradition is Mexican cultural heritage and belongs to everyone; our particular renderings of the cards do not.',
+          p: 'The illustrations, music, text and design of Coplas are ours or licensed to us. Lotería as a tradition is Mexican cultural heritage and belongs to everyone; our particular renderings of the cards do not. Any third-party trademark mentioned belongs to its owner and is used descriptively only.',
         },
         {
           h: 'No warranties',
@@ -142,7 +158,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'Purchases',
-          p: 'If we add in-app purchases later, Apple processes them and Apple’s refund rules apply, not ours.',
+          p: 'If we add in-app purchases later, whichever store you installed Coplas from — the App Store or Google Play — processes them, and that store’s refund rules apply, not ours.',
         },
         {
           h: 'Changes',

@@ -490,10 +490,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Del mar",
@@ -542,10 +542,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Hacen sonido",
@@ -617,9 +617,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       }
     ]
   },
@@ -668,10 +668,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       }
     ]
   },
@@ -699,9 +699,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Del mar",
@@ -761,10 +761,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Árboles y plantas",
@@ -876,10 +876,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       }
     ]
   },
@@ -1051,10 +1051,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Árboles y plantas",
@@ -1189,9 +1189,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       }
     ]
   },
@@ -1219,9 +1219,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Del jardín",
@@ -1449,9 +1449,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       }
     ]
   },
@@ -1519,10 +1519,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Bichos",
@@ -1572,9 +1572,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Del mar",
@@ -1624,9 +1624,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Personajes",
@@ -1749,10 +1749,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Empiezan con «P»",
@@ -1801,10 +1801,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Cosas redondas",
@@ -1894,10 +1894,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Bichos",
@@ -1987,10 +1987,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Cosas que se llevan",
@@ -2155,9 +2155,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Del mar",
@@ -2195,10 +2195,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Animales",
@@ -2227,11 +2227,11 @@
         "tier": 4,
         "cardIds": [
           "el_paraguas",
-          "el_pajaro",
+          "la_pera",
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+        "explanation": "Paraguas, Pera, Pino y Pescado."
       }
     ]
   },
@@ -2363,9 +2363,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Bichos",
@@ -2455,10 +2455,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Árboles y plantas",
@@ -2507,10 +2507,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Aves",
@@ -2611,10 +2611,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Animales",
@@ -2715,10 +2715,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Aves",
@@ -2790,9 +2790,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Cosas redondas",
@@ -3059,11 +3059,11 @@
         "tier": 4,
         "cardIds": [
           "el_paraguas",
-          "el_pajaro",
+          "la_pera",
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+        "explanation": "Paraguas, Pera, Pino y Pescado."
       }
     ]
   },
@@ -3111,11 +3111,11 @@
         "tier": 4,
         "cardIds": [
           "el_paraguas",
-          "el_pajaro",
+          "la_pera",
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+        "explanation": "Paraguas, Pera, Pino y Pescado."
       }
     ]
   },
@@ -3143,9 +3143,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Empiezan con «S»",
@@ -3340,9 +3340,9 @@
           "el_borracho",
           "el_charro",
           "el_musico",
-          "el_apache"
+          "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
       },
       {
         "theme": "Cosas que se llevan",
@@ -3454,10 +3454,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Rojos y rosas",
@@ -3529,9 +3529,9 @@
           "el_arbol",
           "la_arana",
           "el_alacran",
-          "el_apache"
+          "el_arcoiris"
         ],
-        "explanation": "Árbol, Araña, Alacrán y Apache."
+        "explanation": "Árbol, Araña, Alacrán y Arcoíris."
       }
     ]
   },
@@ -3558,10 +3558,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Altas y largas",
@@ -3651,10 +3651,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Del mar",
@@ -3789,9 +3789,9 @@
           "el_arbol",
           "la_arana",
           "el_alacran",
-          "el_apache"
+          "el_arcoiris"
         ],
-        "explanation": "Árbol, Araña, Alacrán y Apache."
+        "explanation": "Árbol, Araña, Alacrán y Arcoíris."
       }
     ]
   },
@@ -3818,10 +3818,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Riman en «-ón»",
@@ -3922,10 +3922,10 @@
         "cardIds": [
           "el_gallo",
           "la_garza",
-          "el_pajaro",
+          "el_petirrojo",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, petirrojo y cotorro: todos tienen alas."
       },
       {
         "theme": "Cosas rojas",
@@ -3945,9 +3945,9 @@
           "el_arbol",
           "la_arana",
           "el_alacran",
-          "el_apache"
+          "el_arcoiris"
         ],
-        "explanation": "Árbol, Araña, Alacrán y Apache."
+        "explanation": "Árbol, Araña, Alacrán y Arcoíris."
       }
     ]
   },
@@ -4171,10 +4171,10 @@
         "cardIds": [
           "el_valiente",
           "el_soldado",
-          "el_apache",
+          "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
       },
       {
         "theme": "Hacen sonido",
@@ -4286,10 +4286,10 @@
         "cardIds": [
           "las_jaras",
           "el_soldado",
-          "el_apache",
+          "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
       },
       {
         "theme": "Empiezan con «B»",
@@ -4307,11 +4307,11 @@
         "tier": 4,
         "cardIds": [
           "el_paraguas",
-          "el_pajaro",
+          "la_pera",
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+        "explanation": "Paraguas, Pera, Pino y Pescado."
       }
     ]
   },
