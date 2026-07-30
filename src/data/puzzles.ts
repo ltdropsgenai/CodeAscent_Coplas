@@ -1,4 +1,4 @@
-import type { Puzzle } from '../types';
+import type { Difficulty, Puzzle } from '../types';
 import raw from './puzzles.json';
 
 /**
@@ -31,6 +31,20 @@ export function getPuzzleByDate(date: string): Puzzle | undefined {
 
 export function getPuzzleByNumber(n: number): Puzzle | undefined {
   return PUZZLES.find((p) => p.number === n);
+}
+
+/** A puzzle's difficulty, defaulting to 'media' when the field is absent. */
+export function puzzleDifficulty(p: Puzzle): Difficulty {
+  return p.difficulty ?? 'media';
+}
+
+/**
+ * Puzzles at a given difficulty. Falls back to the full set if a pool is too
+ * small to build a varied round order (shouldn't happen with the bundled set).
+ */
+export function getPuzzlesByDifficulty(d: Difficulty): Puzzle[] {
+  const pool = PUZZLES.filter((p) => puzzleDifficulty(p) === d);
+  return pool.length >= 4 ? pool : PUZZLES;
 }
 
 /**

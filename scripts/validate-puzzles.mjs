@@ -9,6 +9,8 @@
  *  - every cardId exists in the 54-card deck
  *  - no card appears in more than one group within a puzzle (= 16 unique)
  *  - the four tiers are exactly {1,2,3,4}
+ *  - difficulty (if present) is facil|media|dificil
+ *  - letter/rhyme trap groups are unambiguous (no stray matching card)
  *
  * Exits non-zero on any error. Run: npm run validate
  */
@@ -19,11 +21,25 @@ import { dirname, join } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 
-// Parse the card ids straight out of the TS source (avoids a build step).
+// Parse the card ids + display names straight out of the TS source.
 const cardsSrc = readFileSync(join(root, 'src/data/cards.ts'), 'utf8');
 const cardIds = new Set(
   [...cardsSrc.matchAll(/id:\s*'([a-z0-9_]+)'/g)].map((m) => m[1])
 );
+/** id -> display name, e.g. el_gallo -> "El Gallo". */
+const cardName = Object.fromEntries(
+  [...cardsSrc.matchAll(/id:\s*'([a-z0-9_]+)',\s*name:\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
+);
+const stripDiacritics = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+/** The noun (name minus its El/La/Las/Los article). */
+function noun(id) {
+  const n = cardName[id] ?? '';
+  const parts = n.split(' ');
+  const body = /^(El|La|Las|Los)$/.test(parts[0]) ? parts.slice(1).join(' ') : n;
+  return body;
+}
+const nounInitial = (id) => stripDiacritics(noun(id)).charAt(0).toUpperCase();
+const nounLower = (id) => noun(id).toLowerCase();
 
 const puzzles = JSON.parse(
   readFileSync(join(root, 'src/data/puzzles.json'), 'utf8')
@@ -82,6 +98,32 @@ for (const [i, p] of (puzzles ?? []).entries()) {
   const tierSet = [...tiers].sort().join(',');
   if (tierSet !== '1,2,3,4') errors.push(`${at}: tiers must be exactly 1,2,3,4 (got ${tierSet})`);
   if (cardsInPuzzle.size !== 16) errors.push(`${at}: must contain 16 unique cards (got ${cardsInPuzzle.size})`);
+
+  // Difficulty must be a known value if present.
+  if (p.difficulty && !['facil', 'media', 'dificil'].includes(p.difficulty)) {
+    errors.push(`${at}: bad difficulty "${p.difficulty}"`);
+  }
+
+  // Anti-ambiguity: a letter/rhyme trap group must be the ONLY set of cards in
+  // the whole puzzle that satisfies its rule (otherwise there are two valid
+  // answers). Colours / shapes / hidden-words are curated by hand.
+  const allCards = [...cardsInPuzzle];
+  for (const group of p.groups) {
+    const letter = group.theme?.match(/Empiezan con «(.)»/u)?.[1];
+    if (letter) {
+      const matches = allCards.filter((id) => nounInitial(id) === letter.toUpperCase());
+      if (matches.length !== 4 || !group.cardIds.every((id) => nounInitial(id) === letter.toUpperCase())) {
+        errors.push(`${at} "${group.theme}": ${matches.length} cards start with «${letter}» (need exactly the 4 in the group): ${matches.join(', ')}`);
+      }
+    }
+    const suffix = group.theme?.match(/Riman en «-(.+?)»/u)?.[1];
+    if (suffix) {
+      const matches = allCards.filter((id) => nounLower(id).endsWith(suffix.toLowerCase()));
+      if (matches.length !== 4 || !group.cardIds.every((id) => nounLower(id).endsWith(suffix.toLowerCase()))) {
+        errors.push(`${at} "${group.theme}": ${matches.length} cards end in «-${suffix}» (need exactly the 4 in the group): ${matches.join(', ')}`);
+      }
+    }
+  }
 }
 
 if (errors.length) {

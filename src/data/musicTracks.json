@@ -1,0 +1,27 @@
+{
+  "_note": "Coplas music set (VidIQ generate_music, royalty-free). SELF-HOSTED + WIRED: rehosted into the Supabase public 'audio' bucket (edge fn rehost-audio) and consumed by the app via src/data/audioAssets.ts -> MUSIC and src/audio.tsx. This file is the human record; the app reads audioAssets.MUSIC. Rotation: home = home-screen bed; each round pulls a different `rounds` track (anti-repeat) — 2 per genre so genres don't repeat back-to-back; each win pulls a different `wins` fanfare (anti-repeat). To rehost more: add name->source url to rehost-audio and invoke it. Source url = supabaseBase + '<name>.wav'; original VidIQ url = vidiqBase + '<musicId>.wav'.",
+  "supabaseBase": "https://bmybvrqbpachjxrejxdj.supabase.co/storage/v1/object/public/audio/",
+  "vidiqBase": "https://ai-music-tracks.s3.us-east-1.amazonaws.com/07e5635c-2b66-4fe2-96b1-0269404c5939/",
+  "home": { "name": "home", "genre": "Latin acoustic bed", "musicId": "d1173d91-8809-4b3d-9688-4cf324ea6380" },
+  "wins": [
+    { "name": "win", "style": "mariachi victory fanfare", "musicId": "23e0c0f9-3d92-433a-894e-0d0422a4c4ea" },
+    { "name": "win2", "style": "festive mariachi fanfare", "musicId": "699452de-1cd2-484f-b35c-d69b9f8f9298" },
+    { "name": "win3", "style": "flamenco guitar flourish", "musicId": "59ccfae1-cbd7-4c60-958c-cfa160887812" },
+    { "name": "win4", "style": "marimba + brass victory sting", "musicId": "a483cae0-5b2f-4e97-9807-83bc7eacc81b" },
+    { "name": "win5", "style": "festive accordion fanfare", "musicId": "30321363-c82e-4630-b697-d1d4923119d4" }
+  ],
+  "rounds": [
+    { "name": "bachata", "genre": "bachata", "musicId": "099a119a-fb09-4e05-87d7-e288fd55ff67" },
+    { "name": "bachata2", "genre": "bachata", "musicId": "07933c18-0bfd-48d9-a3a4-7ff0b7052144" },
+    { "name": "reggaeton", "genre": "reggaeton", "musicId": "c434e6bb-c65c-47d6-a633-666e487547a9" },
+    { "name": "reggaeton2", "genre": "reggaeton", "musicId": "7654014b-3690-4479-b5a2-766b6cee1367" },
+    { "name": "cumbia", "genre": "cumbia", "musicId": "4d7ea6b4-a442-40b6-a6cb-f317bf08f0bf" },
+    { "name": "cumbia2", "genre": "cumbia", "musicId": "c5d5e9c1-f70e-40cb-87a1-04a347a069d6" },
+    { "name": "bolero", "genre": "bolero", "musicId": "d8437958-e52f-4997-8e60-f55cd45b7968" },
+    { "name": "bolero2", "genre": "bolero", "musicId": "d1caeb9d-aecc-4f81-aedc-1b3e6152bef6" },
+    { "name": "son_jarocho", "genre": "son jarocho", "musicId": "0a74e56d-8792-4087-bdab-7f464428d733" },
+    { "name": "son_jarocho2", "genre": "son jarocho", "musicId": "391f4fa8-a623-48d1-a6cd-6bd764bc3d7a" },
+    { "name": "marimba", "genre": "marimba", "musicId": "b0ab6664-643e-4fbb-9bdb-88d6da0e0bef" },
+    { "name": "marimba2", "genre": "marimba", "musicId": "1ae2abf8-b765-4583-af0b-650f4a4645f4" }
+  ]
+}

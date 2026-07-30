@@ -5,6 +5,15 @@
 /** Difficulty tier of a connection group. 1 = easiest (green) ... 4 = trickiest (purple). */
 export type Tier = 1 | 2 | 3 | 4;
 
+/**
+ * Overall puzzle difficulty — how sneaky the groupings are.
+ *   facil   — four clearly distinct categories, few decoys.
+ *   media   — one or two "trap" groups (rhyme/letter/colour) among categories.
+ *   dificil — several traps + deliberate decoy cards that plausibly fit two
+ *             groups, so the obvious grouping misleads.
+ */
+export type Difficulty = 'facil' | 'media' | 'dificil';
+
 /** A single Lotería card / archetype. */
 export interface Card {
   /** Stable slug used to reference the card in puzzles, e.g. "el_gallo". */
@@ -37,6 +46,8 @@ export interface Puzzle {
   number: number;
   /** ISO date (YYYY-MM-DD) this puzzle is the daily for, America/Mexico_City. */
   date: string;
+  /** How sneaky this puzzle is. Absent = treat as 'media'. */
+  difficulty?: Difficulty;
   /** The four groups. */
   groups: Group[];
 }

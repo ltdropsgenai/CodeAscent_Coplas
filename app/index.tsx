@@ -1,39 +1,47 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Link, useFocusEffect, useRouter } from 'expo-router';
+import { useCallback, useLayoutEffect, useState } from 'react';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Link, useFocusEffect, useNavigation, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../src/theme';
+import { colors, displayFont, floatShadow, monoFont, tierColors } from '../src/theme';
 import { useI18n } from '../src/i18n';
+import { useAudio } from '../src/audio';
+import { GradientButton } from '../src/components/GradientButton';
+import { CardVideo } from '../src/components/CardVideo';
+import { ANIMATED_CARD_IDS } from '../src/data/cardVideos';
+import { cardThumb } from '../src/data/cardImages';
 import { getTodaysPuzzle } from '../src/data/puzzles';
-import { getResult, getSettings, getStats, type Stats } from '../src/storage/store';
+import { getResult, getStats, type Stats } from '../src/storage/store';
 
 export default function Home() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const navigation = useNavigation();
   const { t } = useI18n();
+  const { soundEnabled, toggleSound, playHomeMusic } = useAudio();
   const puzzle = getTodaysPuzzle();
   const [stats, setStats] = useState<Stats | null>(null);
   const [playedToday, setPlayedToday] = useState(false);
-  const promptedTutorial = useRef(false);
+  // A different animated card greets you each time the app is opened.
+  const [heroId] = useState(
+    () => ANIMATED_CARD_IDS[Math.floor(Math.random() * ANIMATED_CARD_IDS.length)]
+  );
 
-  // First launch: open the tutorial once.
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      const s = await getSettings();
-      if (active && !s.tutorialDone && !promptedTutorial.current) {
-        promptedTutorial.current = true;
-        router.push('/tutorial');
-      }
-    })();
-    return () => {
-      active = false;
-    };
-  }, [router]);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Pressable onPress={toggleSound} hitSlop={12} style={{ paddingHorizontal: 4 }}>
+          <Text style={{ fontSize: 18 }}>{soundEnabled ? '🔊' : '🔇'}</Text>
+        </Pressable>
+      ),
+    });
+  }, [navigation, soundEnabled, toggleSound]);
 
   useFocusEffect(
     useCallback(() => {
       let active = true;
+      // Return to the calm home bed whenever the menu is in focus (e.g. coming
+      // back from a round, which was playing a different genre).
+      playHomeMusic();
       (async () => {
         const [s, r] = await Promise.all([getStats(), getResult(puzzle.id)]);
         if (!active) return;
@@ -43,6 +51,7 @@ export default function Home() {
       return () => {
         active = false;
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [puzzle.id])
   );
 
@@ -51,61 +60,111 @@ export default function Home() {
       contentContainerStyle={[styles.container, { paddingBottom: insets.bottom + 24 }]}
     >
       <View style={styles.hero}>
+        <Image
+          source={require('../assets/icon.png')}
+          style={styles.heroLogo}
+          resizeMode="contain"
+        />
         <Text style={styles.logo}>Coplas</Text>
+        <View style={styles.rule} />
         <Text style={styles.tagline}>{t.home.tagline}</Text>
       </View>
 
-      <View style={styles.card}>
+      {/* No panel, no border — the copla floats directly on the scene, the way
+          the rest of the CodeAscent apps present content. */}
+      <View style={styles.today}>
+        {!!heroId && (
+          <View style={styles.heroCard}>
+            <CardVideo cardId={heroId} cornerRadius={8} />
+          </View>
+        )}
         <Text style={styles.cardKicker}>{t.home.todaysCopla}</Text>
         <Text style={styles.cardNumber}>#{puzzle.number}</Text>
         <Text style={styles.cardDate}>{formatDate(puzzle.date)}</Text>
 
-        <Pressable
-          style={({ pressed }) => [styles.playBtn, pressed && styles.pressed]}
+        <GradientButton
+          label={t.home.play}
           onPress={() => router.push('/play')}
-        >
-          <Text style={styles.playBtnText}>
-            {playedToday ? t.home.viewResult : t.home.play}
-          </Text>
-        </Pressable>
-        {playedToday && <Text style={styles.playedNote}>{t.home.playedNote}</Text>}
+          size="lg"
+          style={{ marginTop: 4 }}
+        />
       </View>
 
-      <View style={styles.streakRow}>
-        <Stat label={t.home.streak} value={stats ? String(stats.currentStreak) : '–'} emoji="🔥" />
-        <Stat label={t.home.best} value={stats ? String(stats.bestStreak) : '–'} emoji="🏆" />
-        <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '–'} emoji="✅" />
+      {/* Stats float, separated by hairlines — no boxes. Each gets its own card
+          from the deck: El Fuego for the streak, La Corona for your best, La
+          Medalla for wins. */}
+      <View style={styles.scoreboard}>
+        <Stat label={t.home.streak} value={stats ? String(stats.currentStreak) : '–'} icon="el_fuego" />
+        <View style={styles.scoreRule} />
+        <Stat label={t.home.best} value={stats ? String(stats.bestStreak) : '–'} icon="la_corona" />
+        <View style={styles.scoreRule} />
+        <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '–'} icon="la_medalla" />
       </View>
 
+      {/* The menu's icons are cards from our own deck — El Naipe for the rules,
+          El Archivero for the archive, El Trofeo for stats, La Llave Inglesa for
+          settings. Depictive, unmistakably Coplas, and no icon dependency.
+          Rows are separated by hairlines rather than wrapped in panels. */}
       <View style={styles.links}>
-        <NavLink href="/tutorial" label={t.home.howToPlay} hint={t.home.howToPlayHint} />
-        <NavLink href="/archive" label={t.nav.archive} hint={t.home.archiveHint} />
-        <NavLink href="/stats" label={t.nav.stats} hint={t.home.statsHint} />
-        <NavLink href="/settings" label={t.nav.settings} hint={t.home.settingsHint} />
+        <NavLink href="/tutorial" label={t.home.howToPlay} hint={t.home.howToPlayHint} icon="el_naipe" first />
+        <NavLink href="/archive" label={t.nav.archive} hint={t.home.archiveHint} icon="el_archivero" />
+        <NavLink href="/stats" label={t.nav.stats} hint={t.home.statsHint} icon="el_trofeo" />
+        <NavLink href="/settings" label={t.nav.settings} hint={t.home.settingsHint} icon="la_llave_inglesa" />
       </View>
     </ScrollView>
   );
 }
 
-function Stat({ label, value, emoji }: { label: string; value: string; emoji: string }) {
+const STAT_ICON_W = 26;
+const STAT_ICON_H = 35;
+
+/** One scoreboard cell: its card, a big serif numeral, then a mono kicker. */
+function Stat({ label, value, icon }: { label: string; value: string; icon: string }) {
   return (
-    <View style={styles.statBox}>
-      <Text style={styles.statEmoji}>{emoji}</Text>
+    <View style={styles.statCell}>
+      <Image
+        source={{ uri: cardThumb(icon, STAT_ICON_W, STAT_ICON_H) }}
+        style={styles.statIcon}
+      />
       <Text style={styles.statValue}>{value}</Text>
-      <Text style={styles.statLabel}>{label}</Text>
+      <Text style={styles.statLabel}>{label.toUpperCase()}</Text>
     </View>
   );
 }
 
-function NavLink({ href, label, hint }: { href: string; label: string; hint: string }) {
+const ICON_W = 36;
+const ICON_H = 48;
+
+function NavLink({
+  href,
+  label,
+  hint,
+  icon,
+  first,
+}: {
+  href: string;
+  label: string;
+  hint: string;
+  icon: string;
+  first?: boolean;
+}) {
   return (
     <Link href={href as never} asChild>
-      <Pressable style={({ pressed }) => [styles.navLink, pressed && styles.pressed]}>
-        <View>
-          <Text style={styles.navLabel}>{label}</Text>
-          <Text style={styles.navHint}>{hint}</Text>
+      <Pressable style={({ pressed }) => [styles.navPress, pressed && styles.pressed]}>
+        {/* The row layout lives on this inner View, NOT on the Pressable.
+            expo-router's <Link asChild> clones the Pressable into an <a> on web
+            and does not reliably apply its function style — which silently
+            dropped flexDirection:'row' and left the chevron wrapped onto its
+            own line. */}
+        <View style={[styles.navLink, !first && styles.navDivider]}>
+          <Image source={{ uri: cardThumb(icon, ICON_W, ICON_H) }} style={styles.navIcon} />
+          {/* flex:1 keeps the chevron pinned to the right edge. */}
+          <View style={styles.navBody}>
+            <Text style={styles.navLabel}>{label}</Text>
+            <Text style={styles.navHint}>{hint}</Text>
+          </View>
+          <Text style={styles.navChevron}>›</Text>
         </View>
-        <Text style={styles.navChevron}>›</Text>
       </Pressable>
     </Link>
   );
@@ -122,55 +181,107 @@ function formatDate(iso: string): string {
 
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 16, paddingTop: 8 },
-  hero: { alignItems: 'center', marginVertical: 18 },
-  logo: { color: colors.accent, fontSize: 44, fontWeight: '900', letterSpacing: 1 },
-  tagline: { color: colors.textDim, fontSize: 15, marginTop: 4 },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 18,
-    padding: 22,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  cardKicker: { color: colors.textDim, textTransform: 'uppercase', letterSpacing: 2, fontSize: 12, fontWeight: '700' },
-  cardNumber: { color: colors.text, fontSize: 40, fontWeight: '900', marginTop: 4 },
-  cardDate: { color: colors.textDim, fontSize: 14, marginBottom: 16 },
-  playBtn: {
-    backgroundColor: colors.accent,
-    paddingHorizontal: 48,
-    paddingVertical: 14,
+  hero: { alignItems: 'center', marginVertical: 20 },
+  heroLogo: {
+    width: 132,
+    height: 132,
     borderRadius: 30,
+    marginBottom: 8,
+    borderWidth: 1.5,
+    borderColor: colors.borderGold,
   },
-  playBtnText: { color: '#0B1026', fontSize: 18, fontWeight: '800' },
-  playedNote: { color: colors.textDim, fontSize: 12, marginTop: 10 },
-  streakRow: { flexDirection: 'row', gap: 10, marginTop: 16 },
-  statBox: {
-    flex: 1,
-    backgroundColor: colors.surface,
-    borderRadius: 14,
-    paddingVertical: 14,
+  logo: {
+    color: colors.accent,
+    fontFamily: displayFont,
+    fontSize: 52,
+    fontWeight: '700',
+    letterSpacing: 1,
+    textShadowColor: 'rgba(244,185,66,0.5)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 20,
+  },
+  rule: { width: 60, height: 3, borderRadius: 2, backgroundColor: colors.accent, marginTop: 8, opacity: 0.8 },
+  tagline: { color: colors.text, fontSize: 15, marginTop: 10, ...floatShadow },
+  today: { alignItems: 'center', paddingTop: 4 },
+  heroCard: {
+    width: 128,
+    // Match the generated art's own ratio (1792x2400) so 'cover' crops nothing
+    // and the printed name banner at the bottom stays fully visible.
+    aspectRatio: 0.7467,
+    marginBottom: 16,
+    shadowColor: colors.accent,
+    shadowOpacity: 0.35,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 6,
+  },
+  cardKicker: {
+    color: colors.accent,
+    fontFamily: monoFont,
+    textTransform: 'uppercase',
+    letterSpacing: 3,
+    fontSize: 11,
+    ...floatShadow,
+  },
+  cardNumber: {
+    color: colors.text,
+    fontFamily: displayFont,
+    fontSize: 48,
+    fontWeight: '700',
+    marginTop: 2,
+    ...floatShadow,
+  },
+  cardDate: { color: colors.textDim, fontSize: 13, marginBottom: 18, ...floatShadow },
+  playedNote: { color: colors.textDim, fontSize: 12, marginTop: 12 },
+  scoreboard: {
+    flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.border,
+    marginTop: 26,
   },
-  statEmoji: { fontSize: 18 },
-  statValue: { color: colors.text, fontSize: 22, fontWeight: '800', marginTop: 2 },
-  statLabel: { color: colors.textDim, fontSize: 12 },
-  links: { marginTop: 20, gap: 10 },
+  scoreRule: { width: 1, height: 54, backgroundColor: 'rgba(244,185,66,0.28)' },
+  statCell: { flex: 1, alignItems: 'center' },
+  statIcon: {
+    width: STAT_ICON_W,
+    height: STAT_ICON_H,
+    borderRadius: 3,
+    marginBottom: 7,
+    backgroundColor: 'rgba(0,0,0,0.25)',
+  },
+  statValue: {
+    color: colors.accent,
+    fontFamily: displayFont,
+    fontSize: 30,
+    fontWeight: '700',
+    lineHeight: 34,
+    ...floatShadow,
+  },
+  statLabel: {
+    color: colors.textDim,
+    fontFamily: monoFont,
+    fontSize: 9,
+    letterSpacing: 1.7,
+    marginTop: 2,
+    ...floatShadow,
+  },
+
+  links: { marginTop: 26 },
+  navPress: { width: '100%' },
   navLink: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderRadius: 14,
-    paddingHorizontal: 18,
-    paddingVertical: 16,
-    borderWidth: 1,
-    borderColor: colors.border,
+    paddingVertical: 13,
   },
-  navLabel: { color: colors.text, fontSize: 16, fontWeight: '700' },
-  navHint: { color: colors.textDim, fontSize: 12, marginTop: 2 },
-  navChevron: { color: colors.textDim, fontSize: 26, fontWeight: '400' },
-  pressed: { opacity: 0.75 },
+  navDivider: { borderTopWidth: 1, borderTopColor: 'rgba(244,185,66,0.15)' },
+  navIcon: {
+    width: ICON_W,
+    height: ICON_H,
+    borderRadius: 4,
+    marginRight: 14,
+    backgroundColor: 'rgba(0,0,0,0.25)',
+  },
+  navBody: { flex: 1 },
+  navLabel: { color: colors.text, fontFamily: displayFont, fontSize: 18, fontWeight: '700', ...floatShadow },
+  navHint: { color: colors.textDim, fontSize: 12, marginTop: 2, ...floatShadow },
+  navChevron: { color: colors.accent, fontSize: 26, fontWeight: '400', marginLeft: 10, opacity: 0.7 },
+  pressed: { opacity: 0.6 },
 });

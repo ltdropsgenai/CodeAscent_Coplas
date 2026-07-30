@@ -1,4 +1,5 @@
 import type { Card } from '../types';
+import EXPANSION_RAW from './expansion.cards.json';
 
 /**
  * The 54 archetypes of the classic Mexican Lotería deck.
@@ -12,7 +13,7 @@ import type { Card } from '../types';
  * commissioned artwork exists. Real art will replace these via an
  * `image` field on the Card + <CardTile>.
  */
-export const CARDS: Card[] = [
+export const BASE_CARDS: Card[] = [
   { id: 'el_gallo', name: 'El Gallo', number: 1, emoji: '🐓' },
   { id: 'el_diablito', name: 'El Diablito', number: 2, emoji: '😈' },
   { id: 'la_dama', name: 'La Dama', number: 3, emoji: '👩' },
@@ -32,7 +33,7 @@ export const CARDS: Card[] = [
   { id: 'el_bandolon', name: 'El Bandolón', number: 17, emoji: '🪕' },
   { id: 'el_violoncello', name: 'El Violoncello', number: 18, emoji: '🎻' },
   { id: 'la_garza', name: 'La Garza', number: 19, emoji: '🦩' },
-  { id: 'el_pajaro', name: 'El Pájaro', number: 20, emoji: '🐦' },
+  { id: 'el_pajaro', name: 'El Águila', number: 20, emoji: '🦅' },
   { id: 'la_mano', name: 'La Mano', number: 21, emoji: '✋' },
   { id: 'la_bota', name: 'La Bota', number: 22, emoji: '👢' },
   { id: 'la_luna', name: 'La Luna', number: 23, emoji: '🌙' },
@@ -68,6 +69,28 @@ export const CARDS: Card[] = [
   { id: 'el_arpa', name: 'El Arpa', number: 53, emoji: '🎵' },
   { id: 'la_rana', name: 'La Rana', number: 54, emoji: '🐸' },
 ];
+
+/**
+ * The expanded deck (ids 55+), generated in the "Coplas" family taxonomy and
+ * self-hosted on Supabase with the Spanish name baked into each card's art.
+ * ~30 slugs coincide with a base archetype (el_corazon, la_luna, …); for those
+ * the BASE card stays canonical (keeps its traditional 1-54 number, its
+ * preview image and its on-card name plate), and the duplicate expansion entry
+ * is dropped here — so every id is unique. The remaining ~943 are brand-new
+ * cards that stream their baked art online (see data/cardImages + net/deckOnline).
+ */
+const BASE_IDS = new Set(BASE_CARDS.map((c) => c.id));
+export const EXPANSION_CARDS: Card[] = (EXPANSION_RAW as Card[]).filter(
+  (c) => !BASE_IDS.has(c.id)
+);
+
+/**
+ * The full in-memory deck: the 54 classics plus every new expansion card.
+ * Card *metadata* is always present (it is tiny, bundled JSON); whether a given
+ * expansion card can actually appear in a round is gated on connectivity by the
+ * composer (offline → base 54 only, online → full deck).
+ */
+export const CARDS: Card[] = [...BASE_CARDS, ...EXPANSION_CARDS];
 
 /** Fast lookup by id. */
 export const CARD_BY_ID: Record<string, Card> = CARDS.reduce(

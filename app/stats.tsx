@@ -82,13 +82,13 @@ function Big({ label, value, emoji }: { label: string; value: number | string; e
 
 const styles = StyleSheet.create({
   container: { padding: 16 },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.bg },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   bigBox: {
     width: '31%',
     flexGrow: 1,
     backgroundColor: colors.surface,
-    borderRadius: 14,
+    borderRadius: 8,
     paddingVertical: 18,
     alignItems: 'center',
     borderWidth: 1,

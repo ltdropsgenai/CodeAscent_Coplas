@@ -1,0 +1,6813 @@
+[
+  {
+    "id": "la_naranja",
+    "name": "La Naranja",
+    "number": 55,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_limon",
+    "name": "El Limón",
+    "number": 56,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lima",
+    "name": "La Lima",
+    "number": 57,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_toronja",
+    "name": "La Toronja",
+    "number": 58,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mandarina",
+    "name": "La Mandarina",
+    "number": 59,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_fresa",
+    "name": "La Fresa",
+    "number": 60,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cereza",
+    "name": "La Cereza",
+    "number": 61,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_frambuesa",
+    "name": "La Frambuesa",
+    "number": 62,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_granada",
+    "name": "La Granada",
+    "number": 63,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mora",
+    "name": "La Mora",
+    "number": 64,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mango",
+    "name": "El Mango",
+    "number": 65,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pina",
+    "name": "La Piña",
+    "number": 66,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_papaya",
+    "name": "La Papaya",
+    "number": 67,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_coco",
+    "name": "El Coco",
+    "number": 68,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_maracuya",
+    "name": "El Maracuyá",
+    "number": 69,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_durazno",
+    "name": "El Durazno",
+    "number": 70,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ciruela",
+    "name": "La Ciruela",
+    "number": 71,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chabacano",
+    "name": "El Chabacano",
+    "number": 72,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_aguacate",
+    "name": "El Aguacate",
+    "number": 73,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_datil",
+    "name": "El Dátil",
+    "number": 74,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_uva",
+    "name": "La Uva",
+    "number": 75,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_platano",
+    "name": "El Plátano",
+    "number": 76,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_higo",
+    "name": "El Higo",
+    "number": 77,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_kiwi",
+    "name": "El Kiwi",
+    "number": 78,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_melon",
+    "name": "El Melón",
+    "number": 79,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_manzana",
+    "name": "La Manzana",
+    "number": 80,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pera",
+    "name": "La Pera",
+    "number": 81,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_membrillo",
+    "name": "El Membrillo",
+    "number": 82,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sandia",
+    "name": "La Sandía",
+    "number": 83,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_guayaba",
+    "name": "La Guayaba",
+    "number": 84,
+    "family": "frutas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_papa",
+    "name": "La Papa",
+    "number": 85,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_zanahoria",
+    "name": "La Zanahoria",
+    "number": 86,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_betabel",
+    "name": "El Betabel",
+    "number": 87,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rabano",
+    "name": "El Rábano",
+    "number": 88,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_camote",
+    "name": "El Camote",
+    "number": 89,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lechuga",
+    "name": "La Lechuga",
+    "number": 90,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_brocoli",
+    "name": "El Brócoli",
+    "number": 91,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ejote",
+    "name": "El Ejote",
+    "number": 92,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_espinaca",
+    "name": "La Espinaca",
+    "number": 93,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pepino",
+    "name": "El Pepino",
+    "number": 94,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chile",
+    "name": "El Chile",
+    "number": 95,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cebolla",
+    "name": "La Cebolla",
+    "number": 96,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ajo",
+    "name": "El Ajo",
+    "number": 97,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jengibre",
+    "name": "El Jengibre",
+    "number": 98,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pimiento",
+    "name": "El Pimiento",
+    "number": 99,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jitomate",
+    "name": "El Jitomate",
+    "number": 100,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_calabaza",
+    "name": "La Calabaza",
+    "number": 101,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_elote",
+    "name": "El Elote",
+    "number": 102,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_berenjena",
+    "name": "La Berenjena",
+    "number": 103,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_champinon",
+    "name": "El Champiñón",
+    "number": 104,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_frijol",
+    "name": "El Frijol",
+    "number": 105,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chicharo",
+    "name": "El Chícharo",
+    "number": 106,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lenteja",
+    "name": "La Lenteja",
+    "number": 107,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_garbanzo",
+    "name": "El Garbanzo",
+    "number": 108,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_haba",
+    "name": "El Haba",
+    "number": 109,
+    "family": "verduras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_vaca",
+    "name": "La Vaca",
+    "number": 110,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_toro",
+    "name": "El Toro",
+    "number": 111,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_caballo",
+    "name": "El Caballo",
+    "number": 112,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_burro",
+    "name": "El Burro",
+    "number": 113,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cabra",
+    "name": "La Cabra",
+    "number": 114,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cerdo",
+    "name": "El Cerdo",
+    "number": 115,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_oveja",
+    "name": "La Oveja",
+    "number": 116,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_gallina",
+    "name": "La Gallina",
+    "number": 117,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pavo",
+    "name": "El Pavo",
+    "number": 118,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ganso",
+    "name": "El Ganso",
+    "number": 119,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pollito",
+    "name": "El Pollito",
+    "number": 120,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_becerro",
+    "name": "El Becerro",
+    "number": 121,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_potro",
+    "name": "El Potro",
+    "number": 122,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cordero",
+    "name": "El Cordero",
+    "number": 123,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cochinito",
+    "name": "El Cochinito",
+    "number": 124,
+    "family": "granja",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_aguila",
+    "name": "El Águila",
+    "number": 125,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_halcon",
+    "name": "El Halcón",
+    "number": 126,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_buho",
+    "name": "El Búho",
+    "number": 127,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lechuza",
+    "name": "La Lechuza",
+    "number": 128,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zopilote",
+    "name": "El Zopilote",
+    "number": 129,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_guacamaya",
+    "name": "La Guacamaya",
+    "number": 130,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tucan",
+    "name": "El Tucán",
+    "number": 131,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_colibri",
+    "name": "El Colibrí",
+    "number": 132,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_flamenco",
+    "name": "El Flamenco",
+    "number": 133,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pavorreal",
+    "name": "El Pavorreal",
+    "number": 134,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pato",
+    "name": "El Pato",
+    "number": 135,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cisne",
+    "name": "El Cisne",
+    "number": 136,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pelicano",
+    "name": "El Pelícano",
+    "number": 137,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_gaviota",
+    "name": "La Gaviota",
+    "number": 138,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_garza",
+    "name": "La Garza",
+    "number": 139,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_gorrion",
+    "name": "El Gorrión",
+    "number": 140,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_paloma",
+    "name": "La Paloma",
+    "number": 141,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cuervo",
+    "name": "El Cuervo",
+    "number": 142,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_golondrina",
+    "name": "La Golondrina",
+    "number": 143,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_petirrojo",
+    "name": "El Petirrojo",
+    "number": 144,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_avestruz",
+    "name": "El Avestruz",
+    "number": 145,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ciguena",
+    "name": "La Cigüeña",
+    "number": 146,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_grulla",
+    "name": "La Grulla",
+    "number": 147,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_condor",
+    "name": "El Cóndor",
+    "number": 148,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pinguino",
+    "name": "El Pingüino",
+    "number": 149,
+    "family": "aves",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_leon",
+    "name": "El León",
+    "number": 150,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tigre",
+    "name": "El Tigre",
+    "number": 151,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_leopardo",
+    "name": "El Leopardo",
+    "number": 152,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jaguar",
+    "name": "El Jaguar",
+    "number": 153,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pantera",
+    "name": "La Pantera",
+    "number": 154,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_elefante",
+    "name": "El Elefante",
+    "number": 155,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_jirafa",
+    "name": "La Jirafa",
+    "number": 156,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rinoceronte",
+    "name": "El Rinoceronte",
+    "number": 157,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hipopotamo",
+    "name": "El Hipopótamo",
+    "number": 158,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bufalo",
+    "name": "El Búfalo",
+    "number": 159,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_oso",
+    "name": "El Oso",
+    "number": 160,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lobo",
+    "name": "El Lobo",
+    "number": 161,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zorro",
+    "name": "El Zorro",
+    "number": 162,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_venado",
+    "name": "El Venado",
+    "number": 163,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mapache",
+    "name": "El Mapache",
+    "number": 164,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mono",
+    "name": "El Mono",
+    "number": 165,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_gorila",
+    "name": "El Gorila",
+    "number": 166,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_perezoso",
+    "name": "El Perezoso",
+    "number": 167,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_koala",
+    "name": "El Koala",
+    "number": 168,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ardilla",
+    "name": "La Ardilla",
+    "number": 169,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_perro",
+    "name": "El Perro",
+    "number": 170,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_gato",
+    "name": "El Gato",
+    "number": 171,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_conejo",
+    "name": "El Conejo",
+    "number": 172,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hamster",
+    "name": "El Hámster",
+    "number": 173,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_huron",
+    "name": "El Hurón",
+    "number": 174,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_camello",
+    "name": "El Camello",
+    "number": 175,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_foca",
+    "name": "La Foca",
+    "number": 176,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_morsa",
+    "name": "La Morsa",
+    "number": 177,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_canguro",
+    "name": "El Canguro",
+    "number": 178,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_erizo",
+    "name": "El Erizo",
+    "number": 179,
+    "family": "mamiferos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tiburon",
+    "name": "El Tiburón",
+    "number": 180,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_atun",
+    "name": "El Atún",
+    "number": 181,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pez_espada",
+    "name": "El Pez Espada",
+    "number": 182,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mero",
+    "name": "El Mero",
+    "number": 183,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sardina",
+    "name": "La Sardina",
+    "number": 184,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_camaron",
+    "name": "El Camarón",
+    "number": 185,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cangrejo",
+    "name": "El Cangrejo",
+    "number": 186,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_langosta",
+    "name": "La Langosta",
+    "number": 187,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_almeja",
+    "name": "La Almeja",
+    "number": 188,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ostion",
+    "name": "El Ostión",
+    "number": 189,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pulpo",
+    "name": "El Pulpo",
+    "number": 190,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_calamar",
+    "name": "El Calamar",
+    "number": 191,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_medusa",
+    "name": "La Medusa",
+    "number": 192,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_caballito_de_mar",
+    "name": "El Caballito de Mar",
+    "number": 193,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_estrella_de_mar",
+    "name": "La Estrella de Mar",
+    "number": 194,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ballena",
+    "name": "La Ballena",
+    "number": 195,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_delfin",
+    "name": "El Delfín",
+    "number": 196,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tortuga",
+    "name": "La Tortuga",
+    "number": 197,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_raya",
+    "name": "La Raya",
+    "number": 198,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_orca",
+    "name": "La Orca",
+    "number": 199,
+    "family": "mar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mariposa",
+    "name": "La Mariposa",
+    "number": 200,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_abeja",
+    "name": "La Abeja",
+    "number": 201,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_libelula",
+    "name": "La Libélula",
+    "number": 202,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mosca",
+    "name": "La Mosca",
+    "number": 203,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mosquito",
+    "name": "El Mosquito",
+    "number": 204,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_hormiga",
+    "name": "La Hormiga",
+    "number": 205,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_escarabajo",
+    "name": "El Escarabajo",
+    "number": 206,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_oruga",
+    "name": "La Oruga",
+    "number": 207,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_caracol",
+    "name": "El Caracol",
+    "number": 208,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cucaracha",
+    "name": "La Cucaracha",
+    "number": 209,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_arana",
+    "name": "La Araña",
+    "number": 210,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_alacran",
+    "name": "El Alacrán",
+    "number": 211,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_avispa",
+    "name": "La Avispa",
+    "number": 212,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ciempies",
+    "name": "El Ciempiés",
+    "number": 213,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_garrapata",
+    "name": "La Garrapata",
+    "number": 214,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_luciernaga",
+    "name": "La Luciérnaga",
+    "number": 215,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_grillo",
+    "name": "El Grillo",
+    "number": 216,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_polilla",
+    "name": "La Polilla",
+    "number": 217,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_saltamontes",
+    "name": "El Saltamontes",
+    "number": 218,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_chinche",
+    "name": "La Chinche",
+    "number": 219,
+    "family": "bichos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_serpiente",
+    "name": "La Serpiente",
+    "number": 220,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lagarto",
+    "name": "El Lagarto",
+    "number": 221,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_iguana",
+    "name": "La Iguana",
+    "number": 222,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_camaleon",
+    "name": "El Camaleón",
+    "number": 223,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cocodrilo",
+    "name": "El Cocodrilo",
+    "number": 224,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_rana",
+    "name": "La Rana",
+    "number": 225,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sapo",
+    "name": "El Sapo",
+    "number": 226,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_salamandra",
+    "name": "La Salamandra",
+    "number": 227,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ajolote",
+    "name": "El Ajolote",
+    "number": 228,
+    "family": "reptiles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_martillo",
+    "name": "El Martillo",
+    "number": 229,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hacha",
+    "name": "El Hacha",
+    "number": 230,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_serrucho",
+    "name": "El Serrucho",
+    "number": 231,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cincel",
+    "name": "El Cincel",
+    "number": 232,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mazo",
+    "name": "El Mazo",
+    "number": 233,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_desarmador",
+    "name": "El Desarmador",
+    "number": 234,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_llave_inglesa",
+    "name": "La Llave Inglesa",
+    "number": 235,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_pinzas",
+    "name": "Las Pinzas",
+    "number": 236,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_taladro",
+    "name": "El Taladro",
+    "number": 237,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tuerca",
+    "name": "La Tuerca",
+    "number": 238,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pala",
+    "name": "La Pala",
+    "number": 239,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rastrillo",
+    "name": "El Rastrillo",
+    "number": 240,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_azadon",
+    "name": "El Azadón",
+    "number": 241,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_regadera",
+    "name": "La Regadera",
+    "number": 242,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_carretilla",
+    "name": "La Carretilla",
+    "number": 243,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_metro",
+    "name": "El Metro",
+    "number": 244,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_nivel",
+    "name": "El Nivel",
+    "number": 245,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_clavo",
+    "name": "El Clavo",
+    "number": 246,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tornillo",
+    "name": "El Tornillo",
+    "number": 247,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_escuadra",
+    "name": "La Escuadra",
+    "number": 248,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cuchillo",
+    "name": "El Cuchillo",
+    "number": 249,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_tijeras",
+    "name": "Las Tijeras",
+    "number": 250,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rallador",
+    "name": "El Rallador",
+    "number": 251,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pelador",
+    "name": "El Pelador",
+    "number": 252,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sacacorchos",
+    "name": "El Sacacorchos",
+    "number": 253,
+    "family": "herramientas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_guitarra",
+    "name": "La Guitarra",
+    "number": 254,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_violin",
+    "name": "El Violín",
+    "number": 255,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arpa",
+    "name": "El Arpa",
+    "number": 256,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_contrabajo",
+    "name": "El Contrabajo",
+    "number": 257,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_banjo",
+    "name": "El Banjo",
+    "number": 258,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_trompeta",
+    "name": "La Trompeta",
+    "number": 259,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_flauta",
+    "name": "La Flauta",
+    "number": 260,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_saxofon",
+    "name": "El Saxofón",
+    "number": 261,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_clarinete",
+    "name": "El Clarinete",
+    "number": 262,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_trombon",
+    "name": "La Trombón",
+    "number": 263,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_piano",
+    "name": "El Piano",
+    "number": 264,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_acordeon",
+    "name": "El Acordeón",
+    "number": 265,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_organo",
+    "name": "El Órgano",
+    "number": 266,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_armonica",
+    "name": "La Armónica",
+    "number": 267,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_teclado",
+    "name": "El Teclado",
+    "number": 268,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tambor",
+    "name": "El Tambor",
+    "number": 269,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_maracas",
+    "name": "Las Maracas",
+    "number": 270,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_xilofono",
+    "name": "El Xilófono",
+    "number": 271,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pandereta",
+    "name": "La Pandereta",
+    "number": 272,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_timbales",
+    "name": "Los Timbales",
+    "number": 273,
+    "family": "instrumentos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_camisa",
+    "name": "La Camisa",
+    "number": 274,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_playera",
+    "name": "La Playera",
+    "number": 275,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sueter",
+    "name": "El Suéter",
+    "number": 276,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chaleco",
+    "name": "El Chaleco",
+    "number": 277,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_blusa",
+    "name": "La Blusa",
+    "number": 278,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pantalon",
+    "name": "El Pantalón",
+    "number": 279,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_falda",
+    "name": "La Falda",
+    "number": 280,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_short",
+    "name": "El Short",
+    "number": 281,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_vestido",
+    "name": "El Vestido",
+    "number": 282,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_overol",
+    "name": "El Overol",
+    "number": 283,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_chamarra",
+    "name": "La Chamarra",
+    "number": 284,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_saco",
+    "name": "El Saco",
+    "number": 285,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_gabardina",
+    "name": "La Gabardina",
+    "number": 286,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_poncho",
+    "name": "El Poncho",
+    "number": 287,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rebozo",
+    "name": "El Rebozo",
+    "number": 288,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zapato",
+    "name": "El Zapato",
+    "number": 289,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bota",
+    "name": "La Bota",
+    "number": 290,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tenis",
+    "name": "El Tenis",
+    "number": 291,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sandalia",
+    "name": "La Sandalia",
+    "number": 292,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pantufla",
+    "name": "La Pantufla",
+    "number": 293,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sombrero",
+    "name": "El Sombrero",
+    "number": 294,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_gorra",
+    "name": "La Gorra",
+    "number": 295,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_boina",
+    "name": "La Boina",
+    "number": 296,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bufanda",
+    "name": "La Bufanda",
+    "number": 297,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_gorro",
+    "name": "El Gorro",
+    "number": 298,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_corbata",
+    "name": "La Corbata",
+    "number": 299,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cinturon",
+    "name": "El Cinturón",
+    "number": 300,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_guante",
+    "name": "El Guante",
+    "number": 301,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_calcetin",
+    "name": "El Calcetín",
+    "number": 302,
+    "family": "ropa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_anillo",
+    "name": "El Anillo",
+    "number": 303,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_collar",
+    "name": "El Collar",
+    "number": 304,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arete",
+    "name": "El Arete",
+    "number": 305,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pulsera",
+    "name": "La Pulsera",
+    "number": 306,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_broche",
+    "name": "El Broche",
+    "number": 307,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bolsa",
+    "name": "La Bolsa",
+    "number": 308,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mochila",
+    "name": "La Mochila",
+    "number": 309,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cartera",
+    "name": "La Cartera",
+    "number": 310,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_maleta",
+    "name": "La Maleta",
+    "number": 311,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_paraguas",
+    "name": "El Paraguas",
+    "number": 312,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_lentes",
+    "name": "Los Lentes",
+    "number": 313,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_reloj",
+    "name": "El Reloj",
+    "number": 314,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_abanico",
+    "name": "El Abanico",
+    "number": 315,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mascada",
+    "name": "La Mascada",
+    "number": 316,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_antifaz",
+    "name": "El Antifaz",
+    "number": 317,
+    "family": "accesorios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_coche",
+    "name": "El Coche",
+    "number": 318,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_taxi",
+    "name": "El Taxi",
+    "number": 319,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_autobus",
+    "name": "El Autobús",
+    "number": 320,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_motocicleta",
+    "name": "La Motocicleta",
+    "number": 321,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bicicleta",
+    "name": "La Bicicleta",
+    "number": 322,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_camion",
+    "name": "El Camión",
+    "number": 323,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tractor",
+    "name": "El Tractor",
+    "number": 324,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_grua",
+    "name": "La Grúa",
+    "number": 325,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ambulancia",
+    "name": "La Ambulancia",
+    "number": 326,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_excavadora",
+    "name": "La Excavadora",
+    "number": 327,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_avion",
+    "name": "El Avión",
+    "number": 328,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_helicoptero",
+    "name": "El Helicóptero",
+    "number": 329,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_globo_aerostatico",
+    "name": "El Globo Aerostático",
+    "number": 330,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cohete",
+    "name": "El Cohete",
+    "number": 331,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_planeador",
+    "name": "El Planeador",
+    "number": 332,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_barco",
+    "name": "El Barco",
+    "number": 333,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lancha",
+    "name": "La Lancha",
+    "number": 334,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_submarino",
+    "name": "El Submarino",
+    "number": 335,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_canoa",
+    "name": "La Canoa",
+    "number": 336,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_velero",
+    "name": "El Velero",
+    "number": 337,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tren",
+    "name": "El Tren",
+    "number": 338,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tranvia",
+    "name": "El Tranvía",
+    "number": 339,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_vagon",
+    "name": "El Vagón",
+    "number": 340,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_locomotora",
+    "name": "La Locomotora",
+    "number": 341,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_teleferico",
+    "name": "El Teleférico",
+    "number": 342,
+    "family": "vehiculos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ojo",
+    "name": "El Ojo",
+    "number": 343,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_nariz",
+    "name": "La Nariz",
+    "number": 344,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_boca",
+    "name": "La Boca",
+    "number": 345,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_oreja",
+    "name": "La Oreja",
+    "number": 346,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ceja",
+    "name": "La Ceja",
+    "number": 347,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mano",
+    "name": "La Mano",
+    "number": 348,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pie",
+    "name": "El Pie",
+    "number": 349,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_brazo",
+    "name": "El Brazo",
+    "number": 350,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pierna",
+    "name": "La Pierna",
+    "number": 351,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_codo",
+    "name": "El Codo",
+    "number": 352,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_dedo",
+    "name": "El Dedo",
+    "number": 353,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_una",
+    "name": "La Uña",
+    "number": 354,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_rodilla",
+    "name": "La Rodilla",
+    "number": 355,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hombro",
+    "name": "El Hombro",
+    "number": 356,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_talon",
+    "name": "El Talón",
+    "number": 357,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_diente",
+    "name": "El Diente",
+    "number": 358,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lengua",
+    "name": "La Lengua",
+    "number": 359,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cabello",
+    "name": "El Cabello",
+    "number": 360,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_barba",
+    "name": "La Barba",
+    "number": 361,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bigote",
+    "name": "El Bigote",
+    "number": 362,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_corazon",
+    "name": "El Corazón",
+    "number": 363,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cerebro",
+    "name": "El Cerebro",
+    "number": 364,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hueso",
+    "name": "El Hueso",
+    "number": 365,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pulmon",
+    "name": "El Pulmón",
+    "number": 366,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_esqueleto",
+    "name": "El Esqueleto",
+    "number": 367,
+    "family": "cuerpo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_nube",
+    "name": "La Nube",
+    "number": 368,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rayo",
+    "name": "El Rayo",
+    "number": 369,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arcoiris",
+    "name": "El Arcoíris",
+    "number": 370,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_remolino",
+    "name": "El Remolino",
+    "number": 371,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tornado",
+    "name": "El Tornado",
+    "number": 372,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lluvia",
+    "name": "La Lluvia",
+    "number": 373,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_nieve",
+    "name": "La Nieve",
+    "number": 374,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_granizo",
+    "name": "El Granizo",
+    "number": 375,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rocio",
+    "name": "El Rocío",
+    "number": 376,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_escarcha",
+    "name": "La Escarcha",
+    "number": 377,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sol",
+    "name": "El Sol",
+    "number": 378,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_luna",
+    "name": "La Luna",
+    "number": 379,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_estrella",
+    "name": "La Estrella",
+    "number": 380,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cometa",
+    "name": "El Cometa",
+    "number": 381,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_planeta",
+    "name": "El Planeta",
+    "number": 382,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_satelite",
+    "name": "El Satélite",
+    "number": 383,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_galaxia",
+    "name": "La Galaxia",
+    "number": 384,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_meteorito",
+    "name": "El Meteorito",
+    "number": 385,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "saturno",
+    "name": "Saturno",
+    "number": 386,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_astronauta",
+    "name": "El Astronauta",
+    "number": 387,
+    "family": "clima",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_montana",
+    "name": "La Montaña",
+    "number": 388,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_volcan",
+    "name": "El Volcán",
+    "number": 389,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rio",
+    "name": "El Río",
+    "number": 390,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cascada",
+    "name": "La Cascada",
+    "number": 391,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_canon",
+    "name": "El Cañón",
+    "number": 392,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lago",
+    "name": "El Lago",
+    "number": 393,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_playa",
+    "name": "La Playa",
+    "number": 394,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_isla",
+    "name": "La Isla",
+    "number": 395,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_desierto",
+    "name": "El Desierto",
+    "number": 396,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cueva",
+    "name": "La Cueva",
+    "number": 397,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_roca",
+    "name": "La Roca",
+    "number": 398,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_piedra",
+    "name": "La Piedra",
+    "number": 399,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_arena",
+    "name": "La Arena",
+    "number": 400,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cristal",
+    "name": "El Cristal",
+    "number": 401,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_fosil",
+    "name": "El Fósil",
+    "number": 402,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_fuego",
+    "name": "El Fuego",
+    "number": 403,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_agua",
+    "name": "El Agua",
+    "number": 404,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_viento",
+    "name": "El Viento",
+    "number": 405,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hielo",
+    "name": "El Hielo",
+    "number": 406,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_humo",
+    "name": "El Humo",
+    "number": 407,
+    "family": "naturaleza",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_rosa",
+    "name": "La Rosa",
+    "number": 408,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_girasol",
+    "name": "El Girasol",
+    "number": 409,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tulipan",
+    "name": "El Tulipán",
+    "number": 410,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_margarita",
+    "name": "La Margarita",
+    "number": 411,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_orquidea",
+    "name": "La Orquídea",
+    "number": 412,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cactus",
+    "name": "El Cactus",
+    "number": 413,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_nopal",
+    "name": "El Nopal",
+    "number": 414,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_helecho",
+    "name": "El Helecho",
+    "number": 415,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bonsai",
+    "name": "El Bonsái",
+    "number": 416,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_suculenta",
+    "name": "La Suculenta",
+    "number": 417,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_hoja",
+    "name": "La Hoja",
+    "number": 418,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_semilla",
+    "name": "La Semilla",
+    "number": 419,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_raiz",
+    "name": "La Raíz",
+    "number": 420,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_capullo",
+    "name": "El Capullo",
+    "number": 421,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_petalo",
+    "name": "El Pétalo",
+    "number": 422,
+    "family": "plantas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pino",
+    "name": "El Pino",
+    "number": 423,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_palmera",
+    "name": "La Palmera",
+    "number": 424,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_roble",
+    "name": "El Roble",
+    "number": 425,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sauce",
+    "name": "El Sauce",
+    "number": 426,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cipres",
+    "name": "El Ciprés",
+    "number": 427,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_manzano",
+    "name": "El Manzano",
+    "number": 428,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_naranjo",
+    "name": "El Naranjo",
+    "number": 429,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_olivo",
+    "name": "El Olivo",
+    "number": 430,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bambu",
+    "name": "El Bambú",
+    "number": 431,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tronco",
+    "name": "El Tronco",
+    "number": 432,
+    "family": "arboles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cuchara",
+    "name": "La Cuchara",
+    "number": 433,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tenedor",
+    "name": "El Tenedor",
+    "number": 434,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_plato",
+    "name": "El Plato",
+    "number": 435,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_taza",
+    "name": "La Taza",
+    "number": 436,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_vaso",
+    "name": "El Vaso",
+    "number": 437,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_olla",
+    "name": "La Olla",
+    "number": 438,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sarten",
+    "name": "El Sartén",
+    "number": 439,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cazo",
+    "name": "El Cazo",
+    "number": 440,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_comal",
+    "name": "El Comal",
+    "number": 441,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cacerola",
+    "name": "La Cacerola",
+    "number": 442,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_licuadora",
+    "name": "La Licuadora",
+    "number": 443,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tostador",
+    "name": "El Tostador",
+    "number": 444,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_batidora",
+    "name": "La Batidora",
+    "number": 445,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_horno",
+    "name": "El Horno",
+    "number": 446,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_microondas",
+    "name": "El Microondas",
+    "number": 447,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_botella",
+    "name": "La Botella",
+    "number": 448,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_jarra",
+    "name": "La Jarra",
+    "number": 449,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_frasco",
+    "name": "El Frasco",
+    "number": 450,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lata",
+    "name": "La Lata",
+    "number": 451,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_termo",
+    "name": "El Termo",
+    "number": 452,
+    "family": "cocina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_taco",
+    "name": "El Taco",
+    "number": 453,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tamal",
+    "name": "El Tamal",
+    "number": 454,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_quesadilla",
+    "name": "La Quesadilla",
+    "number": 455,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tortilla",
+    "name": "La Tortilla",
+    "number": 456,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_enchilada",
+    "name": "La Enchilada",
+    "number": 457,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pan",
+    "name": "El Pan",
+    "number": 458,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bolillo",
+    "name": "El Bolillo",
+    "number": 459,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_concha",
+    "name": "La Concha",
+    "number": 460,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_baguette",
+    "name": "La Baguette",
+    "number": 461,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_croissant",
+    "name": "El Croissant",
+    "number": 462,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_huevo",
+    "name": "El Huevo",
+    "number": 463,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tocino",
+    "name": "El Tocino",
+    "number": 464,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hotcake",
+    "name": "El Hotcake",
+    "number": 465,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cereal",
+    "name": "El Cereal",
+    "number": 466,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_waffle",
+    "name": "El Waffle",
+    "number": 467,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_queso",
+    "name": "El Queso",
+    "number": 468,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mantequilla",
+    "name": "La Mantequilla",
+    "number": 469,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_yogur",
+    "name": "El Yogur",
+    "number": 470,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_crema",
+    "name": "La Crema",
+    "number": 471,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_leche",
+    "name": "La Leche",
+    "number": 472,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_hamburguesa",
+    "name": "La Hamburguesa",
+    "number": 473,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pizza",
+    "name": "La Pizza",
+    "number": 474,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hot_dog",
+    "name": "El Hot Dog",
+    "number": 475,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_papas_fritas",
+    "name": "Las Papas Fritas",
+    "number": 476,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sandwich",
+    "name": "El Sándwich",
+    "number": 477,
+    "family": "comida",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cafe",
+    "name": "El Café",
+    "number": 478,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_te",
+    "name": "El Té",
+    "number": 479,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chocolate_caliente",
+    "name": "El Chocolate Caliente",
+    "number": 480,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_atole",
+    "name": "El Atole",
+    "number": 481,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ponche",
+    "name": "El Ponche",
+    "number": 482,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_refresco",
+    "name": "El Refresco",
+    "number": 483,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jugo",
+    "name": "El Jugo",
+    "number": 484,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_agua_fresca",
+    "name": "El Agua Fresca",
+    "number": 485,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_licuado",
+    "name": "El Licuado",
+    "number": 486,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_limonada",
+    "name": "La Limonada",
+    "number": 487,
+    "family": "bebidas",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pastel",
+    "name": "El Pastel",
+    "number": 488,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_helado",
+    "name": "El Helado",
+    "number": 489,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_dona",
+    "name": "La Dona",
+    "number": 490,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_galleta",
+    "name": "La Galleta",
+    "number": 491,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cupcake",
+    "name": "El Cupcake",
+    "number": 492,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_paleta",
+    "name": "La Paleta",
+    "number": 493,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chicle",
+    "name": "El Chicle",
+    "number": 494,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_caramelo",
+    "name": "El Caramelo",
+    "number": 495,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_flan",
+    "name": "El Flan",
+    "number": 496,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chocolate",
+    "name": "El Chocolate",
+    "number": 497,
+    "family": "postres",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_silla",
+    "name": "La Silla",
+    "number": 498,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sillon",
+    "name": "El Sillón",
+    "number": 499,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_banco",
+    "name": "El Banco",
+    "number": 500,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sofa",
+    "name": "El Sofá",
+    "number": 501,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mecedora",
+    "name": "La Mecedora",
+    "number": 502,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mesa",
+    "name": "La Mesa",
+    "number": 503,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_escritorio",
+    "name": "El Escritorio",
+    "number": 504,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_repisa",
+    "name": "La Repisa",
+    "number": 505,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_buro",
+    "name": "El Buró",
+    "number": 506,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ropero",
+    "name": "El Ropero",
+    "number": 507,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cama",
+    "name": "La Cama",
+    "number": 508,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cuna",
+    "name": "La Cuna",
+    "number": 509,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_litera",
+    "name": "La Litera",
+    "number": 510,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_colchon",
+    "name": "El Colchón",
+    "number": 511,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_almohada",
+    "name": "La Almohada",
+    "number": 512,
+    "family": "muebles",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lampara",
+    "name": "La Lámpara",
+    "number": 513,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_vela",
+    "name": "La Vela",
+    "number": 514,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_foco",
+    "name": "El Foco",
+    "number": 515,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_linterna",
+    "name": "La Linterna",
+    "number": 516,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_farol",
+    "name": "El Farol",
+    "number": 517,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_reloj_de_pared",
+    "name": "El Reloj de Pared",
+    "number": 518,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cuadro",
+    "name": "El Cuadro",
+    "number": 519,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_espejo",
+    "name": "El Espejo",
+    "number": 520,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ventana",
+    "name": "La Ventana",
+    "number": 521,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_puerta",
+    "name": "La Puerta",
+    "number": 522,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_escoba",
+    "name": "La Escoba",
+    "number": 523,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trapeador",
+    "name": "El Trapeador",
+    "number": 524,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cubeta",
+    "name": "La Cubeta",
+    "number": 525,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jabon",
+    "name": "El Jabón",
+    "number": 526,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_aspiradora",
+    "name": "La Aspiradora",
+    "number": 527,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_llave",
+    "name": "La Llave",
+    "number": 528,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_candado",
+    "name": "El Candado",
+    "number": 529,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cerradura",
+    "name": "La Cerradura",
+    "number": 530,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cadena",
+    "name": "La Cadena",
+    "number": 531,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cerrojo",
+    "name": "El Cerrojo",
+    "number": 532,
+    "family": "hogar",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cepillo",
+    "name": "El Cepillo",
+    "number": 533,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_peine",
+    "name": "El Peine",
+    "number": 534,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_toalla",
+    "name": "La Toalla",
+    "number": 535,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_regadera_de_bano",
+    "name": "La Regadera de Baño",
+    "number": 536,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tina",
+    "name": "La Tina",
+    "number": 537,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_tijeras_de_unas",
+    "name": "Las Tijeras de Uñas",
+    "number": 538,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rastrillo_de_afeitar",
+    "name": "El Rastrillo de Afeitar",
+    "number": 539,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_perfume",
+    "name": "El Perfume",
+    "number": 540,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_esponja",
+    "name": "La Esponja",
+    "number": 541,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_espejo_de_mano",
+    "name": "El Espejo de Mano",
+    "number": 542,
+    "family": "bano",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_doctor",
+    "name": "El Doctor",
+    "number": 543,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_policia",
+    "name": "El Policía",
+    "number": 544,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bombero",
+    "name": "El Bombero",
+    "number": 545,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cartero",
+    "name": "El Cartero",
+    "number": 546,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_enfermera",
+    "name": "La Enfermera",
+    "number": 547,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carpintero",
+    "name": "El Carpintero",
+    "number": 548,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_herrero",
+    "name": "El Herrero",
+    "number": 549,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_albanil",
+    "name": "El Albañil",
+    "number": 550,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sastre",
+    "name": "El Sastre",
+    "number": 551,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zapatero",
+    "name": "El Zapatero",
+    "number": 552,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_campesino",
+    "name": "El Campesino",
+    "number": 553,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pescador",
+    "name": "El Pescador",
+    "number": 554,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_vaquero",
+    "name": "El Vaquero",
+    "number": 555,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jardinero",
+    "name": "El Jardinero",
+    "number": 556,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pastor",
+    "name": "El Pastor",
+    "number": 557,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pintor",
+    "name": "El Pintor",
+    "number": 558,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_musico",
+    "name": "El Músico",
+    "number": 559,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chef",
+    "name": "El Chef",
+    "number": 560,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cientifico",
+    "name": "El Científico",
+    "number": 561,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_payaso",
+    "name": "El Payaso",
+    "number": 562,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_piloto",
+    "name": "El Piloto",
+    "number": 563,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_marinero",
+    "name": "El Marinero",
+    "number": 564,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_soldado",
+    "name": "El Soldado",
+    "number": 565,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_juez",
+    "name": "El Juez",
+    "number": 566,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_capitan",
+    "name": "El Capitán",
+    "number": 567,
+    "family": "oficios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_balon_de_futbol",
+    "name": "El Balón de Fútbol",
+    "number": 568,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_balon_de_basquetbol",
+    "name": "El Balón de Básquetbol",
+    "number": 569,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pelota_de_tenis",
+    "name": "La Pelota de Tenis",
+    "number": 570,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pelota_de_beisbol",
+    "name": "La Pelota de Béisbol",
+    "number": 571,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_balon_de_futbol_americano",
+    "name": "El Balón de Fútbol Americano",
+    "number": 572,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_raqueta",
+    "name": "La Raqueta",
+    "number": 573,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bate",
+    "name": "El Bate",
+    "number": 574,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_guante_de_beisbol",
+    "name": "El Guante de Béisbol",
+    "number": 575,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_casco",
+    "name": "El Casco",
+    "number": 576,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_porteria",
+    "name": "La Portería",
+    "number": 577,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_patineta",
+    "name": "La Patineta",
+    "number": 578,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_patines",
+    "name": "Los Patines",
+    "number": 579,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_esqui",
+    "name": "El Esquí",
+    "number": 580,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tabla_de_surf",
+    "name": "La Tabla de Surf",
+    "number": 581,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trineo",
+    "name": "El Trineo",
+    "number": 582,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trofeo",
+    "name": "El Trofeo",
+    "number": 583,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_medalla",
+    "name": "La Medalla",
+    "number": 584,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_copa",
+    "name": "La Copa",
+    "number": 585,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_liston",
+    "name": "El Listón",
+    "number": 586,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bandera_de_meta",
+    "name": "La Bandera de Meta",
+    "number": 587,
+    "family": "deportes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_muneca",
+    "name": "La Muñeca",
+    "number": 588,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_osito",
+    "name": "El Osito",
+    "number": 589,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trompo",
+    "name": "El Trompo",
+    "number": 590,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_canica",
+    "name": "La Canica",
+    "number": 591,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_yoyo",
+    "name": "El Yoyo",
+    "number": 592,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_bloques",
+    "name": "Los Bloques",
+    "number": 593,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_papalote",
+    "name": "El Papalote",
+    "number": 594,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carrito",
+    "name": "El Carrito",
+    "number": 595,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_globo",
+    "name": "El Globo",
+    "number": 596,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rompecabezas",
+    "name": "El Rompecabezas",
+    "number": 597,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_dado",
+    "name": "El Dado",
+    "number": 598,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_naipe",
+    "name": "El Naipe",
+    "number": 599,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_silbato",
+    "name": "El Silbato",
+    "number": 600,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_matraca",
+    "name": "La Matraca",
+    "number": 601,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_balero",
+    "name": "El Balero",
+    "number": 602,
+    "family": "juguetes",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lapiz",
+    "name": "El Lápiz",
+    "number": 603,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pluma",
+    "name": "La Pluma",
+    "number": 604,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_crayon",
+    "name": "El Crayón",
+    "number": 605,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_goma",
+    "name": "La Goma",
+    "number": 606,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_marcador",
+    "name": "El Marcador",
+    "number": 607,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_libro",
+    "name": "El Libro",
+    "number": 608,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cuaderno",
+    "name": "El Cuaderno",
+    "number": 609,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_regla",
+    "name": "La Regla",
+    "number": 610,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_tijeras_escolares",
+    "name": "Las Tijeras Escolares",
+    "number": 611,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sacapuntas",
+    "name": "El Sacapuntas",
+    "number": 612,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pizarron",
+    "name": "El Pizarrón",
+    "number": 613,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_globo_terraqueo",
+    "name": "El Globo Terráqueo",
+    "number": 614,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mapa",
+    "name": "El Mapa",
+    "number": 615,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mochila_escolar",
+    "name": "La Mochila Escolar",
+    "number": 616,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_campana_escolar",
+    "name": "La Campana Escolar",
+    "number": 617,
+    "family": "escuela",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_celular",
+    "name": "El Celular",
+    "number": 618,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_computadora",
+    "name": "La Computadora",
+    "number": 619,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tableta",
+    "name": "La Tableta",
+    "number": 620,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_television",
+    "name": "La Televisión",
+    "number": 621,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_monitor",
+    "name": "El Monitor",
+    "number": 622,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_camara",
+    "name": "La Cámara",
+    "number": 623,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_audifonos",
+    "name": "Los Audífonos",
+    "number": 624,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bocina",
+    "name": "La Bocina",
+    "number": 625,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_control_remoto",
+    "name": "El Control Remoto",
+    "number": 626,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_microfono",
+    "name": "El Micrófono",
+    "number": 627,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_enchufe",
+    "name": "El Enchufe",
+    "number": 628,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pila",
+    "name": "La Pila",
+    "number": 629,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cargador",
+    "name": "El Cargador",
+    "number": 630,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cable",
+    "name": "El Cable",
+    "number": 631,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_robot",
+    "name": "El Robot",
+    "number": 632,
+    "family": "tecnologia",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_engrapadora",
+    "name": "La Engrapadora",
+    "number": 633,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_clip",
+    "name": "El Clip",
+    "number": 634,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sobre",
+    "name": "El Sobre",
+    "number": 635,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_carpeta",
+    "name": "La Carpeta",
+    "number": 636,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_calendario",
+    "name": "El Calendario",
+    "number": 637,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_telefono",
+    "name": "El Teléfono",
+    "number": 638,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sello",
+    "name": "El Sello",
+    "number": 639,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_calculadora",
+    "name": "La Calculadora",
+    "number": 640,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lupa",
+    "name": "La Lupa",
+    "number": 641,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_portarretratos",
+    "name": "El Portarretratos",
+    "number": 642,
+    "family": "oficina",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_circulo",
+    "name": "El Círculo",
+    "number": 643,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cuadrado",
+    "name": "El Cuadrado",
+    "number": 644,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_triangulo",
+    "name": "El Triángulo",
+    "number": 645,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rombo",
+    "name": "El Rombo",
+    "number": 646,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_flecha",
+    "name": "La Flecha",
+    "number": 647,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cruz",
+    "name": "La Cruz",
+    "number": 648,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_llave_musical",
+    "name": "La Llave Musical",
+    "number": 649,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_signo_de_interrogacion",
+    "name": "El Signo de Interrogación",
+    "number": 650,
+    "family": "simbolos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_casa",
+    "name": "La Casa",
+    "number": 651,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_iglesia",
+    "name": "La Iglesia",
+    "number": 652,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_castillo",
+    "name": "El Castillo",
+    "number": 653,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rascacielos",
+    "name": "El Rascacielos",
+    "number": 654,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_faro",
+    "name": "El Faro",
+    "number": 655,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_escuela",
+    "name": "La Escuela",
+    "number": 656,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hospital",
+    "name": "El Hospital",
+    "number": 657,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tienda",
+    "name": "La Tienda",
+    "number": 658,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_granero",
+    "name": "El Granero",
+    "number": 659,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_molino",
+    "name": "El Molino",
+    "number": 660,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_puente",
+    "name": "El Puente",
+    "number": 661,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_torre",
+    "name": "La Torre",
+    "number": 662,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_piramide",
+    "name": "La Pirámide",
+    "number": 663,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_carpa",
+    "name": "La Carpa",
+    "number": 664,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_fuente",
+    "name": "La Fuente",
+    "number": 665,
+    "family": "edificios",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_corona",
+    "name": "La Corona",
+    "number": 666,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_moneda",
+    "name": "La Moneda",
+    "number": 667,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_diamante",
+    "name": "El Diamante",
+    "number": 668,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cofre",
+    "name": "El Cofre",
+    "number": 669,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lingote",
+    "name": "El Lingote",
+    "number": 670,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rubi",
+    "name": "El Rubí",
+    "number": 671,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_esmeralda",
+    "name": "La Esmeralda",
+    "number": 672,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_perla",
+    "name": "La Perla",
+    "number": 673,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zafiro",
+    "name": "El Zafiro",
+    "number": 674,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_gema",
+    "name": "La Gema",
+    "number": 675,
+    "family": "tesoro",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pinata",
+    "name": "La Piñata",
+    "number": 676,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pastel_de_fiesta",
+    "name": "El Pastel de Fiesta",
+    "number": 677,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_regalo",
+    "name": "El Regalo",
+    "number": 678,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_confeti",
+    "name": "El Confeti",
+    "number": 679,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_serpentina",
+    "name": "La Serpentina",
+    "number": 680,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cohete_de_fiesta",
+    "name": "El Cohete de Fiesta",
+    "number": 681,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_velita",
+    "name": "La Velita",
+    "number": 682,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_campana",
+    "name": "La Campana",
+    "number": 683,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mascara",
+    "name": "La Máscara",
+    "number": 684,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_farolito",
+    "name": "El Farolito",
+    "number": 685,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_calavera",
+    "name": "La Calavera",
+    "number": 686,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_catrina",
+    "name": "La Catrina",
+    "number": 687,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cempasuchil",
+    "name": "El Cempasúchil",
+    "number": 688,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_veladora",
+    "name": "La Veladora",
+    "number": 689,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_papel_picado",
+    "name": "El Papel Picado",
+    "number": 690,
+    "family": "fiesta",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_dragon",
+    "name": "El Dragón",
+    "number": 691,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_unicornio",
+    "name": "El Unicornio",
+    "number": 692,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sirena",
+    "name": "La Sirena",
+    "number": 693,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_fenix",
+    "name": "El Fénix",
+    "number": 694,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_grifo",
+    "name": "El Grifo",
+    "number": 695,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_fantasma",
+    "name": "El Fantasma",
+    "number": 696,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bruja",
+    "name": "La Bruja",
+    "number": 697,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_vampiro",
+    "name": "El Vampiro",
+    "number": 698,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_momia",
+    "name": "La Momia",
+    "number": 699,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_esqueleto_de_fiesta",
+    "name": "El Esqueleto de Fiesta",
+    "number": 700,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_angel",
+    "name": "El Ángel",
+    "number": 701,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hada",
+    "name": "El Hada",
+    "number": 702,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_duende",
+    "name": "El Duende",
+    "number": 703,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ogro",
+    "name": "El Ogro",
+    "number": 704,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_diablito",
+    "name": "El Diablito",
+    "number": 705,
+    "family": "mito",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_espada",
+    "name": "La Espada",
+    "number": 706,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_escudo",
+    "name": "El Escudo",
+    "number": 707,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arco",
+    "name": "El Arco",
+    "number": 708,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lanza",
+    "name": "La Lanza",
+    "number": 709,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_casco_de_guerra",
+    "name": "El Casco de Guerra",
+    "number": 710,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ancla",
+    "name": "El Ancla",
+    "number": 711,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_brujula",
+    "name": "La Brújula",
+    "number": 712,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_catalejo",
+    "name": "El Catalejo",
+    "number": 713,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_timon",
+    "name": "El Timón",
+    "number": 714,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mapa_del_tesoro",
+    "name": "El Mapa del Tesoro",
+    "number": 715,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_antorcha",
+    "name": "La Antorcha",
+    "number": 716,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pergamino",
+    "name": "El Pergamino",
+    "number": 717,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_anfora",
+    "name": "El Ánfora",
+    "number": 718,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_reloj_de_arena",
+    "name": "El Reloj de Arena",
+    "number": 719,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_vasija",
+    "name": "La Vasija",
+    "number": 720,
+    "family": "historico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arandano",
+    "name": "El Arándano",
+    "number": 721,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_grosella",
+    "name": "La Grosella",
+    "number": 722,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_zarzamora",
+    "name": "La Zarzamora",
+    "number": 723,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_capulin",
+    "name": "El Capulín",
+    "number": 724,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_uva_pasa",
+    "name": "La Uva Pasa",
+    "number": 725,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lichi",
+    "name": "El Lichi",
+    "number": 726,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_carambola",
+    "name": "La Carambola",
+    "number": 727,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_guanabana",
+    "name": "La Guanábana",
+    "number": 728,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tamarindo",
+    "name": "El Tamarindo",
+    "number": 729,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pitaya",
+    "name": "La Pitaya",
+    "number": 730,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tuna",
+    "name": "La Tuna",
+    "number": 731,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_nanche",
+    "name": "El Nanche",
+    "number": 732,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_jicama",
+    "name": "La Jícama",
+    "number": 733,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cana",
+    "name": "La Caña",
+    "number": 734,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zapote",
+    "name": "El Zapote",
+    "number": 735,
+    "family": "frutas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_apio",
+    "name": "El Apio",
+    "number": 736,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_coliflor",
+    "name": "La Coliflor",
+    "number": 737,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_alcachofa",
+    "name": "La Alcachofa",
+    "number": 738,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_esparrago",
+    "name": "El Espárrago",
+    "number": 739,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_poro",
+    "name": "El Poro",
+    "number": 740,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_calabacita",
+    "name": "La Calabacita",
+    "number": 741,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_nabo",
+    "name": "El Nabo",
+    "number": 742,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_quelite",
+    "name": "El Quelite",
+    "number": 743,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hongo",
+    "name": "El Hongo",
+    "number": 744,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_col",
+    "name": "La Col",
+    "number": 745,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jalapeno",
+    "name": "El Jalapeño",
+    "number": 746,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_habanero",
+    "name": "El Habanero",
+    "number": 747,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_poblano",
+    "name": "El Poblano",
+    "number": 748,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_serrano",
+    "name": "El Serrano",
+    "number": 749,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chipotle",
+    "name": "El Chipotle",
+    "number": 750,
+    "family": "verduras2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arroz",
+    "name": "El Arroz",
+    "number": 751,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trigo",
+    "name": "El Trigo",
+    "number": 752,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_avena",
+    "name": "La Avena",
+    "number": 753,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cebada",
+    "name": "La Cebada",
+    "number": 754,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_maiz",
+    "name": "El Maíz",
+    "number": 755,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_nuez",
+    "name": "La Nuez",
+    "number": 756,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_almendra",
+    "name": "La Almendra",
+    "number": 757,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cacahuate",
+    "name": "El Cacahuate",
+    "number": 758,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pistache",
+    "name": "El Pistache",
+    "number": 759,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_avellana",
+    "name": "La Avellana",
+    "number": 760,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_canela",
+    "name": "La Canela",
+    "number": 761,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_vainilla",
+    "name": "La Vainilla",
+    "number": 762,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_clavo_de_olor",
+    "name": "El Clavo de Olor",
+    "number": 763,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_comino",
+    "name": "El Comino",
+    "number": 764,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_laurel",
+    "name": "El Laurel",
+    "number": 765,
+    "family": "granos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tiranosaurio",
+    "name": "El Tiranosaurio",
+    "number": 766,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_triceratops",
+    "name": "El Triceratops",
+    "number": 767,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_estegosaurio",
+    "name": "El Estegosaurio",
+    "number": 768,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pterodactilo",
+    "name": "El Pterodáctilo",
+    "number": 769,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_braquiosaurio",
+    "name": "El Braquiosaurio",
+    "number": 770,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mamut",
+    "name": "El Mamut",
+    "number": 771,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tigre_dientes_de_sable",
+    "name": "El Tigre Dientes de Sable",
+    "number": 772,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_dodo",
+    "name": "El Dodo",
+    "number": 773,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trilobite",
+    "name": "El Trilobite",
+    "number": 774,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_velociraptor",
+    "name": "El Velociraptor",
+    "number": 775,
+    "family": "dinos",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_faisan",
+    "name": "El Faisán",
+    "number": 776,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_codorniz",
+    "name": "La Codorniz",
+    "number": 777,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_perdiz",
+    "name": "La Perdiz",
+    "number": 778,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_correcaminos",
+    "name": "El Correcaminos",
+    "number": 779,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pajaro_carpintero",
+    "name": "El Pájaro Carpintero",
+    "number": 780,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ruisenor",
+    "name": "El Ruiseñor",
+    "number": 781,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_canario",
+    "name": "El Canario",
+    "number": 782,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jilguero",
+    "name": "El Jilguero",
+    "number": 783,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_martin_pescador",
+    "name": "El Martín Pescador",
+    "number": 784,
+    "family": "aves2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mariquita",
+    "name": "La Mariquita",
+    "number": 785,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mantis",
+    "name": "La Mantis",
+    "number": 786,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tijerilla",
+    "name": "La Tijerilla",
+    "number": 787,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pulgon",
+    "name": "El Pulgón",
+    "number": 788,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_escarabajo_rinoceronte",
+    "name": "El Escarabajo Rinoceronte",
+    "number": 789,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pulga",
+    "name": "La Pulga",
+    "number": 790,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_piojo",
+    "name": "El Piojo",
+    "number": 791,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_termita",
+    "name": "La Termita",
+    "number": 792,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tabano",
+    "name": "El Tábano",
+    "number": 793,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_zancudo",
+    "name": "El Zancudo",
+    "number": 794,
+    "family": "insectos2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_trucha",
+    "name": "La Trucha",
+    "number": 795,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bagre",
+    "name": "El Bagre",
+    "number": 796,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pirana",
+    "name": "La Piraña",
+    "number": 797,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_anguila",
+    "name": "La Anguila",
+    "number": 798,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_coral",
+    "name": "El Coral",
+    "number": 799,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_alga",
+    "name": "El Alga",
+    "number": 800,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_erizo_de_mar",
+    "name": "El Erizo de Mar",
+    "number": 801,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_anemona",
+    "name": "La Anémona",
+    "number": 802,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pez_payaso",
+    "name": "El Pez Payaso",
+    "number": 803,
+    "family": "mar2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_estomago",
+    "name": "El Estómago",
+    "number": 804,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_higado",
+    "name": "El Hígado",
+    "number": 805,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rinon",
+    "name": "El Riñón",
+    "number": 806,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_pulmones",
+    "name": "Los Pulmones",
+    "number": 807,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_intestino",
+    "name": "El Intestino",
+    "number": 808,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_columna",
+    "name": "La Columna",
+    "number": 809,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_costilla",
+    "name": "La Costilla",
+    "number": 810,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_craneo",
+    "name": "El Cráneo",
+    "number": 811,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_musculo",
+    "name": "El Músculo",
+    "number": 812,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_vena",
+    "name": "La Vena",
+    "number": 813,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mejilla",
+    "name": "La Mejilla",
+    "number": 814,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_labio",
+    "name": "El Labio",
+    "number": 815,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_menton",
+    "name": "El Mentón",
+    "number": 816,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pestana",
+    "name": "La Pestaña",
+    "number": 817,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_frente",
+    "name": "La Frente",
+    "number": 818,
+    "family": "cuerpo2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_soplete",
+    "name": "El Soplete",
+    "number": 819,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lija",
+    "name": "La Lija",
+    "number": 820,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_prensa",
+    "name": "La Prensa",
+    "number": 821,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_gato_hidraulico",
+    "name": "El Gato Hidráulico",
+    "number": 822,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_yunque",
+    "name": "El Yunque",
+    "number": 823,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_brocha",
+    "name": "La Brocha",
+    "number": 824,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rodillo",
+    "name": "El Rodillo",
+    "number": 825,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cubeta_de_pintura",
+    "name": "La Cubeta de Pintura",
+    "number": 826,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_espatula",
+    "name": "La Espátula",
+    "number": 827,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cinta_de_pintor",
+    "name": "La Cinta de Pintor",
+    "number": 828,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ladrillo",
+    "name": "El Ladrillo",
+    "number": 829,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tabla",
+    "name": "La Tabla",
+    "number": 830,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tubo",
+    "name": "El Tubo",
+    "number": 831,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_alambre",
+    "name": "El Alambre",
+    "number": 832,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_viga",
+    "name": "La Viga",
+    "number": 833,
+    "family": "herramientas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_colador",
+    "name": "El Colador",
+    "number": 834,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_embudo",
+    "name": "El Embudo",
+    "number": 835,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_batidor",
+    "name": "El Batidor",
+    "number": 836,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cucharon",
+    "name": "El Cucharón",
+    "number": 837,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_molcajete",
+    "name": "El Molcajete",
+    "number": 838,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tabla_de_picar",
+    "name": "La Tabla de Picar",
+    "number": 839,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_exprimidor",
+    "name": "El Exprimidor",
+    "number": 840,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_balanza",
+    "name": "La Balanza",
+    "number": 841,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_molde",
+    "name": "El Molde",
+    "number": 842,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rodillo_de_cocina",
+    "name": "El Rodillo de Cocina",
+    "number": 843,
+    "family": "cocina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mantel",
+    "name": "El Mantel",
+    "number": 844,
+    "family": "mesa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_servilleta",
+    "name": "La Servilleta",
+    "number": 845,
+    "family": "mesa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_salero",
+    "name": "El Salero",
+    "number": 846,
+    "family": "mesa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_candelabro",
+    "name": "El Candelabro",
+    "number": 847,
+    "family": "mesa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_azucarera",
+    "name": "La Azucarera",
+    "number": 848,
+    "family": "mesa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sushi",
+    "name": "El Sushi",
+    "number": 849,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ramen",
+    "name": "El Ramen",
+    "number": 850,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_paella",
+    "name": "La Paella",
+    "number": 851,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_curry",
+    "name": "El Curry",
+    "number": 852,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pretzel",
+    "name": "El Pretzel",
+    "number": 853,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pollo_asado",
+    "name": "El Pollo Asado",
+    "number": 854,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_filete",
+    "name": "El Filete",
+    "number": 855,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_salchicha",
+    "name": "La Salchicha",
+    "number": 856,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jamon",
+    "name": "El Jamón",
+    "number": 857,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_costilla_bbq",
+    "name": "La Costilla BBQ",
+    "number": 858,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sopa",
+    "name": "La Sopa",
+    "number": 859,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_caldo",
+    "name": "El Caldo",
+    "number": 860,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arroz_cocido",
+    "name": "El Arroz Cocido",
+    "number": 861,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_frijoles",
+    "name": "Los Frijoles",
+    "number": 862,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_guisado",
+    "name": "El Guisado",
+    "number": 863,
+    "family": "comida2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_algodon_de_azucar",
+    "name": "El Algodón de Azúcar",
+    "number": 864,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_malvavisco",
+    "name": "El Malvavisco",
+    "number": 865,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_gomita",
+    "name": "La Gomita",
+    "number": 866,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bombon",
+    "name": "El Bombón",
+    "number": 867,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_manzana_acaramelada",
+    "name": "La Manzana Acaramelada",
+    "number": 868,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cajeta",
+    "name": "La Cajeta",
+    "number": 869,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_alegria",
+    "name": "La Alegría",
+    "number": 870,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_palanqueta",
+    "name": "La Palanqueta",
+    "number": 871,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mazapan",
+    "name": "El Mazapán",
+    "number": 872,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tamarindo_dulce",
+    "name": "El Tamarindo Dulce",
+    "number": 873,
+    "family": "dulces2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cerveza",
+    "name": "La Cerveza",
+    "number": 874,
+    "family": "bebidas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_vino",
+    "name": "El Vino",
+    "number": 875,
+    "family": "bebidas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_tequila",
+    "name": "El Tequila",
+    "number": 876,
+    "family": "bebidas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_champana",
+    "name": "La Champaña",
+    "number": 877,
+    "family": "bebidas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_coctel",
+    "name": "El Coctel",
+    "number": 878,
+    "family": "bebidas2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_patrulla",
+    "name": "La Patrulla",
+    "number": 879,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_camion_de_bomberos",
+    "name": "El Camión de Bomberos",
+    "number": 880,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_camioneta",
+    "name": "La Camioneta",
+    "number": 881,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_barredora",
+    "name": "La Barredora",
+    "number": 882,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_volqueta",
+    "name": "La Volqueta",
+    "number": 883,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_montana_rusa",
+    "name": "La Montaña Rusa",
+    "number": 884,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carrusel",
+    "name": "El Carrusel",
+    "number": 885,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_rueda_de_la_fortuna",
+    "name": "La Rueda de la Fortuna",
+    "number": 886,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carrito_chocon",
+    "name": "El Carrito Chocón",
+    "number": 887,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cuatrimoto",
+    "name": "El Cuatrimoto",
+    "number": 888,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_trineo_de_nieve",
+    "name": "El Trineo de Nieve",
+    "number": 889,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carruaje",
+    "name": "El Carruaje",
+    "number": 890,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_monopatin",
+    "name": "El Monopatín",
+    "number": 891,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_triciclo",
+    "name": "El Triciclo",
+    "number": 892,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_patineta_electrica",
+    "name": "La Patineta Eléctrica",
+    "number": 893,
+    "family": "transporte2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_transbordador",
+    "name": "El Transbordador",
+    "number": 894,
+    "family": "espacio2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_telescopio",
+    "name": "El Telescopio",
+    "number": 895,
+    "family": "espacio2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_estacion_espacial",
+    "name": "La Estación Espacial",
+    "number": 896,
+    "family": "espacio2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ovni",
+    "name": "El Ovni",
+    "number": 897,
+    "family": "espacio2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_rover",
+    "name": "El Rover",
+    "number": 898,
+    "family": "espacio2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_huracan",
+    "name": "El Huracán",
+    "number": 899,
+    "family": "clima2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_ventisca",
+    "name": "La Ventisca",
+    "number": 900,
+    "family": "clima2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_aurora",
+    "name": "La Aurora",
+    "number": 901,
+    "family": "clima2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_neblina",
+    "name": "La Neblina",
+    "number": 902,
+    "family": "clima2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_relampago",
+    "name": "El Relámpago",
+    "number": 903,
+    "family": "clima2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bosque",
+    "name": "El Bosque",
+    "number": 904,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_selva",
+    "name": "La Selva",
+    "number": 905,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pradera",
+    "name": "La Pradera",
+    "number": 906,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pantano",
+    "name": "El Pantano",
+    "number": 907,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_oasis",
+    "name": "El Oasis",
+    "number": 908,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_glaciar",
+    "name": "El Glaciar",
+    "number": 909,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_geiser",
+    "name": "El Géiser",
+    "number": 910,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_duna",
+    "name": "La Duna",
+    "number": 911,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_catarata",
+    "name": "La Catarata",
+    "number": 912,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_iceberg",
+    "name": "El Iceberg",
+    "number": 913,
+    "family": "naturaleza2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lirio",
+    "name": "El Lirio",
+    "number": 914,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_clavel",
+    "name": "El Clavel",
+    "number": 915,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_amapola",
+    "name": "La Amapola",
+    "number": 916,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_jazmin",
+    "name": "El Jazmín",
+    "number": 917,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_dalia",
+    "name": "La Dalia",
+    "number": 918,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lavanda",
+    "name": "La Lavanda",
+    "number": 919,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_nochebuena",
+    "name": "La Nochebuena",
+    "number": 920,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_azucena",
+    "name": "La Azucena",
+    "number": 921,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_violeta",
+    "name": "La Violeta",
+    "number": 922,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_loto",
+    "name": "El Loto",
+    "number": 923,
+    "family": "flores2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_abeto",
+    "name": "El Abeto",
+    "number": 924,
+    "family": "arboles2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arce",
+    "name": "El Arce",
+    "number": 925,
+    "family": "arboles2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_secuoya",
+    "name": "La Secuoya",
+    "number": 926,
+    "family": "arboles2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_baobab",
+    "name": "El Baobab",
+    "number": 927,
+    "family": "arboles2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cerezo",
+    "name": "El Cerezo",
+    "number": 928,
+    "family": "arboles2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_jeringa",
+    "name": "La Jeringa",
+    "number": 929,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_estetoscopio",
+    "name": "El Estetoscopio",
+    "number": 930,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_termometro",
+    "name": "El Termómetro",
+    "number": 931,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_curita",
+    "name": "La Curita",
+    "number": 932,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_venda",
+    "name": "La Venda",
+    "number": 933,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_muleta",
+    "name": "La Muleta",
+    "number": 934,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_silla_de_ruedas",
+    "name": "La Silla de Ruedas",
+    "number": 935,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pastilla",
+    "name": "La Pastilla",
+    "number": 936,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_yeso",
+    "name": "El Yeso",
+    "number": 937,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_botiquin",
+    "name": "El Botiquín",
+    "number": 938,
+    "family": "medico",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_inodoro",
+    "name": "El Inodoro",
+    "number": 939,
+    "family": "bano2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lavabo",
+    "name": "El Lavabo",
+    "number": 940,
+    "family": "bano2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bascula",
+    "name": "La Báscula",
+    "number": 941,
+    "family": "bano2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pasta_de_dientes",
+    "name": "La Pasta de Dientes",
+    "number": 942,
+    "family": "bano2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_secadora_de_pelo",
+    "name": "La Secadora de Pelo",
+    "number": 943,
+    "family": "bano2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_proyector",
+    "name": "El Proyector",
+    "number": 944,
+    "family": "oficina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_perforadora",
+    "name": "La Perforadora",
+    "number": 945,
+    "family": "oficina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cinta_adhesiva",
+    "name": "La Cinta Adhesiva",
+    "number": 946,
+    "family": "oficina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pisapapeles",
+    "name": "El Pisapapeles",
+    "number": 947,
+    "family": "oficina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_archivero",
+    "name": "El Archivero",
+    "number": 948,
+    "family": "oficina2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_compas",
+    "name": "El Compás",
+    "number": 949,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_transportador",
+    "name": "El Transportador",
+    "number": 950,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_escuadra_escolar",
+    "name": "La Escuadra Escolar",
+    "number": 951,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_abaco",
+    "name": "El Ábaco",
+    "number": 952,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_gis",
+    "name": "El Gis",
+    "number": 953,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_lonchera",
+    "name": "La Lonchera",
+    "number": 954,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_diccionario",
+    "name": "El Diccionario",
+    "number": 955,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_termo_escolar",
+    "name": "El Termo Escolar",
+    "number": 956,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_estuche",
+    "name": "El Estuche",
+    "number": 957,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_libreta",
+    "name": "La Libreta",
+    "number": 958,
+    "family": "escuela2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_ukulele",
+    "name": "El Ukulele",
+    "number": 959,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mandolina",
+    "name": "La Mandolina",
+    "number": 960,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_sitar",
+    "name": "El Sitar",
+    "number": 961,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_laud",
+    "name": "El Laúd",
+    "number": 962,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_charango",
+    "name": "El Charango",
+    "number": 963,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bateria",
+    "name": "La Batería",
+    "number": 964,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_platillos",
+    "name": "Los Platillos",
+    "number": 965,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bongo",
+    "name": "El Bongó",
+    "number": 966,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_guiro",
+    "name": "El Güiro",
+    "number": 967,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_conga",
+    "name": "La Conga",
+    "number": 968,
+    "family": "musica2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "las_pesas",
+    "name": "Las Pesas",
+    "number": 969,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cuerda_para_saltar",
+    "name": "La Cuerda para Saltar",
+    "number": 970,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_mancuerna",
+    "name": "La Mancuerna",
+    "number": 971,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_colchoneta",
+    "name": "La Colchoneta",
+    "number": 972,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_kettlebell",
+    "name": "La Kettlebell",
+    "number": 973,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "los_dardos",
+    "name": "Los Dardos",
+    "number": 974,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bolo",
+    "name": "El Bolo",
+    "number": 975,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_arco_y_flecha",
+    "name": "El Arco y Flecha",
+    "number": 976,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_guante_de_box",
+    "name": "El Guante de Box",
+    "number": 977,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_palo_de_golf",
+    "name": "El Palo de Golf",
+    "number": 978,
+    "family": "deportes2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mesero",
+    "name": "El Mesero",
+    "number": 979,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_barbero",
+    "name": "El Barbero",
+    "number": 980,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cocinero",
+    "name": "El Cocinero",
+    "number": 981,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_panadero",
+    "name": "El Panadero",
+    "number": 982,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carnicero",
+    "name": "El Carnicero",
+    "number": 983,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_veterinario",
+    "name": "El Veterinario",
+    "number": 984,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_dentista",
+    "name": "El Dentista",
+    "number": 985,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_maestro",
+    "name": "El Maestro",
+    "number": 986,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_bibliotecario",
+    "name": "El Bibliotecario",
+    "number": 987,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_mago",
+    "name": "El Mago",
+    "number": 988,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_bailarina",
+    "name": "La Bailarina",
+    "number": 989,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_malabarista",
+    "name": "El Malabarista",
+    "number": 990,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_torero",
+    "name": "El Torero",
+    "number": 991,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_domador",
+    "name": "El Domador",
+    "number": 992,
+    "family": "oficios2",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_biberon",
+    "name": "El Biberón",
+    "number": 993,
+    "family": "bebe",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_chupon",
+    "name": "El Chupón",
+    "number": 994,
+    "family": "bebe",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sonaja",
+    "name": "La Sonaja",
+    "number": 995,
+    "family": "bebe",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_carriola",
+    "name": "La Carriola",
+    "number": 996,
+    "family": "bebe",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_babero",
+    "name": "El Babero",
+    "number": 997,
+    "family": "bebe",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_billete",
+    "name": "El Billete",
+    "number": 998,
+    "family": "compras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_tarjeta",
+    "name": "La Tarjeta",
+    "number": 999,
+    "family": "compras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_carrito_de_compras",
+    "name": "El Carrito de Compras",
+    "number": 1000,
+    "family": "compras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_caja_registradora",
+    "name": "La Caja Registradora",
+    "number": 1001,
+    "family": "compras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_etiqueta",
+    "name": "La Etiqueta",
+    "number": 1002,
+    "family": "compras",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_semaforo",
+    "name": "El Semáforo",
+    "number": 1003,
+    "family": "senales",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_alto",
+    "name": "El Alto",
+    "number": 1004,
+    "family": "senales",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cono",
+    "name": "El Cono",
+    "number": 1005,
+    "family": "senales",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hidrante",
+    "name": "El Hidrante",
+    "number": 1006,
+    "family": "senales",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_poste",
+    "name": "El Poste",
+    "number": 1007,
+    "family": "senales",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_sombrilla",
+    "name": "La Sombrilla",
+    "number": 1008,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_salvavidas",
+    "name": "El Salvavidas",
+    "number": 1009,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_palapa",
+    "name": "La Palapa",
+    "number": 1010,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_pelota_de_playa",
+    "name": "La Pelota de Playa",
+    "number": 1011,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_castillo_de_arena",
+    "name": "El Castillo de Arena",
+    "number": 1012,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_fogata",
+    "name": "La Fogata",
+    "number": 1013,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_saco_de_dormir",
+    "name": "El Saco de Dormir",
+    "number": 1014,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_hamaca",
+    "name": "La Hamaca",
+    "number": 1015,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_hacha_de_campo",
+    "name": "El Hacha de Campo",
+    "number": 1016,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_cantimplora",
+    "name": "La Cantimplora",
+    "number": 1017,
+    "family": "playa",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_pincel",
+    "name": "El Pincel",
+    "number": 1018,
+    "family": "arte",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_paleta_de_colores",
+    "name": "La Paleta de Colores",
+    "number": 1019,
+    "family": "arte",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_caballete",
+    "name": "El Caballete",
+    "number": 1020,
+    "family": "arte",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_lienzo",
+    "name": "El Lienzo",
+    "number": 1021,
+    "family": "arte",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_acuarela",
+    "name": "La Acuarela",
+    "number": 1022,
+    "family": "arte",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_despertador",
+    "name": "El Despertador",
+    "number": 1023,
+    "family": "tiempo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_cronometro",
+    "name": "El Cronómetro",
+    "number": 1024,
+    "family": "tiempo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_reloj_de_bolsillo",
+    "name": "El Reloj de Bolsillo",
+    "number": 1025,
+    "family": "tiempo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "el_reloj_de_sol",
+    "name": "El Reloj de Sol",
+    "number": 1026,
+    "family": "tiempo",
+    "emoji": "🃏"
+  },
+  {
+    "id": "la_alarma",
+    "name": "La Alarma",
+    "number": 1027,
+    "family": "tiempo",
+    "emoji": "🃏"
+  }
+]

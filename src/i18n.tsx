@@ -16,7 +16,7 @@ export type Lang = 'es' | 'en';
  */
 const STRINGS = {
   es: {
-    nav: { play: 'Jugar', archive: 'Archivo', stats: 'Estadísticas', settings: 'Ajustes', howToPlay: 'Cómo jugar' },
+    nav: { play: 'Jugar', archive: 'Archivo', stats: 'Estadísticas', settings: 'Ajustes', howToPlay: 'Cómo jugar', home: 'Inicio' },
     home: {
       tagline: 'Agrupa las cartas de la Lotería.',
       todaysCopla: 'Copla de hoy',
@@ -40,12 +40,19 @@ const STRINGS = {
       shuffle: 'Barajar',
       remove: 'Quitar',
       submit: 'Enviar',
+      hint: '💡 Pista',
+      hintNote: 'Usaste una pista',
       perfect: '¡Sin errores! ✨',
       solved: '¡Resuelto! 🎉',
       lost: 'Se acabó 😅',
-      lostNote: 'Los grupos ya se muestran arriba. ¡Mañana otra!',
-      share: 'Compartir resultado',
+      lostNote: 'Los grupos ya se muestran arriba.',
+      share: 'Compartir',
       loading: 'Cargando…',
+      round: 'Ronda',
+      nextRound: 'Siguiente ronda',
+      sessionWon: 'ganadas',
+      correctCheer: '¡Bien hecho!',
+      wrongCheer: '¡Uy! Intenta otra',
     },
     archive: {
       note: (n: number) =>
@@ -76,12 +83,17 @@ const STRINGS = {
       notifTitle: 'Notificaciones',
       notifSub:
         'Aviso diario cuando la nueva copla esté lista. (Se conectará en una próxima versión.)',
+      soundTitle: 'Sonido',
+      soundSub: 'Música de fondo y efectos durante el juego.',
+      difficultyTitle: 'Dificultad',
+      difficultySub: 'Qué tan tramposas son las agrupaciones. En Difícil las cartas engañan más.',
       version: 'Coplas · versión 0.1.0 (prototipo)',
     },
+    diff: { facil: 'Fácil', media: 'Media', dificil: 'Difícil' } as Record<string, string>,
     tier: { 1: 'Fácil', 2: 'Media', 3: 'Difícil', 4: 'Trampa' } as Record<number, string>,
   },
   en: {
-    nav: { play: 'Play', archive: 'Archive', stats: 'Stats', settings: 'Settings', howToPlay: 'How to play' },
+    nav: { play: 'Play', archive: 'Archive', stats: 'Stats', settings: 'Settings', howToPlay: 'How to play', home: 'Home' },
     home: {
       tagline: 'Group the Lotería cards.',
       todaysCopla: "Today's copla",
@@ -105,12 +117,19 @@ const STRINGS = {
       shuffle: 'Shuffle',
       remove: 'Deselect',
       submit: 'Submit',
+      hint: '💡 Hint',
+      hintNote: 'You used a hint',
       perfect: 'Flawless! ✨',
       solved: 'Solved! 🎉',
       lost: 'Out of tries 😅',
-      lostNote: 'The groups are shown above. A new one tomorrow!',
-      share: 'Share result',
+      lostNote: 'The groups are shown above.',
+      share: 'Share',
       loading: 'Loading…',
+      round: 'Round',
+      nextRound: 'Next round',
+      sessionWon: 'won',
+      correctCheer: 'Nice!',
+      wrongCheer: 'Oops! Try again',
     },
     archive: {
       note: (n: number) =>
@@ -141,8 +160,13 @@ const STRINGS = {
       notifTitle: 'Notifications',
       notifSub:
         'Daily reminder when the new copla is ready. (Coming in a later version.)',
+      soundTitle: 'Sound',
+      soundSub: 'Background music and effects during play.',
+      difficultyTitle: 'Difficulty',
+      difficultySub: 'How tricky the groupings are. Hard leans on decoys and wordplay.',
       version: 'Coplas · version 0.1.0 (prototype)',
     },
+    diff: { facil: 'Easy', media: 'Medium', dificil: 'Hard' } as Record<string, string>,
     tier: { 1: 'Easy', 2: 'Medium', 3: 'Hard', 4: 'Trap' } as Record<number, string>,
   },
 };

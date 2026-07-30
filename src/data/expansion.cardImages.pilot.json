@@ -1,0 +1,61 @@
+{
+  "_note": "Pilot batch (12 diverse cards) — LOCKED style: nano_banana_pro, 2k, 3:4, prompt = '<subject>, photoreal, a real detailed depiction, single subject centered, warm golden-amber studio backdrop with a soft radial spotlight glow behind it, rich warm cinematic lighting, subtle gold rim light, deep warm shadows, 3:4 vertical, no text, no border, no frame'. Chosen by Londi over an amber-to-maroon first pass and over a reference-image variant. Hosted on the same CloudFront CDN as the base 54. `raw` = PNG 1792x2400; `min` = streaming webp. Online path: CardTile streams `min` with a branded placeholder. Extend as generation scales.",
+  "style_recipe": {
+    "model": "nano_banana_pro",
+    "resolution": "2k",
+    "aspect_ratio": "3:4",
+    "prompt_suffix": "photoreal, a real detailed depiction, single subject centered, warm golden-amber studio backdrop with a soft radial spotlight glow behind it, rich warm cinematic lighting, subtle gold rim light, deep warm shadows, 3:4 vertical, no text, no border, no frame",
+    "reference_image": "none (text-only)",
+    "credits_per_image": 2
+  },
+  "cards": {
+    "la_naranja": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025505_5d6c314d-866a-42bd-913f-af5eb010362e.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025505_5d6c314d-866a-42bd-913f-af5eb010362e_min.webp"
+    },
+    "el_caballo": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025508_b2fe5eae-4fb1-48e2-a8cb-91fa22065a9d.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025508_b2fe5eae-4fb1-48e2-a8cb-91fa22065a9d_min.webp"
+    },
+    "el_martillo": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025511_f46776b7-76a9-4957-a7a4-5bbc2f425140.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025511_f46776b7-76a9-4957-a7a4-5bbc2f425140_min.webp"
+    },
+    "la_trompeta": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025513_261e544a-b4e4-425c-9d38-6e643e8ea059.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025513_261e544a-b4e4-425c-9d38-6e643e8ea059_min.webp"
+    },
+    "el_sombrero": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025515_2159e25d-7a4a-455c-bee9-5519ee66ad87.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025515_2159e25d-7a4a-455c-bee9-5519ee66ad87_min.webp"
+    },
+    "el_avion": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025518_26d8b98f-4bfa-45d7-9a6d-97d3ccb0014a.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025518_26d8b98f-4bfa-45d7-9a6d-97d3ccb0014a_min.webp"
+    },
+    "el_ojo": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025521_d6600c2a-fb41-4281-b56a-90d096e9131f.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025521_d6600c2a-fb41-4281-b56a-90d096e9131f_min.webp"
+    },
+    "el_arcoiris": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025524_82e13b57-d90e-4dba-a370-40f9aca6e940.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025524_82e13b57-d90e-4dba-a370-40f9aca6e940_min.webp"
+    },
+    "el_dragon": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025527_e829473e-b524-43b9-a93b-88d63f20136e.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025527_e829473e-b524-43b9-a93b-88d63f20136e_min.webp"
+    },
+    "el_girasol": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025530_3f06c86d-c46e-42c9-ade8-6b8536702928.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025530_3f06c86d-c46e-42c9-ade8-6b8536702928_min.webp"
+    },
+    "el_leon": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025148_773c8646-610c-4789-982d-e7b4b0d25775.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025148_773c8646-610c-4789-982d-e7b4b0d25775_min.webp"
+    },
+    "el_taco": {
+      "raw": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025154_fa96529d-25f9-487c-a0d1-005ef7bd4280.png",
+      "min": "https://d8j0ntlcm91z4.cloudfront.net/user_395qbESmCeG8JPbpOIha0lzedrS/hf_20260729_025154_fa96529d-25f9-487c-a0d1-005ef7bd4280_min.webp"
+    }
+  }
+}

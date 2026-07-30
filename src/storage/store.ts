@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { GuessRecord } from '../game/engine';
+import type { Difficulty } from '../types';
 
 /**
  * Local persistence: per-puzzle results, aggregate stats, and settings.
@@ -16,6 +17,8 @@ export interface PuzzleResult {
   date: string;
   status: 'won' | 'lost';
   mistakes: number;
+  /** True if the player spent a hint this round (excludes it from "perfect"). */
+  hinted?: boolean;
   /** Tier grid rows, in guess order — the share grid. */
   grid: number[][];
   /** ISO timestamp completed. */
@@ -26,15 +29,21 @@ export interface Settings {
   relaxed: boolean;
   lang: 'es' | 'en';
   notifications: boolean;
+  /** Background music + sound effects on/off. */
+  soundEnabled: boolean;
   /** True once the player has seen (or skipped) the first-launch tutorial. */
   tutorialDone: boolean;
+  /** Which difficulty pool continuous play draws from. */
+  difficulty: Difficulty;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   relaxed: false,
   lang: 'es',
   notifications: true,
+  soundEnabled: true,
   tutorialDone: false,
+  difficulty: 'media',
 };
 
 export interface Stats {
@@ -76,7 +85,7 @@ export async function getStats(): Promise<Stats> {
   const played = all.length;
   const wins = all.filter((r) => r.status === 'won');
   const won = wins.length;
-  const perfect = wins.filter((r) => r.mistakes === 0).length;
+  const perfect = wins.filter((r) => r.mistakes === 0 && !r.hinted).length;
 
   const hist: [number, number, number, number] = [0, 0, 0, 0];
   for (const r of wins) {

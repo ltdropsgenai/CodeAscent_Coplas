@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, tierColors } from '../src/theme';
+import { colors, displayFont, tierColors } from '../src/theme';
 import { getCard } from '../src/data/cards';
 import { CardTile } from '../src/components/CardTile';
+import { ScenicBackground } from '../src/components/ScenicBackground';
 import { useI18n } from '../src/i18n';
 import { saveSettings } from '../src/storage/store';
 
@@ -115,6 +116,7 @@ export default function Tutorial() {
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
+      <ScenicBackground />
       {/* Header: language toggle + skip */}
       <View style={styles.head}>
         <View style={styles.langToggle}>
@@ -272,7 +274,7 @@ function Bullet({ dotColor, text }: { dotColor: string; text: string }) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: colors.bg },
+  root: { flex: 1, backgroundColor: colors.bg, overflow: 'hidden' },
   head: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -288,7 +290,7 @@ const styles = StyleSheet.create({
   skip: { color: colors.textDim, fontWeight: '700', fontSize: 15 },
   body: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20 },
   step: { alignItems: 'center' },
-  title: { color: colors.text, fontSize: 28, fontWeight: '900', marginBottom: 16, textAlign: 'center' },
+  title: { color: colors.text, fontFamily: displayFont, fontSize: 30, fontWeight: '700', marginBottom: 16, textAlign: 'center' },
   p: { color: colors.text, fontSize: 17, lineHeight: 25, textAlign: 'center', marginBottom: 14 },
   hint: { color: colors.textDim, fontSize: 14, textAlign: 'center', marginTop: 6, fontStyle: 'italic' },
   miniGrid: {
@@ -308,13 +310,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.accent,
     paddingHorizontal: 40,
     paddingVertical: 13,
-    borderRadius: 26,
+    borderRadius: 6,
     alignSelf: 'center',
     marginTop: 8,
   },
   checkText: { color: '#0B1026', fontWeight: '800', fontSize: 16 },
   tierRow: { flexDirection: 'row', gap: 8, marginVertical: 14 },
-  tierChip: { width: 46, height: 14, borderRadius: 7 },
+  tierChip: { width: 46, height: 14, borderRadius: 4 },
   bullet: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 14, alignSelf: 'stretch' },
   bulletDot: { width: 12, height: 12, borderRadius: 6, marginTop: 5, marginRight: 12 },
   bulletText: { color: colors.text, fontSize: 16, lineHeight: 23, flex: 1 },
@@ -326,7 +328,7 @@ const styles = StyleSheet.create({
   nextBtn: {
     backgroundColor: colors.accent,
     paddingVertical: 16,
-    borderRadius: 30,
+    borderRadius: 6,
     alignItems: 'center',
   },
   nextText: { color: '#0B1026', fontWeight: '800', fontSize: 18 },

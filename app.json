@@ -8,19 +8,34 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "backgroundColor": "#0B1026",
+    "icon": "./assets/icon.png",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.codeascent.coplas"
     },
     "android": {
-      "package": "com.codeascent.coplas"
+      "package": "com.codeascent.coplas",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#0A0820"
+      }
     },
     "web": {
       "bundler": "metro",
-      "output": "single"
+      "output": "single",
+      "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "backgroundColor": "#0A0820",
+          "imageWidth": 240
+        }
+      ],
+      "expo-video"
     ],
     "experiments": {
       "typedRoutes": true

@@ -1,46 +1,257 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import {
-  Animated,
-  Pressable,
-  ScrollView,
-  Share,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { Animated, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { useFocusEffect, useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, tierEmoji } from '../src/theme';
-import { useI18n } from '../src/i18n';
+import { colors, displayFont, monoFont } from '../src/theme';
+import { useI18n, type Strings } from '../src/i18n';
+import { useAudio } from '../src/audio';
 import { getCard } from '../src/data/cards';
 import { getPuzzleByNumber, getTodaysPuzzle } from '../src/data/puzzles';
 import { useGame } from '../src/game/useGame';
 import { MAX_MISTAKES } from '../src/game/engine';
+import { composeRound } from '../src/game/composer';
+import { probeDeckOnline, subscribeDeckOnline } from '../src/net/deckOnline';
 import { CardTile } from '../src/components/CardTile';
 import { SolvedGroup } from '../src/components/SolvedGroup';
+import { WinCelebration } from '../src/components/WinCelebration';
+import { GradientButton } from '../src/components/GradientButton';
 import { buildShareText } from '../src/share/shareGrid';
-import { getStats } from '../src/storage/store';
+import { getSettings, getStats } from '../src/storage/store';
+import type { Difficulty, Puzzle } from '../src/types';
+
+type FeedbackKind = 'correct' | 'wrong' | null;
+
+// ── Freshness model for continuous play ────────────────────────────────────
+// Rather than merely dodging the last two rounds, we track every card's usage
+// across the whole session and hand the composer a per-card *penalty* so it
+// prefers the least-recently and least-often seen cards. This spreads play over
+// the ENTIRE deck — cycling all cards before any repeats — which is what keeps
+// rounds from feeling stale. Weights are recency-dominant (a card in the very
+// last round is nearly forbidden) with a light frequency tiebreaker.
+type CardUse = { count: number; last: number };
+function penaltyOf(u: CardUse, now: number): number {
+  const gap = now - u.last; // rounds since last appearance (0 = the last round)
+  const recency = gap <= 0 ? 1000 : gap === 1 ? 250 : gap === 2 ? 60 : gap === 3 ? 12 : 0;
+  return recency + u.count * 8;
+}
 
 export default function Play() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
+  const router = useRouter();
   const { t } = useI18n();
+  const { playSfx, playRoundMusic, playWinFanfare, stopMusic, soundEnabled, toggleSound } = useAudio();
   const { n } = useLocalSearchParams<{ n?: string }>();
+  const isArchive = !!n;
+
+  // Continuous play: every round is composed fresh from the group library
+  // (see src/game/composer.ts). `usage` records how recently/often each card
+  // has appeared this session; `roundNo` counts completed rounds folded into
+  // that history. `cardPenalties()` turns it into the composer's score so the
+  // same cards don't keep resurfacing. `playCount` is the display counter;
+  // `liveSeq` gives each composed round a unique id.
+  const [difficulty, setDifficulty] = useState<Difficulty>('media');
+  const diffRef = useRef<Difficulty>('media');
+  const liveSeq = useRef(0);
+  const usage = useRef<Record<string, CardUse>>({});
+  const roundNo = useRef(0);
+  // Whether the current round is still untouched — lets the connectivity probe
+  // safely swap round 1 for the expanded deck the moment we confirm we're online.
+  const pristineRef = useRef(true);
+
+  const cardPenalties = useCallback((): Map<string, number> => {
+    const now = roundNo.current;
+    const m = new Map<string, number>();
+    for (const id in usage.current) m.set(id, penaltyOf(usage.current[id], now));
+    return m;
+  }, []);
+
+  // Fold a finished round's cards into the session usage history.
+  const recordRound = useCallback((cardIds: string[]) => {
+    roundNo.current += 1;
+    const now = roundNo.current;
+    for (const id of cardIds) {
+      const u = usage.current[id] ?? { count: 0, last: -99 };
+      usage.current[id] = { count: u.count + 1, last: now };
+    }
+  }, []);
+
+  const [livePuzzle, setLivePuzzle] = useState<Puzzle>(() => {
+    liveSeq.current += 1;
+    return composeRound('media', new Map(), liveSeq.current);
+  });
+  const [playCount, setPlayCount] = useState(0);
+
+  // Pick up the player's difficulty choice (and restart the stream if it
+  // changed) whenever this screen regains focus.
+  useFocusEffect(
+    useCallback(() => {
+      let active = true;
+      getSettings().then((s) => {
+        if (!active || isArchive || s.difficulty === diffRef.current) return;
+        diffRef.current = s.difficulty;
+        setDifficulty(s.difficulty);
+        usage.current = {};
+        roundNo.current = 0;
+        liveSeq.current += 1;
+        setLivePuzzle(composeRound(s.difficulty, new Map(), liveSeq.current));
+      });
+      return () => {
+        active = false;
+      };
+    }, [isArchive])
+  );
+
+  // Session tallies (this play session only).
+  const [sessionWon, setSessionWon] = useState(0);
+  const [sessionStreak, setSessionStreak] = useState(0);
 
   const puzzle = useMemo(() => {
-    const byNumber = n ? getPuzzleByNumber(Number(n)) : undefined;
-    return byNumber ?? getTodaysPuzzle();
-  }, [n]);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({ title: `Coplas #${puzzle.number}` });
-  }, [navigation, puzzle.number]);
+    if (n) return getPuzzleByNumber(Number(n)) ?? getTodaysPuzzle();
+    return livePuzzle;
+  }, [n, livePuzzle]);
 
   const game = useGame(puzzle);
   const { state } = game;
   const finished = state.status !== 'playing';
 
-  // --- Animations ---
+  // Correct / wrong feedback burst.
+  const feedback = useRef(new Animated.Value(0)).current;
+  const [feedbackKind, setFeedbackKind] = useState<FeedbackKind>(null);
+  // Round-clear celebration overlay — shown once per win after a short beat,
+  // cleared on the next round (and when it finishes animating). `resultReady`
+  // holds the result panel back until the celebration has settled, so on a win
+  // the flow is: last group snaps in → beat → fireworks → ¡Resuelto!.
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [resultReady, setResultReady] = useState(false);
+
+  // Always give the player an explicit way out. The stack's implicit back
+  // arrow is unreliable here — it's absent when Play is the first route in
+  // history (a web reload or a deep link straight into /play) — so we render
+  // our own, and fall back to replacing the route when there's nothing to pop.
+  const goHome = useCallback(() => {
+    if (router.canGoBack()) router.back();
+    else router.replace('/');
+  }, [router]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: isArchive ? `Coplas #${puzzle.number}` : `${t.play.round} ${playCount + 1}`,
+      headerLeft: () => (
+        <Pressable
+          onPress={goHome}
+          hitSlop={14}
+          accessibilityRole="button"
+          accessibilityLabel={t.nav.home}
+          style={({ pressed }) => [styles.backBtn, pressed && { opacity: 0.6 }]}
+        >
+          <Text style={styles.backChevron}>‹</Text>
+          <Text style={styles.backLabel}>{t.nav.home}</Text>
+        </Pressable>
+      ),
+      headerRight: () => (
+        <Pressable onPress={toggleSound} hitSlop={12} style={{ paddingHorizontal: 4 }}>
+          <Text style={{ fontSize: 18 }}>{soundEnabled ? '🔊' : '🔇'}</Text>
+        </Pressable>
+      ),
+    });
+  }, [navigation, puzzle.number, playCount, isArchive, t.play.round, t.nav.home, soundEnabled, toggleSound, goHome]);
+
+  // Each round gets a fresh background genre (rotates, never repeats the last).
+  // Keyed on the round id so every new round — including the online-flip
+  // recompose — swaps the track; leaving the screen stops it.
+  useEffect(() => {
+    playRoundMusic();
+    return () => stopMusic();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [puzzle.id]);
+
+  // Live snapshot of whether the current round has been touched yet.
+  useEffect(() => {
+    pristineRef.current =
+      state.guesses.length === 0 && state.solved.length === 0 && state.status === 'playing';
+  });
+
+  // Probe deck connectivity once on mount; when it flips online, recompose a
+  // still-pristine round in place so the expanded deck (which streams its art
+  // from Supabase) appears immediately instead of only from the next round.
+  // Archive replays are fixed puzzles and are never recomposed.
+  useEffect(() => {
+    if (isArchive) return;
+    probeDeckOnline();
+    return subscribeDeckOnline((online) => {
+      if (!online || !pristineRef.current) return;
+      liveSeq.current += 1;
+      setLivePuzzle(composeRound(diffRef.current, cardPenalties(), liveSeq.current));
+    });
+  }, [isArchive, cardPenalties]);
+
+  // SFX + feedback burst on every guess; jingle on a win.
+  const prevGuesses = useRef(0);
+  useEffect(() => {
+    if (state.guesses.length > prevGuesses.current) {
+      const last = state.guesses[state.guesses.length - 1];
+      playSfx(last.correct ? 'correct' : 'wrong');
+      setFeedbackKind(last.correct ? 'correct' : 'wrong');
+      feedback.setValue(0);
+      Animated.sequence([
+        Animated.spring(feedback, { toValue: 1, useNativeDriver: true, friction: 5, tension: 140 }),
+        Animated.timing(feedback, { toValue: 0, duration: 450, delay: 300, useNativeDriver: true }),
+      ]).start(() => setFeedbackKind(null));
+    }
+    prevGuesses.current = state.guesses.length;
+  }, [state.guesses, playSfx, feedback]);
+
+  // On a win: a quick sting immediately, then a short beat so the last group
+  // visibly settles before the fanfare + fireworks fire. The result panel is
+  // held back (resultReady) until the celebration finishes. A loss shows its
+  // result straight away (no celebration).
+  useEffect(() => {
+    if (state.status === 'won') {
+      playSfx('jingle');
+      setResultReady(false);
+      const beat = setTimeout(() => {
+        playWinFanfare();
+        setShowCelebration(true);
+      }, 550);
+      return () => clearTimeout(beat);
+    }
+    if (state.status === 'lost') {
+      setResultReady(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.status]);
+
+  // A new round clears any lingering celebration / result-gate state.
+  useEffect(() => {
+    setShowCelebration(false);
+    setResultReady(false);
+  }, [puzzle.id]);
+
+  // Tally each round's result once (skip archive replays).
+  const countedRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (isArchive || !finished || countedRef.current === puzzle.id) return;
+    countedRef.current = puzzle.id;
+    if (state.status === 'won') {
+      setSessionWon((x) => x + 1);
+      setSessionStreak((x) => x + 1);
+    } else {
+      setSessionStreak(0);
+    }
+  }, [finished, state.status, puzzle.id, isArchive]);
+
+  function nextRound() {
+    // Fold the round just played into the session usage history, then compose a
+    // fresh round that prefers the least-recently/least-often seen cards.
+    const justPlayed = puzzle.groups.flatMap((g) => g.cardIds);
+    recordRound(justPlayed);
+    liveSeq.current += 1;
+    setLivePuzzle(composeRound(difficulty, cardPenalties(), liveSeq.current));
+    setPlayCount((c) => c + 1);
+  }
+
+  // --- Board animations ---
   const shake = useRef(new Animated.Value(0)).current;
   const resultAnim = useRef(new Animated.Value(0)).current;
   const prevMistakes = useRef(0);
@@ -60,21 +271,29 @@ export default function Play() {
   }, [state.mistakes, shake]);
 
   useEffect(() => {
-    if (finished) {
-      Animated.timing(resultAnim, {
-        toValue: 1,
-        duration: 420,
-        useNativeDriver: true,
-      }).start();
+    resultAnim.setValue(0);
+    if (resultReady) {
+      Animated.timing(resultAnim, { toValue: 1, duration: 420, useNativeDriver: true }).start();
     }
-  }, [finished, resultAnim]);
+  }, [resultReady, resultAnim, puzzle.id]);
 
   const shakeX = shake.interpolate({ inputRange: [-1, 1], outputRange: [-12, 12] });
 
-  const [streak, setStreak] = useState<number | undefined>(undefined);
+  const [lifetimeStreak, setLifetimeStreak] = useState<number | undefined>(undefined);
   useEffect(() => {
-    if (finished) getStats().then((s) => setStreak(s.currentStreak));
-  }, [finished]);
+    if (finished) getStats().then((s) => setLifetimeStreak(s.currentStreak));
+  }, [finished, puzzle.id]);
+
+  function onSelect(id: string) {
+    playSfx('select');
+    game.select(id);
+  }
+
+  function onHint() {
+    if (!game.canHint) return;
+    playSfx('select');
+    game.hint();
+  }
 
   async function onShare() {
     const text = buildShareText({
@@ -82,12 +301,12 @@ export default function Play() {
       grid: state.guesses.map((g) => g.tierOf),
       status: state.status === 'won' ? 'won' : 'lost',
       mistakes: state.mistakes,
-      currentStreak: streak,
+      currentStreak: isArchive ? lifetimeStreak : sessionStreak,
     });
     try {
       await Share.share({ message: text });
     } catch {
-      /* user dismissed */
+      /* dismissed */
     }
   }
 
@@ -100,126 +319,145 @@ export default function Play() {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={[styles.container, { paddingBottom: insets.bottom + 20 }]}
-    >
-      <Text style={styles.sub}>
-        {t.play.subtitle}
-        {game.relaxed ? `  ·  ${t.play.relaxed}` : ''}
-      </Text>
-
-      {state.solved.map((g) => (
-        <SolvedGroup key={g.theme} group={g} />
-      ))}
-
-      {!finished && (
-        <Animated.View style={[styles.grid, { transform: [{ translateX: shakeX }] }]}>
-          {chunk(state.remaining, 4).map((row, ri) => (
-            <View key={ri} style={styles.row}>
-              {row.map((id) => (
-                <CardTile
-                  key={id}
-                  card={getCard(id)}
-                  selected={state.selected.includes(id)}
-                  onPress={game.select}
-                />
-              ))}
-            </View>
-          ))}
-        </Animated.View>
-      )}
-
-      {!game.relaxed && !finished && (
-        <View style={styles.mistakes}>
-          <Text style={styles.dim}>{t.play.errors}</Text>
-          {Array.from({ length: MAX_MISTAKES }).map((_, i) => (
-            <View key={i} style={[styles.dot, i < state.mistakes && styles.dotUsed]} />
-          ))}
-        </View>
-      )}
-
-      {game.lastWasOneAway && !finished && <Text style={styles.oneAway}>{t.play.oneAway}</Text>}
-
-      {!finished && (
-        <View style={styles.actions}>
-          <SecondaryBtn label={t.play.shuffle} onPress={game.shuffle} />
-          <SecondaryBtn
-            label={t.play.remove}
-            onPress={game.deselect}
-            disabled={state.selected.length === 0}
-          />
-          <PrimaryBtn label={t.play.submit} onPress={game.submit} disabled={!game.canSubmit} />
-        </View>
-      )}
-
-      {finished && (
-        <Animated.View
-          style={[
-            styles.result,
-            {
-              opacity: resultAnim,
-              transform: [
-                { translateY: resultAnim.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) },
-              ],
-            },
-          ]}
-        >
-          <Text style={styles.resultTitle}>
-            {state.status === 'won'
-              ? state.mistakes === 0
-                ? t.play.perfect
-                : t.play.solved
-              : t.play.lost}
+    <View style={styles.root}>
+      <ScrollView contentContainerStyle={[styles.container, { paddingBottom: insets.bottom + 20 }]}>
+        <Text style={styles.sub}>
+          {t.play.subtitle}
+          {game.relaxed ? `  ·  ${t.play.relaxed}` : ''}
+        </Text>
+        {!isArchive && (
+          <Text style={styles.session}>
+            {t.play.round} {playCount + 1}   ·   {t.diff[difficulty]}   ·   🔥 {sessionStreak}   ·   🏆 {sessionWon} {t.play.sessionWon}
           </Text>
-          <View style={styles.gridPreview}>
-            {state.guesses.map((g, i) => (
-              <Text key={i} style={styles.gridRow}>
-                {g.tierOf.map((tt) => tierEmoji[tt]).join('')}
-              </Text>
+        )}
+
+        {state.solved.map((g, i) => (
+          // Only the most recently solved group plays its animated clips.
+          <SolvedGroup key={g.theme} group={g} animate={i === state.solved.length - 1} />
+        ))}
+
+        {!finished && (
+          <Animated.View style={[styles.grid, { transform: [{ translateX: shakeX }] }]}>
+            {chunk(state.remaining, 4).map((row, ri) => (
+              <View key={ri} style={styles.row}>
+                {row.map((id) => (
+                  <CardTile
+                    key={id}
+                    card={getCard(id)}
+                    selected={state.selected.includes(id)}
+                    hinted={state.hintPair.includes(id)}
+                    onPress={onSelect}
+                  />
+                ))}
+              </View>
+            ))}
+          </Animated.View>
+        )}
+
+        {!game.relaxed && !finished && (
+          <View style={styles.mistakes}>
+            <Text style={styles.dim}>{t.play.errors}</Text>
+            {Array.from({ length: MAX_MISTAKES }).map((_, i) => (
+              <View key={i} style={[styles.dot, i < state.mistakes && styles.dotUsed]} />
             ))}
           </View>
-          {state.status === 'lost' && <Text style={styles.dim}>{t.play.lostNote}</Text>}
-          <Pressable
-            style={({ pressed }) => [styles.shareBtn, pressed && styles.pressed]}
-            onPress={onShare}
+        )}
+
+        {game.lastWasOneAway && !finished && <Text style={styles.oneAway}>{t.play.oneAway}</Text>}
+
+        {!finished && (
+          <View style={styles.actions}>
+            <GradientButton label={t.play.hint} variant="ghost" onPress={onHint} disabled={!game.canHint} />
+            <GradientButton label={t.play.shuffle} variant="ghost" onPress={game.shuffle} />
+            <GradientButton
+              label={t.play.remove}
+              variant="ghost"
+              onPress={game.deselect}
+              disabled={state.selected.length === 0}
+            />
+            <GradientButton label={t.play.submit} onPress={game.submit} disabled={!game.canSubmit} />
+          </View>
+        )}
+
+        {finished && resultReady && (
+          <Animated.View
+            style={[
+              styles.result,
+              {
+                opacity: resultAnim,
+                transform: [
+                  { translateY: resultAnim.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) },
+                ],
+              },
+            ]}
           >
-            <Text style={styles.shareText}>{t.play.share}</Text>
-          </Pressable>
-        </Animated.View>
+            <Text style={styles.resultTitle}>
+              {state.status === 'won'
+                ? state.mistakes === 0 && !state.hintUsed
+                  ? t.play.perfect
+                  : t.play.solved
+                : t.play.lost}
+            </Text>
+            <View style={styles.resultDivider} />
+            {state.status === 'lost' && <Text style={styles.dim}>{t.play.lostNote}</Text>}
+            {state.status === 'won' && state.hintUsed && (
+              <Text style={styles.hintNote}>💡 {t.play.hintNote}</Text>
+            )}
+            <View style={styles.resultActions}>
+              <GradientButton label={t.play.share} variant="ghost" onPress={onShare} />
+              {!isArchive && (
+                <GradientButton label={t.play.nextRound} variant="gold" onPress={nextRound} />
+              )}
+            </View>
+          </Animated.View>
+        )}
+      </ScrollView>
+
+      <FeedbackBurst kind={feedbackKind} anim={feedback} t={t} />
+
+      {showCelebration && state.status === 'won' && (
+        <WinCelebration
+          groups={state.solved}
+          onDone={() => {
+            setShowCelebration(false);
+            setResultReady(true);
+          }}
+        />
       )}
-    </ScrollView>
+    </View>
   );
 }
 
-function PrimaryBtn({ label, onPress, disabled }: { label: string; onPress: () => void; disabled?: boolean }) {
+/** A big pop of emoji + tint over the board on a correct or wrong guess. */
+function FeedbackBurst({
+  kind,
+  anim,
+  t,
+}: {
+  kind: FeedbackKind;
+  anim: Animated.Value;
+  t: Strings;
+}) {
+  if (!kind) return null;
+  const correct = kind === 'correct';
+  const scale = anim.interpolate({ inputRange: [0, 1], outputRange: [0.3, 1.25] });
+  const rise = anim.interpolate({ inputRange: [0, 1], outputRange: [10, -6] });
   return (
-    <Pressable
-      disabled={disabled}
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.primaryBtn,
-        disabled && styles.btnDisabled,
-        pressed && !disabled && styles.pressed,
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        StyleSheet.absoluteFill,
+        styles.burst,
+        { opacity: anim, backgroundColor: correct ? 'rgba(61,220,151,0.12)' : 'rgba(255,90,110,0.14)' },
       ]}
     >
-      <Text style={styles.primaryText}>{label}</Text>
-    </Pressable>
-  );
-}
-
-function SecondaryBtn({ label, onPress, disabled }: { label: string; onPress: () => void; disabled?: boolean }) {
-  return (
-    <Pressable
-      disabled={disabled}
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.secondaryBtn,
-        disabled && styles.btnDisabled,
-        pressed && !disabled && styles.pressed,
-      ]}
-    >
-      <Text style={styles.secondaryText}>{label}</Text>
-    </Pressable>
+      <Animated.Text style={[styles.burstEmoji, { transform: [{ scale }, { translateY: rise }] }]}>
+        {correct ? '🎉' : '🚫'}
+      </Animated.Text>
+      <Animated.Text style={[styles.burstLabel, { transform: [{ translateY: rise }] }]}>
+        {correct ? t.play.correctCheer : t.play.wrongCheer}
+      </Animated.Text>
+    </Animated.View>
   );
 }
 
@@ -230,42 +468,67 @@ function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 const styles = StyleSheet.create({
+  root: { flex: 1 },
   container: { paddingHorizontal: 12, paddingTop: 10 },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.bg },
-  sub: { color: colors.textDim, fontSize: 15, textAlign: 'center', marginBottom: 14 },
+  backBtn: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, paddingVertical: 2 },
+  backChevron: { color: colors.accent, fontSize: 30, lineHeight: 32, marginTop: -3 },
+  backLabel: { color: colors.accent, fontSize: 15, fontWeight: '700', marginLeft: 1 },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  sub: { color: colors.textDim, fontSize: 15, textAlign: 'center' },
+  session: { color: colors.accent, fontFamily: monoFont, fontSize: 12, letterSpacing: 0.5, textAlign: 'center', marginTop: 4, marginBottom: 12, fontWeight: '700' },
   grid: { marginTop: 2 },
   row: { flexDirection: 'row' },
   mistakes: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16 },
   dot: { width: 12, height: 12, borderRadius: 6, marginHorizontal: 4, backgroundColor: colors.border },
   dotUsed: { backgroundColor: colors.danger },
-  oneAway: { color: colors.accent, textAlign: 'center', marginTop: 10, fontWeight: '700' },
-  actions: { flexDirection: 'row', gap: 10, marginTop: 18, justifyContent: 'center' },
-  primaryBtn: { backgroundColor: colors.accent, paddingHorizontal: 30, paddingVertical: 13, borderRadius: 26 },
-  primaryText: { color: '#0B1026', fontWeight: '800', fontSize: 16 },
-  secondaryBtn: {
-    backgroundColor: colors.surfaceAlt,
-    paddingHorizontal: 20,
-    paddingVertical: 13,
-    borderRadius: 26,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  secondaryText: { color: colors.text, fontWeight: '700', fontSize: 15 },
-  btnDisabled: { opacity: 0.4 },
-  pressed: { opacity: 0.75 },
+  oneAway: { color: colors.accent, textAlign: 'center', marginTop: 10, fontWeight: '800' },
+  actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 18, justifyContent: 'center', alignItems: 'center' },
   result: {
     marginTop: 22,
     alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderRadius: 18,
-    padding: 22,
-    borderWidth: 1,
-    borderColor: colors.border,
+    backgroundColor: 'rgba(11,10,31,0.72)',
+    borderRadius: 14,
+    paddingVertical: 26,
+    paddingHorizontal: 22,
+    borderWidth: 1.5,
+    borderColor: colors.borderGold,
+    shadowColor: colors.accent,
+    shadowOpacity: 0.28,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 8,
   },
-  resultTitle: { color: colors.text, fontSize: 24, fontWeight: '900', marginBottom: 12 },
-  gridPreview: { alignItems: 'center', marginBottom: 12 },
-  gridRow: { fontSize: 22, letterSpacing: 2, lineHeight: 30 },
-  shareBtn: { backgroundColor: colors.success, paddingHorizontal: 36, paddingVertical: 13, borderRadius: 26, marginTop: 8 },
-  shareText: { color: '#0B1026', fontWeight: '800', fontSize: 16 },
-  dim: { color: colors.textDim, fontSize: 13, textAlign: 'center' },
+  resultTitle: {
+    color: colors.text,
+    fontFamily: displayFont,
+    fontSize: 32,
+    fontWeight: '700',
+    textAlign: 'center',
+    textShadowColor: 'rgba(244,185,66,0.45)',
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 16,
+  },
+  resultDivider: {
+    width: 54,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: colors.accent,
+    opacity: 0.85,
+    marginTop: 12,
+    marginBottom: 16,
+  },
+  resultActions: { flexDirection: 'row', gap: 10, marginTop: 8, alignItems: 'center' },
+  dim: { color: colors.textDim, fontSize: 13, textAlign: 'center', marginBottom: 4 },
+  hintNote: { color: colors.teal, fontSize: 12, fontFamily: monoFont, textAlign: 'center', marginBottom: 4 },
+  burst: { alignItems: 'center', justifyContent: 'center' },
+  burstEmoji: { fontSize: 96 },
+  burstLabel: {
+    color: colors.text,
+    fontSize: 24,
+    fontWeight: '900',
+    marginTop: 6,
+    textShadowColor: 'rgba(0,0,0,0.55)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 8,
+  },
 });

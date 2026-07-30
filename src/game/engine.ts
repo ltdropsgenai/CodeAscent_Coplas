@@ -25,6 +25,13 @@ export interface GameState {
   guesses: GuessRecord[];
   mistakes: number;
   status: 'playing' | 'won' | 'lost';
+  /**
+   * Two card ids currently highlighted by a hint (both belong to the same
+   * still-unsolved group). Empty when no hint is active.
+   */
+  hintPair: string[];
+  /** True once the player has spent their one hint this round (drops "perfect"). */
+  hintUsed: boolean;
 }
 
 /** Which tier a given card belongs to in this puzzle. */
@@ -63,6 +70,8 @@ export function initGame(puzzle: Puzzle, seed?: number): GameState {
     guesses: [],
     mistakes: 0,
     status: 'playing',
+    hintPair: [],
+    hintUsed: false,
   };
 }
 
@@ -117,6 +126,8 @@ export function submitGuess(state: GameState, relaxed = false): GameState {
       selected: [],
       solved,
       guesses,
+      // Drop any hinted card that just got solved so the glow disappears with it.
+      hintPair: state.hintPair.filter((id) => remaining.includes(id)),
       status: won ? 'won' : 'playing',
     };
   }
@@ -130,6 +141,29 @@ export function submitGuess(state: GameState, relaxed = false): GameState {
     mistakes,
     status: lost ? 'lost' : 'playing',
   };
+}
+
+/**
+ * Spend the round's single hint: highlight two cards that belong to the same
+ * still-unsolved group. Picks a random unsolved group so the nudge varies, and
+ * two random cards from it. No-op if the round is over or a hint was already
+ * used. Using a hint sets `hintUsed`, which the UI treats as forfeiting the
+ * "perfect" (zero-mistake) badge.
+ */
+export function useHint(state: GameState): GameState {
+  if (state.status !== 'playing' || state.hintUsed) return state;
+
+  // Unsolved groups are exactly those whose cards are still on the board.
+  const solvedThemes = new Set(state.solved.map((g) => g.theme));
+  const unsolved = state.puzzle.groups.filter((g) => !solvedThemes.has(g.theme));
+  if (!unsolved.length) return state;
+
+  const group = unsolved[Math.floor(Math.random() * unsolved.length)];
+  const onBoard = group.cardIds.filter((id) => state.remaining.includes(id));
+  const pool = onBoard.length >= 2 ? onBoard : group.cardIds;
+  const pair = shuffle(pool).slice(0, 2);
+
+  return { ...state, hintPair: pair, hintUsed: true };
 }
 
 /** How many cards of the guess were in the eventual majority group — for "one away" hints. */

@@ -1,12 +1,17 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useFocusEffect, useNavigation } from 'expo-router';
-import { colors } from '../src/theme';
+import { colors, monoFont } from '../src/theme';
 import { useI18n, type Lang } from '../src/i18n';
+import { useAudio } from '../src/audio';
 import { DEFAULT_SETTINGS, getSettings, saveSettings, type Settings } from '../src/storage/store';
+import type { Difficulty } from '../src/types';
+
+const DIFFS: Difficulty[] = ['facil', 'media', 'dificil'];
 
 export default function SettingsScreen() {
   const { t, lang, setLang } = useI18n();
+  const { soundEnabled, toggleSound } = useAudio();
   const navigation = useNavigation();
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
 
@@ -43,6 +48,33 @@ export default function SettingsScreen() {
         </View>
       </View>
 
+      {/* Difficulty segmented control — drives the continuous-play pool. */}
+      <View style={styles.row}>
+        <View style={styles.rowText}>
+          <Text style={styles.title}>{t.settings.difficultyTitle}</Text>
+          <Text style={styles.subtitle}>{t.settings.difficultySub}</Text>
+        </View>
+      </View>
+      <View style={styles.diffRow}>
+        {DIFFS.map((d) => (
+          <Pressable
+            key={d}
+            onPress={() => update({ difficulty: d })}
+            style={[styles.diffBtn, settings.difficulty === d && styles.diffBtnActive]}
+          >
+            <Text style={[styles.diffText, settings.difficulty === d && styles.diffTextActive]}>
+              {t.diff[d]}
+            </Text>
+          </Pressable>
+        ))}
+      </View>
+
+      <Row
+        title={t.settings.soundTitle}
+        subtitle={t.settings.soundSub}
+        value={soundEnabled}
+        onValueChange={() => toggleSound()}
+      />
       <Row
         title={t.settings.relaxedTitle}
         subtitle={t.settings.relaxedSub}
@@ -102,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.surface,
-    borderRadius: 14,
+    borderRadius: 8,
     padding: 16,
     borderWidth: 1,
     borderColor: colors.border,
@@ -115,5 +147,18 @@ const styles = StyleSheet.create({
   segBtnActive: { backgroundColor: colors.accent },
   segText: { color: colors.textDim, fontWeight: '800', fontSize: 13 },
   segTextActive: { color: '#0B1026' },
+  diffRow: { flexDirection: 'row', gap: 8, marginTop: -4 },
+  diffBtn: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 6,
+    alignItems: 'center',
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  diffBtnActive: { borderColor: colors.borderGold, backgroundColor: colors.selected },
+  diffText: { color: colors.textDim, fontFamily: monoFont, fontWeight: '800', fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
+  diffTextActive: { color: colors.accent },
   version: { color: colors.textDim, textAlign: 'center', marginTop: 20, fontSize: 12 },
 });

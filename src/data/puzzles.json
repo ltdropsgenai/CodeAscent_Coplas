@@ -48,7 +48,8 @@
         ],
         "explanation": "La Sirena, El Camarón, El Pescado y La Rana viven en el agua."
       }
-    ]
+    ],
+    "difficulty": "media"
   },
   {
     "id": "coplas-0002",
@@ -99,7 +100,8 @@
         ],
         "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Camarón parecía animal y El Melón, planta: la trampa."
       }
-    ]
+    ],
+    "difficulty": "media"
   },
   {
     "id": "coplas-0003",
@@ -150,7 +152,8 @@
         ],
         "explanation": "La Muerte, El Diablito, El Alacrán y La Araña dan escalofríos. La Calavera cabía aquí… pero se fue con las rimas."
       }
-    ]
+    ],
+    "difficulty": "media"
   },
   {
     "id": "coplas-0004",
@@ -201,7 +204,8 @@
         ],
         "explanation": "Nopal, pino, palma y rosa."
       }
-    ]
+    ],
+    "difficulty": "media"
   },
   {
     "id": "coplas-0005",
@@ -252,7 +256,8 @@
         ],
         "explanation": "Cazo, cantarito, botella y barril."
       }
-    ]
+    ],
+    "difficulty": "media"
   },
   {
     "id": "coplas-0006",
@@ -303,38 +308,51 @@
         ],
         "explanation": "La Sirena, El Pescado, El Camarón y La Chalupa: cosas del mar."
       }
-    ]
+    ],
+    "difficulty": "media"
   },
   {
     "id": "coplas-0007",
     "number": 7,
     "date": "2026-08-03",
+    "difficulty": "facil",
     "groups": [
       {
-        "theme": "Astros del cielo",
+        "theme": "Del agua",
         "tier": 1,
         "cardIds": [
-          "el_sol",
-          "la_luna",
-          "la_estrella",
-          "el_mundo"
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
       },
       {
-        "theme": "Aves",
+        "theme": "Pura gente",
         "tier": 2,
         "cardIds": [
-          "el_gallo",
-          "la_garza",
-          "el_pajaro",
-          "el_cotorro"
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 3,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
       },
       {
         "theme": "Guardan líquido",
-        "tier": 3,
+        "tier": 4,
         "cardIds": [
           "la_botella",
           "el_barril",
@@ -342,6 +360,47 @@
           "el_cazo"
         ],
         "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0008",
+    "number": 8,
+    "date": "2026-08-04",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 1,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 2,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 3,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
       },
       {
         "theme": "Lo macabro",
@@ -357,64 +416,47 @@
     ]
   },
   {
-    "id": "coplas-0008",
-    "number": 8,
-    "date": "2026-08-04",
-    "groups": [
-      {
-        "theme": "Plantas",
-        "tier": 1,
-        "cardIds": [
-          "el_arbol",
-          "el_nopal",
-          "el_pino",
-          "la_palma"
-        ],
-        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
-      },
-      {
-        "theme": "Personajes",
-        "tier": 2,
-        "cardIds": [
-          "la_dama",
-          "el_catrin",
-          "el_valiente",
-          "el_soldado"
-        ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
-      },
-      {
-        "theme": "Instrumentos musicales",
-        "tier": 3,
-        "cardIds": [
-          "el_bandolon",
-          "el_violoncello",
-          "el_tambor",
-          "el_arpa"
-        ],
-        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
-      },
-      {
-        "theme": "Riman en «-era»",
-        "tier": 4,
-        "cardIds": [
-          "la_bandera",
-          "la_escalera",
-          "la_pera",
-          "la_calavera"
-        ],
-        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra. La Calavera cabía en «lo macabro»… pero hoy rima."
-      }
-    ]
-  },
-  {
     "id": "coplas-0009",
     "number": 9,
     "date": "2026-08-05",
+    "difficulty": "facil",
     "groups": [
       {
-        "theme": "Astros del cielo",
+        "theme": "Hacen sonido",
         "tier": 1,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 2,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Aves",
+        "tier": 3,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Astros del cielo",
+        "tier": 4,
         "cardIds": [
           "el_sol",
           "la_luna",
@@ -422,39 +464,6 @@
           "el_mundo"
         ],
         "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
-      },
-      {
-        "theme": "Del agua",
-        "tier": 2,
-        "cardIds": [
-          "la_sirena",
-          "el_pescado",
-          "la_chalupa",
-          "la_rana"
-        ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
-      },
-      {
-        "theme": "Cosas que se llevan",
-        "tier": 3,
-        "cardIds": [
-          "el_gorrito",
-          "la_bota",
-          "la_corona",
-          "el_paraguas"
-        ],
-        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
-      },
-      {
-        "theme": "Más personajes",
-        "tier": 4,
-        "cardIds": [
-          "el_borracho",
-          "el_charro",
-          "el_musico",
-          "el_apache"
-        ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
       }
     ]
   },
@@ -462,174 +471,11 @@
     "id": "coplas-0010",
     "number": 10,
     "date": "2026-08-06",
+    "difficulty": "facil",
     "groups": [
-      {
-        "theme": "Aves",
-        "tier": 1,
-        "cardIds": [
-          "el_gallo",
-          "la_garza",
-          "el_pajaro",
-          "el_cotorro"
-        ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
-      },
-      {
-        "theme": "Plantas",
-        "tier": 2,
-        "cardIds": [
-          "el_arbol",
-          "el_nopal",
-          "el_pino",
-          "la_palma"
-        ],
-        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
-      },
-      {
-        "theme": "Guardan líquido",
-        "tier": 3,
-        "cardIds": [
-          "la_botella",
-          "el_barril",
-          "el_cantarito",
-          "el_cazo"
-        ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
-      },
-      {
-        "theme": "Empiezan con «M»",
-        "tier": 4,
-        "cardIds": [
-          "la_mano",
-          "la_muerte",
-          "el_mundo",
-          "el_musico"
-        ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0011",
-    "number": 11,
-    "date": "2026-08-07",
-    "groups": [
-      {
-        "theme": "Plantas",
-        "tier": 1,
-        "cardIds": [
-          "el_arbol",
-          "el_nopal",
-          "el_pino",
-          "la_palma"
-        ],
-        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
-      },
-      {
-        "theme": "Del agua",
-        "tier": 2,
-        "cardIds": [
-          "la_sirena",
-          "el_pescado",
-          "la_chalupa",
-          "la_rana"
-        ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
-      },
-      {
-        "theme": "Riman en «-era»",
-        "tier": 3,
-        "cardIds": [
-          "la_bandera",
-          "la_escalera",
-          "la_pera",
-          "la_calavera"
-        ],
-        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
-      },
-      {
-        "theme": "Riman en «-ón»",
-        "tier": 4,
-        "cardIds": [
-          "el_camaron",
-          "el_melon",
-          "el_bandolon",
-          "el_corazon"
-        ],
-        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Camarón parecía del agua: la trampa."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0012",
-    "number": 12,
-    "date": "2026-08-08",
-    "groups": [
-      {
-        "theme": "Astros del cielo",
-        "tier": 1,
-        "cardIds": [
-          "el_sol",
-          "la_luna",
-          "la_estrella",
-          "el_mundo"
-        ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
-      },
-      {
-        "theme": "Aves",
-        "tier": 2,
-        "cardIds": [
-          "el_gallo",
-          "la_garza",
-          "el_pajaro",
-          "el_cotorro"
-        ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
-      },
-      {
-        "theme": "Instrumentos musicales",
-        "tier": 3,
-        "cardIds": [
-          "el_bandolon",
-          "el_violoncello",
-          "el_tambor",
-          "el_arpa"
-        ],
-        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
-      },
-      {
-        "theme": "Cosas rojas",
-        "tier": 4,
-        "cardIds": [
-          "el_corazon",
-          "la_rosa",
-          "la_sandia",
-          "el_diablito"
-        ],
-        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0013",
-    "number": 13,
-    "date": "2026-08-09",
-    "groups": [
-      {
-        "theme": "Guardan líquido",
-        "tier": 1,
-        "cardIds": [
-          "la_botella",
-          "el_barril",
-          "el_cantarito",
-          "el_cazo"
-        ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
-      },
       {
         "theme": "Animales",
-        "tier": 2,
+        "tier": 1,
         "cardIds": [
           "el_venado",
           "la_rana",
@@ -639,70 +485,49 @@
         "explanation": "Venado, rana, gallo y garza."
       },
       {
-        "theme": "Cosas verdes (y una flor)",
-        "tier": 3,
-        "cardIds": [
-          "la_rosa",
-          "el_nopal",
-          "el_pino",
-          "la_palma"
-        ],
-        "explanation": "Rosa, nopal, pino y palma: del reino vegetal."
-      },
-      {
-        "theme": "Lo macabro",
-        "tier": 4,
-        "cardIds": [
-          "la_muerte",
-          "la_calavera",
-          "el_diablito",
-          "el_alacran"
-        ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0014",
-    "number": 14,
-    "date": "2026-08-10",
-    "groups": [
-      {
-        "theme": "Astros del cielo",
-        "tier": 1,
-        "cardIds": [
-          "el_sol",
-          "la_luna",
-          "la_estrella",
-          "el_mundo"
-        ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
-      },
-      {
-        "theme": "Instrumentos musicales",
+        "theme": "Del combate",
         "tier": 2,
         "cardIds": [
-          "el_bandolon",
-          "el_violoncello",
-          "el_tambor",
-          "el_arpa"
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
         ],
-        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
       },
       {
-        "theme": "Del agua",
+        "theme": "Del mar",
         "tier": 3,
         "cardIds": [
           "la_sirena",
           "el_pescado",
-          "la_chalupa",
-          "la_rana"
+          "el_camaron",
+          "la_chalupa"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
       },
       {
-        "theme": "Cosas que se llevan",
+        "theme": "En el patio",
         "tier": 4,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0011",
+    "number": 11,
+    "date": "2026-08-07",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 1,
         "cardIds": [
           "el_gorrito",
           "la_bota",
@@ -710,148 +535,28 @@
           "el_paraguas"
         ],
         "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0015",
-    "number": 15,
-    "date": "2026-08-11",
-    "groups": [
-      {
-        "theme": "Aves",
-        "tier": 1,
-        "cardIds": [
-          "el_gallo",
-          "la_garza",
-          "el_pajaro",
-          "el_cotorro"
-        ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
       },
       {
-        "theme": "Plantas",
+        "theme": "Del combate",
         "tier": 2,
         "cardIds": [
-          "el_arbol",
-          "el_nopal",
-          "el_pino",
-          "la_palma"
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
         ],
-        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
       },
       {
-        "theme": "Empiezan con «M»",
+        "theme": "Hacen sonido",
         "tier": 3,
         "cardIds": [
-          "la_mano",
-          "la_muerte",
-          "el_mundo",
-          "el_musico"
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
         ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
-      },
-      {
-        "theme": "Riman en «-ón»",
-        "tier": 4,
-        "cardIds": [
-          "el_camaron",
-          "el_melon",
-          "el_bandolon",
-          "el_corazon"
-        ],
-        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Melón parecía fruta: la trampa."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0016",
-    "number": 16,
-    "date": "2026-08-12",
-    "groups": [
-      {
-        "theme": "Personajes",
-        "tier": 1,
-        "cardIds": [
-          "la_dama",
-          "el_catrin",
-          "el_valiente",
-          "el_soldado"
-        ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
-      },
-      {
-        "theme": "Del agua",
-        "tier": 2,
-        "cardIds": [
-          "la_sirena",
-          "el_pescado",
-          "la_chalupa",
-          "la_rana"
-        ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
-      },
-      {
-        "theme": "Riman en «-era»",
-        "tier": 3,
-        "cardIds": [
-          "la_bandera",
-          "la_escalera",
-          "la_pera",
-          "la_calavera"
-        ],
-        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
-      },
-      {
-        "theme": "Cosas rojas",
-        "tier": 4,
-        "cardIds": [
-          "el_corazon",
-          "la_rosa",
-          "la_sandia",
-          "el_diablito"
-        ],
-        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
-      }
-    ]
-  },
-  {
-    "id": "coplas-0017",
-    "number": 17,
-    "date": "2026-08-13",
-    "groups": [
-      {
-        "theme": "Astros del cielo",
-        "tier": 1,
-        "cardIds": [
-          "el_sol",
-          "la_luna",
-          "la_estrella",
-          "el_mundo"
-        ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
-      },
-      {
-        "theme": "Más personajes",
-        "tier": 2,
-        "cardIds": [
-          "el_borracho",
-          "el_charro",
-          "el_musico",
-          "el_apache"
-        ],
-        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
-      },
-      {
-        "theme": "Guardan líquido",
-        "tier": 3,
-        "cardIds": [
-          "la_botella",
-          "el_barril",
-          "el_cantarito",
-          "el_cazo"
-        ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
       },
       {
         "theme": "Bichos",
@@ -867,13 +572,77 @@
     ]
   },
   {
-    "id": "coplas-0018",
-    "number": 18,
-    "date": "2026-08-14",
+    "id": "coplas-0012",
+    "number": 12,
+    "date": "2026-08-08",
+    "difficulty": "facil",
     "groups": [
       {
-        "theme": "Aves",
+        "theme": "Instrumentos musicales",
         "tier": 1,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Animales",
+        "tier": 2,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 4,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0013",
+    "number": 13,
+    "date": "2026-08-09",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Pura gente",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
         "cardIds": [
           "el_gallo",
           "la_garza",
@@ -883,44 +652,190 @@
         "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
       },
       {
-        "theme": "Plantas",
-        "tier": 2,
-        "cardIds": [
-          "el_arbol",
-          "el_nopal",
-          "el_pino",
-          "la_palma"
-        ],
-        "explanation": "Árbol, nopal, pino y palma salen de la tierra."
-      },
-      {
-        "theme": "Riman en «-era»",
+        "theme": "Bichos",
         "tier": 3,
         "cardIds": [
-          "la_bandera",
-          "la_escalera",
-          "la_pera",
-          "la_calavera"
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
         ],
-        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
       },
       {
-        "theme": "Riman en «-ón»",
+        "theme": "Andan armados",
         "tier": 4,
         "cardIds": [
-          "el_camaron",
-          "el_melon",
-          "el_bandolon",
-          "el_corazon"
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
         ],
-        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. Camarón y Melón se escapan a las rimas."
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
       }
     ]
   },
   {
-    "id": "coplas-0019",
-    "number": 19,
-    "date": "2026-08-15",
+    "id": "coplas-0014",
+    "number": 14,
+    "date": "2026-08-10",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Árboles y plantas",
+        "tier": 1,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 2,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Astros del cielo",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0015",
+    "number": 15,
+    "date": "2026-08-11",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "En el patio",
+        "tier": 1,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Andan armados",
+        "tier": 3,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 4,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0016",
+    "number": 16,
+    "date": "2026-08-12",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Del mar",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 2,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 4,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0017",
+    "number": 17,
+    "date": "2026-08-13",
+    "difficulty": "facil",
     "groups": [
       {
         "theme": "Astros del cielo",
@@ -934,8 +849,71 @@
         "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
       },
       {
-        "theme": "Instrumentos musicales",
+        "theme": "Aves",
         "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Del jardín",
+        "tier": 3,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Del combate",
+        "tier": 4,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0018",
+    "number": 18,
+    "date": "2026-08-14",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Bichos",
+        "tier": 1,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "Pura gente",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 3,
         "cardIds": [
           "el_bandolon",
           "el_violoncello",
@@ -945,8 +923,27 @@
         "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
       },
       {
+        "theme": "Del jardín",
+        "tier": 4,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0019",
+    "number": 19,
+    "date": "2026-08-15",
+    "difficulty": "facil",
+    "groups": [
+      {
         "theme": "Personajes",
-        "tier": 3,
+        "tier": 1,
         "cardIds": [
           "la_dama",
           "el_catrin",
@@ -954,6 +951,392 @@
           "el_soldado"
         ],
         "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 2,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "En el patio",
+        "tier": 4,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0020",
+    "number": 20,
+    "date": "2026-08-16",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Hacen sonido",
+        "tier": 1,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 3,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Animales",
+        "tier": 4,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0021",
+    "number": 21,
+    "date": "2026-08-17",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Del combate",
+        "tier": 1,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 3,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 4,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0022",
+    "number": 22,
+    "date": "2026-08-18",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Del mar",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 4,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0023",
+    "number": 23,
+    "date": "2026-08-19",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Del agua",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 3,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 4,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0024",
+    "number": 24,
+    "date": "2026-08-20",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Guardan líquido",
+        "tier": 1,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 2,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Del jardín",
+        "tier": 3,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 4,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0025",
+    "number": 25,
+    "date": "2026-08-21",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Astros del cielo",
+        "tier": 2,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Pura gente",
+        "tier": 3,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Animales",
+        "tier": 4,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0026",
+    "number": 26,
+    "date": "2026-08-22",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Hacen sonido",
+        "tier": 1,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 2,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
       },
       {
         "theme": "Cosas que se llevan",
@@ -969,13 +1352,36 @@
     ]
   },
   {
-    "id": "coplas-0020",
-    "number": 20,
-    "date": "2026-08-16",
+    "id": "coplas-0027",
+    "number": 27,
+    "date": "2026-08-23",
+    "difficulty": "facil",
     "groups": [
       {
-        "theme": "Guardan líquido",
+        "theme": "Árboles y plantas",
         "tier": 1,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Astros del cielo",
+        "tier": 2,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
         "cardIds": [
           "la_botella",
           "el_barril",
@@ -985,15 +1391,1553 @@
         "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
       },
       {
-        "theme": "Cosas verdes (y una flor)",
+        "theme": "Instrumentos musicales",
+        "tier": 4,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0028",
+    "number": 28,
+    "date": "2026-08-24",
+    "difficulty": "facil",
+    "groups": [
+      {
+        "theme": "Animales",
+        "tier": 1,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 3,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 4,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0029",
+    "number": 29,
+    "date": "2026-08-25",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del agua",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 2,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 4,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0030",
+    "number": 30,
+    "date": "2026-08-26",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del combate",
+        "tier": 1,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 2,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "Pura gente",
+        "tier": 3,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Cosas redondas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "el_mundo",
+          "la_corona"
+        ],
+        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0031",
+    "number": 31,
+    "date": "2026-08-27",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Más personajes",
+        "tier": 1,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 3,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0032",
+    "number": 32,
+    "date": "2026-08-28",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Más personajes",
+        "tier": 1,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0033",
+    "number": 33,
+    "date": "2026-08-29",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Árboles y plantas",
+        "tier": 1,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "En el patio",
+        "tier": 3,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Rojos y rosas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_camaron"
+        ],
+        "explanation": "Corazón, rosa, sandía y camarón: tonos rojizos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0034",
+    "number": 34,
+    "date": "2026-08-30",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Animales",
+        "tier": 1,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Del jardín",
         "tier": 2,
         "cardIds": [
           "la_rosa",
+          "la_maceta",
           "el_nopal",
-          "el_pino",
-          "la_palma"
+          "el_arbol"
         ],
-        "explanation": "Rosa, nopal, pino y palma: del reino vegetal."
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Del combate",
+        "tier": 3,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 4,
+        "cardIds": [
+          "la_pera",
+          "la_palma",
+          "el_paraguas",
+          "el_pino"
+        ],
+        "explanation": "Pera, Palma, Paraguas y Pino."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0035",
+    "number": 35,
+    "date": "2026-08-31",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "En el patio",
+        "tier": 1,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Animales",
+        "tier": 2,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Andan armados",
+        "tier": 3,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Cosas redondas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "el_mundo",
+          "la_corona"
+        ],
+        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0036",
+    "number": 36,
+    "date": "2026-09-01",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 2,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 3,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Empiezan con «S»",
+        "tier": 4,
+        "cardIds": [
+          "la_sirena",
+          "el_sol",
+          "la_sandia",
+          "el_soldado"
+        ],
+        "explanation": "Sirena, Sol, Sandía y Soldado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0037",
+    "number": 37,
+    "date": "2026-09-02",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Árboles y plantas",
+        "tier": 1,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Andan armados",
+        "tier": 2,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 3,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "el_melon",
+          "la_maceta",
+          "la_muerte",
+          "la_mano"
+        ],
+        "explanation": "Melón, Maceta, Muerte y Mano."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0038",
+    "number": 38,
+    "date": "2026-09-03",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 3,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0039",
+    "number": 39,
+    "date": "2026-09-04",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Andan armados",
+        "tier": 1,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 2,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Aves",
+        "tier": 3,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0040",
+    "number": 40,
+    "date": "2026-09-05",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Se comen",
+        "tier": 1,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 2,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "En el patio",
+        "tier": 3,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 4,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "la_bota",
+          "el_borracho"
+        ],
+        "explanation": "Botella, Barril, Bota y Borracho."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0041",
+    "number": 41,
+    "date": "2026-09-06",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 1,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Pura gente",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 3,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Cosas rojas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_diablito"
+        ],
+        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0042",
+    "number": 42,
+    "date": "2026-09-07",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Personajes",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 2,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Con picos y puntas",
+        "tier": 4,
+        "cardIds": [
+          "el_nopal",
+          "el_alacran",
+          "las_jaras",
+          "la_estrella"
+        ],
+        "explanation": "Nopal, alacrán, jaras y estrella: puro pico y punta."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0043",
+    "number": 43,
+    "date": "2026-09-08",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del combate",
+        "tier": 1,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Animales",
+        "tier": 2,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 3,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 4,
+        "cardIds": [
+          "el_paraguas",
+          "el_pajaro",
+          "el_pino",
+          "el_pescado"
+        ],
+        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0044",
+    "number": 44,
+    "date": "2026-09-09",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Se comen",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 4,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0045",
+    "number": 45,
+    "date": "2026-09-10",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 1,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Del jardín",
+        "tier": 2,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 3,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0046",
+    "number": 46,
+    "date": "2026-09-11",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "En el patio",
+        "tier": 1,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 2,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 3,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 4,
+        "cardIds": [
+          "la_pera",
+          "la_palma",
+          "el_paraguas",
+          "el_pino"
+        ],
+        "explanation": "Pera, Palma, Paraguas y Pino."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0047",
+    "number": 47,
+    "date": "2026-09-12",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del agua",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 2,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 3,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0048",
+    "number": 48,
+    "date": "2026-09-13",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del combate",
+        "tier": 1,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Animales",
+        "tier": 3,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0049",
+    "number": 49,
+    "date": "2026-09-14",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Andan armados",
+        "tier": 1,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "el_bandolon",
+          "el_barril",
+          "la_bota"
+        ],
+        "explanation": "Bandera, Bandolón, Barril y Bota."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0050",
+    "number": 50,
+    "date": "2026-09-15",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Pura gente",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 3,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Cosas redondas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "el_mundo",
+          "la_corona"
+        ],
+        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0051",
+    "number": 51,
+    "date": "2026-09-16",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del combate",
+        "tier": 1,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Animales",
+        "tier": 2,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Rojos y rosas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_camaron"
+        ],
+        "explanation": "Corazón, rosa, sandía y camarón: tonos rojizos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0052",
+    "number": 52,
+    "date": "2026-09-17",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del mar",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Astros del cielo",
+        "tier": 2,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "En el patio",
+        "tier": 3,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 4,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "la_bota",
+          "el_borracho"
+        ],
+        "explanation": "Botella, Barril, Bota y Borracho."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0053",
+    "number": 53,
+    "date": "2026-09-18",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Andan armados",
+        "tier": 1,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 3,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "el_melon",
+          "la_maceta",
+          "la_muerte",
+          "la_mano"
+        ],
+        "explanation": "Melón, Maceta, Muerte y Mano."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0054",
+    "number": 54,
+    "date": "2026-09-19",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Personajes",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Lo macabro",
+        "tier": 2,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 3,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Cosas redondas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "el_mundo",
+          "la_corona"
+        ],
+        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0055",
+    "number": 55,
+    "date": "2026-09-20",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Hacen sonido",
+        "tier": 1,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 2,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 3,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0056",
+    "number": 56,
+    "date": "2026-09-21",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Se comen",
+        "tier": 1,
+        "cardIds": [
+          "el_melon",
+          "la_pera",
+          "la_sandia",
+          "el_nopal"
+        ],
+        "explanation": "Melón, pera, sandía y nopal: al plato."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 2,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Pura gente",
+        "tier": 3,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 4,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0057",
+    "number": 57,
+    "date": "2026-09-22",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 2,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
       },
       {
         "theme": "Del agua",
@@ -1007,8 +2951,27 @@
         "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
       },
       {
-        "theme": "Lo macabro",
+        "theme": "Riman en «-era»",
         "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0058",
+    "number": 58,
+    "date": "2026-09-23",
+    "difficulty": "media",
+    "groups": [
+      {
+        "theme": "Lo macabro",
+        "tier": 1,
         "cardIds": [
           "la_muerte",
           "la_calavera",
@@ -1016,6 +2979,1391 @@
           "el_alacran"
         ],
         "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 2,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Aves",
+        "tier": 3,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 4,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0059",
+    "number": 59,
+    "date": "2026-09-24",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Animales",
+        "tier": 1,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "el_bandolon",
+          "el_barril",
+          "la_bota"
+        ],
+        "explanation": "Bandera, Bandolón, Barril y Bota."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 4,
+        "cardIds": [
+          "el_paraguas",
+          "el_pajaro",
+          "el_pino",
+          "el_pescado"
+        ],
+        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0060",
+    "number": 60,
+    "date": "2026-09-25",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 1,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 3,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 4,
+        "cardIds": [
+          "el_paraguas",
+          "el_pajaro",
+          "el_pino",
+          "el_pescado"
+        ],
+        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0061",
+    "number": 61,
+    "date": "2026-09-26",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "En el patio",
+        "tier": 1,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Más personajes",
+        "tier": 2,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Empiezan con «S»",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_sol",
+          "la_sandia",
+          "el_soldado"
+        ],
+        "explanation": "Sirena, Sol, Sandía y Soldado."
+      },
+      {
+        "theme": "Con picos y puntas",
+        "tier": 4,
+        "cardIds": [
+          "el_nopal",
+          "el_alacran",
+          "las_jaras",
+          "la_estrella"
+        ],
+        "explanation": "Nopal, alacrán, jaras y estrella: puro pico y punta."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0062",
+    "number": 62,
+    "date": "2026-09-27",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Del agua",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_maceta",
+          "la_muerte",
+          "la_mano"
+        ],
+        "explanation": "Melón, Maceta, Muerte y Mano."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "el_bandolon",
+          "el_barril",
+          "la_bota"
+        ],
+        "explanation": "Bandera, Bandolón, Barril y Bota."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0063",
+    "number": 63,
+    "date": "2026-09-28",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 1,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Empiezan con «S»",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_sol",
+          "la_sandia",
+          "el_soldado"
+        ],
+        "explanation": "Sirena, Sol, Sandía y Soldado."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0064",
+    "number": 64,
+    "date": "2026-09-29",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Pura gente",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Árboles y plantas",
+        "tier": 2,
+        "cardIds": [
+          "el_arbol",
+          "el_pino",
+          "la_palma",
+          "el_nopal"
+        ],
+        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+      },
+      {
+        "theme": "Cosas rojas",
+        "tier": 3,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_diablito"
+        ],
+        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0065",
+    "number": 65,
+    "date": "2026-09-30",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Más personajes",
+        "tier": 1,
+        "cardIds": [
+          "el_borracho",
+          "el_charro",
+          "el_musico",
+          "el_apache"
+        ],
+        "explanation": "Borracho, Charro, Músico y Apache: también son gente."
+      },
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 2,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Cosas rojas",
+        "tier": 3,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_diablito"
+        ],
+        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 4,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0066",
+    "number": 66,
+    "date": "2026-10-01",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Aves",
+        "tier": 1,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 2,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0067",
+    "number": 67,
+    "date": "2026-10-02",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Del combate",
+        "tier": 2,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Rojos y rosas",
+        "tier": 3,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_camaron"
+        ],
+        "explanation": "Corazón, rosa, sandía y camarón: tonos rojizos."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0068",
+    "number": 68,
+    "date": "2026-10-03",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Del agua",
+        "tier": 1,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Pura gente",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Rojos y rosas",
+        "tier": 3,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_camaron"
+        ],
+        "explanation": "Corazón, rosa, sandía y camarón: tonos rojizos."
+      },
+      {
+        "theme": "Empiezan con «A»",
+        "tier": 4,
+        "cardIds": [
+          "el_arbol",
+          "la_arana",
+          "el_alacran",
+          "el_apache"
+        ],
+        "explanation": "Árbol, Araña, Alacrán y Apache."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0069",
+    "number": 69,
+    "date": "2026-10-04",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 1,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Del combate",
+        "tier": 2,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 3,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      },
+      {
+        "theme": "Cosas redondas",
+        "tier": 4,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "el_mundo",
+          "la_corona"
+        ],
+        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0070",
+    "number": 70,
+    "date": "2026-10-05",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Animales",
+        "tier": 1,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 3,
+        "cardIds": [
+          "el_melon",
+          "la_maceta",
+          "la_muerte",
+          "la_mano"
+        ],
+        "explanation": "Melón, Maceta, Muerte y Mano."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 4,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "la_bota",
+          "el_borracho"
+        ],
+        "explanation": "Botella, Barril, Bota y Borracho."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0071",
+    "number": 71,
+    "date": "2026-10-06",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Andan armados",
+        "tier": 1,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Del mar",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "el_camaron",
+          "la_chalupa"
+        ],
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
+      },
+      {
+        "theme": "Con picos y puntas",
+        "tier": 3,
+        "cardIds": [
+          "el_nopal",
+          "el_alacran",
+          "las_jaras",
+          "la_estrella"
+        ],
+        "explanation": "Nopal, alacrán, jaras y estrella: puro pico y punta."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 4,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "la_bota",
+          "el_borracho"
+        ],
+        "explanation": "Botella, Barril, Bota y Borracho."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0072",
+    "number": 72,
+    "date": "2026-10-07",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Guardan líquido",
+        "tier": 2,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "el_cantarito",
+          "el_cazo"
+        ],
+        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 3,
+        "cardIds": [
+          "la_pera",
+          "la_palma",
+          "el_paraguas",
+          "el_pino"
+        ],
+        "explanation": "Pera, Palma, Paraguas y Pino."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0073",
+    "number": 73,
+    "date": "2026-10-08",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "En el patio",
+        "tier": 2,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 3,
+        "cardIds": [
+          "la_pera",
+          "la_palma",
+          "el_paraguas",
+          "el_pino"
+        ],
+        "explanation": "Pera, Palma, Paraguas y Pino."
+      },
+      {
+        "theme": "Empiezan con «A»",
+        "tier": 4,
+        "cardIds": [
+          "el_arbol",
+          "la_arana",
+          "el_alacran",
+          "el_apache"
+        ],
+        "explanation": "Árbol, Araña, Alacrán y Apache."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0074",
+    "number": 74,
+    "date": "2026-10-09",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Lo macabro",
+        "tier": 1,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Andan armados",
+        "tier": 2,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 3,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón."
+      },
+      {
+        "theme": "Cosas verdes",
+        "tier": 4,
+        "cardIds": [
+          "el_nopal",
+          "el_pino",
+          "la_palma",
+          "la_rana"
+        ],
+        "explanation": "Nopal, pino, palma y rana: verdes todas."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0075",
+    "number": 75,
+    "date": "2026-10-10",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Lo macabro",
+        "tier": 1,
+        "cardIds": [
+          "la_muerte",
+          "la_calavera",
+          "el_diablito",
+          "el_alacran"
+        ],
+        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 2,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Cosas redondas",
+        "tier": 3,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "el_mundo",
+          "la_corona"
+        ],
+        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+      },
+      {
+        "theme": "Cosas verdes",
+        "tier": 4,
+        "cardIds": [
+          "el_nopal",
+          "el_pino",
+          "la_palma",
+          "la_rana"
+        ],
+        "explanation": "Nopal, pino, palma y rana: verdes todas."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0076",
+    "number": 76,
+    "date": "2026-10-11",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Astros del cielo",
+        "tier": 1,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Aves",
+        "tier": 2,
+        "cardIds": [
+          "el_gallo",
+          "la_garza",
+          "el_pajaro",
+          "el_cotorro"
+        ],
+        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+      },
+      {
+        "theme": "Cosas rojas",
+        "tier": 3,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_diablito"
+        ],
+        "explanation": "Corazón, rosa, sandía y diablito: puro rojo."
+      },
+      {
+        "theme": "Empiezan con «A»",
+        "tier": 4,
+        "cardIds": [
+          "el_arbol",
+          "la_arana",
+          "el_alacran",
+          "el_apache"
+        ],
+        "explanation": "Árbol, Araña, Alacrán y Apache."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0077",
+    "number": 77,
+    "date": "2026-10-12",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Animales",
+        "tier": 2,
+        "cardIds": [
+          "el_venado",
+          "la_rana",
+          "el_gallo",
+          "la_garza"
+        ],
+        "explanation": "Venado, rana, gallo y garza."
+      },
+      {
+        "theme": "Cosas doradas",
+        "tier": 3,
+        "cardIds": [
+          "el_sol",
+          "la_corona",
+          "la_estrella",
+          "la_campana"
+        ],
+        "explanation": "Sol, corona, estrella y campana: brillan en dorado."
+      },
+      {
+        "theme": "Riman en «-ón»",
+        "tier": 4,
+        "cardIds": [
+          "el_camaron",
+          "el_melon",
+          "el_bandolon",
+          "el_corazon"
+        ],
+        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0078",
+    "number": 78,
+    "date": "2026-10-13",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "En el patio",
+        "tier": 1,
+        "cardIds": [
+          "la_maceta",
+          "el_cazo",
+          "el_cantarito",
+          "la_campana"
+        ],
+        "explanation": "Maceta, cazo, cantarito y campana: cosas de la casa."
+      },
+      {
+        "theme": "Personajes",
+        "tier": 2,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 3,
+        "cardIds": [
+          "la_botella",
+          "el_barril",
+          "la_bota",
+          "el_borracho"
+        ],
+        "explanation": "Botella, Barril, Bota y Borracho."
+      },
+      {
+        "theme": "Con picos y puntas",
+        "tier": 4,
+        "cardIds": [
+          "el_nopal",
+          "el_alacran",
+          "las_jaras",
+          "la_estrella"
+        ],
+        "explanation": "Nopal, alacrán, jaras y estrella: puro pico y punta."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0079",
+    "number": 79,
+    "date": "2026-10-14",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Hacen sonido",
+        "tier": 1,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Bichos",
+        "tier": 2,
+        "cardIds": [
+          "la_arana",
+          "el_alacran",
+          "el_camaron",
+          "la_rana"
+        ],
+        "explanation": "Araña, alacrán, camarón y rana: criaturas pequeñas."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 3,
+        "cardIds": [
+          "la_pera",
+          "la_palma",
+          "el_paraguas",
+          "el_pino"
+        ],
+        "explanation": "Pera, Palma, Paraguas y Pino."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "la_mano",
+          "la_muerte",
+          "el_mundo",
+          "el_musico"
+        ],
+        "explanation": "Mano, Muerte, Mundo y Músico."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0080",
+    "number": 80,
+    "date": "2026-10-15",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Pura gente",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_borracho",
+          "el_musico"
+        ],
+        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+      },
+      {
+        "theme": "Instrumentos musicales",
+        "tier": 2,
+        "cardIds": [
+          "el_bandolon",
+          "el_violoncello",
+          "el_tambor",
+          "el_arpa"
+        ],
+        "explanation": "Bandolón, violoncello, tambor y arpa: puro sonido."
+      },
+      {
+        "theme": "Empiezan con «S»",
+        "tier": 3,
+        "cardIds": [
+          "la_sirena",
+          "el_sol",
+          "la_sandia",
+          "el_soldado"
+        ],
+        "explanation": "Sirena, Sol, Sandía y Soldado."
+      },
+      {
+        "theme": "Riman en «-era»",
+        "tier": 4,
+        "cardIds": [
+          "la_bandera",
+          "la_escalera",
+          "la_pera",
+          "la_calavera"
+        ],
+        "explanation": "Bande-ra, escale-ra, pe-ra, calave-ra."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0081",
+    "number": 81,
+    "date": "2026-10-16",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Andan armados",
+        "tier": 1,
+        "cardIds": [
+          "el_valiente",
+          "el_soldado",
+          "el_apache",
+          "el_charro"
+        ],
+        "explanation": "Valiente, Soldado, Apache y Charro: gente de armas."
+      },
+      {
+        "theme": "Hacen sonido",
+        "tier": 2,
+        "cardIds": [
+          "la_campana",
+          "el_tambor",
+          "el_arpa",
+          "el_bandolon"
+        ],
+        "explanation": "Campana, tambor, arpa y bandolón suenan."
+      },
+      {
+        "theme": "Cosas verdes",
+        "tier": 3,
+        "cardIds": [
+          "el_nopal",
+          "el_pino",
+          "la_palma",
+          "la_rana"
+        ],
+        "explanation": "Nopal, pino, palma y rana: verdes todas."
+      },
+      {
+        "theme": "Rojos y rosas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_camaron"
+        ],
+        "explanation": "Corazón, rosa, sandía y camarón: tonos rojizos."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0082",
+    "number": 82,
+    "date": "2026-10-17",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Cosas que se llevan",
+        "tier": 1,
+        "cardIds": [
+          "el_gorrito",
+          "la_bota",
+          "la_corona",
+          "el_paraguas"
+        ],
+        "explanation": "Gorrito, bota, corona y paraguas: se cargan o se ponen."
+      },
+      {
+        "theme": "Del agua",
+        "tier": 2,
+        "cardIds": [
+          "la_sirena",
+          "el_pescado",
+          "la_chalupa",
+          "la_rana"
+        ],
+        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+      },
+      {
+        "theme": "Altas y largas",
+        "tier": 3,
+        "cardIds": [
+          "la_escalera",
+          "la_palma",
+          "el_pino",
+          "el_arbol"
+        ],
+        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+      },
+      {
+        "theme": "Empiezan con «M»",
+        "tier": 4,
+        "cardIds": [
+          "el_melon",
+          "la_maceta",
+          "la_muerte",
+          "la_mano"
+        ],
+        "explanation": "Melón, Maceta, Muerte y Mano."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0083",
+    "number": 83,
+    "date": "2026-10-18",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Del jardín",
+        "tier": 1,
+        "cardIds": [
+          "la_rosa",
+          "la_maceta",
+          "el_nopal",
+          "el_arbol"
+        ],
+        "explanation": "Rosa, maceta, nopal y árbol: puro verdor."
+      },
+      {
+        "theme": "Del combate",
+        "tier": 2,
+        "cardIds": [
+          "las_jaras",
+          "el_soldado",
+          "el_apache",
+          "el_valiente"
+        ],
+        "explanation": "Jaras, Soldado, Apache y Valiente: cosas de pelea."
+      },
+      {
+        "theme": "Empiezan con «B»",
+        "tier": 3,
+        "cardIds": [
+          "la_bandera",
+          "el_bandolon",
+          "el_barril",
+          "la_bota"
+        ],
+        "explanation": "Bandera, Bandolón, Barril y Bota."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 4,
+        "cardIds": [
+          "el_paraguas",
+          "el_pajaro",
+          "el_pino",
+          "el_pescado"
+        ],
+        "explanation": "Paraguas, Pájaro, Pino y Pescado."
+      }
+    ]
+  },
+  {
+    "id": "coplas-0084",
+    "number": 84,
+    "date": "2026-10-19",
+    "difficulty": "dificil",
+    "groups": [
+      {
+        "theme": "Personajes",
+        "tier": 1,
+        "cardIds": [
+          "la_dama",
+          "el_catrin",
+          "el_valiente",
+          "el_soldado"
+        ],
+        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+      },
+      {
+        "theme": "Astros del cielo",
+        "tier": 2,
+        "cardIds": [
+          "el_sol",
+          "la_luna",
+          "la_estrella",
+          "el_mundo"
+        ],
+        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+      },
+      {
+        "theme": "Empiezan con «P»",
+        "tier": 3,
+        "cardIds": [
+          "la_pera",
+          "la_palma",
+          "el_paraguas",
+          "el_pino"
+        ],
+        "explanation": "Pera, Palma, Paraguas y Pino."
+      },
+      {
+        "theme": "Rojos y rosas",
+        "tier": 4,
+        "cardIds": [
+          "el_corazon",
+          "la_rosa",
+          "la_sandia",
+          "el_camaron"
+        ],
+        "explanation": "Corazón, rosa, sandía y camarón: tonos rojizos."
       }
     ]
   }

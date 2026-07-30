@@ -10,6 +10,7 @@ import {
   shuffleRemaining,
   clearSelection,
   oneAway,
+  useHint,
   GROUP_SIZE,
   MAX_MISTAKES,
 } from './engine';
@@ -36,8 +37,10 @@ export interface UseGame {
   submit: () => void;
   shuffle: () => void;
   deselect: () => void;
+  hint: () => void;
   mistakesLeft: number;
   canSubmit: boolean;
+  canHint: boolean;
 }
 
 /**
@@ -52,6 +55,11 @@ export function useGame(puzzle: Puzzle): UseGame {
   const [lastWasOneAway, setLastWasOneAway] = useState(false);
   const savedRef = useRef(false);
 
+  // Live continuous-play rounds are composed on the fly (see game/composer.ts)
+  // and must NOT be persisted — they'd bloat AsyncStorage and pollute the
+  // archive/daily result history.
+  const isLive = puzzle.id.startsWith('live-');
+
   // Load settings + prior result on mount / puzzle change.
   useEffect(() => {
     let active = true;
@@ -60,7 +68,7 @@ export function useGame(puzzle: Puzzle): UseGame {
     (async () => {
       const [settings, prior] = await Promise.all([
         getSettings(),
-        getResult(puzzle.id),
+        isLive ? Promise.resolve(undefined) : getResult(puzzle.id),
       ]);
       if (!active) return;
       setRelaxed(settings.relaxed);
@@ -71,11 +79,11 @@ export function useGame(puzzle: Puzzle): UseGame {
     return () => {
       active = false;
     };
-  }, [puzzle]);
+  }, [puzzle, isLive]);
 
-  // Persist the result exactly once when the game ends.
+  // Persist the result exactly once when the game ends (never for live rounds).
   useEffect(() => {
-    if (state.status === 'playing' || savedRef.current) return;
+    if (isLive || state.status === 'playing' || savedRef.current) return;
     savedRef.current = true;
     saveResult({
       puzzleId: puzzle.id,
@@ -83,10 +91,11 @@ export function useGame(puzzle: Puzzle): UseGame {
       date: puzzle.date,
       status: state.status,
       mistakes: state.mistakes,
+      hinted: state.hintUsed,
       grid: gridFromGuesses(state.guesses),
       completedAt: new Date().toISOString(),
     });
-  }, [state.status, state.guesses, state.mistakes, puzzle]);
+  }, [state.status, state.guesses, state.mistakes, puzzle, isLive]);
 
   const select = useCallback((cardId: string) => {
     setState((s) => toggleSelect(s, cardId));
@@ -106,12 +115,14 @@ export function useGame(puzzle: Puzzle): UseGame {
 
   const shuffle = useCallback(() => setState((s) => shuffleRemaining(s)), []);
   const deselect = useCallback(() => setState((s) => clearSelection(s)), []);
+  const hint = useCallback(() => setState((s) => useHint(s)), []);
 
   const mistakesLeft = useMemo(
     () => Math.max(0, MAX_MISTAKES - state.mistakes),
     [state.mistakes]
   );
   const canSubmit = state.selected.length === GROUP_SIZE && state.status === 'playing';
+  const canHint = state.status === 'playing' && !state.hintUsed;
 
   return {
     state,
@@ -123,7 +134,9 @@ export function useGame(puzzle: Puzzle): UseGame {
     submit,
     shuffle,
     deselect,
+    hint,
     mistakesLeft,
     canSubmit,
+    canHint,
   };
 }
