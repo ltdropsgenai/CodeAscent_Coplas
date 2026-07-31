@@ -145,25 +145,32 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
                 <Text style={styles.medallionText}>{card.number}</Text>
               </View>
 
-              {/* Only when the art is NOT showing. Every card in the deck has
-                  its name painted into the illustration, so drawing our own
-                  plate over it doubles the label. isBakedCard() was written to
-                  express exactly this and then never imported — the plate has
-                  been unconditional all along, which nobody could see while the
-                  art itself was invisible. Anchored from the BOTTOM so a
-                  two-line name grows up into the tile rather than off it. */}
-              {!showImage && (
-                <View style={styles.nameParchment}>
-                  <Text
-                    style={styles.name}
-                    numberOfLines={2}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.8}
-                  >
-                    {card.name}
-                  </Text>
-                </View>
-              )}
+              {/* ALWAYS drawn, and deliberately ON TOP of the art.
+
+                  Every card has its name painted into the illustration, but
+                  that banner is bitmap text sized for a 480px card and the tile
+                  renders about 101pt wide — a 4.7x reduction that leaves it
+                  unreadable. This opaque plate lands exactly on the printed
+                  label and replaces it with vector text that stays crisp at any
+                  size. It is not a duplicate; it is the legible version.
+
+                  (An isBakedCard() helper used to sit in cardImages.ts,
+                  unused, reading like an instruction to suppress this plate.
+                  Acting on it is what made every label unreadable in build 8.
+                  It has been deleted.)
+
+                  Anchored from the BOTTOM so a two-line name grows up into the
+                  art rather than drifting off the card. */}
+              <View style={styles.nameParchment}>
+                <Text
+                  style={styles.name}
+                  numberOfLines={2}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.8}
+                >
+                  {card.name}
+                </Text>
+              </View>
             </View>
           </LinearGradient>
         </Pressable>

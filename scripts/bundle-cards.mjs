@@ -151,9 +151,11 @@ const ts = `import type { ImageSourcePropType } from 'react-native';
  * fallback for any id missing from the bundle, so a partial bundle degrades to
  * streaming rather than to a blank card.
  *
- * The Spanish name is painted INTO the art, which is why CardTile suppresses
- * its own name plate (see \`isBakedCard\`) — and why the bundled width is chosen
- * for legibility of that banner rather than for the tile size alone.
+ * The Spanish name is painted INTO the art, but that banner is bitmap text
+ * drawn for a 480px card and a tile renders about 101pt wide. At that
+ * reduction it is unreadable, so CardTile draws an opaque vector name plate
+ * directly over it. That is intentional and is not a duplicate label — do not
+ * "fix" it by hiding the plate. The bundled width is chosen for the ART.
  *
  * NOTE: video is deliberately NOT bundled. The clip set is 1,258 MB and fits
  * under no store limit; it stays streamed and capped per round.
@@ -214,13 +216,6 @@ export function thumbSource(id: string, width: number, height: number): ImageSou
   return typeof v === 'number' ? v : { uri: v };
 }
 
-/**
- * The name is baked into every card's art, so CardTile never draws its own
- * plate over it — except in the offline-glyph fallback path.
- */
-export function isBakedCard(_id: string): boolean {
-  return true;
-}
 `;
 
 writeFileSync(join(root, 'src', 'data', 'cardImages.ts'), ts);
