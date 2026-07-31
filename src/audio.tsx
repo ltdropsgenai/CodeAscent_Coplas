@@ -12,6 +12,14 @@ import { AUDIO, MUSIC, VOICE, type AudioKey } from './data/audioAssets';
 import { getSettings, saveSettings } from './storage/store';
 
 /**
+ * A music track: a remote URL while the beds stream, a Metro asset handle
+ * (number) once they are bundled. Identity comparison still works either way,
+ * which is what bedSrcRef relies on to avoid restarting a bed that is already
+ * playing.
+ */
+type MusicSrc = number | string;
+
+/**
  * Start a player, tolerating both synchronous throws and the async rejection
  * web browsers raise (`NotAllowedError`) when audio hasn't been unlocked by a
  * user gesture yet. Without swallowing the promise it surfaces as an unhandled
@@ -75,7 +83,11 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const musicRef = useRef<AudioPlayer | null>(null);
   const winRef = useRef<AudioPlayer | null>(null);
   const voiceRef = useRef<AudioPlayer | null>(null);
-  const bedSrcRef = useRef<string | null>(null);
+  // A music track is a URL while music streams and a Metro asset NUMBER once
+  // scripts/encode-music.mjs bundles it. Both are valid AudioSource, and
+  // createAudioPlayer already takes numbers here (see VOICE) — but the types
+  // have to admit it or the switch to bundled music breaks the build.
+  const bedSrcRef = useRef<MusicSrc | null>(null);
   const sfxRef = useRef<Partial<Record<AudioKey, AudioPlayer>>>({});
   // Web can't call play() until a user gesture unlocks audio; native is always
   // unlocked. We create players eagerly but defer actual playback until this
@@ -85,7 +97,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   // Which context owns the bed right now, and the exact track to resume if the
   // player re-enables sound mid-screen (so we don't jump to a different song).
   const contextRef = useRef<'home' | 'round' | null>(null);
-  const contextTrackRef = useRef<string | null>(null);
+  const contextTrackRef = useRef<MusicSrc | null>(null);
   const lastRoundRef = useRef<number>(-1);
   const lastWinRef = useRef<number>(-1);
   const lastVoiceRef = useRef<number>(-1);
@@ -184,7 +196,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   }
 
   /** Loop `src` as the background bed, reusing the player if it's already it. */
-  function playBed(src: string) {
+  function playBed(src: MusicSrc) {
     try {
       if (bedSrcRef.current === src && musicRef.current) {
         startPlayer(musicRef.current);

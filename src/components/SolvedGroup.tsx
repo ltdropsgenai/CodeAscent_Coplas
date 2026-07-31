@@ -51,14 +51,22 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
         },
       ]}
     >
-      <View style={styles.headerRow}>
+      {/* Title beside the cards, not above them.
+
+          Stacked, a group ran about 140pt and four of them pushed SIGUIENTE
+          RONDA below the fold. The thumbnail strip is 46pt tall and the title
+          block is about the same, so putting them side by side reclaims a whole
+          strip per group — roughly 180pt over the screen, more than the
+          overflow. Nothing shrinks and no group loses its explanation. */}
+      <View style={styles.topRow}>
+        <View style={styles.titleCol}>
           {/* Localized at render only — `group.theme` stays Spanish everywhere
               it is used as an identity key (engine.ts, the React key in
               play.tsx). See src/data/groupText.ts. */}
           <Text style={styles.theme}>{groupTheme(group.theme, lang)}</Text>
+          <View style={[styles.rule, { backgroundColor: color }]} />
           <Text style={[styles.tier, { color }]}>{t.tier[group.tier].toUpperCase()}</Text>
         </View>
-        <View style={[styles.rule, { backgroundColor: color }]} />
 
         {/* The four cards you just matched.
 
@@ -98,6 +106,7 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
             )
           )}
         </View>
+      </View>
       <Text style={styles.cards}>{names}</Text>
       <Text style={styles.explain}>{groupWhy(group.explanation, lang)}</Text>
     </Animated.View>
@@ -105,20 +114,22 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
 }
 
 const styles = StyleSheet.create({
-  wrap: { marginHorizontal: 8, marginBottom: 22 },
+  wrap: { marginHorizontal: 8, marginBottom: 16 },
+  // Title on the left, the four cards on the right, vertically centred on each
+  // other so a one-line and a two-line theme both sit level with the strip.
+  topRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  titleCol: { flex: 1 },
   // Carries the tier where the ribbon used to. Same motif as the legal screens.
-  rule: { width: 44, height: 2, borderRadius: 1, opacity: 0.9, marginTop: 9 },
-  headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' },
+  rule: { width: 44, height: 2, borderRadius: 1, opacity: 0.9, marginTop: 7, marginBottom: 6 },
   theme: {
     color: colors.accent,
     fontFamily: displayFont,
     fontWeight: '700',
     fontSize: 19,
-    flex: 1,
     ...floatShadow,
   },
-  tier: { fontWeight: '800', fontSize: 10, letterSpacing: 1.2, marginLeft: 8, ...floatShadow },
-  thumbs: { flexDirection: 'row', gap: 6, marginTop: 12 },
+  tier: { fontWeight: '800', fontSize: 10, letterSpacing: 1.2, ...floatShadow },
+  thumbs: { flexDirection: 'row', gap: 6 },
   // Numeric width and height, border on the image itself. See the note at the
   // call site: this deliberately matches NavRow.icon rather than inventing a
   // wrapper the image has to fill.
@@ -131,6 +142,6 @@ const styles = StyleSheet.create({
   },
   // Only the animated branch still needs a box for CardVideo to fill.
   thumbBox: { width: THUMB_W, height: Math.round(THUMB_W / CARD_ASPECT), borderRadius: 4, overflow: 'hidden' },
-  cards: { color: colors.text, fontWeight: '700', fontSize: 13.5, marginTop: 10, ...floatShadow },
-  explain: { color: colors.textDim, fontSize: 12.5, marginTop: 4, ...floatShadow },
+  cards: { color: colors.text, fontWeight: '700', fontSize: 13.5, marginTop: 9, ...floatShadow },
+  explain: { color: colors.textDim, fontSize: 12.5, marginTop: 3, ...floatShadow },
 });

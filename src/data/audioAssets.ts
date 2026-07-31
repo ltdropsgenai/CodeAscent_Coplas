@@ -40,35 +40,34 @@ export const VOICE: number[] = [
 ];
 
 /**
- * Background music — STREAMED from our own Supabase bucket, as uncompressed
- * WAV averaging 1.2 MB a track.
+ * Background music — BUNDLED as AAC by scripts/encode-music.mjs.
  *
- * Run scripts/encode-music.mjs to re-encode these to AAC and bundle them; this
- * file is regenerated to require() them and music stops touching the network.
+ * These were 21 MB of uncompressed WAV streamed one track per round. At 128 kbps
+ * AAC the whole set is a few MB, so there is no reason to stream them: bundling
+ * removes the last per-round audio fetch. With the card deck also bundled, only
+ * video still touches the network.
  */
-const MUSIC_CDN = 'https://bmybvrqbpachjxrejxdj.supabase.co/storage/v1/object/public/audio';
-
 export const MUSIC = {
-  home: `${MUSIC_CDN}/home.wav`,
+  home: require('../../assets/music/home.m4a'),
   wins: [
-    `${MUSIC_CDN}/win.wav`,
-    `${MUSIC_CDN}/win2.wav`,
-    `${MUSIC_CDN}/win3.wav`,
-    `${MUSIC_CDN}/win4.wav`,
-    `${MUSIC_CDN}/win5.wav`,
+    require('../../assets/music/win.m4a'),
+    require('../../assets/music/win2.m4a'),
+    require('../../assets/music/win3.m4a'),
+    require('../../assets/music/win4.m4a'),
+    require('../../assets/music/win5.m4a'),
   ],
   rounds: [
-    `${MUSIC_CDN}/bachata.wav`,
-    `${MUSIC_CDN}/reggaeton.wav`,
-    `${MUSIC_CDN}/cumbia.wav`,
-    `${MUSIC_CDN}/bolero.wav`,
-    `${MUSIC_CDN}/son_jarocho.wav`,
-    `${MUSIC_CDN}/marimba.wav`,
-    `${MUSIC_CDN}/bachata2.wav`,
-    `${MUSIC_CDN}/reggaeton2.wav`,
-    `${MUSIC_CDN}/cumbia2.wav`,
-    `${MUSIC_CDN}/bolero2.wav`,
-    `${MUSIC_CDN}/son_jarocho2.wav`,
-    `${MUSIC_CDN}/marimba2.wav`,
+    require('../../assets/music/bachata.m4a'),
+    require('../../assets/music/reggaeton.m4a'),
+    require('../../assets/music/cumbia.m4a'),
+    require('../../assets/music/bolero.m4a'),
+    require('../../assets/music/son_jarocho.m4a'),
+    require('../../assets/music/marimba.m4a'),
+    require('../../assets/music/bachata2.m4a'),
+    require('../../assets/music/reggaeton2.m4a'),
+    require('../../assets/music/cumbia2.m4a'),
+    require('../../assets/music/bolero2.m4a'),
+    require('../../assets/music/son_jarocho2.m4a'),
+    require('../../assets/music/marimba2.m4a'),
   ],
 } as const;

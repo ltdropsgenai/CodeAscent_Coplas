@@ -20,7 +20,13 @@ import { join, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SRC = join(root, 'src', 'data', 'cardImages.ts');
+/**
+ * Every generated registry that require()s a file. Card art was the first, but
+ * the class is not about images: the music beds arrived from storage named
+ * `.wav` while actually being ~187 kbps compressed audio, exactly as the cards
+ * arrived named `.webp` while actually being JPEG. A filename is a claim.
+ */
+const SOURCES = ['cardImages.ts', 'audioAssets.ts'].map((f) => join(root, 'src', 'data', f));
 
 /** Magic-byte sniffers, in the order it is cheapest to test them. */
 const SNIFFERS = [
@@ -28,10 +34,13 @@ const SNIFFERS = [
   ['webp', (b) => b.slice(0, 4).toString('latin1') === 'RIFF' && b.slice(8, 12).toString('latin1') === 'WEBP'],
   ['png', (b) => b.slice(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))],
   ['gif', (b) => b.slice(0, 3).toString('latin1') === 'GIF'],
+  ['m4a', (b) => b.slice(4, 8).toString('latin1') === 'ftyp'],
+  ['mp3', (b) => b.slice(0, 3).toString('latin1') === 'ID3' || (b[0] === 0xff && (b[1] & 0xe0) === 0xe0)],
+  ['wav', (b) => b.slice(0, 4).toString('latin1') === 'RIFF' && b.slice(8, 12).toString('latin1') === 'WAVE'],
 ];
 
 /** Extensions that are just spellings of the same format. */
-const ALIASES = { jpeg: 'jpg' };
+const ALIASES = { jpeg: 'jpg', aac: 'm4a', mp4: 'm4a' };
 const norm = (e) => ALIASES[e] ?? e;
 
 function sniff(buf) {
@@ -39,11 +48,12 @@ function sniff(buf) {
   return null;
 }
 
-const src = readFileSync(SRC, 'utf8');
-const paths = [...src.matchAll(/require\('([^']+)'\)/g)].map((m) => m[1]);
+const paths = SOURCES.flatMap((f) =>
+  [...readFileSync(f, 'utf8').matchAll(/require\('([^']+)'\)/g)].map((m) => m[1])
+);
 
 if (!paths.length) {
-  console.error('✗ no require() paths found in cardImages.ts — has the generator changed shape?');
+  console.error('✗ no require() paths found — have the generators changed shape?');
   process.exit(1);
 }
 
@@ -79,7 +89,7 @@ for (const rel of paths) {
   formats.set(actual ?? '?', (formats.get(actual ?? '?') ?? 0) + 1);
 }
 
-console.log(`required assets  ${paths.length}`);
+console.log(`required assets  ${paths.length}  (art + audio)`);
 console.log(`on disk          ${paths.length - missing.length}  (${(bytes / 1024 / 1024).toFixed(1)} MB)`);
 console.log(`formats          ${[...formats].map(([k, v]) => `${k}×${v}`).join(', ') || '—'}`);
 console.log(`MISSING — required but not on disk:              ${missing.length}`);

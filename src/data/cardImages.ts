@@ -1059,34 +1059,22 @@ export function imageSource(id: string): ImageSourcePropType {
   return typeof v === 'number' ? v : { uri: v };
 }
 
-/**
- * Small-format art, for menu icons and solved-group strips.
- *
- * With the deck bundled this is just the bundled asset — <Image> scales it down
- * and no network is touched. Only an unbundled id falls back to Supabase's
- * transform endpoint, which needs BOTH dimensions (width alone leaves the
- * height untouched and distorts the image).
- */
-export function cardThumb(id: string, width: number, height: number): number | string {
-  if (id in BUNDLED) return BUNDLED[id];
-  const w = Math.round(width * 2);
-  const h = Math.round(height * 2);
-  return `${CARDS_CDN.replace('/object/public/cards', '/render/image/public/cards')}/${id}.webp?width=${w}&height=${h}&resize=cover&quality=72`;
-}
 
 /**
  * <Image source> for a thumbnail.
  *
- * Delegates to imageSource(). With the whole deck bundled, cardThumb()'s remote
- * branch is unreachable, so a "thumbnail" is just the bundled asset that
- * <Image> scales down — exactly what imageSource() returns. Two functions that
- * must agree are one more thing that can silently disagree, and the menu icons,
- * home stat icons and solved-group strips all went blank while the board
- * rendered fine off imageSource().
+ * Delegates to imageSource(). With the whole deck bundled a "thumbnail" is just
+ * the bundled asset that <Image> scales down.
  *
- * width/height are kept in the signature so call sites read as intent, and so
- * this can go back to the transform endpoint if the deck ever outgrows the
- * binary and stops being fully bundled.
+ * There used to be a cardThumb() beside this that fell back to Supabase's
+ * /render/image/ TRANSFORM endpoint. Nothing called it, and it was the only
+ * line in the app that could consume an image transformation — a metered
+ * resource: the Pro plan includes 100 per billing cycle, and bundling the deck
+ * spent 995 in one run of bundle-cards.mjs. It is deleted rather than left
+ * lying around. The remote fallback in cardImage() uses the plain /object/
+ * endpoint, which is not metered.
+ *
+ * width/height are kept in the signature so call sites still read as intent.
  */
 export function thumbSource(id: string, _width: number, _height: number): ImageSourcePropType {
   return imageSource(id);

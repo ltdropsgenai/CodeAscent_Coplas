@@ -195,20 +195,6 @@ export function imageSource(id: string): ImageSourcePropType {
   return typeof v === 'number' ? v : { uri: v };
 }
 
-/**
- * Small-format art, for menu icons and solved-group strips.
- *
- * With the deck bundled this is just the bundled asset — <Image> scales it down
- * and no network is touched. Only an unbundled id falls back to Supabase's
- * transform endpoint, which needs BOTH dimensions (width alone leaves the
- * height untouched and distorts the image).
- */
-export function cardThumb(id: string, width: number, height: number): number | string {
-  if (id in BUNDLED) return BUNDLED[id];
-  const w = Math.round(width * 2);
-  const h = Math.round(height * 2);
-  return \`\${CARDS_CDN.replace('/object/public/cards', '/render/image/public/cards')}/\${id}.webp?width=\${w}&height=\${h}&resize=cover&quality=72\`;
-}
 
 /** <Image source> for a thumbnail, correct whether bundled or remote. */
 export function thumbSource(id: string, width: number, height: number): ImageSourcePropType {
