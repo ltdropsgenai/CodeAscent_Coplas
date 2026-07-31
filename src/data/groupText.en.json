@@ -509,7 +509,6 @@
     "Castillo, faro, rascacielos y iglesia.": "Castillo, faro, rascacielos and iglesia.",
     "Granero, hospital, molino y escuela.": "Granero, hospital, molino and escuela.",
     "Granero, molino, escuela y tienda.": "Granero, molino, escuela and tienda.",
-    "Puente, carpa, fuente y pirámide.": "Puente, carpa, fuente and pirámide.",
     "Puente, fuente, pirámide y torre.": "Puente, fuente, pirámide and torre.",
     "Cofre, diamante, lingote y corona.": "Cofre, diamante, lingote and corona.",
     "Cofre, lingote, corona y moneda.": "Cofre, lingote, corona and moneda.",
@@ -536,13 +535,9 @@
     "Cacahuate, pistache, almendra y avellana.": "Cacahuate, pistache, almendra and avellana.",
     "Braquiosaurio, estegosaurio, pterodáctilo y tiranosaurio.": "Braquiosaurio, estegosaurio, pterodáctilo and tiranosaurio.",
     "Braquiosaurio, estegosaurio, pterodáctilo y triceratops.": "Braquiosaurio, estegosaurio, pterodáctilo and triceratops.",
-    "Correcaminos, kiwi, codorniz y perdiz.": "Correcaminos, kiwi, codorniz and perdiz.",
-    "Correcaminos, faisán, kiwi y codorniz.": "Correcaminos, faisán, kiwi and codorniz.",
     "Pulgón, mantis, mariquita y tijerilla.": "Pulgón, mantis, mariquita and tijerilla.",
     "Piojo, zancudo, pulga y termita.": "Piojo, zancudo, pulga and termita.",
     "Tábano, zancudo, pulga y termita.": "Tábano, zancudo, pulga and termita.",
-    "Bagre, anguila, carpa y trucha.": "Bagre, anguila, carpa and trucha.",
-    "Anguila, carpa, piraña y trucha.": "Anguila, carpa, piraña and trucha.",
     "Estómago, hígado, intestino y pulmones.": "Estómago, hígado, intestino and pulmones.",
     "Hígado, intestino, riñón y pulmones.": "Hígado, intestino, riñón and pulmones.",
     "Cráneo, músculo, columna y vena.": "Cráneo, músculo, columna and vena.",
@@ -695,6 +690,10 @@
     "Hacha de campo, saco de dormir, cantimplora y hamaca.": "Hacha de campo, saco de dormir, cantimplora and hamaca.",
     "Caballete, lienzo, acuarela y paleta de colores.": "Caballete, lienzo, acuarela and paleta de colores.",
     "Caballete, pincel, acuarela y paleta de colores.": "Caballete, pincel, acuarela and paleta de colores.",
-    "Cronómetro, despertador, reloj de sol y alarma.": "Cronómetro, despertador, reloj de sol and alarma."
+    "Cronómetro, despertador, reloj de sol y alarma.": "Cronómetro, despertador, reloj de sol and alarma.",
+    "Bagre, anguila, piraña y trucha.": "Catfish, eel, piranha and trout.",
+    "Puente, carpa, fuente y pirámide.": "Bridge, tent, fountain and pyramid.",
+    "Correcaminos, faisán, codorniz y perdiz.": "Roadrunner, pheasant, quail and partridge.",
+    "Correcaminos, faisán, pato y codorniz.": "Roadrunner, pheasant, duck and quail."
   }
 }

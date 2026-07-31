@@ -241,6 +241,7 @@ function Stat({ label, value, icon }: { label: string; value: string; icon: stri
       <Image
         source={thumbSource(icon, STAT_ICON_W, STAT_ICON_H)}
         style={styles.statIcon}
+        resizeMode="cover"
       />
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label.toUpperCase()}</Text>

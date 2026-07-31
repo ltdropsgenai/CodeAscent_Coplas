@@ -3193,23 +3193,23 @@
     "kind": "cat",
     "cards": [
       "el_correcaminos",
-      "el_kiwi",
+      "el_faisan",
       "la_codorniz",
       "la_perdiz"
     ],
     "theme": "De caza y monte",
-    "why": "Correcaminos, kiwi, codorniz y perdiz."
+    "why": "Correcaminos, faisán, codorniz y perdiz."
   },
   "aves2_de_caza_y_monte_2": {
     "kind": "cat",
     "cards": [
       "el_correcaminos",
       "el_faisan",
-      "el_kiwi",
+      "el_pato",
       "la_codorniz"
     ],
     "theme": "De caza y monte",
-    "why": "Correcaminos, faisán, kiwi y codorniz."
+    "why": "Correcaminos, faisán, pato y codorniz."
   },
   "aves2_del_arbol_1": {
     "kind": "cat",
@@ -3282,22 +3282,11 @@
     "cards": [
       "el_bagre",
       "la_anguila",
-      "la_carpa",
-      "la_trucha"
-    ],
-    "theme": "Peces de río",
-    "why": "Bagre, anguila, carpa y trucha."
-  },
-  "mar2_peces_de_rio_2": {
-    "kind": "cat",
-    "cards": [
-      "la_anguila",
-      "la_carpa",
       "la_pirana",
       "la_trucha"
     ],
     "theme": "Peces de río",
-    "why": "Anguila, carpa, piraña y trucha."
+    "why": "Bagre, anguila, piraña y trucha."
   },
   "mar2_del_arrecife_1": {
     "kind": "cat",

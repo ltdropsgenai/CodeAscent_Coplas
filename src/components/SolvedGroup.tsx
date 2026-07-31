@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import type { Group } from '../types';
-import { CARD_ASPECT, colors, displayFont, radius, tierColors } from '../theme';
+import { CARD_ASPECT, colors, displayFont, floatShadow, tierColors } from '../theme';
 import { getCard } from '../data/cards';
 import { imageSource } from '../data/cardImages';
 import { hasCardVideo } from '../data/cardVideos';
@@ -10,12 +10,23 @@ import { CardVideo } from './CardVideo';
 import { useI18n } from '../i18n';
 
 /**
- * Solved group as a framed "board entry": a dark glass plaque with a gold
- * hairline, a colored tier ribbon down the left edge, and a serif theme —
- * not a candy-colored rounded block. Animates in on mount.
+ * A solved group floats directly on the scene: serif theme in gold, a short
+ * tier-colored hairline, the four cards, then the names and the reason.
+ *
+ * NO PANEL. It used to be a dark plaque with a border and a drop shadow and a
+ * colored ribbon down one edge, and four of those stacked turned the finish of
+ * a round into a column of boxes. The house style is content floating on the
+ * living background — the same move the legal screens make with their little
+ * rule. Legibility over a busy scene comes from text shadows (floatShadow),
+ * not from putting a lid over the artwork.
+ *
+ * Animates in on mount.
  */
 /** See the comment on the thumbnail strip below before turning this on. */
 const THUMBS_ANIMATE = false;
+
+/** Thumbnail width in pt. Height follows from CARD_ASPECT. */
+const THUMB_W = 34;
 
 export function SolvedGroup({ group, animate }: { group: Group; animate?: boolean }) {
   const { t, lang } = useI18n();
@@ -40,15 +51,15 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
         },
       ]}
     >
-      <View style={[styles.ribbon, { backgroundColor: color }]} />
-      <View style={styles.body}>
-        <View style={styles.headerRow}>
+      <View style={styles.headerRow}>
           {/* Localized at render only — `group.theme` stays Spanish everywhere
               it is used as an identity key (engine.ts, the React key in
               play.tsx). See src/data/groupText.ts. */}
           <Text style={styles.theme}>{groupTheme(group.theme, lang)}</Text>
           <Text style={[styles.tier, { color }]}>{t.tier[group.tier].toUpperCase()}</Text>
         </View>
+        <View style={[styles.rule, { backgroundColor: color }]} />
+
         {/* The four cards you just matched.
 
             These render 34 pt wide. The clips are deliberately *subtle* — a
@@ -61,51 +72,65 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
         <View style={styles.thumbs}>
           {group.cardIds.map((id) =>
             THUMBS_ANIMATE && animate && hasCardVideo(id) ? (
-              <View key={id} style={styles.thumb}>
+              <View key={id} style={styles.thumbBox}>
                 <CardVideo cardId={id} borderColor={color} cornerRadius={4} />
               </View>
             ) : (
-              <View key={id} style={[styles.thumb, styles.thumbStill, { borderColor: color }]}>
-                {/* imageSource, never `{ uri: cardImage(id) as string }` — a
-                    bundled asset is a number, and wrapping a number in `uri`
-                    renders nothing and reports no error. */}
-                <Image source={imageSource(id)} style={styles.thumbImg} resizeMode="cover" />
-              </View>
+              /* The Image IS the thumbnail — no wrapper for it to fill.
+
+                 This used to be a sized <View> with an <Image> told to fill it,
+                 and the images never appeared. Rather than keep guessing at why
+                 a child fails to fill its parent, this now mirrors the shape
+                 that is known to work everywhere else in the app (NavRow.icon,
+                 the achievement icons, the home stat icons): one <Image> with
+                 numeric width and height and the border drawn on itself. There
+                 is no parent-child sizing relationship left to get wrong.
+
+                 imageSource, never `{ uri: cardImage(id) as string }` — a
+                 bundled asset is a number, and wrapping a number in `uri`
+                 renders nothing and reports no error. */
+              <Image
+                key={id}
+                source={imageSource(id)}
+                style={[styles.thumb, { borderColor: color }]}
+                resizeMode="cover"
+              />
             )
           )}
         </View>
-        <Text style={styles.cards}>{names}</Text>
-        <Text style={styles.explain}>{groupWhy(group.explanation, lang)}</Text>
-      </View>
+      <Text style={styles.cards}>{names}</Text>
+      <Text style={styles.explain}>{groupWhy(group.explanation, lang)}</Text>
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: {
-    flexDirection: 'row',
-    marginHorizontal: 4,
-    marginBottom: 8,
-    borderRadius: radius.card,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(13, 11, 28, 0.9)',
-    borderWidth: 1,
-    borderColor: colors.borderGold,
-    shadowColor: '#000',
-    shadowOpacity: 0.35,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 3 },
-    elevation: 4,
-  },
-  ribbon: { width: 6 },
-  body: { flex: 1, paddingHorizontal: 14, paddingVertical: 10 },
+  wrap: { marginHorizontal: 8, marginBottom: 22 },
+  // Carries the tier where the ribbon used to. Same motif as the legal screens.
+  rule: { width: 44, height: 2, borderRadius: 1, opacity: 0.9, marginTop: 9 },
   headerRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' },
-  theme: { color: colors.accent, fontFamily: displayFont, fontWeight: '700', fontSize: 17, flex: 1 },
-  tier: { fontWeight: '800', fontSize: 10, letterSpacing: 1, marginLeft: 8 },
-  thumbs: { flexDirection: 'row', gap: 4, marginTop: 6 },
-  thumb: { width: 34, aspectRatio: CARD_ASPECT, borderRadius: 4, overflow: 'hidden' },
-  thumbStill: { borderWidth: 1, backgroundColor: colors.surfaceSolid },
-  thumbImg: { width: '100%', height: '100%' },
-  cards: { color: colors.text, fontWeight: '700', fontSize: 13, marginTop: 5 },
-  explain: { color: colors.textDim, fontSize: 12, marginTop: 3 },
+  theme: {
+    color: colors.accent,
+    fontFamily: displayFont,
+    fontWeight: '700',
+    fontSize: 19,
+    flex: 1,
+    ...floatShadow,
+  },
+  tier: { fontWeight: '800', fontSize: 10, letterSpacing: 1.2, marginLeft: 8, ...floatShadow },
+  thumbs: { flexDirection: 'row', gap: 6, marginTop: 12 },
+  // Numeric width and height, border on the image itself. See the note at the
+  // call site: this deliberately matches NavRow.icon rather than inventing a
+  // wrapper the image has to fill.
+  thumb: {
+    width: THUMB_W,
+    height: Math.round(THUMB_W / CARD_ASPECT),
+    borderRadius: 4,
+    borderWidth: 1,
+    backgroundColor: colors.surfaceSolid,
+  },
+  // Only the animated branch still needs a box for CardVideo to fill.
+  thumbBox: { width: THUMB_W, height: Math.round(THUMB_W / CARD_ASPECT), borderRadius: 4, overflow: 'hidden' },
+  cards: { color: colors.text, fontWeight: '700', fontSize: 13.5, marginTop: 10, ...floatShadow },
+  explain: { color: colors.textDim, fontSize: 12.5, marginTop: 4, ...floatShadow },
 });

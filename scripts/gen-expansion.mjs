@@ -257,7 +257,7 @@ const EXTRA = {
     { theme: 'Prehistóricos', why: 'Mamut, dientes de sable, dodo y trilobite.', cards: ['El Mamut|a woolly mammoth', 'El Tigre Dientes de Sable|a saber-tooth tiger', 'El Dodo|a dodo bird', 'El Trilobite|a trilobite', 'El Velociraptor|a velociraptor'] },
   ],
   aves2: [
-    { theme: 'De caza y monte', why: 'Faisán, codorniz, perdiz y pavorreal.', cards: ['El Faisán|a pheasant', 'La Codorniz|a quail', 'La Perdiz|a partridge', 'El Correcaminos|a roadrunner', 'El Kiwi|a kiwi bird'] },
+    { theme: 'De caza y monte', why: 'Faisán, codorniz, perdiz y pavorreal.', cards: ['El Faisán|a pheasant', 'La Codorniz|a quail', 'La Perdiz|a partridge', 'El Correcaminos|a roadrunner', 'El Pato|a duck'] },
     { theme: 'Del árbol', why: 'Pájaro carpintero, ruiseñor, canario y jilguero.', cards: ['El Pájaro Carpintero|a woodpecker', 'El Ruiseñor|a nightingale', 'El Canario|a canary', 'El Jilguero|a goldfinch', 'El Martín Pescador|a kingfisher'] },
   ],
   insectos2: [
@@ -265,7 +265,7 @@ const EXTRA = {
     { theme: 'Molestos', why: 'Pulga, piojo, termita y tábano.', cards: ['La Pulga|a flea', 'El Piojo|a louse', 'La Termita|a termite', 'El Tábano|a horsefly', 'El Zancudo|a mosquito'] },
   ],
   mar2: [
-    { theme: 'Peces de río', why: 'Trucha, bagre, carpa y piraña.', cards: ['La Trucha|a trout', 'El Bagre|a catfish', 'La Carpa|a carp', 'La Piraña|a piranha', 'La Anguila|an eel'] },
+    { theme: 'Peces de río', why: 'Trucha, bagre, carpa y piraña.', cards: ['La Trucha|a trout', 'El Bagre|a catfish', 'La Piraña|a piranha', 'La Anguila|an eel'] },
     { theme: 'Del arrecife', why: 'Coral, alga, erizo y anémona.', cards: ['El Coral|a coral', 'El Alga|seaweed', 'El Erizo de Mar|a sea urchin', 'La Anémona|a sea anemone', 'El Pez Payaso|a clownfish'] },
   ],
   cuerpo2: [

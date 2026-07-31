@@ -1074,9 +1074,21 @@ export function cardThumb(id: string, width: number, height: number): number | s
   return `${CARDS_CDN.replace('/object/public/cards', '/render/image/public/cards')}/${id}.webp?width=${w}&height=${h}&resize=cover&quality=72`;
 }
 
-/** <Image source> for a thumbnail, correct whether bundled or remote. */
-export function thumbSource(id: string, width: number, height: number): ImageSourcePropType {
-  const v = cardThumb(id, width, height);
-  return typeof v === 'number' ? v : { uri: v };
+/**
+ * <Image source> for a thumbnail.
+ *
+ * Delegates to imageSource(). With the whole deck bundled, cardThumb()'s remote
+ * branch is unreachable, so a "thumbnail" is just the bundled asset that
+ * <Image> scales down — exactly what imageSource() returns. Two functions that
+ * must agree are one more thing that can silently disagree, and the menu icons,
+ * home stat icons and solved-group strips all went blank while the board
+ * rendered fine off imageSource().
+ *
+ * width/height are kept in the signature so call sites read as intent, and so
+ * this can go back to the transform endpoint if the deck ever outgrows the
+ * binary and stops being fully bundled.
+ */
+export function thumbSource(id: string, _width: number, _height: number): ImageSourcePropType {
+  return imageSource(id);
 }
 

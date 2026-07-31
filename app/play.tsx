@@ -494,7 +494,7 @@ export default function Play() {
                 </Text>
                 {unlockedNow.map((a) => (
                   <View key={a.id} style={styles.unlockRow}>
-                    <Image source={thumbSource(a.icon, 26, 34)} style={styles.unlockIcon} />
+                    <Image source={thumbSource(a.icon, 26, 34)} style={styles.unlockIcon} resizeMode="cover" />
                     <View style={styles.unlockBody}>
                       <Text style={styles.unlockName}>{t.achievements.names[a.id] ?? a.id}</Text>
                       <Text style={styles.unlockDesc}>{t.achievements.descs[a.id] ?? ''}</Text>
@@ -600,20 +600,15 @@ const styles = StyleSheet.create({
   dotUsed: { backgroundColor: colors.danger },
   oneAway: { color: colors.accent, fontSize: 16, textAlign: 'center', marginTop: 10, fontWeight: '800' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 18, justifyContent: 'center', alignItems: 'center' },
+  // No panel. The outcome floats on the scene like everything else — the glow
+  // already on resultTitle is what carries it, and a bordered box under a
+  // 32pt glowing serif was doing the same job twice.
   result: {
-    marginTop: 22,
+    marginTop: 30,
+    marginBottom: 8,
     alignItems: 'center',
-    backgroundColor: 'rgba(11,10,31,0.72)',
-    borderRadius: 14,
-    paddingVertical: 26,
-    paddingHorizontal: 22,
-    borderWidth: 1.5,
-    borderColor: colors.borderGold,
-    shadowColor: colors.accent,
-    shadowOpacity: 0.28,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
   },
   resultTitle: {
     color: colors.text,

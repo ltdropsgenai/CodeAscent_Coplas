@@ -35,7 +35,7 @@ export function NavRow({
     <Link href={href as never} asChild>
       <Pressable style={({ pressed }) => [styles.press, pressed && styles.pressed]}>
         <View style={[styles.row, !first && styles.divider]}>
-          <Image source={thumbSource(icon, NAV_ICON_W, NAV_ICON_H)} style={styles.icon} />
+          <Image source={thumbSource(icon, NAV_ICON_W, NAV_ICON_H)} style={styles.icon} resizeMode="cover" />
           {/* flex:1 keeps the chevron pinned to the right edge. */}
           <View style={styles.body}>
             <Text style={styles.label}>{label}</Text>

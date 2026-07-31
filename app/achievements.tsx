@@ -64,6 +64,7 @@ export default function Achievements() {
           <Image
             source={thumbSource(a.icon, ICON_W, ICON_H)}
             style={[styles.icon, !a.unlocked && styles.iconLocked]}
+            resizeMode="cover"
           />
           <View style={styles.body}>
             <Text style={[styles.name, !a.unlocked && styles.nameLocked]}>
