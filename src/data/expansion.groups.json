@@ -8,7 +8,7 @@
       "la_toronja"
     ],
     "theme": "Cítricos",
-    "why": "Naranja, limón, lima y toronja: puros cítricos."
+    "why": "Limón, mandarina, naranja y toronja: puros cítricos."
   },
   "frutas_citricos_2": {
     "kind": "cat",
@@ -19,7 +19,7 @@
       "la_toronja"
     ],
     "theme": "Cítricos",
-    "why": "Naranja, limón, lima y toronja: puros cítricos."
+    "why": "Limón, lima, naranja y toronja: puros cítricos."
   },
   "frutas_frutas_rojas_1": {
     "kind": "cat",
@@ -30,7 +30,7 @@
       "la_mora"
     ],
     "theme": "Frutas rojas",
-    "why": "Fresa, cereza, frambuesa y granada: rojas y dulces."
+    "why": "Frambuesa, fresa, granada y mora: rojas y dulces."
   },
   "frutas_frutas_rojas_2": {
     "kind": "cat",
@@ -41,7 +41,7 @@
       "la_mora"
     ],
     "theme": "Frutas rojas",
-    "why": "Fresa, cereza, frambuesa y granada: rojas y dulces."
+    "why": "Cereza, frambuesa, fresa y mora: rojas y dulces."
   },
   "frutas_tropicales_1": {
     "kind": "cat",
@@ -52,7 +52,7 @@
       "la_papaya"
     ],
     "theme": "Tropicales",
-    "why": "Mango, piña, papaya y coco: del trópico."
+    "why": "Coco, mango, maracuyá y papaya: del trópico."
   },
   "frutas_tropicales_2": {
     "kind": "cat",
@@ -63,7 +63,7 @@
       "la_pina"
     ],
     "theme": "Tropicales",
-    "why": "Mango, piña, papaya y coco: del trópico."
+    "why": "Mango, maracuyá, papaya y piña: del trópico."
   },
   "frutas_de_hueso_1": {
     "kind": "cat",
@@ -74,7 +74,7 @@
       "la_ciruela"
     ],
     "theme": "De hueso",
-    "why": "Durazno, ciruela, chabacano y aguacate: traen hueso."
+    "why": "Aguacate, chabacano, dátil y ciruela: traen hueso."
   },
   "frutas_de_hueso_2": {
     "kind": "cat",
@@ -85,7 +85,7 @@
       "la_ciruela"
     ],
     "theme": "De hueso",
-    "why": "Durazno, ciruela, chabacano y aguacate: traen hueso."
+    "why": "Chabacano, dátil, durazno y ciruela: traen hueso."
   },
   "frutas_de_racimo_y_parra_1": {
     "kind": "cat",
@@ -96,7 +96,7 @@
       "el_platano"
     ],
     "theme": "De racimo y parra",
-    "why": "Uva, plátano, higo y kiwi."
+    "why": "Higo, kiwi, melón y plátano."
   },
   "frutas_de_racimo_y_parra_2": {
     "kind": "cat",
@@ -107,7 +107,7 @@
       "la_uva"
     ],
     "theme": "De racimo y parra",
-    "why": "Uva, plátano, higo y kiwi."
+    "why": "Higo, kiwi, melón y uva."
   },
   "frutas_manzanas_y_peras_1": {
     "kind": "cat",
@@ -118,7 +118,7 @@
       "la_sandia"
     ],
     "theme": "Manzanas y peras",
-    "why": "Manzana, pera, membrillo y sandía."
+    "why": "Membrillo, manzana, pera y sandía."
   },
   "frutas_manzanas_y_peras_2": {
     "kind": "cat",
@@ -129,7 +129,7 @@
       "la_sandia"
     ],
     "theme": "Manzanas y peras",
-    "why": "Manzana, pera, membrillo y sandía."
+    "why": "Guayaba, manzana, pera y sandía."
   },
   "verduras_de_la_tierra_1": {
     "kind": "cat",
@@ -140,7 +140,7 @@
       "la_zanahoria"
     ],
     "theme": "De la tierra",
-    "why": "Papa, zanahoria, betabel y rábano: raíces."
+    "why": "Betabel, rábano, papa y zanahoria: raíces."
   },
   "verduras_de_la_tierra_2": {
     "kind": "cat",
@@ -151,7 +151,7 @@
       "la_zanahoria"
     ],
     "theme": "De la tierra",
-    "why": "Papa, zanahoria, betabel y rábano: raíces."
+    "why": "Betabel, camote, papa y zanahoria: raíces."
   },
   "verduras_verduras_verdes_1": {
     "kind": "cat",
@@ -162,7 +162,7 @@
       "la_lechuga"
     ],
     "theme": "Verduras verdes",
-    "why": "Lechuga, brócoli, ejote y espinaca."
+    "why": "Brócoli, ejote, pepino y lechuga."
   },
   "verduras_verduras_verdes_2": {
     "kind": "cat",
@@ -173,7 +173,7 @@
       "la_espinaca"
     ],
     "theme": "Verduras verdes",
-    "why": "Lechuga, brócoli, ejote y espinaca."
+    "why": "Brócoli, ejote, pepino y espinaca."
   },
   "verduras_picantes_y_bulbos_1": {
     "kind": "cat",
@@ -184,7 +184,7 @@
       "la_cebolla"
     ],
     "theme": "Picantes y bulbos",
-    "why": "Chile, cebolla, ajo y jengibre."
+    "why": "Ajo, chile, pimiento y cebolla."
   },
   "verduras_picantes_y_bulbos_2": {
     "kind": "cat",
@@ -195,7 +195,7 @@
       "la_cebolla"
     ],
     "theme": "Picantes y bulbos",
-    "why": "Chile, cebolla, ajo y jengibre."
+    "why": "Ajo, chile, jengibre y cebolla."
   },
   "verduras_de_guiso_1": {
     "kind": "cat",
@@ -206,7 +206,7 @@
       "la_calabaza"
     ],
     "theme": "De guiso",
-    "why": "Jitomate, calabaza, elote y berenjena."
+    "why": "Champiñón, elote, jitomate y calabaza."
   },
   "verduras_de_guiso_2": {
     "kind": "cat",
@@ -217,7 +217,7 @@
       "la_calabaza"
     ],
     "theme": "De guiso",
-    "why": "Jitomate, calabaza, elote y berenjena."
+    "why": "Elote, jitomate, berenjena y calabaza."
   },
   "verduras_legumbres_1": {
     "kind": "cat",
@@ -228,7 +228,7 @@
       "el_haba"
     ],
     "theme": "Legumbres",
-    "why": "Frijol, chícharo, lenteja y garbanzo."
+    "why": "Chícharo, frijol, garbanzo y haba."
   },
   "verduras_legumbres_2": {
     "kind": "cat",
@@ -239,7 +239,7 @@
       "la_lenteja"
     ],
     "theme": "Legumbres",
-    "why": "Frijol, chícharo, lenteja y garbanzo."
+    "why": "Chícharo, frijol, haba y lenteja."
   },
   "granja_ganado_1": {
     "kind": "cat",
@@ -250,7 +250,7 @@
       "la_vaca"
     ],
     "theme": "Ganado",
-    "why": "Vaca, toro, caballo y burro."
+    "why": "Burro, toro, cabra y vaca."
   },
   "granja_ganado_2": {
     "kind": "cat",
@@ -261,7 +261,7 @@
       "la_vaca"
     ],
     "theme": "Ganado",
-    "why": "Vaca, toro, caballo y burro."
+    "why": "Caballo, toro, cabra y vaca."
   },
   "granja_corral_1": {
     "kind": "cat",
@@ -272,7 +272,7 @@
       "la_gallina"
     ],
     "theme": "Corral",
-    "why": "Cerdo, oveja, gallina y pavo."
+    "why": "Cerdo, ganso, pavo y gallina."
   },
   "granja_corral_2": {
     "kind": "cat",
@@ -283,7 +283,7 @@
       "la_oveja"
     ],
     "theme": "Corral",
-    "why": "Cerdo, oveja, gallina y pavo."
+    "why": "Ganso, pavo, gallina y oveja."
   },
   "granja_crias_1": {
     "kind": "cat",
@@ -294,7 +294,7 @@
       "el_potro"
     ],
     "theme": "Crías",
-    "why": "Pollito, becerro, potro y cordero."
+    "why": "Cochinito, cordero, pollito y potro."
   },
   "granja_crias_2": {
     "kind": "cat",
@@ -305,7 +305,7 @@
       "el_potro"
     ],
     "theme": "Crías",
-    "why": "Pollito, becerro, potro y cordero."
+    "why": "Becerro, cochinito, pollito y potro."
   },
   "aves_de_rapina_1": {
     "kind": "cat",
@@ -316,18 +316,18 @@
       "la_lechuza"
     ],
     "theme": "De rapiña",
-    "why": "Águila, halcón, búho y lechuza."
+    "why": "Búho, halcón, zopilote y lechuza."
   },
   "aves_de_rapina_2": {
     "kind": "cat",
     "cards": [
-      "el_aguila",
+      "el_pajaro",
       "el_halcon",
       "el_zopilote",
       "la_lechuza"
     ],
     "theme": "De rapiña",
-    "why": "Águila, halcón, búho y lechuza."
+    "why": "Águila, halcón, zopilote y lechuza."
   },
   "aves_coloridas_1": {
     "kind": "cat",
@@ -338,7 +338,7 @@
       "el_tucan"
     ],
     "theme": "Coloridas",
-    "why": "Guacamaya, tucán, colibrí y flamenco."
+    "why": "Colibrí, flamenco, pavorreal y tucán."
   },
   "aves_coloridas_2": {
     "kind": "cat",
@@ -349,7 +349,7 @@
       "la_guacamaya"
     ],
     "theme": "Coloridas",
-    "why": "Guacamaya, tucán, colibrí y flamenco."
+    "why": "Colibrí, pavorreal, tucán y guacamaya."
   },
   "aves_de_agua_1": {
     "kind": "cat",
@@ -360,7 +360,7 @@
       "la_gaviota"
     ],
     "theme": "De agua",
-    "why": "Pato, cisne, pelícano y gaviota."
+    "why": "Cisne, pato, pelícano y gaviota."
   },
   "aves_de_agua_2": {
     "kind": "cat",
@@ -371,7 +371,7 @@
       "la_gaviota"
     ],
     "theme": "De agua",
-    "why": "Pato, cisne, pelícano y gaviota."
+    "why": "Pato, pelícano, garza y gaviota."
   },
   "aves_aves_de_jardin_1": {
     "kind": "cat",
@@ -382,7 +382,7 @@
       "la_paloma"
     ],
     "theme": "Aves de jardín",
-    "why": "Gorrión, paloma, cuervo y golondrina."
+    "why": "Cuervo, gorrión, golondrina y paloma."
   },
   "aves_aves_de_jardin_2": {
     "kind": "cat",
@@ -393,7 +393,7 @@
       "la_golondrina"
     ],
     "theme": "Aves de jardín",
-    "why": "Gorrión, paloma, cuervo y golondrina."
+    "why": "Cuervo, gorrión, petirrojo y golondrina."
   },
   "aves_aves_grandes_1": {
     "kind": "cat",
@@ -404,7 +404,7 @@
       "la_grulla"
     ],
     "theme": "Aves grandes",
-    "why": "Avestruz, cigüeña, grulla y cóndor."
+    "why": "Avestruz, pingüino, cigüeña y grulla."
   },
   "aves_aves_grandes_2": {
     "kind": "cat",
@@ -415,7 +415,7 @@
       "la_ciguena"
     ],
     "theme": "Aves grandes",
-    "why": "Avestruz, cigüeña, grulla y cóndor."
+    "why": "Avestruz, cóndor, pingüino y cigüeña."
   },
   "mamiferos_felinos_1": {
     "kind": "cat",
@@ -426,7 +426,7 @@
       "la_pantera"
     ],
     "theme": "Felinos",
-    "why": "León, tigre, leopardo y jaguar."
+    "why": "León, leopardo, tigre y pantera."
   },
   "mamiferos_felinos_2": {
     "kind": "cat",
@@ -437,7 +437,7 @@
       "la_pantera"
     ],
     "theme": "Felinos",
-    "why": "León, tigre, leopardo y jaguar."
+    "why": "Jaguar, león, tigre y pantera."
   },
   "mamiferos_bestias_grandes_1": {
     "kind": "cat",
@@ -448,7 +448,7 @@
       "la_jirafa"
     ],
     "theme": "Bestias grandes",
-    "why": "Elefante, jirafa, rinoceronte e hipopótamo."
+    "why": "Búfalo, elefante, hipopótamo y jirafa."
   },
   "mamiferos_bestias_grandes_2": {
     "kind": "cat",
@@ -459,7 +459,7 @@
       "la_jirafa"
     ],
     "theme": "Bestias grandes",
-    "why": "Elefante, jirafa, rinoceronte e hipopótamo."
+    "why": "Búfalo, hipopótamo, rinoceronte y jirafa."
   },
   "mamiferos_del_bosque_1": {
     "kind": "cat",
@@ -470,7 +470,7 @@
       "el_venado"
     ],
     "theme": "Del bosque",
-    "why": "Oso, lobo, zorro y venado."
+    "why": "Lobo, mapache, oso y venado."
   },
   "mamiferos_del_bosque_2": {
     "kind": "cat",
@@ -481,7 +481,7 @@
       "el_zorro"
     ],
     "theme": "Del bosque",
-    "why": "Oso, lobo, zorro y venado."
+    "why": "Lobo, mapache, oso y zorro."
   },
   "mamiferos_primates_y_trepadores_1": {
     "kind": "cat",
@@ -492,7 +492,7 @@
       "la_ardilla"
     ],
     "theme": "Primates y trepadores",
-    "why": "Mono, gorila, perezoso y koala."
+    "why": "Koala, mono, perezoso y ardilla."
   },
   "mamiferos_primates_y_trepadores_2": {
     "kind": "cat",
@@ -503,7 +503,7 @@
       "el_perezoso"
     ],
     "theme": "Primates y trepadores",
-    "why": "Mono, gorila, perezoso y koala."
+    "why": "Gorila, koala, mono y perezoso."
   },
   "mamiferos_domesticos_1": {
     "kind": "cat",
@@ -514,7 +514,7 @@
       "el_perro"
     ],
     "theme": "Domésticos",
-    "why": "Perro, gato, conejo y hámster."
+    "why": "Conejo, hámster, hurón y perro."
   },
   "mamiferos_domesticos_2": {
     "kind": "cat",
@@ -525,7 +525,7 @@
       "el_perro"
     ],
     "theme": "Domésticos",
-    "why": "Perro, gato, conejo y hámster."
+    "why": "Conejo, gato, hurón y perro."
   },
   "mamiferos_del_frio_y_desierto_1": {
     "kind": "cat",
@@ -536,7 +536,7 @@
       "la_morsa"
     ],
     "theme": "Del frío y desierto",
-    "why": "Camello, foca, morsa y canguro."
+    "why": "Canguro, erizo, foca y morsa."
   },
   "mamiferos_del_frio_y_desierto_2": {
     "kind": "cat",
@@ -547,7 +547,7 @@
       "la_morsa"
     ],
     "theme": "Del frío y desierto",
-    "why": "Camello, foca, morsa y canguro."
+    "why": "Camello, canguro, foca y morsa."
   },
   "mar_peces_1": {
     "kind": "cat",
@@ -558,7 +558,7 @@
       "la_sardina"
     ],
     "theme": "Peces",
-    "why": "Tiburón, atún, pez espada y mero."
+    "why": "Atún, mero, pez espada y sardina."
   },
   "mar_peces_2": {
     "kind": "cat",
@@ -569,7 +569,7 @@
       "la_sardina"
     ],
     "theme": "Peces",
-    "why": "Tiburón, atún, pez espada y mero."
+    "why": "Atún, pez espada, tiburón y sardina."
   },
   "mar_mariscos_1": {
     "kind": "cat",
@@ -580,7 +580,7 @@
       "la_langosta"
     ],
     "theme": "Mariscos",
-    "why": "Camarón, cangrejo, langosta y almeja."
+    "why": "Camarón, cangrejo, almeja y langosta."
   },
   "mar_mariscos_2": {
     "kind": "cat",
@@ -591,7 +591,7 @@
       "la_langosta"
     ],
     "theme": "Mariscos",
-    "why": "Camarón, cangrejo, langosta y almeja."
+    "why": "Camarón, ostión, almeja y langosta."
   },
   "mar_del_fondo_1": {
     "kind": "cat",
@@ -602,7 +602,7 @@
       "la_medusa"
     ],
     "theme": "Del fondo",
-    "why": "Pulpo, calamar, medusa y caballito."
+    "why": "Caballito de mar, calamar, pulpo y medusa."
   },
   "mar_del_fondo_2": {
     "kind": "cat",
@@ -613,7 +613,7 @@
       "la_medusa"
     ],
     "theme": "Del fondo",
-    "why": "Pulpo, calamar, medusa y caballito."
+    "why": "Caballito de mar, pulpo, estrella de mar y medusa."
   },
   "mar_gigantes_1": {
     "kind": "cat",
@@ -624,7 +624,7 @@
       "la_tortuga"
     ],
     "theme": "Gigantes",
-    "why": "Ballena, delfín, tortuga y foca."
+    "why": "Delfín, ballena, orca y tortuga."
   },
   "mar_gigantes_2": {
     "kind": "cat",
@@ -635,7 +635,7 @@
       "la_tortuga"
     ],
     "theme": "Gigantes",
-    "why": "Ballena, delfín, tortuga y foca."
+    "why": "Ballena, orca, raya y tortuga."
   },
   "bichos_voladores_1": {
     "kind": "cat",
@@ -646,7 +646,7 @@
       "la_mariposa"
     ],
     "theme": "Voladores",
-    "why": "Mariposa, abeja, libélula y mosca."
+    "why": "Mosquito, abeja, libélula y mariposa."
   },
   "bichos_voladores_2": {
     "kind": "cat",
@@ -657,7 +657,7 @@
       "la_mosca"
     ],
     "theme": "Voladores",
-    "why": "Mariposa, abeja, libélula y mosca."
+    "why": "Mosquito, abeja, libélula y mosca."
   },
   "bichos_rastreros_1": {
     "kind": "cat",
@@ -668,7 +668,7 @@
       "la_hormiga"
     ],
     "theme": "Rastreros",
-    "why": "Hormiga, escarabajo, oruga y caracol."
+    "why": "Caracol, escarabajo, cucaracha y hormiga."
   },
   "bichos_rastreros_2": {
     "kind": "cat",
@@ -679,7 +679,7 @@
       "la_oruga"
     ],
     "theme": "Rastreros",
-    "why": "Hormiga, escarabajo, oruga y caracol."
+    "why": "Caracol, escarabajo, cucaracha y oruga."
   },
   "bichos_con_aguijon_1": {
     "kind": "cat",
@@ -690,7 +690,7 @@
       "la_garrapata"
     ],
     "theme": "Con aguijón",
-    "why": "Araña, alacrán, avispa y ciempiés."
+    "why": "Alacrán, ciempiés, araña y garrapata."
   },
   "bichos_con_aguijon_2": {
     "kind": "cat",
@@ -701,7 +701,7 @@
       "la_garrapata"
     ],
     "theme": "Con aguijón",
-    "why": "Araña, alacrán, avispa y ciempiés."
+    "why": "Ciempiés, araña, avispa y garrapata."
   },
   "bichos_de_la_noche_1": {
     "kind": "cat",
@@ -712,7 +712,7 @@
       "la_polilla"
     ],
     "theme": "De la noche",
-    "why": "Luciérnaga, grillo, polilla y saltamontes."
+    "why": "Saltamontes, chinche, luciérnaga y polilla."
   },
   "bichos_de_la_noche_2": {
     "kind": "cat",
@@ -723,7 +723,7 @@
       "la_luciernaga"
     ],
     "theme": "De la noche",
-    "why": "Luciérnaga, grillo, polilla y saltamontes."
+    "why": "Grillo, saltamontes, chinche y luciérnaga."
   },
   "reptiles_reptiles_1": {
     "kind": "cat",
@@ -734,7 +734,7 @@
       "la_serpiente"
     ],
     "theme": "Reptiles",
-    "why": "Serpiente, lagarto, iguana y camaleón."
+    "why": "Camaleón, cocodrilo, iguana y serpiente."
   },
   "reptiles_reptiles_2": {
     "kind": "cat",
@@ -745,7 +745,7 @@
       "la_iguana"
     ],
     "theme": "Reptiles",
-    "why": "Serpiente, lagarto, iguana y camaleón."
+    "why": "Camaleón, cocodrilo, lagarto y iguana."
   },
   "reptiles_anfibios_y_lentos_1": {
     "kind": "cat",
@@ -756,7 +756,7 @@
       "la_tortuga"
     ],
     "theme": "Anfibios y lentos",
-    "why": "Rana, sapo, tortuga y salamandra."
+    "why": "Ajolote, sapo, salamandra y tortuga."
   },
   "reptiles_anfibios_y_lentos_2": {
     "kind": "cat",
@@ -767,7 +767,7 @@
       "la_tortuga"
     ],
     "theme": "Anfibios y lentos",
-    "why": "Rana, sapo, tortuga y salamandra."
+    "why": "Ajolote, rana, salamandra y tortuga."
   },
   "herramientas_de_golpe_y_corte_1": {
     "kind": "cat",
@@ -778,7 +778,7 @@
       "el_serrucho"
     ],
     "theme": "De golpe y corte",
-    "why": "Martillo, hacha, serrucho y cincel."
+    "why": "Cincel, hacha, mazo y serrucho."
   },
   "herramientas_de_golpe_y_corte_2": {
     "kind": "cat",
@@ -789,7 +789,7 @@
       "el_serrucho"
     ],
     "theme": "De golpe y corte",
-    "why": "Martillo, hacha, serrucho y cincel."
+    "why": "Cincel, martillo, mazo y serrucho."
   },
   "herramientas_de_apretar_1": {
     "kind": "cat",
@@ -800,7 +800,7 @@
       "las_pinzas"
     ],
     "theme": "De apretar",
-    "why": "Desarmador, llave, pinzas y taladro."
+    "why": "Desarmador, taladro, llave inglesa y pinzas."
   },
   "herramientas_de_apretar_2": {
     "kind": "cat",
@@ -811,7 +811,7 @@
       "las_pinzas"
     ],
     "theme": "De apretar",
-    "why": "Desarmador, llave, pinzas y taladro."
+    "why": "Desarmador, taladro, tuerca y pinzas."
   },
   "herramientas_para_el_jardin_1": {
     "kind": "cat",
@@ -822,7 +822,7 @@
       "la_regadera"
     ],
     "theme": "Para el jardín",
-    "why": "Pala, rastrillo, azadón y regadera."
+    "why": "Azadón, rastrillo, pala y regadera."
   },
   "herramientas_para_el_jardin_2": {
     "kind": "cat",
@@ -833,7 +833,7 @@
       "la_regadera"
     ],
     "theme": "Para el jardín",
-    "why": "Pala, rastrillo, azadón y regadera."
+    "why": "Rastrillo, carretilla, pala y regadera."
   },
   "herramientas_de_medir_y_sujetar_1": {
     "kind": "cat",
@@ -844,7 +844,7 @@
       "la_escuadra"
     ],
     "theme": "De medir y sujetar",
-    "why": "Metro, nivel, clavo y tornillo."
+    "why": "Clavo, metro, nivel y escuadra."
   },
   "herramientas_de_medir_y_sujetar_2": {
     "kind": "cat",
@@ -855,7 +855,7 @@
       "la_escuadra"
     ],
     "theme": "De medir y sujetar",
-    "why": "Metro, nivel, clavo y tornillo."
+    "why": "Metro, nivel, tornillo y escuadra."
   },
   "herramientas_de_cocina_afilada_1": {
     "kind": "cat",
@@ -866,7 +866,7 @@
       "las_tijeras"
     ],
     "theme": "De cocina afilada",
-    "why": "Cuchillo, tijeras, rallador y pelador."
+    "why": "Cuchillo, rallador, sacacorchos y tijeras."
   },
   "herramientas_de_cocina_afilada_2": {
     "kind": "cat",
@@ -877,7 +877,7 @@
       "las_tijeras"
     ],
     "theme": "De cocina afilada",
-    "why": "Cuchillo, tijeras, rallador y pelador."
+    "why": "Cuchillo, pelador, rallador y tijeras."
   },
   "instrumentos_de_cuerda_1": {
     "kind": "cat",
@@ -888,7 +888,7 @@
       "la_guitarra"
     ],
     "theme": "De cuerda",
-    "why": "Guitarra, violín, arpa y contrabajo."
+    "why": "Banjo, contrabajo, violín y guitarra."
   },
   "instrumentos_de_cuerda_2": {
     "kind": "cat",
@@ -899,7 +899,7 @@
       "la_guitarra"
     ],
     "theme": "De cuerda",
-    "why": "Guitarra, violín, arpa y contrabajo."
+    "why": "Arpa, banjo, violín y guitarra."
   },
   "instrumentos_de_viento_1": {
     "kind": "cat",
@@ -910,7 +910,7 @@
       "la_trompeta"
     ],
     "theme": "De viento",
-    "why": "Trompeta, flauta, saxofón y clarinete."
+    "why": "Clarinete, flauta, trombón y trompeta."
   },
   "instrumentos_de_viento_2": {
     "kind": "cat",
@@ -921,7 +921,7 @@
       "la_trompeta"
     ],
     "theme": "De viento",
-    "why": "Trompeta, flauta, saxofón y clarinete."
+    "why": "Saxofón, flauta, trombón y trompeta."
   },
   "instrumentos_de_teclas_y_fuelle_1": {
     "kind": "cat",
@@ -932,7 +932,7 @@
       "la_armonica"
     ],
     "theme": "De teclas y fuelle",
-    "why": "Piano, acordeón, órgano y armónica."
+    "why": "Órgano, piano, teclado y armónica."
   },
   "instrumentos_de_teclas_y_fuelle_2": {
     "kind": "cat",
@@ -943,7 +943,7 @@
       "el_teclado"
     ],
     "theme": "De teclas y fuelle",
-    "why": "Piano, acordeón, órgano y armónica."
+    "why": "Acordeón, órgano, piano y teclado."
   },
   "instrumentos_de_percusion_1": {
     "kind": "cat",
@@ -954,7 +954,7 @@
       "los_timbales"
     ],
     "theme": "De percusión",
-    "why": "Tambor, maracas, xilófono y pandereta."
+    "why": "Tambor, xilófono, pandereta y timbales."
   },
   "instrumentos_de_percusion_2": {
     "kind": "cat",
@@ -965,7 +965,7 @@
       "los_timbales"
     ],
     "theme": "De percusión",
-    "why": "Tambor, maracas, xilófono y pandereta."
+    "why": "Xilófono, pandereta, maracas y timbales."
   },
   "ropa_de_arriba_1": {
     "kind": "cat",
@@ -976,7 +976,7 @@
       "la_playera"
     ],
     "theme": "De arriba",
-    "why": "Camisa, playera, suéter y chaleco."
+    "why": "Chaleco, suéter, blusa y playera."
   },
   "ropa_de_arriba_2": {
     "kind": "cat",
@@ -987,7 +987,7 @@
       "la_playera"
     ],
     "theme": "De arriba",
-    "why": "Camisa, playera, suéter y chaleco."
+    "why": "Suéter, blusa, camisa y playera."
   },
   "ropa_de_abajo_1": {
     "kind": "cat",
@@ -998,7 +998,7 @@
       "la_falda"
     ],
     "theme": "De abajo",
-    "why": "Pantalón, falda, short y vestido."
+    "why": "Overol, short, vestido y falda."
   },
   "ropa_de_abajo_2": {
     "kind": "cat",
@@ -1009,7 +1009,7 @@
       "la_falda"
     ],
     "theme": "De abajo",
-    "why": "Pantalón, falda, short y vestido."
+    "why": "Pantalón, short, vestido y falda."
   },
   "ropa_abrigos_1": {
     "kind": "cat",
@@ -1020,7 +1020,7 @@
       "la_gabardina"
     ],
     "theme": "Abrigos",
-    "why": "Chamarra, saco, gabardina y poncho."
+    "why": "Poncho, saco, chamarra y gabardina."
   },
   "ropa_abrigos_2": {
     "kind": "cat",
@@ -1031,7 +1031,7 @@
       "la_gabardina"
     ],
     "theme": "Abrigos",
-    "why": "Chamarra, saco, gabardina y poncho."
+    "why": "Rebozo, saco, chamarra y gabardina."
   },
   "ropa_calzado_1": {
     "kind": "cat",
@@ -1042,7 +1042,7 @@
       "la_sandalia"
     ],
     "theme": "Calzado",
-    "why": "Zapato, bota, tenis y sandalia."
+    "why": "Tenis, zapato, bota y sandalia."
   },
   "ropa_calzado_2": {
     "kind": "cat",
@@ -1053,7 +1053,7 @@
       "la_sandalia"
     ],
     "theme": "Calzado",
-    "why": "Zapato, bota, tenis y sandalia."
+    "why": "Tenis, zapato, pantufla y sandalia."
   },
   "ropa_para_la_cabeza_1": {
     "kind": "cat",
@@ -1064,7 +1064,7 @@
       "la_gorra"
     ],
     "theme": "Para la cabeza",
-    "why": "Sombrero, gorra, boina y bufanda."
+    "why": "Gorro, sombrero, boina y gorra."
   },
   "ropa_para_la_cabeza_2": {
     "kind": "cat",
@@ -1075,7 +1075,7 @@
       "la_gorra"
     ],
     "theme": "Para la cabeza",
-    "why": "Sombrero, gorra, boina y bufanda."
+    "why": "Sombrero, boina, bufanda y gorra."
   },
   "ropa_detalles_1": {
     "kind": "cat",
@@ -1086,7 +1086,7 @@
       "la_corbata"
     ],
     "theme": "Detalles",
-    "why": "Corbata, cinturón, guante y calcetín."
+    "why": "Cinturón, guante, mono y corbata."
   },
   "ropa_detalles_2": {
     "kind": "cat",
@@ -1097,7 +1097,7 @@
       "la_corbata"
     ],
     "theme": "Detalles",
-    "why": "Corbata, cinturón, guante y calcetín."
+    "why": "Calcetín, cinturón, guante y corbata."
   },
   "accesorios_joyeria_1": {
     "kind": "cat",
@@ -1108,7 +1108,7 @@
       "la_pulsera"
     ],
     "theme": "Joyería",
-    "why": "Anillo, collar, arete y pulsera."
+    "why": "Anillo, broche, collar y pulsera."
   },
   "accesorios_joyeria_2": {
     "kind": "cat",
@@ -1119,7 +1119,7 @@
       "la_pulsera"
     ],
     "theme": "Joyería",
-    "why": "Anillo, collar, arete y pulsera."
+    "why": "Arete, broche, collar y pulsera."
   },
   "accesorios_se_cargan_1": {
     "kind": "cat",
@@ -1130,7 +1130,7 @@
       "la_mochila"
     ],
     "theme": "Se cargan",
-    "why": "Bolsa, mochila, cartera y maleta."
+    "why": "Paraguas, bolsa, maleta y mochila."
   },
   "accesorios_se_cargan_2": {
     "kind": "cat",
@@ -1141,7 +1141,7 @@
       "la_mochila"
     ],
     "theme": "Se cargan",
-    "why": "Bolsa, mochila, cartera y maleta."
+    "why": "Paraguas, bolsa, cartera y mochila."
   },
   "accesorios_en_la_cara_1": {
     "kind": "cat",
@@ -1152,7 +1152,7 @@
       "los_lentes"
     ],
     "theme": "En la cara",
-    "why": "Lentes, reloj, abanico y mascada."
+    "why": "Abanico, antifaz, mascada y lentes."
   },
   "accesorios_en_la_cara_2": {
     "kind": "cat",
@@ -1163,7 +1163,7 @@
       "los_lentes"
     ],
     "theme": "En la cara",
-    "why": "Lentes, reloj, abanico y mascada."
+    "why": "Abanico, antifaz, reloj y lentes."
   },
   "vehiculos_de_ciudad_1": {
     "kind": "cat",
@@ -1174,7 +1174,7 @@
       "la_motocicleta"
     ],
     "theme": "De ciudad",
-    "why": "Coche, taxi, autobús y motocicleta."
+    "why": "Autobús, coche, bicicleta y motocicleta."
   },
   "vehiculos_de_ciudad_2": {
     "kind": "cat",
@@ -1185,7 +1185,7 @@
       "la_motocicleta"
     ],
     "theme": "De ciudad",
-    "why": "Coche, taxi, autobús y motocicleta."
+    "why": "Autobús, coche, taxi y motocicleta."
   },
   "vehiculos_de_trabajo_1": {
     "kind": "cat",
@@ -1196,7 +1196,7 @@
       "la_grua"
     ],
     "theme": "De trabajo",
-    "why": "Camión, tractor, grúa y ambulancia."
+    "why": "Tractor, ambulancia, excavadora y grúa."
   },
   "vehiculos_de_trabajo_2": {
     "kind": "cat",
@@ -1207,7 +1207,7 @@
       "la_excavadora"
     ],
     "theme": "De trabajo",
-    "why": "Camión, tractor, grúa y ambulancia."
+    "why": "Camión, tractor, ambulancia y excavadora."
   },
   "vehiculos_del_aire_1": {
     "kind": "cat",
@@ -1218,7 +1218,7 @@
       "el_planeador"
     ],
     "theme": "Del aire",
-    "why": "Avión, helicóptero, globo y cohete."
+    "why": "Cohete, globo aerostático, helicóptero y planeador."
   },
   "vehiculos_del_aire_2": {
     "kind": "cat",
@@ -1229,7 +1229,7 @@
       "el_planeador"
     ],
     "theme": "Del aire",
-    "why": "Avión, helicóptero, globo y cohete."
+    "why": "Avión, globo aerostático, helicóptero y planeador."
   },
   "vehiculos_del_agua_1": {
     "kind": "cat",
@@ -1240,7 +1240,7 @@
       "la_lancha"
     ],
     "theme": "Del agua",
-    "why": "Barco, lancha, submarino y canoa."
+    "why": "Barco, submarino, canoa y lancha."
   },
   "vehiculos_del_agua_2": {
     "kind": "cat",
@@ -1251,7 +1251,7 @@
       "la_lancha"
     ],
     "theme": "Del agua",
-    "why": "Barco, lancha, submarino y canoa."
+    "why": "Barco, velero, canoa y lancha."
   },
   "vehiculos_sobre_rieles_1": {
     "kind": "cat",
@@ -1262,7 +1262,7 @@
       "la_locomotora"
     ],
     "theme": "Sobre rieles",
-    "why": "Tren, tranvía, vagón y locomotora."
+    "why": "Tranvía, tren, vagón y locomotora."
   },
   "vehiculos_sobre_rieles_2": {
     "kind": "cat",
@@ -1273,7 +1273,7 @@
       "la_locomotora"
     ],
     "theme": "Sobre rieles",
-    "why": "Tren, tranvía, vagón y locomotora."
+    "why": "Teleférico, tranvía, tren y locomotora."
   },
   "cuerpo_la_cara_1": {
     "kind": "cat",
@@ -1284,7 +1284,7 @@
       "la_nariz"
     ],
     "theme": "La cara",
-    "why": "Ojo, nariz, boca y oreja."
+    "why": "Ojo, boca, ceja y nariz."
   },
   "cuerpo_la_cara_2": {
     "kind": "cat",
@@ -1295,7 +1295,7 @@
       "la_oreja"
     ],
     "theme": "La cara",
-    "why": "Ojo, nariz, boca y oreja."
+    "why": "Ojo, ceja, nariz y oreja."
   },
   "cuerpo_extremidades_1": {
     "kind": "cat",
@@ -1306,7 +1306,7 @@
       "la_mano"
     ],
     "theme": "Extremidades",
-    "why": "Mano, pie, brazo y pierna."
+    "why": "Brazo, codo, pie y mano."
   },
   "cuerpo_extremidades_2": {
     "kind": "cat",
@@ -1317,7 +1317,7 @@
       "la_pierna"
     ],
     "theme": "Extremidades",
-    "why": "Mano, pie, brazo y pierna."
+    "why": "Codo, pie, mano y pierna."
   },
   "cuerpo_dedos_y_detalles_1": {
     "kind": "cat",
@@ -1328,7 +1328,7 @@
       "la_una"
     ],
     "theme": "Dedos y detalles",
-    "why": "Dedo, uña, rodilla y hombro."
+    "why": "Dedo, hombro, talón y uña."
   },
   "cuerpo_dedos_y_detalles_2": {
     "kind": "cat",
@@ -1339,7 +1339,7 @@
       "la_rodilla"
     ],
     "theme": "Dedos y detalles",
-    "why": "Dedo, uña, rodilla y hombro."
+    "why": "Dedo, hombro, talón y rodilla."
   },
   "cuerpo_cabeza_1": {
     "kind": "cat",
@@ -1350,7 +1350,7 @@
       "la_lengua"
     ],
     "theme": "Cabeza",
-    "why": "Diente, lengua, cabello y barba."
+    "why": "Bigote, diente, barba y lengua."
   },
   "cuerpo_cabeza_2": {
     "kind": "cat",
@@ -1361,7 +1361,7 @@
       "la_barba"
     ],
     "theme": "Cabeza",
-    "why": "Diente, lengua, cabello y barba."
+    "why": "Bigote, cabello, diente y barba."
   },
   "cuerpo_por_dentro_1": {
     "kind": "cat",
@@ -1372,7 +1372,7 @@
       "el_pulmon"
     ],
     "theme": "Por dentro",
-    "why": "Corazón, cerebro, hueso y pulmón."
+    "why": "Corazón, esqueleto, hueso y pulmón."
   },
   "cuerpo_por_dentro_2": {
     "kind": "cat",
@@ -1383,7 +1383,7 @@
       "el_pulmon"
     ],
     "theme": "Por dentro",
-    "why": "Corazón, cerebro, hueso y pulmón."
+    "why": "Cerebro, corazón, esqueleto y pulmón."
   },
   "clima_del_cielo_1": {
     "kind": "cat",
@@ -1394,7 +1394,7 @@
       "la_nube"
     ],
     "theme": "Del cielo",
-    "why": "Nube, rayo, arcoíris y remolino."
+    "why": "Arcoíris, remolino, tornado y nube."
   },
   "clima_del_cielo_2": {
     "kind": "cat",
@@ -1405,7 +1405,7 @@
       "la_nube"
     ],
     "theme": "Del cielo",
-    "why": "Nube, rayo, arcoíris y remolino."
+    "why": "Rayo, remolino, tornado y nube."
   },
   "clima_cae_del_cielo_1": {
     "kind": "cat",
@@ -1416,7 +1416,7 @@
       "la_nieve"
     ],
     "theme": "Cae del cielo",
-    "why": "Lluvia, nieve, granizo y rocío."
+    "why": "Granizo, rocío, escarcha y nieve."
   },
   "clima_cae_del_cielo_2": {
     "kind": "cat",
@@ -1427,7 +1427,7 @@
       "la_lluvia"
     ],
     "theme": "Cae del cielo",
-    "why": "Lluvia, nieve, granizo y rocío."
+    "why": "Granizo, rocío, escarcha y lluvia."
   },
   "clima_astros_1": {
     "kind": "cat",
@@ -1438,7 +1438,7 @@
       "la_luna"
     ],
     "theme": "Astros",
-    "why": "Sol, luna, estrella y cometa."
+    "why": "Cometa, planeta, estrella y luna."
   },
   "clima_astros_2": {
     "kind": "cat",
@@ -1449,7 +1449,7 @@
       "la_luna"
     ],
     "theme": "Astros",
-    "why": "Sol, luna, estrella y cometa."
+    "why": "Cometa, sol, estrella y luna."
   },
   "clima_espacio_1": {
     "kind": "cat",
@@ -1460,7 +1460,7 @@
       "saturno"
     ],
     "theme": "Espacio",
-    "why": "Satélite, galaxia, meteorito y saturno."
+    "why": "Meteorito, satélite, galaxia y saturno."
   },
   "clima_espacio_2": {
     "kind": "cat",
@@ -1471,7 +1471,7 @@
       "la_galaxia"
     ],
     "theme": "Espacio",
-    "why": "Satélite, galaxia, meteorito y saturno."
+    "why": "Astronauta, meteorito, satélite y galaxia."
   },
   "naturaleza_paisaje_1": {
     "kind": "cat",
@@ -1482,7 +1482,7 @@
       "la_montana"
     ],
     "theme": "Paisaje",
-    "why": "Montaña, volcán, río y cascada."
+    "why": "Río, volcán, cascada y montaña."
   },
   "naturaleza_paisaje_2": {
     "kind": "cat",
@@ -1493,7 +1493,7 @@
       "la_montana"
     ],
     "theme": "Paisaje",
-    "why": "Montaña, volcán, río y cascada."
+    "why": "Cañón, río, volcán y montaña."
   },
   "naturaleza_agua_y_tierra_1": {
     "kind": "cat",
@@ -1504,7 +1504,7 @@
       "la_playa"
     ],
     "theme": "Agua y tierra",
-    "why": "Lago, playa, isla y desierto."
+    "why": "Lago, cueva, isla y playa."
   },
   "naturaleza_agua_y_tierra_2": {
     "kind": "cat",
@@ -1515,7 +1515,7 @@
       "la_playa"
     ],
     "theme": "Agua y tierra",
-    "why": "Lago, playa, isla y desierto."
+    "why": "Desierto, lago, isla y playa."
   },
   "naturaleza_del_suelo_1": {
     "kind": "cat",
@@ -1526,7 +1526,7 @@
       "la_roca"
     ],
     "theme": "Del suelo",
-    "why": "Roca, piedra, arena y cristal."
+    "why": "Fósil, arena, piedra y roca."
   },
   "naturaleza_del_suelo_2": {
     "kind": "cat",
@@ -1537,7 +1537,7 @@
       "la_roca"
     ],
     "theme": "Del suelo",
-    "why": "Roca, piedra, arena y cristal."
+    "why": "Cristal, fósil, piedra y roca."
   },
   "naturaleza_elementos_1": {
     "kind": "cat",
@@ -1548,7 +1548,7 @@
       "el_humo"
     ],
     "theme": "Elementos",
-    "why": "Fuego, agua, viento y hielo."
+    "why": "Agua, fuego, hielo y humo."
   },
   "naturaleza_elementos_2": {
     "kind": "cat",
@@ -1559,7 +1559,7 @@
       "el_viento"
     ],
     "theme": "Elementos",
-    "why": "Fuego, agua, viento y hielo."
+    "why": "Agua, fuego, humo y viento."
   },
   "plantas_flores_1": {
     "kind": "cat",
@@ -1570,7 +1570,7 @@
       "la_rosa"
     ],
     "theme": "Flores",
-    "why": "Rosa, girasol, tulipán y margarita."
+    "why": "Girasol, margarita, orquídea y rosa."
   },
   "plantas_flores_2": {
     "kind": "cat",
@@ -1581,7 +1581,7 @@
       "la_rosa"
     ],
     "theme": "Flores",
-    "why": "Rosa, girasol, tulipán y margarita."
+    "why": "Girasol, tulipán, margarita y rosa."
   },
   "plantas_de_maceta_1": {
     "kind": "cat",
@@ -1592,7 +1592,7 @@
       "la_suculenta"
     ],
     "theme": "De maceta",
-    "why": "Cactus, nopal, helecho y bonsái."
+    "why": "Bonsái, cactus, helecho y suculenta."
   },
   "plantas_de_maceta_2": {
     "kind": "cat",
@@ -1603,7 +1603,7 @@
       "la_suculenta"
     ],
     "theme": "De maceta",
-    "why": "Cactus, nopal, helecho y bonsái."
+    "why": "Cactus, helecho, nopal y suculenta."
   },
   "plantas_partes_de_la_planta_1": {
     "kind": "cat",
@@ -1614,7 +1614,7 @@
       "la_raiz"
     ],
     "theme": "Partes de la planta",
-    "why": "Hoja, semilla, raíz y capullo."
+    "why": "Capullo, pétalo, hoja y raíz."
   },
   "plantas_partes_de_la_planta_2": {
     "kind": "cat",
@@ -1625,7 +1625,7 @@
       "la_semilla"
     ],
     "theme": "Partes de la planta",
-    "why": "Hoja, semilla, raíz y capullo."
+    "why": "Pétalo, hoja, raíz y semilla."
   },
   "arboles_arboles_1": {
     "kind": "cat",
@@ -1636,7 +1636,7 @@
       "la_palmera"
     ],
     "theme": "Árboles",
-    "why": "Pino, palmera, roble y sauce."
+    "why": "Ciprés, roble, sauce y palmera."
   },
   "arboles_arboles_2": {
     "kind": "cat",
@@ -1647,7 +1647,7 @@
       "la_palmera"
     ],
     "theme": "Árboles",
-    "why": "Pino, palmera, roble y sauce."
+    "why": "Pino, roble, sauce y palmera."
   },
   "arboles_dan_fruto_1": {
     "kind": "cat",
@@ -1658,7 +1658,7 @@
       "el_tronco"
     ],
     "theme": "Dan fruto",
-    "why": "Manzano, naranjo, olivo y bambú."
+    "why": "Bambú, naranjo, olivo y tronco."
   },
   "arboles_dan_fruto_2": {
     "kind": "cat",
@@ -1669,7 +1669,7 @@
       "el_tronco"
     ],
     "theme": "Dan fruto",
-    "why": "Manzano, naranjo, olivo y bambú."
+    "why": "Bambú, manzano, naranjo y tronco."
   },
   "cocina_utensilios_1": {
     "kind": "cat",
@@ -1680,7 +1680,7 @@
       "la_taza"
     ],
     "theme": "Utensilios",
-    "why": "Cuchara, tenedor, plato y taza."
+    "why": "Plato, tenedor, cuchara y taza."
   },
   "cocina_utensilios_2": {
     "kind": "cat",
@@ -1691,7 +1691,7 @@
       "la_taza"
     ],
     "theme": "Utensilios",
-    "why": "Cuchara, tenedor, plato y taza."
+    "why": "Plato, tenedor, vaso y taza."
   },
   "cocina_para_cocinar_1": {
     "kind": "cat",
@@ -1702,7 +1702,7 @@
       "la_olla"
     ],
     "theme": "Para cocinar",
-    "why": "Olla, sartén, cazo y comal."
+    "why": "Cazo, comal, sartén y olla."
   },
   "cocina_para_cocinar_2": {
     "kind": "cat",
@@ -1713,7 +1713,7 @@
       "la_olla"
     ],
     "theme": "Para cocinar",
-    "why": "Olla, sartén, cazo y comal."
+    "why": "Comal, sartén, cacerola y olla."
   },
   "cocina_electrodomesticos_1": {
     "kind": "cat",
@@ -1724,7 +1724,7 @@
       "la_licuadora"
     ],
     "theme": "Electrodomésticos",
-    "why": "Licuadora, tostador, batidora y horno."
+    "why": "Microondas, tostador, batidora y licuadora."
   },
   "cocina_electrodomesticos_2": {
     "kind": "cat",
@@ -1735,7 +1735,7 @@
       "la_licuadora"
     ],
     "theme": "Electrodomésticos",
-    "why": "Licuadora, tostador, batidora y horno."
+    "why": "Horno, tostador, batidora y licuadora."
   },
   "cocina_guardan_1": {
     "kind": "cat",
@@ -1746,7 +1746,7 @@
       "la_jarra"
     ],
     "theme": "Guardan",
-    "why": "Botella, jarra, frasco y lata."
+    "why": "Frasco, termo, botella y jarra."
   },
   "cocina_guardan_2": {
     "kind": "cat",
@@ -1757,7 +1757,7 @@
       "la_lata"
     ],
     "theme": "Guardan",
-    "why": "Botella, jarra, frasco y lata."
+    "why": "Frasco, termo, botella y lata."
   },
   "comida_antojitos_1": {
     "kind": "cat",
@@ -1768,7 +1768,7 @@
       "la_tortilla"
     ],
     "theme": "Antojitos",
-    "why": "Taco, tamal, quesadilla y tortilla."
+    "why": "Taco, tamal, enchilada y tortilla."
   },
   "comida_antojitos_2": {
     "kind": "cat",
@@ -1779,7 +1779,7 @@
       "la_tortilla"
     ],
     "theme": "Antojitos",
-    "why": "Taco, tamal, quesadilla y tortilla."
+    "why": "Taco, enchilada, quesadilla y tortilla."
   },
   "comida_panaderia_1": {
     "kind": "cat",
@@ -1790,7 +1790,7 @@
       "la_baguette"
     ],
     "theme": "Panadería",
-    "why": "Pan, bolillo, concha y baguette."
+    "why": "Bolillo, croissant, pan y baguette."
   },
   "comida_panaderia_2": {
     "kind": "cat",
@@ -1801,7 +1801,7 @@
       "la_concha"
     ],
     "theme": "Panadería",
-    "why": "Pan, bolillo, concha y baguette."
+    "why": "Bolillo, pan, baguette y concha."
   },
   "comida_del_desayuno_1": {
     "kind": "cat",
@@ -1812,7 +1812,7 @@
       "el_waffle"
     ],
     "theme": "Del desayuno",
-    "why": "Huevo, tocino, hotcake y cereal."
+    "why": "Cereal, hotcake, huevo y waffle."
   },
   "comida_del_desayuno_2": {
     "kind": "cat",
@@ -1823,7 +1823,7 @@
       "el_waffle"
     ],
     "theme": "Del desayuno",
-    "why": "Huevo, tocino, hotcake y cereal."
+    "why": "Hotcake, huevo, tocino y waffle."
   },
   "comida_lacteos_1": {
     "kind": "cat",
@@ -1834,7 +1834,7 @@
       "la_leche"
     ],
     "theme": "Lácteos",
-    "why": "Queso, mantequilla, yogur y crema."
+    "why": "Queso, yogur, crema y leche."
   },
   "comida_lacteos_2": {
     "kind": "cat",
@@ -1845,7 +1845,7 @@
       "la_mantequilla"
     ],
     "theme": "Lácteos",
-    "why": "Queso, mantequilla, yogur y crema."
+    "why": "Queso, yogur, crema y mantequilla."
   },
   "comida_rapida_1": {
     "kind": "cat",
@@ -1856,7 +1856,7 @@
       "las_papas_fritas"
     ],
     "theme": "Rápida",
-    "why": "Hamburguesa, pizza, hot dog y papas."
+    "why": "Hot dog, sándwich, pizza y papas fritas."
   },
   "comida_rapida_2": {
     "kind": "cat",
@@ -1867,7 +1867,7 @@
       "la_pizza"
     ],
     "theme": "Rápida",
-    "why": "Hamburguesa, pizza, hot dog y papas."
+    "why": "Hot dog, sándwich, hamburguesa y pizza."
   },
   "bebidas_calientes_1": {
     "kind": "cat",
@@ -1878,7 +1878,7 @@
       "el_te"
     ],
     "theme": "Calientes",
-    "why": "Café, té, chocolate y atole."
+    "why": "Atole, chocolate caliente, ponche y té."
   },
   "bebidas_calientes_2": {
     "kind": "cat",
@@ -1889,7 +1889,7 @@
       "el_ponche"
     ],
     "theme": "Calientes",
-    "why": "Café, té, chocolate y atole."
+    "why": "Atole, café, chocolate caliente y ponche."
   },
   "bebidas_frias_1": {
     "kind": "cat",
@@ -1900,7 +1900,7 @@
       "el_refresco"
     ],
     "theme": "Frías",
-    "why": "Refresco, jugo, agua fresca y licuado."
+    "why": "Agua fresca, jugo, licuado y refresco."
   },
   "bebidas_frias_2": {
     "kind": "cat",
@@ -1911,7 +1911,7 @@
       "la_limonada"
     ],
     "theme": "Frías",
-    "why": "Refresco, jugo, agua fresca y licuado."
+    "why": "Agua fresca, jugo, refresco y limonada."
   },
   "postres_dulces_1": {
     "kind": "cat",
@@ -1922,7 +1922,7 @@
       "la_galleta"
     ],
     "theme": "Dulces",
-    "why": "Pastel, helado, dona y galleta."
+    "why": "Helado, pastel, dona y galleta."
   },
   "postres_dulces_2": {
     "kind": "cat",
@@ -1933,7 +1933,7 @@
       "la_galleta"
     ],
     "theme": "Dulces",
-    "why": "Pastel, helado, dona y galleta."
+    "why": "Cupcake, helado, dona y galleta."
   },
   "postres_golosinas_1": {
     "kind": "cat",
@@ -1944,7 +1944,7 @@
       "la_paleta"
     ],
     "theme": "Golosinas",
-    "why": "Paleta, chicle, caramelo y flan."
+    "why": "Caramelo, chicle, chocolate y paleta."
   },
   "postres_golosinas_2": {
     "kind": "cat",
@@ -1955,7 +1955,7 @@
       "el_flan"
     ],
     "theme": "Golosinas",
-    "why": "Paleta, chicle, caramelo y flan."
+    "why": "Caramelo, chicle, chocolate y flan."
   },
   "muebles_para_sentarse_1": {
     "kind": "cat",
@@ -1966,7 +1966,7 @@
       "la_silla"
     ],
     "theme": "Para sentarse",
-    "why": "Silla, sillón, banco y sofá."
+    "why": "Banco, sillón, mecedora y silla."
   },
   "muebles_para_sentarse_2": {
     "kind": "cat",
@@ -1977,7 +1977,7 @@
       "la_silla"
     ],
     "theme": "Para sentarse",
-    "why": "Silla, sillón, banco y sofá."
+    "why": "Sillón, sofá, mecedora y silla."
   },
   "muebles_superficies_1": {
     "kind": "cat",
@@ -1988,7 +1988,7 @@
       "la_mesa"
     ],
     "theme": "Superficies",
-    "why": "Mesa, escritorio, repisa y buró."
+    "why": "Buró, escritorio, ropero y mesa."
   },
   "muebles_superficies_2": {
     "kind": "cat",
@@ -1999,7 +1999,7 @@
       "la_repisa"
     ],
     "theme": "Superficies",
-    "why": "Mesa, escritorio, repisa y buró."
+    "why": "Buró, escritorio, mesa y repisa."
   },
   "muebles_para_dormir_1": {
     "kind": "cat",
@@ -2010,7 +2010,7 @@
       "la_cuna"
     ],
     "theme": "Para dormir",
-    "why": "Cama, cuna, litera y colchón."
+    "why": "Colchón, almohada, cama y cuna."
   },
   "muebles_para_dormir_2": {
     "kind": "cat",
@@ -2021,7 +2021,7 @@
       "la_litera"
     ],
     "theme": "Para dormir",
-    "why": "Cama, cuna, litera y colchón."
+    "why": "Almohada, cama, cuna y litera."
   },
   "hogar_dan_luz_1": {
     "kind": "cat",
@@ -2032,7 +2032,7 @@
       "la_linterna"
     ],
     "theme": "Dan luz",
-    "why": "Lámpara, vela, foco y linterna."
+    "why": "Farol, foco, lámpara y linterna."
   },
   "hogar_dan_luz_2": {
     "kind": "cat",
@@ -2043,7 +2043,7 @@
       "la_vela"
     ],
     "theme": "Dan luz",
-    "why": "Lámpara, vela, foco y linterna."
+    "why": "Farol, foco, lámpara y vela."
   },
   "hogar_en_la_pared_1": {
     "kind": "cat",
@@ -2054,7 +2054,7 @@
       "la_ventana"
     ],
     "theme": "En la pared",
-    "why": "Reloj, cuadro, espejo y ventana."
+    "why": "Espejo, reloj de pared, puerta y ventana."
   },
   "hogar_en_la_pared_2": {
     "kind": "cat",
@@ -2065,7 +2065,7 @@
       "la_ventana"
     ],
     "theme": "En la pared",
-    "why": "Reloj, cuadro, espejo y ventana."
+    "why": "Cuadro, reloj de pared, puerta y ventana."
   },
   "hogar_de_limpieza_1": {
     "kind": "cat",
@@ -2076,7 +2076,7 @@
       "la_cubeta"
     ],
     "theme": "De limpieza",
-    "why": "Escoba, trapeador, cubeta y jabón."
+    "why": "Jabón, trapeador, aspiradora y cubeta."
   },
   "hogar_de_limpieza_2": {
     "kind": "cat",
@@ -2087,7 +2087,7 @@
       "la_escoba"
     ],
     "theme": "De limpieza",
-    "why": "Escoba, trapeador, cubeta y jabón."
+    "why": "Jabón, trapeador, cubeta y escoba."
   },
   "hogar_llaves_y_candados_1": {
     "kind": "cat",
@@ -2098,7 +2098,7 @@
       "la_cerradura"
     ],
     "theme": "Llaves y candados",
-    "why": "Llave, candado, cerradura y cadena."
+    "why": "Candado, cerrojo, cadena y cerradura."
   },
   "hogar_llaves_y_candados_2": {
     "kind": "cat",
@@ -2109,7 +2109,7 @@
       "la_llave"
     ],
     "theme": "Llaves y candados",
-    "why": "Llave, candado, cerradura y cadena."
+    "why": "Candado, cadena, cerradura y llave."
   },
   "bano_del_bano_1": {
     "kind": "cat",
@@ -2120,7 +2120,7 @@
       "la_toalla"
     ],
     "theme": "Del baño",
-    "why": "Cepillo, peine, toalla y regadera."
+    "why": "Cepillo, peine, regadera de baño y toalla."
   },
   "bano_del_bano_2": {
     "kind": "cat",
@@ -2131,7 +2131,7 @@
       "la_tina"
     ],
     "theme": "Del baño",
-    "why": "Cepillo, peine, toalla y regadera."
+    "why": "Cepillo, peine, regadera de baño y tina."
   },
   "bano_aseo_1": {
     "kind": "cat",
@@ -2142,7 +2142,7 @@
       "las_tijeras_de_unas"
     ],
     "theme": "Aseo",
-    "why": "Tijeras, rastrillo, perfume y esponja."
+    "why": "Perfume, rastrillo de afeitar, esponja y tijeras de uñas."
   },
   "bano_aseo_2": {
     "kind": "cat",
@@ -2164,7 +2164,7 @@
       "la_enfermera"
     ],
     "theme": "Oficios de la ciudad",
-    "why": "Doctor, policía, bombero y cartero."
+    "why": "Bombero, doctor, policía y enfermera."
   },
   "oficios_oficios_de_la_ciudad_2": {
     "kind": "cat",
@@ -2175,7 +2175,7 @@
       "la_enfermera"
     ],
     "theme": "Oficios de la ciudad",
-    "why": "Doctor, policía, bombero y cartero."
+    "why": "Bombero, cartero, policía y enfermera."
   },
   "oficios_con_las_manos_1": {
     "kind": "cat",
@@ -2186,7 +2186,7 @@
       "el_zapatero"
     ],
     "theme": "Con las manos",
-    "why": "Carpintero, herrero, albañil y sastre."
+    "why": "Albañil, carpintero, herrero y zapatero."
   },
   "oficios_con_las_manos_2": {
     "kind": "cat",
@@ -2197,7 +2197,7 @@
       "el_sastre"
     ],
     "theme": "Con las manos",
-    "why": "Carpintero, herrero, albañil y sastre."
+    "why": "Albañil, carpintero, herrero y sastre."
   },
   "oficios_del_campo_y_mar_1": {
     "kind": "cat",
@@ -2208,7 +2208,7 @@
       "el_pescador"
     ],
     "theme": "Del campo y mar",
-    "why": "Campesino, pescador, vaquero y jardinero."
+    "why": "Campesino, jardinero, pastor y pescador."
   },
   "oficios_del_campo_y_mar_2": {
     "kind": "cat",
@@ -2219,7 +2219,7 @@
       "el_vaquero"
     ],
     "theme": "Del campo y mar",
-    "why": "Campesino, pescador, vaquero y jardinero."
+    "why": "Campesino, jardinero, pescador y vaquero."
   },
   "oficios_de_arte_y_ciencia_1": {
     "kind": "cat",
@@ -2230,7 +2230,7 @@
       "el_pintor"
     ],
     "theme": "De arte y ciencia",
-    "why": "Pintor, músico, chef y científico."
+    "why": "Científico, músico, payaso y pintor."
   },
   "oficios_de_arte_y_ciencia_2": {
     "kind": "cat",
@@ -2241,7 +2241,7 @@
       "el_pintor"
     ],
     "theme": "De arte y ciencia",
-    "why": "Pintor, músico, chef y científico."
+    "why": "Chef, científico, músico y pintor."
   },
   "oficios_uniformados_1": {
     "kind": "cat",
@@ -2252,7 +2252,7 @@
       "el_soldado"
     ],
     "theme": "Uniformados",
-    "why": "Piloto, marinero, soldado y juez."
+    "why": "Capitán, juez, piloto y soldado."
   },
   "oficios_uniformados_2": {
     "kind": "cat",
@@ -2263,7 +2263,7 @@
       "el_piloto"
     ],
     "theme": "Uniformados",
-    "why": "Piloto, marinero, soldado y juez."
+    "why": "Capitán, juez, marinero y piloto."
   },
   "deportes_de_pelota_1": {
     "kind": "cat",
@@ -2296,7 +2296,7 @@
       "la_porteria"
     ],
     "theme": "Equipo",
-    "why": "Raqueta, bate, guante y casco."
+    "why": "Bate, casco, guante de béisbol y portería."
   },
   "deportes_equipo_2": {
     "kind": "cat",
@@ -2307,7 +2307,7 @@
       "la_raqueta"
     ],
     "theme": "Equipo",
-    "why": "Raqueta, bate, guante y casco."
+    "why": "Bate, guante de béisbol, portería y raqueta."
   },
   "deportes_en_movimiento_1": {
     "kind": "cat",
@@ -2318,7 +2318,7 @@
       "los_patines"
     ],
     "theme": "En movimiento",
-    "why": "Patineta, patines, esquí y tabla."
+    "why": "Esquí, trineo, tabla de surf y patines."
   },
   "deportes_en_movimiento_2": {
     "kind": "cat",
@@ -2329,7 +2329,7 @@
       "los_patines"
     ],
     "theme": "En movimiento",
-    "why": "Patineta, patines, esquí y tabla."
+    "why": "Esquí, patineta, tabla de surf y patines."
   },
   "deportes_premios_1": {
     "kind": "cat",
@@ -2340,7 +2340,7 @@
       "la_medalla"
     ],
     "theme": "Premios",
-    "why": "Trofeo, medalla, copa y listón."
+    "why": "Listón, trofeo, copa y medalla."
   },
   "deportes_premios_2": {
     "kind": "cat",
@@ -2351,7 +2351,7 @@
       "la_medalla"
     ],
     "theme": "Premios",
-    "why": "Trofeo, medalla, copa y listón."
+    "why": "Trofeo, bandera de meta, copa y medalla."
   },
   "juguetes_clasicos_1": {
     "kind": "cat",
@@ -2362,7 +2362,7 @@
       "la_muneca"
     ],
     "theme": "Clásicos",
-    "why": "Pelota, muñeca, oso y trompo."
+    "why": "Osito, trompo, canica y muñeca."
   },
   "juguetes_clasicos_2": {
     "kind": "cat",
@@ -2384,7 +2384,7 @@
       "los_bloques"
     ],
     "theme": "De armar y rodar",
-    "why": "Bloques, cometa, carrito y globo."
+    "why": "Carrito, papalote, rompecabezas y bloques."
   },
   "juguetes_de_armar_y_rodar_2": {
     "kind": "cat",
@@ -2395,7 +2395,7 @@
       "el_rompecabezas"
     ],
     "theme": "De armar y rodar",
-    "why": "Bloques, cometa, carrito y globo."
+    "why": "Carrito, globo, papalote y rompecabezas."
   },
   "juguetes_juguetes_de_feria_1": {
     "kind": "cat",
@@ -2406,7 +2406,7 @@
       "el_silbato"
     ],
     "theme": "Juguetes de feria",
-    "why": "Dado, naipe, tambora y silbato."
+    "why": "Balero, dado, naipe y silbato."
   },
   "juguetes_juguetes_de_feria_2": {
     "kind": "cat",
@@ -2417,7 +2417,7 @@
       "la_matraca"
     ],
     "theme": "Juguetes de feria",
-    "why": "Dado, naipe, tambora y silbato."
+    "why": "Balero, dado, silbato y matraca."
   },
   "escuela_para_escribir_1": {
     "kind": "cat",
@@ -2428,7 +2428,7 @@
       "la_pluma"
     ],
     "theme": "Para escribir",
-    "why": "Lápiz, pluma, crayón y goma."
+    "why": "Lápiz, marcador, goma y pluma."
   },
   "escuela_para_escribir_2": {
     "kind": "cat",
@@ -2439,7 +2439,7 @@
       "la_pluma"
     ],
     "theme": "Para escribir",
-    "why": "Lápiz, pluma, crayón y goma."
+    "why": "Crayón, lápiz, marcador y pluma."
   },
   "escuela_en_el_pupitre_1": {
     "kind": "cat",
@@ -2450,7 +2450,7 @@
       "las_tijeras_escolares"
     ],
     "theme": "En el pupitre",
-    "why": "Libro, cuaderno, regla y tijeras."
+    "why": "Cuaderno, libro, sacapuntas y tijeras escolares."
   },
   "escuela_en_el_pupitre_2": {
     "kind": "cat",
@@ -2461,7 +2461,7 @@
       "las_tijeras_escolares"
     ],
     "theme": "En el pupitre",
-    "why": "Libro, cuaderno, regla y tijeras."
+    "why": "Libro, sacapuntas, regla y tijeras escolares."
   },
   "escuela_en_el_salon_1": {
     "kind": "cat",
@@ -2472,7 +2472,7 @@
       "la_mochila_escolar"
     ],
     "theme": "En el salón",
-    "why": "Pizarrón, globo terráqueo, mapa y mochila."
+    "why": "Mapa, pizarrón, campana escolar y mochila escolar."
   },
   "escuela_en_el_salon_2": {
     "kind": "cat",
@@ -2483,7 +2483,7 @@
       "la_mochila_escolar"
     ],
     "theme": "En el salón",
-    "why": "Pizarrón, globo terráqueo, mapa y mochila."
+    "why": "Globo terráqueo, mapa, pizarrón y mochila escolar."
   },
   "tecnologia_pantallas_1": {
     "kind": "cat",
@@ -2494,7 +2494,7 @@
       "la_television"
     ],
     "theme": "Pantallas",
-    "why": "Celular, computadora, tableta y tele."
+    "why": "Celular, monitor, tableta y televisión."
   },
   "tecnologia_pantallas_2": {
     "kind": "cat",
@@ -2505,7 +2505,7 @@
       "la_television"
     ],
     "theme": "Pantallas",
-    "why": "Celular, computadora, tableta y tele."
+    "why": "Monitor, computadora, tableta y televisión."
   },
   "tecnologia_aparatos_1": {
     "kind": "cat",
@@ -2516,7 +2516,7 @@
       "los_audifonos"
     ],
     "theme": "Aparatos",
-    "why": "Cámara, audífonos, bocina y control."
+    "why": "Control remoto, micrófono, bocina y audífonos."
   },
   "tecnologia_aparatos_2": {
     "kind": "cat",
@@ -2527,7 +2527,7 @@
       "los_audifonos"
     ],
     "theme": "Aparatos",
-    "why": "Cámara, audífonos, bocina y control."
+    "why": "Control remoto, micrófono, cámara y audífonos."
   },
   "tecnologia_conectar_1": {
     "kind": "cat",
@@ -2538,7 +2538,7 @@
       "la_pila"
     ],
     "theme": "Conectar",
-    "why": "Enchufe, pila, foco LED y cable."
+    "why": "Cable, cargador, robot y pila."
   },
   "tecnologia_conectar_2": {
     "kind": "cat",
@@ -2549,7 +2549,7 @@
       "la_pila"
     ],
     "theme": "Conectar",
-    "why": "Enchufe, pila, foco LED y cable."
+    "why": "Cable, cargador, enchufe y pila."
   },
   "oficina_papeleo_1": {
     "kind": "cat",
@@ -2560,7 +2560,7 @@
       "la_engrapadora"
     ],
     "theme": "Papeleo",
-    "why": "Grapadora, clip, sobre y carpeta."
+    "why": "Clip, sobre, carpeta y engrapadora."
   },
   "oficina_papeleo_2": {
     "kind": "cat",
@@ -2571,7 +2571,7 @@
       "la_engrapadora"
     ],
     "theme": "Papeleo",
-    "why": "Grapadora, clip, sobre y carpeta."
+    "why": "Calendario, clip, carpeta y engrapadora."
   },
   "oficina_de_escritorio_1": {
     "kind": "cat",
@@ -2582,7 +2582,7 @@
       "la_lupa"
     ],
     "theme": "De escritorio",
-    "why": "Teléfono, sello, calculadora y lupa."
+    "why": "Sello, teléfono, calculadora y lupa."
   },
   "oficina_de_escritorio_2": {
     "kind": "cat",
@@ -2593,7 +2593,7 @@
       "la_calculadora"
     ],
     "theme": "De escritorio",
-    "why": "Teléfono, sello, calculadora y lupa."
+    "why": "Portarretratos, sello, teléfono y calculadora."
   },
   "simbolos_formas_1": {
     "kind": "cat",
@@ -2604,7 +2604,7 @@
       "el_triangulo"
     ],
     "theme": "Formas",
-    "why": "Círculo, cuadrado, triángulo y estrella."
+    "why": "Círculo, cuadrado, rombo y triángulo."
   },
   "simbolos_formas_2": {
     "kind": "cat",
@@ -2615,7 +2615,7 @@
       "la_estrella"
     ],
     "theme": "Formas",
-    "why": "Círculo, cuadrado, triángulo y estrella."
+    "why": "Círculo, cuadrado, rombo y estrella."
   },
   "simbolos_signos_1": {
     "kind": "cat",
@@ -2626,7 +2626,7 @@
       "la_flecha"
     ],
     "theme": "Signos",
-    "why": "Corazón, flecha, cruz y llave musical."
+    "why": "Corazón, signo de interrogación, cruz y flecha."
   },
   "simbolos_signos_2": {
     "kind": "cat",
@@ -2637,7 +2637,7 @@
       "la_llave_musical"
     ],
     "theme": "Signos",
-    "why": "Corazón, flecha, cruz y llave musical."
+    "why": "Signo de interrogación, cruz, flecha y llave musical."
   },
   "edificios_edificios_de_la_ciudad_1": {
     "kind": "cat",
@@ -2648,7 +2648,7 @@
       "la_iglesia"
     ],
     "theme": "Edificios de la ciudad",
-    "why": "Casa, iglesia, castillo y rascacielos."
+    "why": "Faro, rascacielos, casa y iglesia."
   },
   "edificios_edificios_de_la_ciudad_2": {
     "kind": "cat",
@@ -2659,7 +2659,7 @@
       "la_iglesia"
     ],
     "theme": "Edificios de la ciudad",
-    "why": "Casa, iglesia, castillo y rascacielos."
+    "why": "Castillo, faro, rascacielos y iglesia."
   },
   "edificios_lugares_1": {
     "kind": "cat",
@@ -2670,7 +2670,7 @@
       "la_escuela"
     ],
     "theme": "Lugares",
-    "why": "Escuela, hospital, tienda y granero."
+    "why": "Granero, hospital, molino y escuela."
   },
   "edificios_lugares_2": {
     "kind": "cat",
@@ -2681,7 +2681,7 @@
       "la_tienda"
     ],
     "theme": "Lugares",
-    "why": "Escuela, hospital, tienda y granero."
+    "why": "Granero, molino, escuela y tienda."
   },
   "edificios_estructuras_1": {
     "kind": "cat",
@@ -2692,7 +2692,7 @@
       "la_piramide"
     ],
     "theme": "Estructuras",
-    "why": "Puente, torre, pirámide y carpa."
+    "why": "Puente, carpa, fuente y pirámide."
   },
   "edificios_estructuras_2": {
     "kind": "cat",
@@ -2703,7 +2703,7 @@
       "la_torre"
     ],
     "theme": "Estructuras",
-    "why": "Puente, torre, pirámide y carpa."
+    "why": "Puente, fuente, pirámide y torre."
   },
   "tesoro_riqueza_1": {
     "kind": "cat",
@@ -2714,7 +2714,7 @@
       "la_corona"
     ],
     "theme": "Riqueza",
-    "why": "Corona, moneda, diamante y cofre."
+    "why": "Cofre, diamante, lingote y corona."
   },
   "tesoro_riqueza_2": {
     "kind": "cat",
@@ -2725,7 +2725,7 @@
       "la_moneda"
     ],
     "theme": "Riqueza",
-    "why": "Corona, moneda, diamante y cofre."
+    "why": "Cofre, lingote, corona y moneda."
   },
   "tesoro_piedras_1": {
     "kind": "cat",
@@ -2736,7 +2736,7 @@
       "la_perla"
     ],
     "theme": "Piedras",
-    "why": "Rubí, esmeralda, perla y anillo."
+    "why": "Zafiro, esmeralda, gema y perla."
   },
   "tesoro_piedras_2": {
     "kind": "cat",
@@ -2747,7 +2747,7 @@
       "la_perla"
     ],
     "theme": "Piedras",
-    "why": "Rubí, esmeralda, perla y anillo."
+    "why": "Rubí, zafiro, esmeralda y perla."
   },
   "fiesta_celebracion_1": {
     "kind": "cat",
@@ -2758,7 +2758,7 @@
       "la_serpentina"
     ],
     "theme": "Celebración",
-    "why": "Piñata, pastel, regalo y confeti."
+    "why": "Confeti, pastel de fiesta, regalo y serpentina."
   },
   "fiesta_celebracion_2": {
     "kind": "cat",
@@ -2769,7 +2769,7 @@
       "la_pinata"
     ],
     "theme": "Celebración",
-    "why": "Piñata, pastel, regalo y confeti."
+    "why": "Confeti, pastel de fiesta, regalo y piñata."
   },
   "fiesta_luces_y_ruido_1": {
     "kind": "cat",
@@ -2780,7 +2780,7 @@
       "la_velita"
     ],
     "theme": "Luces y ruido",
-    "why": "Cohete, vela, campana y máscara."
+    "why": "Cohete de fiesta, campana, máscara y velita."
   },
   "fiesta_luces_y_ruido_2": {
     "kind": "cat",
@@ -2791,7 +2791,7 @@
       "la_velita"
     ],
     "theme": "Luces y ruido",
-    "why": "Cohete, vela, campana y máscara."
+    "why": "Farolito, campana, máscara y velita."
   },
   "fiesta_dia_de_muertos_1": {
     "kind": "cat",
@@ -2802,7 +2802,7 @@
       "la_veladora"
     ],
     "theme": "Día de muertos",
-    "why": "Calavera, catrina, cempasúchil y veladora."
+    "why": "Cempasúchil, calavera, catrina y veladora."
   },
   "fiesta_dia_de_muertos_2": {
     "kind": "cat",
@@ -2813,7 +2813,7 @@
       "la_catrina"
     ],
     "theme": "Día de muertos",
-    "why": "Calavera, catrina, cempasúchil y veladora."
+    "why": "Cempasúchil, papel picado, calavera y catrina."
   },
   "mito_criaturas_1": {
     "kind": "cat",
@@ -2824,7 +2824,7 @@
       "la_sirena"
     ],
     "theme": "Criaturas",
-    "why": "Dragón, unicornio, sirena y fénix."
+    "why": "Dragón, grifo, unicornio y sirena."
   },
   "mito_criaturas_2": {
     "kind": "cat",
@@ -2835,7 +2835,7 @@
       "la_sirena"
     ],
     "theme": "Criaturas",
-    "why": "Dragón, unicornio, sirena y fénix."
+    "why": "Dragón, fénix, grifo y sirena."
   },
   "mito_fantasmales_1": {
     "kind": "cat",
@@ -2846,7 +2846,7 @@
       "la_bruja"
     ],
     "theme": "Fantasmales",
-    "why": "Fantasma, bruja, vampiro y momia."
+    "why": "Esqueleto de fiesta, fantasma, vampiro y bruja."
   },
   "mito_fantasmales_2": {
     "kind": "cat",
@@ -2857,7 +2857,7 @@
       "la_momia"
     ],
     "theme": "Fantasmales",
-    "why": "Fantasma, bruja, vampiro y momia."
+    "why": "Esqueleto de fiesta, fantasma, vampiro y momia."
   },
   "mito_del_cielo_y_mar_1": {
     "kind": "cat",
@@ -2868,7 +2868,7 @@
       "el_ogro"
     ],
     "theme": "Del cielo y mar",
-    "why": "Ángel, hada, duende y kraken."
+    "why": "Ángel, diablito, hada y ogro."
   },
   "mito_del_cielo_y_mar_2": {
     "kind": "cat",
@@ -2879,7 +2879,7 @@
       "el_hada"
     ],
     "theme": "Del cielo y mar",
-    "why": "Ángel, hada, duende y kraken."
+    "why": "Ángel, diablito, duende y hada."
   },
   "historico_de_combate_1": {
     "kind": "cat",
@@ -2890,7 +2890,7 @@
       "la_lanza"
     ],
     "theme": "De combate",
-    "why": "Espada, escudo, arco y lanza."
+    "why": "Casco de guerra, escudo, espada y lanza."
   },
   "historico_de_combate_2": {
     "kind": "cat",
@@ -2901,7 +2901,7 @@
       "la_lanza"
     ],
     "theme": "De combate",
-    "why": "Espada, escudo, arco y lanza."
+    "why": "Arco, casco de guerra, espada y lanza."
   },
   "historico_del_pasado_1": {
     "kind": "cat",
@@ -2912,7 +2912,7 @@
       "el_timon"
     ],
     "theme": "Del pasado",
-    "why": "Ancla, brújula, catalejo y timón."
+    "why": "Ancla, catalejo, mapa del tesoro y timón."
   },
   "historico_del_pasado_2": {
     "kind": "cat",
@@ -2923,7 +2923,7 @@
       "la_brujula"
     ],
     "theme": "Del pasado",
-    "why": "Ancla, brújula, catalejo y timón."
+    "why": "Ancla, catalejo, mapa del tesoro y brújula."
   },
   "historico_antiguos_1": {
     "kind": "cat",
@@ -2934,7 +2934,7 @@
       "la_vasija"
     ],
     "theme": "Antiguos",
-    "why": "Antorcha, pergamino, ánfora y reloj de arena."
+    "why": "Ánfora, reloj de arena, antorcha y vasija."
   },
   "historico_antiguos_2": {
     "kind": "cat",
@@ -2945,7 +2945,7 @@
       "la_antorcha"
     ],
     "theme": "Antiguos",
-    "why": "Antorcha, pergamino, ánfora y reloj de arena."
+    "why": "Ánfora, pergamino, reloj de arena y antorcha."
   },
   "frutas2_bayas_1": {
     "kind": "cat",
@@ -2956,7 +2956,7 @@
       "la_zarzamora"
     ],
     "theme": "Bayas",
-    "why": "Arándano, grosella, zarzamora y capulín."
+    "why": "Capulín, grosella, uva pasa y zarzamora."
   },
   "frutas2_bayas_2": {
     "kind": "cat",
@@ -2967,7 +2967,7 @@
       "la_zarzamora"
     ],
     "theme": "Bayas",
-    "why": "Arándano, grosella, zarzamora y capulín."
+    "why": "Arándano, capulín, uva pasa y zarzamora."
   },
   "frutas2_exoticas_1": {
     "kind": "cat",
@@ -2978,7 +2978,7 @@
       "la_pitaya"
     ],
     "theme": "Exóticas",
-    "why": "Lichi, carambola, guanábana y tamarindo."
+    "why": "Tamarindo, carambola, guanábana y pitaya."
   },
   "frutas2_exoticas_2": {
     "kind": "cat",
@@ -2989,7 +2989,7 @@
       "la_pitaya"
     ],
     "theme": "Exóticas",
-    "why": "Lichi, carambola, guanábana y tamarindo."
+    "why": "Lichi, carambola, guanábana y pitaya."
   },
   "frutas2_de_la_milpa_1": {
     "kind": "cat",
@@ -3000,7 +3000,7 @@
       "la_tuna"
     ],
     "theme": "De la milpa",
-    "why": "Tuna, nanche, jícama y caña."
+    "why": "Nanche, caña, jícama y tuna."
   },
   "frutas2_de_la_milpa_2": {
     "kind": "cat",
@@ -3011,7 +3011,7 @@
       "la_jicama"
     ],
     "theme": "De la milpa",
-    "why": "Tuna, nanche, jícama y caña."
+    "why": "Nanche, zapote, caña y jícama."
   },
   "verduras2_de_tallo_y_flor_1": {
     "kind": "cat",
@@ -3022,7 +3022,7 @@
       "la_coliflor"
     ],
     "theme": "De tallo y flor",
-    "why": "Apio, coliflor, alcachofa y espárrago."
+    "why": "Apio, espárrago, alcachofa y coliflor."
   },
   "verduras2_de_tallo_y_flor_2": {
     "kind": "cat",
@@ -3033,7 +3033,7 @@
       "la_coliflor"
     ],
     "theme": "De tallo y flor",
-    "why": "Apio, coliflor, alcachofa y espárrago."
+    "why": "Apio, poro, alcachofa y coliflor."
   },
   "verduras2_de_sopa_1": {
     "kind": "cat",
@@ -3044,7 +3044,7 @@
       "la_col"
     ],
     "theme": "De sopa",
-    "why": "Calabacita, nabo, quelite y hongos."
+    "why": "Nabo, quelite, calabacita y col."
   },
   "verduras2_de_sopa_2": {
     "kind": "cat",
@@ -3055,7 +3055,7 @@
       "la_col"
     ],
     "theme": "De sopa",
-    "why": "Calabacita, nabo, quelite y hongos."
+    "why": "Hongo, quelite, calabacita y col."
   },
   "verduras2_chiles_1": {
     "kind": "cat",
@@ -3066,7 +3066,7 @@
       "el_poblano"
     ],
     "theme": "Chiles",
-    "why": "Jalapeño, habanero, poblano y serrano."
+    "why": "Chipotle, habanero, jalapeño y poblano."
   },
   "verduras2_chiles_2": {
     "kind": "cat",
@@ -3077,7 +3077,7 @@
       "el_serrano"
     ],
     "theme": "Chiles",
-    "why": "Jalapeño, habanero, poblano y serrano."
+    "why": "Habanero, jalapeño, poblano y serrano."
   },
   "granos_cereales_1": {
     "kind": "cat",
@@ -3088,7 +3088,7 @@
       "la_cebada"
     ],
     "theme": "Cereales",
-    "why": "Arroz, trigo, avena y cebada."
+    "why": "Arroz, maíz, trigo y cebada."
   },
   "granos_cereales_2": {
     "kind": "cat",
@@ -3110,7 +3110,7 @@
       "la_nuez"
     ],
     "theme": "Nueces",
-    "why": "Nuez, almendra, cacahuate y pistache."
+    "why": "Pistache, almendra, avellana y nuez."
   },
   "granos_nueces_2": {
     "kind": "cat",
@@ -3121,7 +3121,7 @@
       "la_avellana"
     ],
     "theme": "Nueces",
-    "why": "Nuez, almendra, cacahuate y pistache."
+    "why": "Cacahuate, pistache, almendra y avellana."
   },
   "granos_especias_1": {
     "kind": "cat",
@@ -3132,7 +3132,7 @@
       "la_canela"
     ],
     "theme": "Especias",
-    "why": "Canela, vainilla, clavo y comino."
+    "why": "Clavo de olor, comino, laurel y canela."
   },
   "granos_especias_2": {
     "kind": "cat",
@@ -3143,7 +3143,7 @@
       "la_vainilla"
     ],
     "theme": "Especias",
-    "why": "Canela, vainilla, clavo y comino."
+    "why": "Clavo de olor, laurel, canela y vainilla."
   },
   "dinos_dinosaurios_1": {
     "kind": "cat",
@@ -3154,7 +3154,7 @@
       "el_tiranosaurio"
     ],
     "theme": "Dinosaurios",
-    "why": "T-Rex, triceratops, estegosaurio y pterodáctilo."
+    "why": "Braquiosaurio, estegosaurio, pterodáctilo y tiranosaurio."
   },
   "dinos_dinosaurios_2": {
     "kind": "cat",
@@ -3165,7 +3165,7 @@
       "el_triceratops"
     ],
     "theme": "Dinosaurios",
-    "why": "T-Rex, triceratops, estegosaurio y pterodáctilo."
+    "why": "Braquiosaurio, estegosaurio, pterodáctilo y triceratops."
   },
   "dinos_prehistoricos_1": {
     "kind": "cat",
@@ -3176,7 +3176,7 @@
       "el_velociraptor"
     ],
     "theme": "Prehistóricos",
-    "why": "Mamut, dientes de sable, dodo y trilobite."
+    "why": "Dodo, tigre dientes de sable, trilobite y velociraptor."
   },
   "dinos_prehistoricos_2": {
     "kind": "cat",
@@ -3187,7 +3187,7 @@
       "el_velociraptor"
     ],
     "theme": "Prehistóricos",
-    "why": "Mamut, dientes de sable, dodo y trilobite."
+    "why": "Mamut, tigre dientes de sable, trilobite y velociraptor."
   },
   "aves2_de_caza_y_monte_1": {
     "kind": "cat",
@@ -3198,7 +3198,7 @@
       "la_perdiz"
     ],
     "theme": "De caza y monte",
-    "why": "Faisán, codorniz, perdiz y pavorreal."
+    "why": "Correcaminos, kiwi, codorniz y perdiz."
   },
   "aves2_de_caza_y_monte_2": {
     "kind": "cat",
@@ -3209,7 +3209,7 @@
       "la_codorniz"
     ],
     "theme": "De caza y monte",
-    "why": "Faisán, codorniz, perdiz y pavorreal."
+    "why": "Correcaminos, faisán, kiwi y codorniz."
   },
   "aves2_del_arbol_1": {
     "kind": "cat",
@@ -3220,7 +3220,7 @@
       "el_ruisenor"
     ],
     "theme": "Del árbol",
-    "why": "Pájaro carpintero, ruiseñor, canario y jilguero."
+    "why": "Canario, jilguero, pájaro carpintero y ruiseñor."
   },
   "aves2_del_arbol_2": {
     "kind": "cat",
@@ -3231,7 +3231,7 @@
       "el_ruisenor"
     ],
     "theme": "Del árbol",
-    "why": "Pájaro carpintero, ruiseñor, canario y jilguero."
+    "why": "Canario, jilguero, martín pescador y ruiseñor."
   },
   "insectos2_insectos_del_jardin_1": {
     "kind": "cat",
@@ -3242,7 +3242,7 @@
       "la_tijerilla"
     ],
     "theme": "Insectos del jardín",
-    "why": "Mariquita, mantis, tijerilla y pulgón."
+    "why": "Pulgón, mantis, mariquita y tijerilla."
   },
   "insectos2_insectos_del_jardin_2": {
     "kind": "cat",
@@ -3253,7 +3253,7 @@
       "la_tijerilla"
     ],
     "theme": "Insectos del jardín",
-    "why": "Mariquita, mantis, tijerilla y pulgón."
+    "why": "Escarabajo rinoceronte, mantis, mariquita y tijerilla."
   },
   "insectos2_molestos_1": {
     "kind": "cat",
@@ -3264,7 +3264,7 @@
       "la_termita"
     ],
     "theme": "Molestos",
-    "why": "Pulga, piojo, termita y tábano."
+    "why": "Piojo, zancudo, pulga y termita."
   },
   "insectos2_molestos_2": {
     "kind": "cat",
@@ -3275,7 +3275,7 @@
       "la_termita"
     ],
     "theme": "Molestos",
-    "why": "Pulga, piojo, termita y tábano."
+    "why": "Tábano, zancudo, pulga y termita."
   },
   "mar2_peces_de_rio_1": {
     "kind": "cat",
@@ -3286,7 +3286,7 @@
       "la_trucha"
     ],
     "theme": "Peces de río",
-    "why": "Trucha, bagre, carpa y piraña."
+    "why": "Bagre, anguila, carpa y trucha."
   },
   "mar2_peces_de_rio_2": {
     "kind": "cat",
@@ -3297,7 +3297,7 @@
       "la_trucha"
     ],
     "theme": "Peces de río",
-    "why": "Trucha, bagre, carpa y piraña."
+    "why": "Anguila, carpa, piraña y trucha."
   },
   "mar2_del_arrecife_1": {
     "kind": "cat",
@@ -3308,7 +3308,7 @@
       "la_anemona"
     ],
     "theme": "Del arrecife",
-    "why": "Coral, alga, erizo y anémona."
+    "why": "Alga, coral, pez payaso y anémona."
   },
   "mar2_del_arrecife_2": {
     "kind": "cat",
@@ -3319,7 +3319,7 @@
       "la_anemona"
     ],
     "theme": "Del arrecife",
-    "why": "Coral, alga, erizo y anémona."
+    "why": "Alga, coral, erizo de mar y anémona."
   },
   "cuerpo2_organos_1": {
     "kind": "cat",
@@ -3330,7 +3330,7 @@
       "los_pulmones"
     ],
     "theme": "Órganos",
-    "why": "Estómago, hígado, riñón y pulmones."
+    "why": "Estómago, hígado, intestino y pulmones."
   },
   "cuerpo2_organos_2": {
     "kind": "cat",
@@ -3341,7 +3341,7 @@
       "los_pulmones"
     ],
     "theme": "Órganos",
-    "why": "Estómago, hígado, riñón y pulmones."
+    "why": "Hígado, intestino, riñón y pulmones."
   },
   "cuerpo2_estructura_1": {
     "kind": "cat",
@@ -3352,7 +3352,7 @@
       "la_vena"
     ],
     "theme": "Estructura",
-    "why": "Columna, costilla, cráneo y músculo."
+    "why": "Cráneo, músculo, columna y vena."
   },
   "cuerpo2_estructura_2": {
     "kind": "cat",
@@ -3363,7 +3363,7 @@
       "la_vena"
     ],
     "theme": "Estructura",
-    "why": "Columna, costilla, cráneo y músculo."
+    "why": "Músculo, columna, costilla y vena."
   },
   "cuerpo2_la_cara_de_cerca_1": {
     "kind": "cat",
@@ -3374,7 +3374,7 @@
       "la_pestana"
     ],
     "theme": "La cara de cerca",
-    "why": "Mejilla, labio, mentón y pestaña."
+    "why": "Mentón, frente, mejilla y pestaña."
   },
   "cuerpo2_la_cara_de_cerca_2": {
     "kind": "cat",
@@ -3385,7 +3385,7 @@
       "la_pestana"
     ],
     "theme": "La cara de cerca",
-    "why": "Mejilla, labio, mentón y pestaña."
+    "why": "Labio, mentón, mejilla y pestaña."
   },
   "herramientas2_de_taller_1": {
     "kind": "cat",
@@ -3396,7 +3396,7 @@
       "la_prensa"
     ],
     "theme": "De taller",
-    "why": "Soplete, lija, prensa y gato."
+    "why": "Gato hidráulico, yunque, lija y prensa."
   },
   "herramientas2_de_taller_2": {
     "kind": "cat",
@@ -3407,7 +3407,7 @@
       "la_prensa"
     ],
     "theme": "De taller",
-    "why": "Soplete, lija, prensa y gato."
+    "why": "Soplete, yunque, lija y prensa."
   },
   "herramientas2_de_pintar_1": {
     "kind": "cat",
@@ -3418,7 +3418,7 @@
       "la_espatula"
     ],
     "theme": "De pintar",
-    "why": "Brocha, rodillo, cubeta y espátula."
+    "why": "Rodillo, cinta de pintor, cubeta de pintura y espátula."
   },
   "herramientas2_de_pintar_2": {
     "kind": "cat",
@@ -3429,7 +3429,7 @@
       "la_cubeta_de_pintura"
     ],
     "theme": "De pintar",
-    "why": "Brocha, rodillo, cubeta y espátula."
+    "why": "Rodillo, brocha, cinta de pintor y cubeta de pintura."
   },
   "herramientas2_de_construccion_1": {
     "kind": "cat",
@@ -3440,7 +3440,7 @@
       "la_tabla"
     ],
     "theme": "De construcción",
-    "why": "Ladrillo, tabla, tubo y alambre."
+    "why": "Alambre, ladrillo, tubo y tabla."
   },
   "herramientas2_de_construccion_2": {
     "kind": "cat",
@@ -3451,7 +3451,7 @@
       "la_viga"
     ],
     "theme": "De construcción",
-    "why": "Ladrillo, tabla, tubo y alambre."
+    "why": "Alambre, tubo, tabla y viga."
   },
   "cocina2_gadgets_1": {
     "kind": "cat",
@@ -3462,7 +3462,7 @@
       "el_embudo"
     ],
     "theme": "Gadgets",
-    "why": "Colador, embudo, batidor y cucharón."
+    "why": "Batidor, colador, cucharón y embudo."
   },
   "cocina2_gadgets_2": {
     "kind": "cat",
@@ -3473,7 +3473,7 @@
       "el_molcajete"
     ],
     "theme": "Gadgets",
-    "why": "Colador, embudo, batidor y cucharón."
+    "why": "Batidor, cucharón, embudo y molcajete."
   },
   "cocina2_cortar_y_medir_1": {
     "kind": "cat",
@@ -3484,7 +3484,7 @@
       "la_tabla_de_picar"
     ],
     "theme": "Cortar y medir",
-    "why": "Tabla de picar, exprimidor, balanza y molde."
+    "why": "Exprimidor, rodillo de cocina, balanza y tabla de picar."
   },
   "cocina2_cortar_y_medir_2": {
     "kind": "cat",
@@ -3495,7 +3495,7 @@
       "la_balanza"
     ],
     "theme": "Cortar y medir",
-    "why": "Tabla de picar, exprimidor, balanza y molde."
+    "why": "Exprimidor, molde, rodillo de cocina y balanza."
   },
   "mesa_poner_la_mesa_1": {
     "kind": "cat",
@@ -3506,7 +3506,7 @@
       "la_servilleta"
     ],
     "theme": "Poner la mesa",
-    "why": "Mantel, servilleta, salero y candelabro."
+    "why": "Mantel, salero, azucarera y servilleta."
   },
   "mesa_poner_la_mesa_2": {
     "kind": "cat",
@@ -3517,7 +3517,7 @@
       "la_servilleta"
     ],
     "theme": "Poner la mesa",
-    "why": "Mantel, servilleta, salero y candelabro."
+    "why": "Candelabro, mantel, azucarera y servilleta."
   },
   "comida2_del_mundo_1": {
     "kind": "cat",
@@ -3528,7 +3528,7 @@
       "el_sushi"
     ],
     "theme": "Del mundo",
-    "why": "Sushi, ramen, paella y curry."
+    "why": "Curry, pretzel, ramen y sushi."
   },
   "comida2_del_mundo_2": {
     "kind": "cat",
@@ -3539,7 +3539,7 @@
       "la_paella"
     ],
     "theme": "Del mundo",
-    "why": "Sushi, ramen, paella y curry."
+    "why": "Curry, pretzel, sushi y paella."
   },
   "comida2_carnes_1": {
     "kind": "cat",
@@ -3550,7 +3550,7 @@
       "la_costilla_bbq"
     ],
     "theme": "Carnes",
-    "why": "Pollo asado, filete, salchicha y jamón."
+    "why": "Filete, jamón, pollo asado y costilla bbq."
   },
   "comida2_carnes_2": {
     "kind": "cat",
@@ -3561,7 +3561,7 @@
       "la_salchicha"
     ],
     "theme": "Carnes",
-    "why": "Pollo asado, filete, salchicha y jamón."
+    "why": "Filete, jamón, pollo asado y salchicha."
   },
   "comida2_de_sopa_y_guiso_1": {
     "kind": "cat",
@@ -3572,7 +3572,7 @@
       "los_frijoles"
     ],
     "theme": "De sopa y guiso",
-    "why": "Sopa, caldo, arroz y frijoles."
+    "why": "Arroz cocido, guisado, sopa y frijoles."
   },
   "comida2_de_sopa_y_guiso_2": {
     "kind": "cat",
@@ -3583,7 +3583,7 @@
       "los_frijoles"
     ],
     "theme": "De sopa y guiso",
-    "why": "Sopa, caldo, arroz y frijoles."
+    "why": "Arroz cocido, caldo, guisado y frijoles."
   },
   "dulces2_dulces_de_feria_1": {
     "kind": "cat",
@@ -3594,7 +3594,7 @@
       "la_manzana_acaramelada"
     ],
     "theme": "Dulces de feria",
-    "why": "Algodón de azúcar, malvavisco, gomita y bombón."
+    "why": "Algodón de azúcar, bombón, gomita y manzana acaramelada."
   },
   "dulces2_dulces_de_feria_2": {
     "kind": "cat",
@@ -3605,7 +3605,7 @@
       "la_manzana_acaramelada"
     ],
     "theme": "Dulces de feria",
-    "why": "Algodón de azúcar, malvavisco, gomita y bombón."
+    "why": "Bombón, malvavisco, gomita y manzana acaramelada."
   },
   "dulces2_tradicionales_1": {
     "kind": "cat",
@@ -3616,7 +3616,7 @@
       "la_palanqueta"
     ],
     "theme": "Tradicionales",
-    "why": "Cajeta, alegría, palanqueta y mazapán."
+    "why": "Mazapán, tamarindo dulce, alegría y palanqueta."
   },
   "dulces2_tradicionales_2": {
     "kind": "cat",
@@ -3627,7 +3627,7 @@
       "la_palanqueta"
     ],
     "theme": "Tradicionales",
-    "why": "Cajeta, alegría, palanqueta y mazapán."
+    "why": "Mazapán, alegría, cajeta y palanqueta."
   },
   "bebidas2_para_brindar_1": {
     "kind": "cat",
@@ -3638,7 +3638,7 @@
       "la_champana"
     ],
     "theme": "Para brindar",
-    "why": "Cerveza, vino, tequila y champaña."
+    "why": "Coctel, tequila, vino y champaña."
   },
   "bebidas2_para_brindar_2": {
     "kind": "cat",
@@ -3649,7 +3649,7 @@
       "la_cerveza"
     ],
     "theme": "Para brindar",
-    "why": "Cerveza, vino, tequila y champaña."
+    "why": "Coctel, tequila, vino y cerveza."
   },
   "transporte2_de_emergencia_1": {
     "kind": "cat",
@@ -3660,7 +3660,7 @@
       "la_patrulla"
     ],
     "theme": "De emergencia",
-    "why": "Patrulla, bomberos, ambulancia y barredora."
+    "why": "Camión de bomberos, barredora, camioneta y patrulla."
   },
   "transporte2_de_emergencia_2": {
     "kind": "cat",
@@ -3671,7 +3671,7 @@
       "la_volqueta"
     ],
     "theme": "De emergencia",
-    "why": "Patrulla, bomberos, ambulancia y barredora."
+    "why": "Camión de bomberos, barredora, patrulla y volqueta."
   },
   "transporte2_de_la_feria_1": {
     "kind": "cat",
@@ -3682,7 +3682,7 @@
       "la_rueda_de_la_fortuna"
     ],
     "theme": "De la feria",
-    "why": "Montaña rusa, carrusel, rueda de la fortuna y carrito chocón."
+    "why": "Carrito chocón, carrusel, montaña rusa y rueda de la fortuna."
   },
   "transporte2_de_la_feria_2": {
     "kind": "cat",
@@ -3693,7 +3693,7 @@
       "la_rueda_de_la_fortuna"
     ],
     "theme": "De la feria",
-    "why": "Montaña rusa, carrusel, rueda de la fortuna y carrito chocón."
+    "why": "Carrusel, cuatrimoto, montaña rusa y rueda de la fortuna."
   },
   "transporte2_sobre_nieve_y_arena_1": {
     "kind": "cat",
@@ -3726,7 +3726,7 @@
       "la_estacion_espacial"
     ],
     "theme": "Explorar",
-    "why": "Transbordador, telescopio, estación y ovni."
+    "why": "Rover, telescopio, transbordador y estación espacial."
   },
   "espacio2_explorar_2": {
     "kind": "cat",
@@ -3737,7 +3737,7 @@
       "el_transbordador"
     ],
     "theme": "Explorar",
-    "why": "Transbordador, telescopio, estación y ovni."
+    "why": "Ovni, rover, telescopio y transbordador."
   },
   "clima2_extremos_1": {
     "kind": "cat",
@@ -3748,7 +3748,7 @@
       "la_ventisca"
     ],
     "theme": "Extremos",
-    "why": "Huracán, ventisca, aurora y neblina."
+    "why": "Huracán, relámpago, neblina y ventisca."
   },
   "clima2_extremos_2": {
     "kind": "cat",
@@ -3759,7 +3759,7 @@
       "la_ventisca"
     ],
     "theme": "Extremos",
-    "why": "Huracán, ventisca, aurora y neblina."
+    "why": "Huracán, relámpago, aurora y ventisca."
   },
   "naturaleza2_verde_y_frondoso_1": {
     "kind": "cat",
@@ -3770,7 +3770,7 @@
       "la_selva"
     ],
     "theme": "Verde y frondoso",
-    "why": "Bosque, selva, pradera y pantano."
+    "why": "Bosque, oasis, pantano y selva."
   },
   "naturaleza2_verde_y_frondoso_2": {
     "kind": "cat",
@@ -3781,7 +3781,7 @@
       "la_pradera"
     ],
     "theme": "Verde y frondoso",
-    "why": "Bosque, selva, pradera y pantano."
+    "why": "Bosque, oasis, pantano y pradera."
   },
   "naturaleza2_de_hielo_y_fuego_1": {
     "kind": "cat",
@@ -3792,7 +3792,7 @@
       "la_duna"
     ],
     "theme": "De hielo y fuego",
-    "why": "Glaciar, géiser, duna y catarata."
+    "why": "Glaciar, iceberg, catarata y duna."
   },
   "naturaleza2_de_hielo_y_fuego_2": {
     "kind": "cat",
@@ -3803,7 +3803,7 @@
       "la_duna"
     ],
     "theme": "De hielo y fuego",
-    "why": "Glaciar, géiser, duna y catarata."
+    "why": "Géiser, glaciar, iceberg y duna."
   },
   "flores2_del_ramo_1": {
     "kind": "cat",
@@ -3814,7 +3814,7 @@
       "la_dalia"
     ],
     "theme": "Del ramo",
-    "why": "Lirio, clavel, amapola y jazmín."
+    "why": "Jazmín, lirio, amapola y dalia."
   },
   "flores2_del_ramo_2": {
     "kind": "cat",
@@ -3825,7 +3825,7 @@
       "la_dalia"
     ],
     "theme": "Del ramo",
-    "why": "Lirio, clavel, amapola y jazmín."
+    "why": "Clavel, lirio, amapola y dalia."
   },
   "flores2_de_temporada_1": {
     "kind": "cat",
@@ -3836,7 +3836,7 @@
       "la_violeta"
     ],
     "theme": "De temporada",
-    "why": "Lavanda, nochebuena, azucena y violeta."
+    "why": "Loto, azucena, nochebuena y violeta."
   },
   "flores2_de_temporada_2": {
     "kind": "cat",
@@ -3847,7 +3847,7 @@
       "la_nochebuena"
     ],
     "theme": "De temporada",
-    "why": "Lavanda, nochebuena, azucena y violeta."
+    "why": "Loto, azucena, lavanda y nochebuena."
   },
   "arboles2_del_norte_1": {
     "kind": "cat",
@@ -3858,7 +3858,7 @@
       "la_secuoya"
     ],
     "theme": "Del norte",
-    "why": "Abeto, arce, secuoya y baobab."
+    "why": "Arce, baobab, cerezo y secuoya."
   },
   "arboles2_del_norte_2": {
     "kind": "cat",
@@ -3869,7 +3869,7 @@
       "el_cerezo"
     ],
     "theme": "Del norte",
-    "why": "Abeto, arce, secuoya y baobab."
+    "why": "Abeto, arce, baobab y cerezo."
   },
   "medico_del_doctor_1": {
     "kind": "cat",
@@ -3880,7 +3880,7 @@
       "la_jeringa"
     ],
     "theme": "Del doctor",
-    "why": "Jeringa, estetoscopio, termómetro y curita."
+    "why": "Estetoscopio, termómetro, curita y jeringa."
   },
   "medico_del_doctor_2": {
     "kind": "cat",
@@ -3891,7 +3891,7 @@
       "la_venda"
     ],
     "theme": "Del doctor",
-    "why": "Jeringa, estetoscopio, termómetro y curita."
+    "why": "Termómetro, curita, jeringa y venda."
   },
   "medico_para_sanar_1": {
     "kind": "cat",
@@ -3902,7 +3902,7 @@
       "la_silla_de_ruedas"
     ],
     "theme": "Para sanar",
-    "why": "Muleta, silla de ruedas, pastilla y yeso."
+    "why": "Yeso, muleta, pastilla y silla de ruedas."
   },
   "medico_para_sanar_2": {
     "kind": "cat",
@@ -3913,7 +3913,7 @@
       "la_silla_de_ruedas"
     ],
     "theme": "Para sanar",
-    "why": "Muleta, silla de ruedas, pastilla y yeso."
+    "why": "Botiquín, yeso, muleta y silla de ruedas."
   },
   "bano2_en_el_lavabo_1": {
     "kind": "cat",
@@ -3924,7 +3924,7 @@
       "la_secadora_de_pelo"
     ],
     "theme": "En el lavabo",
-    "why": "Inodoro, lavabo, báscula y pasta."
+    "why": "Inodoro, lavabo, báscula y secadora de pelo."
   },
   "bano2_en_el_lavabo_2": {
     "kind": "cat",
@@ -3935,7 +3935,7 @@
       "la_secadora_de_pelo"
     ],
     "theme": "En el lavabo",
-    "why": "Inodoro, lavabo, báscula y pasta."
+    "why": "Lavabo, báscula, pasta de dientes y secadora de pelo."
   },
   "oficina2_de_la_oficina_1": {
     "kind": "cat",
@@ -3946,7 +3946,7 @@
       "la_perforadora"
     ],
     "theme": "De la oficina",
-    "why": "Proyector, perforadora, cinta y clip."
+    "why": "Archivero, proyector, cinta adhesiva y perforadora."
   },
   "oficina2_de_la_oficina_2": {
     "kind": "cat",
@@ -3968,7 +3968,7 @@
       "el_transportador"
     ],
     "theme": "Geometría",
-    "why": "Compás, transportador, escuadra y calculadora."
+    "why": "Ábaco, compás, gis y transportador."
   },
   "escuela2_geometria_2": {
     "kind": "cat",
@@ -3979,7 +3979,7 @@
       "la_escuadra_escolar"
     ],
     "theme": "Geometría",
-    "why": "Compás, transportador, escuadra y calculadora."
+    "why": "Compás, gis, transportador y escuadra escolar."
   },
   "escuela2_para_el_recreo_1": {
     "kind": "cat",
@@ -3990,7 +3990,7 @@
       "la_lonchera"
     ],
     "theme": "Para el recreo",
-    "why": "Lonchera, diccionario, mochila y termo."
+    "why": "Diccionario, estuche, libreta y lonchera."
   },
   "escuela2_para_el_recreo_2": {
     "kind": "cat",
@@ -4001,7 +4001,7 @@
       "la_lonchera"
     ],
     "theme": "Para el recreo",
-    "why": "Lonchera, diccionario, mochila y termo."
+    "why": "Diccionario, termo escolar, libreta y lonchera."
   },
   "musica2_mas_cuerdas_1": {
     "kind": "cat",
@@ -4012,7 +4012,7 @@
       "el_ukulele"
     ],
     "theme": "Más cuerdas",
-    "why": "Ukulele, mandolina, sitar y laúd."
+    "why": "Charango, laúd, sitar y ukulele."
   },
   "musica2_mas_cuerdas_2": {
     "kind": "cat",
@@ -4023,7 +4023,7 @@
       "la_mandolina"
     ],
     "theme": "Más cuerdas",
-    "why": "Ukulele, mandolina, sitar y laúd."
+    "why": "Charango, sitar, ukulele y mandolina."
   },
   "musica2_bateria_1": {
     "kind": "cat",
@@ -4034,7 +4034,7 @@
       "la_conga"
     ],
     "theme": "Batería",
-    "why": "Batería, platillos, bongó y güiro."
+    "why": "Bongó, güiro, batería y conga."
   },
   "musica2_bateria_2": {
     "kind": "cat",
@@ -4045,7 +4045,7 @@
       "los_platillos"
     ],
     "theme": "Batería",
-    "why": "Batería, platillos, bongó y güiro."
+    "why": "Bongó, güiro, conga y platillos."
   },
   "deportes2_gimnasio_1": {
     "kind": "cat",
@@ -4056,7 +4056,7 @@
       "la_mancuerna"
     ],
     "theme": "Gimnasio",
-    "why": "Pesas, cuerda, mancuerna y colchoneta."
+    "why": "Colchoneta, cuerda para saltar, kettlebell y mancuerna."
   },
   "deportes2_gimnasio_2": {
     "kind": "cat",
@@ -4067,7 +4067,7 @@
       "las_pesas"
     ],
     "theme": "Gimnasio",
-    "why": "Pesas, cuerda, mancuerna y colchoneta."
+    "why": "Colchoneta, cuerda para saltar, kettlebell y pesas."
   },
   "deportes2_de_punteria_1": {
     "kind": "cat",
@@ -4100,7 +4100,7 @@
       "el_panadero"
     ],
     "theme": "De servicio",
-    "why": "Mesero, barbero, cartero y bombero."
+    "why": "Barbero, cocinero, mesero y panadero."
   },
   "oficios2_de_servicio_2": {
     "kind": "cat",
@@ -4122,7 +4122,7 @@
       "el_veterinario"
     ],
     "theme": "Que cuidan",
-    "why": "Veterinario, dentista, maestro y bibliotecario."
+    "why": "Bibliotecario, dentista, maestro y veterinario."
   },
   "oficios2_que_cuidan_2": {
     "kind": "cat",
@@ -4133,7 +4133,7 @@
       "el_veterinario"
     ],
     "theme": "Que cuidan",
-    "why": "Veterinario, dentista, maestro y bibliotecario."
+    "why": "Astronauta, bibliotecario, maestro y veterinario."
   },
   "oficios2_del_espectaculo_1": {
     "kind": "cat",
@@ -4144,7 +4144,7 @@
       "la_bailarina"
     ],
     "theme": "Del espectáculo",
-    "why": "Mago, bailarina, malabarista y torero."
+    "why": "Domador, mago, malabarista y bailarina."
   },
   "oficios2_del_espectaculo_2": {
     "kind": "cat",
@@ -4155,7 +4155,7 @@
       "la_bailarina"
     ],
     "theme": "Del espectáculo",
-    "why": "Mago, bailarina, malabarista y torero."
+    "why": "Domador, mago, torero y bailarina."
   },
   "bebe_del_bebe_1": {
     "kind": "cat",
@@ -4166,7 +4166,7 @@
       "la_sonaja"
     ],
     "theme": "Del bebé",
-    "why": "Biberón, chupón, sonaja y carriola."
+    "why": "Babero, biberón, chupón y sonaja."
   },
   "bebe_del_bebe_2": {
     "kind": "cat",
@@ -4177,7 +4177,7 @@
       "la_sonaja"
     ],
     "theme": "Del bebé",
-    "why": "Biberón, chupón, sonaja y carriola."
+    "why": "Babero, chupón, carriola y sonaja."
   },
   "compras_de_la_tienda_1": {
     "kind": "cat",
@@ -4188,7 +4188,7 @@
       "la_tarjeta"
     ],
     "theme": "De la tienda",
-    "why": "Billete, tarjeta, carrito y caja."
+    "why": "Billete, caja registradora, etiqueta y tarjeta."
   },
   "compras_de_la_tienda_2": {
     "kind": "cat",
@@ -4210,7 +4210,7 @@
       "el_semaforo"
     ],
     "theme": "De la calle",
-    "why": "Semáforo, alto, cono e hidrante."
+    "why": "Alto, hidrante, poste y semáforo."
   },
   "senales_de_la_calle_2": {
     "kind": "cat",
@@ -4221,7 +4221,7 @@
       "el_semaforo"
     ],
     "theme": "De la calle",
-    "why": "Semáforo, alto, cono e hidrante."
+    "why": "Cono, hidrante, poste y semáforo."
   },
   "playa_en_la_arena_1": {
     "kind": "cat",
@@ -4232,7 +4232,7 @@
       "la_sombrilla"
     ],
     "theme": "En la arena",
-    "why": "Sombrilla, salvavidas, palapa y pelota."
+    "why": "Castillo de arena, palapa, pelota de playa y sombrilla."
   },
   "playa_en_la_arena_2": {
     "kind": "cat",
@@ -4243,7 +4243,7 @@
       "la_sombrilla"
     ],
     "theme": "En la arena",
-    "why": "Sombrilla, salvavidas, palapa y pelota."
+    "why": "Castillo de arena, salvavidas, palapa y sombrilla."
   },
   "playa_de_camping_1": {
     "kind": "cat",
@@ -4254,7 +4254,7 @@
       "la_hamaca"
     ],
     "theme": "De camping",
-    "why": "Fogata, saco de dormir, hamaca y hacha."
+    "why": "Hacha de campo, cantimplora, fogata y hamaca."
   },
   "playa_de_camping_2": {
     "kind": "cat",
@@ -4265,7 +4265,7 @@
       "la_hamaca"
     ],
     "theme": "De camping",
-    "why": "Fogata, saco de dormir, hamaca y hacha."
+    "why": "Hacha de campo, saco de dormir, cantimplora y hamaca."
   },
   "arte_del_pintor_1": {
     "kind": "cat",
@@ -4276,7 +4276,7 @@
       "la_paleta_de_colores"
     ],
     "theme": "Del pintor",
-    "why": "Pincel, paleta, caballete y lienzo."
+    "why": "Caballete, lienzo, acuarela y paleta de colores."
   },
   "arte_del_pintor_2": {
     "kind": "cat",
@@ -4287,7 +4287,7 @@
       "la_paleta_de_colores"
     ],
     "theme": "Del pintor",
-    "why": "Pincel, paleta, caballete y lienzo."
+    "why": "Caballete, pincel, acuarela y paleta de colores."
   },
   "tiempo_marcan_la_hora_1": {
     "kind": "cat",
@@ -4309,6 +4309,6 @@
       "la_alarma"
     ],
     "theme": "Marcan la hora",
-    "why": "Despertador, cronómetro, calendario y reloj de arena."
+    "why": "Cronómetro, despertador, reloj de sol y alarma."
   }
 }

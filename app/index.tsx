@@ -19,7 +19,7 @@ import { GradientButton } from '../src/components/GradientButton';
 import { NavRow } from '../src/components/NavRow';
 import { CardVideo } from '../src/components/CardVideo';
 import { ANIMATED_CARD_IDS } from '../src/data/cardVideos';
-import { cardThumb } from '../src/data/cardImages';
+import { thumbSource } from '../src/data/cardImages';
 import { getTodaysPuzzle } from '../src/data/puzzles';
 import { getResult, getStats, type Stats } from '../src/storage/store';
 
@@ -239,7 +239,7 @@ function Stat({ label, value, icon }: { label: string; value: string; icon: stri
   return (
     <View style={styles.statCell}>
       <Image
-        source={{ uri: cardThumb(icon, STAT_ICON_W, STAT_ICON_H) }}
+        source={thumbSource(icon, STAT_ICON_W, STAT_ICON_H)}
         style={styles.statIcon}
       />
       <Text style={styles.statValue}>{value}</Text>

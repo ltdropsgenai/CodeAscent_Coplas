@@ -24,8 +24,17 @@ export { storeUrl };
  * only ever called from the win path.
  */
 
-/** Win-streak values that are worth spending a prompt on. */
-const MILESTONES = [5, 20, 50];
+/**
+ * Win streak at which a flawless round is worth spending the prompt on.
+ *
+ * This was `[5, 20, 50]` matched EXACTLY, which never fired in practice: the
+ * exact-match window had to coincide with a flawless win AND with having
+ * already played MIN_ROUNDS. A tester on a 13-round win streak sailed past it
+ * — at streak 5 they had only played 5 rounds, and streak 20 was still miles
+ * off. A threshold fires on the first flawless win once the player is clearly
+ * enjoying themselves, which is the whole point.
+ */
+const MIN_WIN_STREAK = 5;
 
 /** Never ask someone who has barely played. */
 const MIN_ROUNDS = 10;
@@ -55,7 +64,7 @@ export async function maybePromptForReview(stats: Stats, flawless: boolean): Pro
   try {
     if (!flawless) return;
     if (stats.played < MIN_ROUNDS) return;
-    if (!MILESTONES.includes(stats.winStreak)) return;
+    if (stats.winStreak < MIN_WIN_STREAK) return;
 
     const settings = await getSettings();
     const version = appVersion();

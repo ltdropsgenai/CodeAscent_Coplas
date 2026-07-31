@@ -3,7 +3,7 @@ import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import type { Group } from '../types';
 import { CARD_ASPECT, colors, displayFont, radius, tierColors } from '../theme';
 import { getCard } from '../data/cards';
-import { cardImage } from '../data/cardImages';
+import { imageSource } from '../data/cardImages';
 import { hasCardVideo } from '../data/cardVideos';
 import { groupTheme, groupWhy } from '../data/groupText';
 import { CardVideo } from './CardVideo';
@@ -66,11 +66,10 @@ export function SolvedGroup({ group, animate }: { group: Group; animate?: boolea
               </View>
             ) : (
               <View key={id} style={[styles.thumb, styles.thumbStill, { borderColor: color }]}>
-                <Image
-                  source={{ uri: cardImage(id) as string }}
-                  style={styles.thumbImg}
-                  resizeMode="cover"
-                />
+                {/* imageSource, never `{ uri: cardImage(id) as string }` — a
+                    bundled asset is a number, and wrapping a number in `uri`
+                    renders nothing and reports no error. */}
+                <Image source={imageSource(id)} style={styles.thumbImg} resizeMode="cover" />
               </View>
             )
           )}

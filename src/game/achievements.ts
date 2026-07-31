@@ -23,8 +23,10 @@ export type AchievementId =
   | 'win_streak_3'
   | 'win_streak_10'
   | 'win_streak_25'
+  | 'perfect_streak_5'
   | 'day_streak_3'
   | 'day_streak_7'
+  | 'day_streak_10'
   | 'day_streak_30'
   | 'perfect_10'
   | 'hard_win'
@@ -66,8 +68,10 @@ export function computeAchievements({ stats, seenCount }: Input): Achievement[] 
     ['win_streak_3', 'el_fuego', stats.bestWinStreak, 3],
     ['win_streak_10', 'el_fuego', stats.bestWinStreak, 10],
     ['win_streak_25', 'la_corona', stats.bestWinStreak, 25],
+    ['perfect_streak_5', 'la_estrella', stats.bestPerfectStreak, 5],
     ['day_streak_3', 'el_calendario', stats.bestDayStreak, 3],
     ['day_streak_7', 'el_calendario', stats.bestDayStreak, 7],
+    ['day_streak_10', 'el_calendario', stats.bestDayStreak, 10],
     ['day_streak_30', 'el_trofeo', stats.bestDayStreak, 30],
     ['perfect_10', 'la_estrella', stats.perfect, 10],
     ['hard_win', 'el_diablito', hardWins, 1],
@@ -97,4 +101,17 @@ export function computeAchievements({ stats, seenCount }: Input): Achievement[] 
 /** How many are unlocked, for the settings row subtitle. */
 export function unlockedCount(list: Achievement[]): number {
   return list.filter((a) => a.unlocked).length;
+}
+
+/**
+ * Which badges are unlocked but have never been celebrated.
+ *
+ * Achievements are derived, so "newly unlocked" cannot be inferred from the
+ * stats alone — it needs the record of what the player has already been shown.
+ * Returned in ladder order so a round that trips several at once reads as a
+ * progression rather than a pile.
+ */
+export function newlyUnlocked(list: Achievement[], celebrated: string[]): Achievement[] {
+  const seen = new Set(celebrated);
+  return list.filter((a) => a.unlocked && !seen.has(a.id)).sort((a, b) => b.need - a.need);
 }

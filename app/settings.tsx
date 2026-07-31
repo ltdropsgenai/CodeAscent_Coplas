@@ -266,15 +266,18 @@ const styles = StyleSheet.create({
   title: {
     color: colors.text,
     fontFamily: displayFont,
-    fontSize: 17,
+    fontSize: 19,
     fontWeight: '700',
     ...floatShadow,
   },
-  subtitle: { color: colors.textDim, fontSize: 12, marginTop: 3, lineHeight: 17, ...floatShadow },
+  // 14pt, not 12. These sit on a photographic background where a dim 12pt line
+  // is genuinely hard to read — and the people most likely to want a Spanish
+  // word game about traditional picture cards are not uniformly twenty-five.
+  subtitle: { color: colors.textDim, fontSize: 14, marginTop: 4, lineHeight: 20, ...floatShadow },
   segment: { flexDirection: 'row', borderWidth: 1, borderColor: colors.borderGold, borderRadius: 4 },
-  segBtn: { paddingHorizontal: 15, paddingVertical: 7 },
+  segBtn: { paddingHorizontal: 16, paddingVertical: 9 },
   segBtnActive: { backgroundColor: colors.accent },
-  segText: { color: colors.textDim, fontFamily: monoFont, fontWeight: '800', fontSize: 12, letterSpacing: 1 },
+  segText: { color: colors.textDim, fontFamily: monoFont, fontWeight: '800', fontSize: 14, letterSpacing: 1 },
   segTextActive: { color: colors.ink },
   diffRow: { flexDirection: 'row', gap: 10, paddingBottom: 4 },
   diffBtn: {
@@ -290,8 +293,8 @@ const styles = StyleSheet.create({
     color: colors.textDim,
     fontFamily: monoFont,
     fontWeight: '800',
-    fontSize: 11,
-    letterSpacing: 1.4,
+    fontSize: 13,
+    letterSpacing: 1.2,
     textTransform: 'uppercase',
   },
   diffTextActive: { color: colors.accent },
@@ -301,9 +304,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 30,
     fontFamily: monoFont,
-    fontSize: 10,
+    fontSize: 12,
     letterSpacing: 1.2,
-    opacity: 0.7,
+    opacity: 0.8,
     ...floatShadow,
   },
 });

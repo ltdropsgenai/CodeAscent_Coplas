@@ -37,6 +37,7 @@ const K_RESULTS = 'coplas.results.v1'; // Record<puzzleId, PuzzleResult>
 const K_SETTINGS = 'coplas.settings.v1';
 const K_TOTALS = 'coplas.totals.v1';
 const K_SEEN = 'coplas.seen.v1'; // Record<cardId, timesSeen>
+const K_ACHIEVEMENTS = 'coplas.achievements.v1'; // string[] of celebrated ids
 
 /**
  * Live rounds are unbounded, so the detailed list is capped. Bundled/archive
@@ -113,6 +114,9 @@ export interface Totals {
   byDifficulty: Record<Difficulty, { played: number; won: number }>;
   winStreak: number;
   bestWinStreak: number;
+  /** Consecutive FLAWLESS wins — no mistakes, no hint. Any other result resets. */
+  perfectStreak: number;
+  bestPerfectStreak: number;
   dayStreak: number;
   bestDayStreak: number;
   /** YYYY-MM-DD in PUZZLE_TZ of the most recent finished round. */
@@ -139,6 +143,8 @@ export const EMPTY_TOTALS: Totals = {
   },
   winStreak: 0,
   bestWinStreak: 0,
+  perfectStreak: 0,
+  bestPerfectStreak: 0,
   dayStreak: 0,
   bestDayStreak: 0,
   lastPlayedOn: '',
@@ -207,6 +213,23 @@ export function gridFromGuesses(guesses: GuessRecord[]): number[][] {
 }
 
 // ── seen cards (for the deck-completion achievement) ──────────────────────────
+
+/**
+ * Which achievements the player has already been congratulated for.
+ *
+ * Achievements themselves are derived from stats and never stored — but
+ * "have I already celebrated this one?" is genuinely new information that
+ * cannot be recomputed, so only that gets persisted.
+ */
+export async function getSeenAchievements(): Promise<string[]> {
+  return readJson<string[]>(K_ACHIEVEMENTS, []);
+}
+
+export async function markAchievementsSeen(ids: string[]): Promise<void> {
+  const seen = new Set(await getSeenAchievements());
+  for (const id of ids) seen.add(id);
+  await AsyncStorage.setItem(K_ACHIEVEMENTS, JSON.stringify([...seen]));
+}
 
 export async function getSeenCards(): Promise<Record<string, number>> {
   return readJson<Record<string, number>>(K_SEEN, {});
@@ -278,6 +301,12 @@ export function applyToTotals(prev: Totals, r: PuzzleResult): Totals {
   // including a round rescued on the retry — resets it to zero.
   t.winStreak = won ? t.winStreak + 1 : 0;
   t.bestWinStreak = Math.max(t.bestWinStreak, t.winStreak);
+
+  // Flawless streak is stricter than the win streak: a win with even one
+  // mistake, or with a hint spent, ends it.
+  const flawless = won && r.mistakes === 0 && !r.hinted;
+  t.perfectStreak = flawless ? t.perfectStreak + 1 : 0;
+  t.bestPerfectStreak = Math.max(t.bestPerfectStreak, t.perfectStreak);
 
   // Day streak: same day is a no-op, the next day extends, any gap restarts.
   if (!t.lastPlayedOn) {

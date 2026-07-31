@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Animated, Image, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, displayFont, monoFont } from '../src/theme';
+import { colors, displayFont, floatShadow, monoFont } from '../src/theme';
 import { useI18n, type Strings } from '../src/i18n';
 import { useAudio } from '../src/audio';
 import { getCard } from '../src/data/cards';
@@ -10,14 +10,26 @@ import { getPuzzleByNumber, getTodaysPuzzle } from '../src/data/puzzles';
 import { useGame } from '../src/game/useGame';
 import { MAX_MISTAKES } from '../src/game/engine';
 import { composeRound } from '../src/game/composer';
-import { probeDeckOnline, subscribeDeckOnline } from '../src/net/deckOnline';
 import { CardTile } from '../src/components/CardTile';
 import { SolvedGroup } from '../src/components/SolvedGroup';
 import { WinCelebration } from '../src/components/WinCelebration';
 import { GradientButton } from '../src/components/GradientButton';
 import { buildShareText } from '../src/share/shareGrid';
 import { maybePromptForReview } from '../src/rate';
-import { getSettings, getStats, type Stats } from '../src/storage/store';
+import { thumbSource } from '../src/data/cardImages';
+import {
+  computeAchievements,
+  newlyUnlocked,
+  type Achievement,
+} from '../src/game/achievements';
+import {
+  getSeenAchievements,
+  getSeenCards,
+  getSettings,
+  getStats,
+  markAchievementsSeen,
+  type Stats,
+} from '../src/storage/store';
 import type { Difficulty, Puzzle } from '../src/types';
 
 type FeedbackKind = 'correct' | 'wrong' | null;
@@ -40,7 +52,8 @@ export default function Play() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const { t, lang } = useI18n();
-  const { playSfx, playRoundMusic, playWinFanfare, stopMusic, soundEnabled, toggleSound } = useAudio();
+  const { playSfx, playRoundMusic, playWinFanfare, playVoice, stopMusic, soundEnabled, toggleSound } =
+    useAudio();
   const { n } = useLocalSearchParams<{ n?: string }>();
   const isArchive = !!n;
 
@@ -160,19 +173,11 @@ export default function Play() {
       state.guesses.length === 0 && state.solved.length === 0 && state.status === 'playing';
   });
 
-  // Probe deck connectivity once on mount; when it flips online, recompose a
-  // still-pristine round in place so the expanded deck (which streams its art
-  // from Supabase) appears immediately instead of only from the next round.
-  // Archive replays are fixed puzzles and are never recomposed.
-  useEffect(() => {
-    if (isArchive) return;
-    probeDeckOnline();
-    return subscribeDeckOnline((online) => {
-      if (!online || !pristineRef.current) return;
-      liveSeq.current += 1;
-      setLivePuzzle(composeRound(diffRef.current, cardPenalties(), liveSeq.current));
-    });
-  }, [isArchive, cardPenalties]);
+  // (Removed) The deck-connectivity probe used to live here: it fired a network
+  // request on every mount and recomposed the round once the expansion art was
+  // known to be reachable. The whole deck is bundled now, so there was nothing
+  // left to wait for — and the probe was costing a request per round for a
+  // decision whose answer is always yes.
 
   // SFX + feedback burst on every guess; jingle on a win.
   const prevGuesses = useRef(0);
@@ -202,7 +207,14 @@ export default function Play() {
         playWinFanfare();
         setShowCelebration(true);
       }, 550);
-      return () => clearTimeout(beat);
+      // The exclamation lands a beat INTO the fanfare, not on top of the
+      // jingle. Stacked on the same frame they smear into noise; offset, the
+      // sting reads as the game reacting and the voice as someone reacting.
+      const cheer = setTimeout(playVoice, 1250);
+      return () => {
+        clearTimeout(beat);
+        clearTimeout(cheer);
+      };
     }
     if (state.status === 'lost') {
       setResultReady(true);
@@ -214,6 +226,8 @@ export default function Play() {
   useEffect(() => {
     setShowCelebration(false);
     setResultReady(false);
+    setUnlockedNow([]);
+    setFinalStats(null);
   }, [puzzle.id]);
 
   // Tally each round's result once (skip archive replays).
@@ -270,8 +284,34 @@ export default function Play() {
   // Lifetime numbers, read once the round ends — used by the share text and by
   // the review-prompt decision.
   const [finalStats, setFinalStats] = useState<Stats | null>(null);
+  // Badges tripped by THIS round — celebrated inline on the result panel.
+  // Without this the ladder is invisible unless you go looking for it in
+  // Settings, which is the same as not having one.
+  const [unlockedNow, setUnlockedNow] = useState<Achievement[]>([]);
+
   useEffect(() => {
-    if (finished) getStats().then(setFinalStats);
+    if (!finished) return;
+    let active = true;
+    (async () => {
+      const [s, seenCards, celebrated] = await Promise.all([
+        getStats(),
+        getSeenCards(),
+        getSeenAchievements(),
+      ]);
+      if (!active) return;
+      setFinalStats(s);
+      const fresh = newlyUnlocked(
+        computeAchievements({ stats: s, seenCount: Object.keys(seenCards).length }),
+        celebrated
+      );
+      setUnlockedNow(fresh);
+      // Marked as soon as they're shown: a badge should be celebrated once, and
+      // a crash between showing and marking is a worse bug than a missed toast.
+      if (fresh.length) markAchievementsSeen(fresh.map((a) => a.id));
+    })();
+    return () => {
+      active = false;
+    };
   }, [finished, puzzle.id]);
 
   // Ask for a rating only at a peak, and only once the celebration is over — an
@@ -336,8 +376,17 @@ export default function Play() {
           {game.relaxed ? `  ·  ${t.play.relaxed}` : ''}
         </Text>
         {!isArchive && (
-          <Text style={styles.session}>
-            {t.play.round} {playCount + 1}   ·   {t.diff[difficulty]}   ·   🔥 {sessionStreak}   ·   🏆 {sessionWon} {t.play.sessionWon}
+          // The round number is already the screen title, so repeating it here
+          // only pushed "ganadas" onto a second line. One line, and it shrinks
+          // rather than wraps if a translation or a large Dynamic Type setting
+          // makes it long.
+          <Text
+            style={styles.session}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
+          >
+            {t.diff[difficulty]}   ·   🔥 {sessionStreak}   ·   🏆 {sessionWon} {t.play.sessionWon}
           </Text>
         )}
 
@@ -433,6 +482,28 @@ export default function Play() {
             {state.status === 'won' && !state.retried && state.hintUsed && (
               <Text style={styles.hintNote}>💡 {t.play.hintNote}</Text>
             )}
+            {/* Badges earned by this round. Shown for a loss too — "La vuelta"
+                and the day-streak badges can land on a round you didn't win,
+                and withholding them would be strange. */}
+            {unlockedNow.length > 0 && (
+              <View style={styles.unlocks}>
+                <Text style={styles.unlockTitle}>
+                  {unlockedNow.length === 1
+                    ? t.achievements.unlockedOne
+                    : t.achievements.unlockedMany(unlockedNow.length)}
+                </Text>
+                {unlockedNow.map((a) => (
+                  <View key={a.id} style={styles.unlockRow}>
+                    <Image source={thumbSource(a.icon, 26, 34)} style={styles.unlockIcon} />
+                    <View style={styles.unlockBody}>
+                      <Text style={styles.unlockName}>{t.achievements.names[a.id] ?? a.id}</Text>
+                      <Text style={styles.unlockDesc}>{t.achievements.descs[a.id] ?? ''}</Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            )}
+
             <View style={styles.resultActions}>
               {/* A failed round offers the second crack FIRST and the answer
                   second. Once the answer is out you can't un-see it, so the
@@ -564,6 +635,28 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   resultActions: { flexDirection: 'row', gap: 10, marginTop: 8, alignItems: 'center' },
+  unlocks: {
+    alignSelf: 'stretch',
+    marginTop: 14,
+    paddingTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(244,185,66,0.2)',
+    gap: 10,
+  },
+  unlockTitle: {
+    color: colors.accent,
+    fontFamily: monoFont,
+    fontSize: 11,
+    letterSpacing: 1.8,
+    fontWeight: '800',
+    textAlign: 'center',
+    ...floatShadow,
+  },
+  unlockRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  unlockIcon: { width: 26, height: 34, borderRadius: 3, backgroundColor: 'rgba(0,0,0,0.25)' },
+  unlockBody: { flex: 1 },
+  unlockName: { color: colors.text, fontFamily: displayFont, fontSize: 16, fontWeight: '700' },
+  unlockDesc: { color: colors.textDim, fontSize: 12, lineHeight: 16, marginTop: 1 },
   // Also the "Mistakes:" label next to the dots — was 13 pt dim.
   dim: { color: colors.text, fontSize: 15, textAlign: 'center', marginBottom: 4, opacity: 0.9 },
   hintNote: { color: colors.teal, fontSize: 13, fontFamily: monoFont, textAlign: 'center', marginBottom: 4 },

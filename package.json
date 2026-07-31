@@ -9,9 +9,12 @@
     "web": "expo start --web",
     "validate": "node scripts/validate-puzzles.mjs",
     "i18n": "node scripts/check-i18n.mjs",
+    "copy": "node scripts/check-group-copy.mjs",
+    "groups": "node scripts/check-groups.mjs",
+    "sim": "node scripts/sim-rounds.mjs 800",
     "test": "node scripts/streak.test.mjs",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run validate && npm run i18n && npm test"
+    "check": "npm run typecheck && npm run validate && npm run groups && npm run i18n && npm run copy && npm run sim && npm test"
   },
   "dependencies": {
     "@expo-google-fonts/fraunces": "^0.4.1",

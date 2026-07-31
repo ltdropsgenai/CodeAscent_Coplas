@@ -13,7 +13,7 @@
           "el_sol",
           "el_mundo"
         ],
-        "explanation": "La Luna, La Estrella, El Sol y El Mundo: todo lo que brilla allá arriba."
+        "explanation": "Luna, estrella, sol y mundo: todo lo que brilla allá arriba."
       },
       {
         "theme": "Instrumentos musicales",
@@ -46,7 +46,7 @@
           "el_pescado",
           "la_rana"
         ],
-        "explanation": "La Sirena, El Camarón, El Pescado y La Rana viven en el agua."
+        "explanation": "Sirena, camarón, pescado y rana."
       }
     ],
     "difficulty": "media"
@@ -65,7 +65,7 @@
           "la_garza",
           "el_cotorro"
         ],
-        "explanation": "El Gallo, El Pájaro, La Garza y El Cotorro: todos tienen alas."
+        "explanation": "Gallo, águila, garza y cotorro: todos tienen alas."
       },
       {
         "theme": "Plantas",
@@ -76,7 +76,7 @@
           "la_palma",
           "el_pino"
         ],
-        "explanation": "Rosa, nopal, palma y pino salen de la tierra."
+        "explanation": "Rosa, nopal, palma y pino."
       },
       {
         "theme": "Animales que no vuelan",
@@ -98,7 +98,7 @@
           "el_bandolon",
           "el_corazon"
         ],
-        "explanation": "Camar-ón, mel-ón, bandol-ón, coraz-ón. El Camarón parecía animal y El Melón, planta: la trampa."
+        "explanation": "Camarón, melón, bandolón y corazón: la trampa."
       }
     ],
     "difficulty": "media"
@@ -117,7 +117,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "La Dama, El Catrín, El Valiente y El Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Guardan líquido",
@@ -169,7 +169,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo."
+        "explanation": "Sol, luna, estrella y mundo."
       },
       {
         "theme": "Instrumentos musicales",
@@ -232,7 +232,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro."
+        "explanation": "Gallo, garza, águila y cotorro."
       },
       {
         "theme": "Riman en «-ón»",
@@ -273,7 +273,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo."
+        "explanation": "Sol, luna, estrella y mundo."
       },
       {
         "theme": "Personas",
@@ -284,7 +284,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "La Dama, El Catrín, El Borracho y El Músico."
+        "explanation": "Dama, catrín, borracho y músico."
       },
       {
         "theme": "Riman en «-era»",
@@ -306,7 +306,7 @@
           "el_camaron",
           "la_chalupa"
         ],
-        "explanation": "La Sirena, El Pescado, El Camarón y La Chalupa: cosas del mar."
+        "explanation": "Sirena, pescado, camarón y chalupa: cosas del mar."
       }
     ],
     "difficulty": "media"
@@ -326,7 +326,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Pura gente",
@@ -337,7 +337,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Lo macabro",
@@ -348,7 +348,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Guardan líquido",
@@ -359,7 +359,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       }
     ]
   },
@@ -389,7 +389,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Instrumentos musicales",
@@ -411,7 +411,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       }
     ]
   },
@@ -430,7 +430,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Se comen",
@@ -452,7 +452,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Astros del cielo",
@@ -463,7 +463,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       }
     ]
   },
@@ -493,7 +493,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Del mar",
@@ -545,7 +545,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Hacen sonido",
@@ -556,7 +556,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Bichos",
@@ -619,7 +619,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       }
     ]
   },
@@ -638,7 +638,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Aves",
@@ -649,7 +649,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Bichos",
@@ -671,7 +671,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       }
     ]
   },
@@ -690,7 +690,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Más personajes",
@@ -701,7 +701,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Del mar",
@@ -723,7 +723,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       }
     ]
   },
@@ -753,7 +753,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Andan armados",
@@ -764,7 +764,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Árboles y plantas",
@@ -775,7 +775,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       }
     ]
   },
@@ -816,7 +816,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Lo macabro",
@@ -827,7 +827,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       }
     ]
   },
@@ -846,7 +846,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Aves",
@@ -857,7 +857,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Del jardín",
@@ -879,7 +879,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       }
     ]
   },
@@ -909,7 +909,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Instrumentos musicales",
@@ -950,7 +950,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Cosas que se llevan",
@@ -972,7 +972,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "En el patio",
@@ -1002,7 +1002,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Personajes",
@@ -1013,7 +1013,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Árboles y plantas",
@@ -1024,7 +1024,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Animales",
@@ -1054,7 +1054,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Árboles y plantas",
@@ -1065,7 +1065,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Hacen sonido",
@@ -1076,7 +1076,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Bichos",
@@ -1117,7 +1117,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Se comen",
@@ -1158,7 +1158,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Personajes",
@@ -1169,7 +1169,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Cosas que se llevan",
@@ -1191,7 +1191,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       }
     ]
   },
@@ -1210,7 +1210,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Más personajes",
@@ -1221,7 +1221,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Del jardín",
@@ -1243,7 +1243,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       }
     ]
   },
@@ -1273,7 +1273,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Pura gente",
@@ -1284,7 +1284,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Animales",
@@ -1314,7 +1314,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Se comen",
@@ -1336,7 +1336,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Cosas que se llevan",
@@ -1366,7 +1366,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Astros del cielo",
@@ -1377,7 +1377,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Guardan líquido",
@@ -1388,7 +1388,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Instrumentos musicales",
@@ -1440,7 +1440,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Más personajes",
@@ -1451,7 +1451,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       }
     ]
   },
@@ -1470,7 +1470,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Lo macabro",
@@ -1481,7 +1481,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Se comen",
@@ -1503,7 +1503,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       }
     ]
   },
@@ -1522,7 +1522,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Bichos",
@@ -1544,7 +1544,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Cosas redondas",
@@ -1555,7 +1555,7 @@
           "el_mundo",
           "la_corona"
         ],
-        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+        "explanation": "Sol, luna, mundo y corona: forma redonda."
       }
     ]
   },
@@ -1574,7 +1574,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Del mar",
@@ -1596,7 +1596,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Cosas doradas",
@@ -1626,7 +1626,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Personajes",
@@ -1637,7 +1637,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Se comen",
@@ -1678,7 +1678,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Del agua",
@@ -1689,7 +1689,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "En el patio",
@@ -1752,7 +1752,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Empiezan con «P»",
@@ -1763,7 +1763,7 @@
           "el_paraguas",
           "el_pino"
         ],
-        "explanation": "Pera, Palma, Paraguas y Pino."
+        "explanation": "Pera, palma, paraguas y pino."
       }
     ]
   },
@@ -1804,7 +1804,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Cosas redondas",
@@ -1815,7 +1815,7 @@
           "el_mundo",
           "la_corona"
         ],
-        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+        "explanation": "Sol, luna, mundo y corona: forma redonda."
       }
     ]
   },
@@ -1856,7 +1856,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Empiezan con «S»",
@@ -1867,7 +1867,7 @@
           "la_sandia",
           "el_soldado"
         ],
-        "explanation": "Sirena, Sol, Sandía y Soldado."
+        "explanation": "Sirena, sol, sandía y soldado."
       }
     ]
   },
@@ -1886,7 +1886,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Andan armados",
@@ -1897,7 +1897,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Bichos",
@@ -1919,7 +1919,7 @@
           "la_muerte",
           "la_mano"
         ],
-        "explanation": "Melón, Maceta, Muerte y Mano."
+        "explanation": "Melón, maceta, muerte y mano."
       }
     ]
   },
@@ -1949,7 +1949,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Lo macabro",
@@ -1960,7 +1960,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Riman en «-ón»",
@@ -1990,7 +1990,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Cosas que se llevan",
@@ -2012,7 +2012,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Empiezan con «M»",
@@ -2023,7 +2023,7 @@
           "el_mundo",
           "el_musico"
         ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
+        "explanation": "Mano, muerte, mundo y músico."
       }
     ]
   },
@@ -2075,7 +2075,7 @@
           "la_bota",
           "el_borracho"
         ],
-        "explanation": "Botella, Barril, Bota y Borracho."
+        "explanation": "Botella, barril, bota y borracho."
       }
     ]
   },
@@ -2105,7 +2105,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Instrumentos musicales",
@@ -2146,7 +2146,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Más personajes",
@@ -2157,7 +2157,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Del mar",
@@ -2198,7 +2198,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Animales",
@@ -2220,7 +2220,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Empiezan con «P»",
@@ -2231,7 +2231,7 @@
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pera, Pino y Pescado."
+        "explanation": "Paraguas, pera, pino y pescado."
       }
     ]
   },
@@ -2250,7 +2250,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Personajes",
@@ -2261,7 +2261,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Se comen",
@@ -2283,7 +2283,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       }
     ]
   },
@@ -2365,7 +2365,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Bichos",
@@ -2387,7 +2387,7 @@
           "el_paraguas",
           "el_pino"
         ],
-        "explanation": "Pera, Palma, Paraguas y Pino."
+        "explanation": "Pera, palma, paraguas y pino."
       }
     ]
   },
@@ -2406,7 +2406,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Guardan líquido",
@@ -2417,7 +2417,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Lo macabro",
@@ -2428,7 +2428,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Cosas doradas",
@@ -2458,7 +2458,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Árboles y plantas",
@@ -2469,7 +2469,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Animales",
@@ -2510,7 +2510,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Aves",
@@ -2521,7 +2521,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Del mar",
@@ -2543,7 +2543,7 @@
           "el_barril",
           "la_bota"
         ],
-        "explanation": "Bandera, Bandolón, Barril y Bota."
+        "explanation": "Bandera, bandolón, barril y bota."
       }
     ]
   },
@@ -2562,7 +2562,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Árboles y plantas",
@@ -2573,7 +2573,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Hacen sonido",
@@ -2584,7 +2584,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Cosas redondas",
@@ -2595,7 +2595,7 @@
           "el_mundo",
           "la_corona"
         ],
-        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+        "explanation": "Sol, luna, mundo y corona: forma redonda."
       }
     ]
   },
@@ -2614,7 +2614,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Animales",
@@ -2636,7 +2636,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Rojos y rosas",
@@ -2677,7 +2677,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "En el patio",
@@ -2699,7 +2699,7 @@
           "la_bota",
           "el_borracho"
         ],
-        "explanation": "Botella, Barril, Bota y Borracho."
+        "explanation": "Botella, barril, bota y borracho."
       }
     ]
   },
@@ -2718,7 +2718,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Aves",
@@ -2729,7 +2729,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Árboles y plantas",
@@ -2740,7 +2740,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Empiezan con «M»",
@@ -2751,7 +2751,7 @@
           "la_muerte",
           "la_mano"
         ],
-        "explanation": "Melón, Maceta, Muerte y Mano."
+        "explanation": "Melón, maceta, muerte y mano."
       }
     ]
   },
@@ -2770,7 +2770,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Lo macabro",
@@ -2781,7 +2781,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Más personajes",
@@ -2792,7 +2792,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Cosas redondas",
@@ -2803,7 +2803,7 @@
           "el_mundo",
           "la_corona"
         ],
-        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+        "explanation": "Sol, luna, mundo y corona: forma redonda."
       }
     ]
   },
@@ -2822,7 +2822,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Cosas que se llevan",
@@ -2855,7 +2855,7 @@
           "el_mundo",
           "el_musico"
         ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
+        "explanation": "Mano, muerte, mundo y músico."
       }
     ]
   },
@@ -2896,7 +2896,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Altas y largas",
@@ -2907,7 +2907,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       }
     ]
   },
@@ -2937,7 +2937,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Del agua",
@@ -2948,7 +2948,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Riman en «-era»",
@@ -2978,7 +2978,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Hacen sonido",
@@ -2989,7 +2989,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Aves",
@@ -3000,7 +3000,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Altas y largas",
@@ -3011,7 +3011,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       }
     ]
   },
@@ -3041,7 +3041,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Empiezan con «B»",
@@ -3052,7 +3052,7 @@
           "el_barril",
           "la_bota"
         ],
-        "explanation": "Bandera, Bandolón, Barril y Bota."
+        "explanation": "Bandera, bandolón, barril y bota."
       },
       {
         "theme": "Empiezan con «P»",
@@ -3063,7 +3063,7 @@
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pera, Pino y Pescado."
+        "explanation": "Paraguas, pera, pino y pescado."
       }
     ]
   },
@@ -3093,7 +3093,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Empiezan con «M»",
@@ -3104,7 +3104,7 @@
           "el_mundo",
           "el_musico"
         ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
+        "explanation": "Mano, muerte, mundo y músico."
       },
       {
         "theme": "Empiezan con «P»",
@@ -3115,7 +3115,7 @@
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pera, Pino y Pescado."
+        "explanation": "Paraguas, pera, pino y pescado."
       }
     ]
   },
@@ -3145,7 +3145,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Empiezan con «S»",
@@ -3156,7 +3156,7 @@
           "la_sandia",
           "el_soldado"
         ],
-        "explanation": "Sirena, Sol, Sandía y Soldado."
+        "explanation": "Sirena, sol, sandía y soldado."
       },
       {
         "theme": "Con picos y puntas",
@@ -3186,7 +3186,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Árboles y plantas",
@@ -3197,7 +3197,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Empiezan con «M»",
@@ -3208,7 +3208,7 @@
           "la_muerte",
           "la_mano"
         ],
-        "explanation": "Melón, Maceta, Muerte y Mano."
+        "explanation": "Melón, maceta, muerte y mano."
       },
       {
         "theme": "Empiezan con «B»",
@@ -3219,7 +3219,7 @@
           "el_barril",
           "la_bota"
         ],
-        "explanation": "Bandera, Bandolón, Barril y Bota."
+        "explanation": "Bandera, bandolón, barril y bota."
       }
     ]
   },
@@ -3249,7 +3249,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Empiezan con «S»",
@@ -3260,7 +3260,7 @@
           "la_sandia",
           "el_soldado"
         ],
-        "explanation": "Sirena, Sol, Sandía y Soldado."
+        "explanation": "Sirena, sol, sandía y soldado."
       },
       {
         "theme": "Empiezan con «M»",
@@ -3271,7 +3271,7 @@
           "el_mundo",
           "el_musico"
         ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
+        "explanation": "Mano, muerte, mundo y músico."
       }
     ]
   },
@@ -3290,7 +3290,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Árboles y plantas",
@@ -3301,7 +3301,7 @@
           "la_palma",
           "el_nopal"
         ],
-        "explanation": "Árbol, pino, palma y nopal salen de la tierra."
+        "explanation": "Árbol, pino, palma y nopal."
       },
       {
         "theme": "Cosas rojas",
@@ -3342,7 +3342,7 @@
           "el_musico",
           "el_albanil"
         ],
-        "explanation": "Borracho, Charro, Músico y Albañil: también son gente."
+        "explanation": "Borracho, charro, músico y albañil: también son gente."
       },
       {
         "theme": "Cosas que se llevan",
@@ -3375,7 +3375,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       }
     ]
   },
@@ -3394,7 +3394,7 @@
           "el_pajaro",
           "el_cotorro"
         ],
-        "explanation": "Gallo, garza, pájaro y cotorro: todos tienen alas."
+        "explanation": "Gallo, garza, águila y cotorro: todos tienen alas."
       },
       {
         "theme": "Guardan líquido",
@@ -3405,7 +3405,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Riman en «-era»",
@@ -3446,7 +3446,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Del combate",
@@ -3457,7 +3457,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Rojos y rosas",
@@ -3498,7 +3498,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Pura gente",
@@ -3509,7 +3509,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Rojos y rosas",
@@ -3531,7 +3531,7 @@
           "el_alacran",
           "el_arcoiris"
         ],
-        "explanation": "Árbol, Araña, Alacrán y Arcoíris."
+        "explanation": "Árbol, araña, alacrán y arcoíris."
       }
     ]
   },
@@ -3561,7 +3561,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Altas y largas",
@@ -3572,7 +3572,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       },
       {
         "theme": "Cosas redondas",
@@ -3583,7 +3583,7 @@
           "el_mundo",
           "la_corona"
         ],
-        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+        "explanation": "Sol, luna, mundo y corona: forma redonda."
       }
     ]
   },
@@ -3624,7 +3624,7 @@
           "la_muerte",
           "la_mano"
         ],
-        "explanation": "Melón, Maceta, Muerte y Mano."
+        "explanation": "Melón, maceta, muerte y mano."
       },
       {
         "theme": "Empiezan con «B»",
@@ -3635,7 +3635,7 @@
           "la_bota",
           "el_borracho"
         ],
-        "explanation": "Botella, Barril, Bota y Borracho."
+        "explanation": "Botella, barril, bota y borracho."
       }
     ]
   },
@@ -3654,7 +3654,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Del mar",
@@ -3687,7 +3687,7 @@
           "la_bota",
           "el_borracho"
         ],
-        "explanation": "Botella, Barril, Bota y Borracho."
+        "explanation": "Botella, barril, bota y borracho."
       }
     ]
   },
@@ -3717,7 +3717,7 @@
           "el_cantarito",
           "el_cazo"
         ],
-        "explanation": "Botella, barril, cantarito y cazo cargan algo líquido."
+        "explanation": "Botella, barril, cantarito y cazo."
       },
       {
         "theme": "Empiezan con «P»",
@@ -3728,7 +3728,7 @@
           "el_paraguas",
           "el_pino"
         ],
-        "explanation": "Pera, Palma, Paraguas y Pino."
+        "explanation": "Pera, palma, paraguas y pino."
       },
       {
         "theme": "Riman en «-ón»",
@@ -3758,7 +3758,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "En el patio",
@@ -3780,7 +3780,7 @@
           "el_paraguas",
           "el_pino"
         ],
-        "explanation": "Pera, Palma, Paraguas y Pino."
+        "explanation": "Pera, palma, paraguas y pino."
       },
       {
         "theme": "Empiezan con «A»",
@@ -3791,7 +3791,7 @@
           "el_alacran",
           "el_arcoiris"
         ],
-        "explanation": "Árbol, Araña, Alacrán y Arcoíris."
+        "explanation": "Árbol, araña, alacrán y arcoíris."
       }
     ]
   },
@@ -3810,7 +3810,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Andan armados",
@@ -3821,7 +3821,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Riman en «-ón»",
@@ -3862,7 +3862,7 @@
           "el_diablito",
           "el_alacran"
         ],
-        "explanation": "Muerte, calavera, diablito y alacrán dan escalofríos."
+        "explanation": "Muerte, calavera, diablito y alacrán."
       },
       {
         "theme": "Hacen sonido",
@@ -3873,7 +3873,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Cosas redondas",
@@ -3884,7 +3884,7 @@
           "el_mundo",
           "la_corona"
         ],
-        "explanation": "Sol, Luna, Mundo y Corona: forma redonda."
+        "explanation": "Sol, luna, mundo y corona: forma redonda."
       },
       {
         "theme": "Cosas verdes",
@@ -3914,7 +3914,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Aves",
@@ -3947,7 +3947,7 @@
           "el_alacran",
           "el_arcoiris"
         ],
-        "explanation": "Árbol, Araña, Alacrán y Arcoíris."
+        "explanation": "Árbol, araña, alacrán y arcoíris."
       }
     ]
   },
@@ -4029,7 +4029,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Empiezan con «B»",
@@ -4040,7 +4040,7 @@
           "la_bota",
           "el_borracho"
         ],
-        "explanation": "Botella, Barril, Bota y Borracho."
+        "explanation": "Botella, barril, bota y borracho."
       },
       {
         "theme": "Con picos y puntas",
@@ -4070,7 +4070,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Bichos",
@@ -4092,7 +4092,7 @@
           "el_paraguas",
           "el_pino"
         ],
-        "explanation": "Pera, Palma, Paraguas y Pino."
+        "explanation": "Pera, palma, paraguas y pino."
       },
       {
         "theme": "Empiezan con «M»",
@@ -4103,7 +4103,7 @@
           "el_mundo",
           "el_musico"
         ],
-        "explanation": "Mano, Muerte, Mundo y Músico."
+        "explanation": "Mano, muerte, mundo y músico."
       }
     ]
   },
@@ -4122,7 +4122,7 @@
           "el_borracho",
           "el_musico"
         ],
-        "explanation": "Dama, Catrín, Borracho y Músico: personajes de la baraja."
+        "explanation": "Dama, catrín, borracho y músico: personajes de la baraja."
       },
       {
         "theme": "Instrumentos musicales",
@@ -4144,7 +4144,7 @@
           "la_sandia",
           "el_soldado"
         ],
-        "explanation": "Sirena, Sol, Sandía y Soldado."
+        "explanation": "Sirena, sol, sandía y soldado."
       },
       {
         "theme": "Riman en «-era»",
@@ -4174,7 +4174,7 @@
           "el_policia",
           "el_charro"
         ],
-        "explanation": "Valiente, Soldado, Policía y Charro: gente de armas."
+        "explanation": "Valiente, soldado, policía y charro: gente de armas."
       },
       {
         "theme": "Hacen sonido",
@@ -4185,7 +4185,7 @@
           "el_arpa",
           "el_bandolon"
         ],
-        "explanation": "Campana, tambor, arpa y bandolón suenan."
+        "explanation": "Campana, tambor, arpa y bandolón."
       },
       {
         "theme": "Cosas verdes",
@@ -4237,7 +4237,7 @@
           "la_chalupa",
           "la_rana"
         ],
-        "explanation": "Sirena, pescado, chalupa y rana viven o flotan en el agua."
+        "explanation": "Sirena, pescado, chalupa y rana."
       },
       {
         "theme": "Altas y largas",
@@ -4248,7 +4248,7 @@
           "el_pino",
           "el_arbol"
         ],
-        "explanation": "Escalera, palma, pino y árbol se estiran hacia arriba."
+        "explanation": "Escalera, palma, pino y árbol."
       },
       {
         "theme": "Empiezan con «M»",
@@ -4259,7 +4259,7 @@
           "la_muerte",
           "la_mano"
         ],
-        "explanation": "Melón, Maceta, Muerte y Mano."
+        "explanation": "Melón, maceta, muerte y mano."
       }
     ]
   },
@@ -4289,7 +4289,7 @@
           "el_arco",
           "el_valiente"
         ],
-        "explanation": "Jaras, Soldado, Arco y Valiente: cosas de pelea."
+        "explanation": "Jaras, soldado, arco y valiente: cosas de pelea."
       },
       {
         "theme": "Empiezan con «B»",
@@ -4300,7 +4300,7 @@
           "el_barril",
           "la_bota"
         ],
-        "explanation": "Bandera, Bandolón, Barril y Bota."
+        "explanation": "Bandera, bandolón, barril y bota."
       },
       {
         "theme": "Empiezan con «P»",
@@ -4311,7 +4311,7 @@
           "el_pino",
           "el_pescado"
         ],
-        "explanation": "Paraguas, Pera, Pino y Pescado."
+        "explanation": "Paraguas, pera, pino y pescado."
       }
     ]
   },
@@ -4330,7 +4330,7 @@
           "el_valiente",
           "el_soldado"
         ],
-        "explanation": "Dama, Catrín, Valiente y Soldado: gente de la baraja."
+        "explanation": "Dama, catrín, valiente y soldado: gente de la baraja."
       },
       {
         "theme": "Astros del cielo",
@@ -4341,7 +4341,7 @@
           "la_estrella",
           "el_mundo"
         ],
-        "explanation": "Sol, Luna, Estrella y Mundo: cosas de allá arriba."
+        "explanation": "Sol, luna, estrella y mundo: cosas de allá arriba."
       },
       {
         "theme": "Empiezan con «P»",
@@ -4352,7 +4352,7 @@
           "el_paraguas",
           "el_pino"
         ],
-        "explanation": "Pera, Palma, Paraguas y Pino."
+        "explanation": "Pera, palma, paraguas y pino."
       },
       {
         "theme": "Rojos y rosas",

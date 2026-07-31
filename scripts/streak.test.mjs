@@ -76,6 +76,8 @@ const EMPTY = {
   },
   winStreak: 0,
   bestWinStreak: 0,
+  perfectStreak: 0,
+  bestPerfectStreak: 0,
   dayStreak: 0,
   bestDayStreak: 0,
   lastPlayedOn: '',
@@ -136,6 +138,36 @@ t = fold([
 ]);
 check('loss resets winStreak', t.winStreak, 1);
 check('best survives the reset', t.bestWinStreak, 2);
+
+// ── flawless streak ──────────────────────────────────────────────────────────
+t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+]);
+check('3 flawless wins → perfectStreak 3', t.perfectStreak, 3);
+
+t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won', { mistakes: 1 }),
+  round('2026-07-01', 'won'),
+]);
+check('a win WITH a mistake breaks perfectStreak', t.perfectStreak, 1);
+check('but not the win streak', t.winStreak, 4);
+check('bestPerfectStreak keeps the peak of 2', t.bestPerfectStreak, 2);
+
+t = fold([round('2026-07-01', 'won'), round('2026-07-01', 'won', { hinted: true })]);
+check('a hinted win breaks perfectStreak', t.perfectStreak, 0);
+
+t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+]);
+check('five flawless in a row (the badge)', t.bestPerfectStreak, 5);
 
 t = fold([round('2026-07-01', 'lost', { retried: true })]);
 check('retried round still books as a loss', t.winStreak, 0);

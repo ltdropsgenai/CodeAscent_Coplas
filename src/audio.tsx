@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { Platform } from 'react-native';
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
-import { AUDIO, MUSIC, type AudioKey } from './data/audioAssets';
+import { AUDIO, MUSIC, VOICE, type AudioKey } from './data/audioAssets';
 import { getSettings, saveSettings } from './storage/store';
 
 /**
@@ -39,6 +39,8 @@ interface AudioValue {
   playRoundMusic: () => void;
   /** Fire the triumphant win fanfare once, pausing the round bed under it. */
   playWinFanfare: () => void;
+  /** One celebratory Spanish exclamation, over the fanfare. */
+  playVoice: () => void;
   /** Pause whatever music/fanfare is playing. */
   stopMusic: () => void;
 }
@@ -50,6 +52,7 @@ const AudioContext = createContext<AudioValue>({
   playHomeMusic: () => {},
   playRoundMusic: () => {},
   playWinFanfare: () => {},
+  playVoice: () => {},
   stopMusic: () => {},
 });
 
@@ -71,6 +74,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   // The looping background bed (home or round) and the one-shot win fanfare.
   const musicRef = useRef<AudioPlayer | null>(null);
   const winRef = useRef<AudioPlayer | null>(null);
+  const voiceRef = useRef<AudioPlayer | null>(null);
   const bedSrcRef = useRef<string | null>(null);
   const sfxRef = useRef<Partial<Record<AudioKey, AudioPlayer>>>({});
   // Web can't call play() until a user gesture unlocks audio; native is always
@@ -84,6 +88,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const contextTrackRef = useRef<string | null>(null);
   const lastRoundRef = useRef<number>(-1);
   const lastWinRef = useRef<number>(-1);
+  const lastVoiceRef = useRef<number>(-1);
 
   useEffect(() => {
     enabledRef.current = soundEnabled;
@@ -253,7 +258,49 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  /**
+   * A celebratory exclamation on a win — ¡Órale!, ¡Qué padre!, ¡Lo lograste!
+   *
+   * Fourteen clips across eight Spanish voices (four Mexican, four Argentine),
+   * so with a line on every win neither the phrase nor the speaker repeats
+   * often enough to become wallpaper. The regionally-marked slang is all in the
+   * Mexican voices; see scripts/fetch-audio.mjs for the casting.
+   *
+   * Anti-repeat is on the *previous* index only, matching how the fanfares and
+   * round beds already behave: cheap, and enough to kill the thing players
+   * actually notice, which is hearing the same clip twice in a row.
+   *
+   * Bundled, not streamed — a celebration sting that arrives after a network
+   * round-trip has already missed the moment it was celebrating.
+   */
+  function playVoice() {
+    if (!enabledRef.current) return;
+    if (!VOICE.length) return;
+    let i = Math.floor(Math.random() * VOICE.length);
+    if (VOICE.length > 1 && i === lastVoiceRef.current) i = (i + 1) % VOICE.length;
+    lastVoiceRef.current = i;
+    try {
+      if (voiceRef.current) {
+        voiceRef.current.remove();
+        voiceRef.current = null;
+      }
+      voiceRef.current = createAudioPlayer(VOICE[i]);
+      voiceRef.current.loop = false;
+      // Sits on top of the fanfare rather than replacing it, so it needs to cut
+      // through without shouting.
+      voiceRef.current.volume = 1;
+      startPlayer(voiceRef.current);
+    } catch {
+      /* ignore */
+    }
+  }
+
   function stopMusic() {
+    try {
+      voiceRef.current?.pause();
+    } catch {
+      /* ignore */
+    }
     try {
       musicRef.current?.pause();
     } catch {
@@ -284,6 +331,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         soundEnabled,
         toggleSound,
         playSfx,
+        playVoice,
         playHomeMusic,
         playRoundMusic,
         playWinFanfare,

@@ -1,7 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 import { colors, displayFont, floatShadow } from '../theme';
-import { cardThumb } from '../data/cardImages';
+import { thumbSource } from '../data/cardImages';
 
 export const NAV_ICON_W = 36;
 export const NAV_ICON_H = 48;
@@ -35,7 +35,7 @@ export function NavRow({
     <Link href={href as never} asChild>
       <Pressable style={({ pressed }) => [styles.press, pressed && styles.pressed]}>
         <View style={[styles.row, !first && styles.divider]}>
-          <Image source={{ uri: cardThumb(icon, NAV_ICON_W, NAV_ICON_H) }} style={styles.icon} />
+          <Image source={thumbSource(icon, NAV_ICON_W, NAV_ICON_H)} style={styles.icon} />
           {/* flex:1 keeps the chevron pinned to the right edge. */}
           <View style={styles.body}>
             <Text style={styles.label}>{label}</Text>
@@ -66,14 +66,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.25)',
   },
   body: { flex: 1 },
-  label: { color: colors.text, fontFamily: displayFont, fontSize: 18, fontWeight: '700', ...floatShadow },
-  hint: { color: colors.textDim, fontSize: 12, marginTop: 2, ...floatShadow },
+  label: { color: colors.text, fontFamily: displayFont, fontSize: 19, fontWeight: '700', ...floatShadow },
+  // 14pt to match the settings subtitles — these hints sit over a photographic
+  // background and 12pt dim text was the weakest type in the app.
+  hint: { color: colors.textDim, fontSize: 14, marginTop: 3, lineHeight: 19, ...floatShadow },
   chevron: { color: colors.accent, fontSize: 26, fontWeight: '400', marginLeft: 10, opacity: 0.7 },
   groupLabel: {
     color: colors.accent,
-    fontSize: 10,
-    letterSpacing: 2.4,
-    opacity: 0.85,
+    fontSize: 12,
+    letterSpacing: 2.2,
+    opacity: 0.9,
     marginTop: 26,
     marginBottom: 2,
     fontWeight: '800',

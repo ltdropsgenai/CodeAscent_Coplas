@@ -2,7 +2,6 @@ import type { Difficulty, Puzzle, Tier } from '../types';
 import { CARDS } from '../data/cards';
 import LIB_RAW from '../data/groups.json';
 import EXP_LIB_RAW from '../data/expansion.groups.json';
-import { isDeckOnline } from '../net/deckOnline';
 
 /**
  * Live round composer for continuous play.
@@ -53,24 +52,31 @@ const EXP_LIB = EXP_LIB_RAW as Record<string, LibGroup>;
  */
 const LIB: Record<string, LibGroup> = { ...BASE_LIB, ...EXP_LIB };
 
-// ── Connectivity-gated pools ───────────────────────────────────────────────
-// Offline we may only use the bundled 54 and their hand-authored groups; online
-// we add the ~390 expansion categories (the expansion contributes no traps, so
-// the trap pool is the same either way).
+// ── Group pools ────────────────────────────────────────────────────────────
+//
+// These used to be gated on connectivity: offline was restricted to the base 54
+// because only those had bundled art and an expansion card would have rendered
+// as a bare emoji glyph. The whole deck now ships in the binary
+// (scripts/bundle-cards.mjs, ~35 MB at 480px), so there is nothing left to wait
+// for and the full library is always in play.
+//
+// Video is still streamed and still capped per round — but a missing clip only
+// costs the card its animation, never its picture, so it is not a reason to
+// narrow the deck.
 const BASE_REFS = Object.keys(BASE_LIB);
 const CATS_BASE = BASE_REFS.filter((r) => BASE_LIB[r].kind === 'cat');
 const TRAPS_BASE = BASE_REFS.filter((r) => BASE_LIB[r].kind !== 'cat');
 const EXP_CAT_REFS = Object.keys(EXP_LIB).filter((r) => EXP_LIB[r].kind === 'cat');
+/** Every category in the library. The expansion contributes no traps. */
 const CATS_FULL = [...CATS_BASE, ...EXP_CAT_REFS];
-const TRAPS_FULL = TRAPS_BASE;
 
-/** Category refs available for the current connectivity state. */
+/** Category refs. */
 function catsPool(): string[] {
-  return isDeckOnline() ? CATS_FULL : CATS_BASE;
+  return CATS_FULL;
 }
-/** Trap refs available for the current connectivity state. */
+/** Trap refs — colour/shape/letter/rhyme/hidden, all hand-authored in base. */
 function trapsPool(): string[] {
-  return isDeckOnline() ? TRAPS_FULL : TRAPS_BASE;
+  return TRAPS_BASE;
 }
 
 // ── Card-name helpers (for letter/rhyme ambiguity checks) ──────────────────

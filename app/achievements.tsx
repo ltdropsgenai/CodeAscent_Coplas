@@ -4,7 +4,7 @@ import { useFocusEffect, useNavigation } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, displayFont, floatShadow, monoFont } from '../src/theme';
 import { useI18n } from '../src/i18n';
-import { cardThumb } from '../src/data/cardImages';
+import { thumbSource } from '../src/data/cardImages';
 import { computeAchievements, unlockedCount, type Achievement } from '../src/game/achievements';
 import { getSeenCards, getStats, type Stats } from '../src/storage/store';
 
@@ -62,7 +62,7 @@ export default function Achievements() {
       {list.map((a, i) => (
         <View key={a.id} style={[styles.row, i > 0 && styles.divider]}>
           <Image
-            source={{ uri: cardThumb(a.icon, ICON_W, ICON_H) }}
+            source={thumbSource(a.icon, ICON_W, ICON_H)}
             style={[styles.icon, !a.unlocked && styles.iconLocked]}
           />
           <View style={styles.body}>
