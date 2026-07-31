@@ -487,6 +487,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.surfaceSolid,
   },
-  cardImg: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  // width/height 100%, NOT flex: 1 — same trap as CardTile.photo. A static
+  // asset carries intrinsic dimensions that RN stamps on as an explicit width,
+  // and flex only governs the main axis, so the cross axis stayed at the
+  // asset's 480px and the reveal showed a sliver of each card.
+  cardImg: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
   cardGlyph: { fontSize: 26 },
 });

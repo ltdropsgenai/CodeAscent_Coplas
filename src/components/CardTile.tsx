@@ -145,19 +145,25 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
                 <Text style={styles.medallionText}>{card.number}</Text>
               </View>
 
-              {/* Anchored from the BOTTOM so a one-line plate lands exactly on
-                  the printed label and a two-line plate grows up into the art
-                  instead of drifting off the card. */}
-              <View style={styles.nameParchment}>
-                <Text
-                  style={styles.name}
-                  numberOfLines={2}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.8}
-                >
-                  {card.name}
-                </Text>
-              </View>
+              {/* Only when the art is NOT showing. Every card in the deck has
+                  its name painted into the illustration, so drawing our own
+                  plate over it doubles the label. isBakedCard() was written to
+                  express exactly this and then never imported — the plate has
+                  been unconditional all along, which nobody could see while the
+                  art itself was invisible. Anchored from the BOTTOM so a
+                  two-line name grows up into the tile rather than off it. */}
+              {!showImage && (
+                <View style={styles.nameParchment}>
+                  <Text
+                    style={styles.name}
+                    numberOfLines={2}
+                    adjustsFontSizeToFit
+                    minimumFontScale={0.8}
+                  >
+                    {card.name}
+                  </Text>
+                </View>
+              )}
             </View>
           </LinearGradient>
         </Pressable>
@@ -213,7 +219,19 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.surfaceSolid,
   },
-  photo: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  // width/height 100%, NOT flex: 1.
+  //
+  // React Native stamps a static asset's intrinsic dimensions onto <Image> as
+  // an explicit width and height. `flex: 1` only overrides the MAIN axis; the
+  // cross axis keeps that explicit width, which beats align-items: stretch. So
+  // with the deck bundled, every tile rendered its art 480px wide inside a
+  // ~101px face with overflow: hidden — the leftmost 21% of the card, which
+  // reads as a blank cream-and-gold rectangle rather than as a cropped image.
+  //
+  // A remote { uri } source has no intrinsic size, so no explicit width was
+  // ever emitted and stretch worked. This could not have shown up before the
+  // deck was bundled, and it is invisible to every check we have.
+  photo: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' },
   loading: {
     position: 'absolute',
     top: 0,

@@ -14,7 +14,9 @@
     "sim": "node scripts/sim-rounds.mjs 800",
     "test": "node scripts/streak.test.mjs",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run validate && npm run groups && npm run i18n && npm run copy && npm run sim && npm test"
+    "check": "npm run typecheck && npm run validate && npm run groups && npm run i18n && npm run copy && npm run assets && npm run images && npm run sim && npm test",
+    "assets": "node scripts/check-assets.mjs",
+    "images": "node scripts/check-image-styles.mjs"
   },
   "dependencies": {
     "@expo-google-fonts/fraunces": "^0.4.1",
