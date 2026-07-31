@@ -1,0 +1,10 @@
+{
+  "name": "coplas-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Public pages for Coplas: landing, privacy policy, terms, support.",
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}

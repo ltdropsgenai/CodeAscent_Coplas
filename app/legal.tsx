@@ -15,9 +15,13 @@ import { ANIMATED_COUNT } from '../src/data/cardVideos';
  * layout. `/legal?doc=terms|privacy|about` keeps the router flat and the
  * styling in one place.
  *
- * NOTE FOR SUBMISSION: App Store Connect requires a privacy policy at a public
- * HTTPS URL — an in-app page does not satisfy that field. The text below is the
- * canonical source; publish the same copy to a web page and point ASC at it.
+ * The same copy is published at https://coplas-web.vercel.app (built by
+ * coplas-web/build.mjs), because App Store Connect and Play both require a
+ * privacy policy at a public HTTPS URL and an in-app route does not satisfy
+ * that field. THE TWO MUST STAY IN STEP: if you edit a paragraph here, edit it
+ * there. A privacy page that describes the app inaccurately is worse than no
+ * page at all — App Review reads it as a misrepresentation, not a typo.
+ *
  * This copy is a good-faith description of what the app actually does, not
  * legal advice; have it reviewed before the app goes public.
  */
@@ -25,7 +29,7 @@ import { ANIMATED_COUNT } from '../src/data/cardVideos';
 type Doc = 'about' | 'terms' | 'privacy';
 type Block = { h?: string; p: string };
 
-const UPDATED = '2026-07-30';
+const UPDATED = '2026-07-31';
 const CONTACT = 'tlondi@gmail.com';
 // Read from the deck itself so the copy can never drift out of date as the
 // deck and the animation run grow.
@@ -50,7 +54,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'La baraja',
-          p: 'La baraja va mucho más allá de las 54 cartas clásicas: ' + DECK_SIZE + ' cartas ilustradas, cada una con su nombre en español impreso en el naipe, y ' + ANIMATED + ' de ellas animadas. El arte, la música y las animaciones se transmiten desde nuestro servidor, así que la primera partida del día carga un poco antes de acomodarse.',
+          p: 'La baraja va mucho más allá de las 54 cartas clásicas: ' + DECK_SIZE + ' cartas ilustradas, cada una con su nombre en español impreso en el naipe, y ' + ANIMATED + ' de ellas animadas. Las ilustraciones, la música y las voces viajan dentro de la app, así que Coplas se juega sin conexión. Lo único que se transmite son los clips animados.',
         },
         {
           h: 'Hecho por',
@@ -94,11 +98,15 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'Lo que se queda en tu teléfono',
-          p: 'Tu racha, tus partidas, tus preferencias de idioma, sonido y dificultad se guardan únicamente en el almacenamiento local de tu dispositivo. No se envían a ningún servidor y desaparecen si borras la app.',
+          p: 'Tu racha, tus partidas, tus logros y tus preferencias de idioma, sonido y dificultad se guardan únicamente en el almacenamiento local de tu dispositivo. No se envían a ningún servidor y desaparecen si borras la app.',
         },
         {
           h: 'Lo que sale de tu teléfono',
-          p: 'La app descarga las ilustraciones, la música y los clips animados desde nuestro almacenamiento en Supabase. Como en cualquier descarga por internet, ese servidor registra técnicamente la petición y la dirección IP desde la que llega, del mismo modo que al abrir una página web. No asociamos esos registros con ninguna persona ni los usamos para perfilar a nadie.',
+          p: 'Las ' + DECK_SIZE + ' ilustraciones, los efectos de sonido, las voces y la música viajan dentro de la app: no se descargan. Lo único que se transmite desde nuestro almacenamiento en Supabase son los clips animados de las cartas. Como en cualquier descarga por internet, ese servidor registra técnicamente la petición y la dirección IP desde la que llega, del mismo modo que al abrir una página web. No asociamos esos registros con ninguna persona ni los usamos para perfilar a nadie.',
+        },
+        {
+          h: 'Recordatorios',
+          p: 'Si activas el recordatorio diario, la notificación la programa tu propio teléfono y se queda en él. No hay notificaciones push desde ningún servidor, y por tanto no existe ningún identificador de dispositivo registrado con nosotros.',
         },
         {
           h: 'Lo que no hacemos',
@@ -132,7 +140,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'The deck',
-          p: 'The deck runs far past the classic 54: ' + DECK_SIZE + ' illustrated cards, each with its Spanish name printed on the card itself, and ' + ANIMATED + ' of them animated. Art, music and animation stream from our server, so the first round of the day loads briefly before it settles.',
+          p: 'The deck runs far past the classic 54: ' + DECK_SIZE + ' illustrated cards, each with its Spanish name printed on the card itself, and ' + ANIMATED + ' of them animated. The illustrations, music and voices travel inside the app, so Coplas plays offline. The only thing that streams is the animated clips.',
         },
         {
           h: 'Made by',
@@ -174,11 +182,15 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'What stays on your phone',
-          p: 'Your streak, your played rounds and your language, sound and difficulty preferences are stored only in your device’s local storage. They are never sent to a server, and they disappear if you delete the app.',
+          p: 'Your streak, your played rounds, your achievements and your language, sound and difficulty preferences are stored only in your device’s local storage. They are never sent to a server, and they disappear if you delete the app.',
         },
         {
           h: 'What leaves your phone',
-          p: 'The app downloads its illustrations, music and animated clips from our Supabase storage. As with any download over the internet, that server technically logs the request and the IP address it came from, exactly as it would if you opened a web page. We do not tie those logs to any person or use them to profile anyone.',
+          p: 'All ' + DECK_SIZE + ' illustrations, the sound effects, the voices and the music travel inside the app — none of them are downloaded. The only thing that streams from our Supabase storage is the animated card clips. As with any download over the internet, that server technically logs the request and the IP address it came from, exactly as it would if you opened a web page. We do not tie those logs to any person or use them to profile anyone.',
+        },
+        {
+          h: 'Reminders',
+          p: 'If you turn on the daily reminder, your own phone schedules that notification and it stays there. There are no push notifications from any server, and so there is no device identifier registered with us.',
         },
         {
           h: 'What we don’t do',

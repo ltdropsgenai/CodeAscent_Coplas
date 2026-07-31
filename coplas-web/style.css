@@ -1,0 +1,209 @@
+/* Coplas — public pages.
+   Vintage lotería board at night: deep indigo lit by marigold gold.
+   Palette lifted verbatim from src/theme.ts so the site and the app agree. */
+
+:root {
+  --bg: #0b0a1f;
+  --bg-deep: #070510;
+  --surface: rgba(30, 26, 60, 0.36);
+  --border: rgba(220, 212, 255, 0.16);
+  --border-gold: rgba(244, 185, 66, 0.6);
+  --text: #f7f4ff;
+  --text-dim: #b7b0da;
+  --accent: #f4b942;
+  --magenta: #e4479b;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(139, 92, 246, 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(228, 71, 155, 0.12), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 5% 60%, rgba(244, 185, 66, 0.08), transparent 70%);
+  background-attachment: fixed;
+  color: var(--text);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+/* --- masthead ------------------------------------------------------- */
+
+header.mast {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.mark span { color: var(--accent); }
+
+nav.mast-nav {
+  display: flex;
+  gap: 1.1rem;
+  font-size: 0.85rem;
+}
+nav.mast-nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+nav.mast-nav a:hover,
+nav.mast-nav a[aria-current="page"] {
+  color: var(--accent);
+  border-bottom-color: var(--border-gold);
+}
+
+/* --- language toggle ------------------------------------------------ */
+
+.langbar {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1.5rem 0 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+.langbar button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  font: inherit;
+  text-transform: uppercase;
+}
+.langbar button[aria-pressed="true"] {
+  border-color: var(--border-gold);
+  color: var(--accent);
+  background: rgba(244, 185, 66, 0.1);
+}
+
+/* --- type ----------------------------------------------------------- */
+
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  margin: 2rem 0 0;
+  font-weight: 700;
+}
+
+.rule {
+  width: 3rem;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 0.9rem 0 0;
+  opacity: 0.85;
+}
+
+.updated {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  margin: 0.9rem 0 0;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin: 2.4rem 0 0.4rem;
+}
+
+p { margin: 0.7rem 0 0; color: var(--text); opacity: 0.94; }
+
+.lede { font-size: 1.1rem; opacity: 1; }
+
+a { color: var(--accent); }
+
+/* --- landing -------------------------------------------------------- */
+
+.hero { text-align: center; padding: 3rem 0 0; }
+.hero p { color: var(--text-dim); max-width: 32rem; margin-inline: auto; }
+
+.stores {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.store {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--border-gold);
+  background: rgba(244, 185, 66, 0.1);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.store.secondary {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text-dim);
+}
+.store:hover { background: rgba(244, 185, 66, 0.2); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin-top: 3.5rem;
+}
+.card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.2rem;
+}
+.card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--accent);
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+.card p { margin: 0; font-size: 0.9rem; color: var(--text-dim); }
+
+/* --- footer --------------------------------------------------------- */
+
+footer {
+  margin-top: 4.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+footer p { color: inherit; }
+
+/* language machinery: hidden until JS picks one, so no flash of both */
+[data-lang] { display: none; }
+html.ready [data-lang="en"] { display: block; }
+html.ready.es [data-lang="en"] { display: none; }
+html.ready.es [data-lang="es"] { display: block; }
