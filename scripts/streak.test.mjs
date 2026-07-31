@@ -1,0 +1,196 @@
+/**
+ * Streak logic check, run with plain node — no test runner, no network.
+ *
+ * `applyToTotals` is the one piece of this feature that is easy to get subtly
+ * wrong and very hard to debug later: a day-streak bug shows up as a player
+ * angrily reporting a lost streak weeks after the off-by-one shipped. So the
+ * pure logic is exercised here directly.
+ *
+ * store.ts can't be imported straight into node (AsyncStorage, JSON imports),
+ * so the pure functions are re-read out of the source and evaluated in
+ * isolation. That means this tests the REAL code, not a copy of it — if
+ * someone edits applyToTotals, this test sees the edit.
+ *
+ *   node scripts/streak.test.mjs
+ */
+import { readFileSync } from 'node:fs';
+
+const src = readFileSync(new URL('../src/storage/store.ts', import.meta.url), 'utf8');
+
+/** Pull a top-level function out of the source by name, braces balanced. */
+function extract(name) {
+  const start = src.indexOf(`function ${name}(`);
+  if (start === -1) throw new Error(`could not find function ${name}`);
+  let i = src.indexOf('{', start);
+  let depth = 0;
+  for (let j = i; j < src.length; j++) {
+    if (src[j] === '{') depth++;
+    else if (src[j] === '}') {
+      depth--;
+      if (depth === 0) return src.slice(start, j + 1);
+    }
+  }
+  throw new Error(`unbalanced braces in ${name}`);
+}
+
+// Strip TypeScript annotations well enough for these three functions.
+// Deliberately crude — it only has to handle the syntax these three actually
+// use, and if a future edit introduces syntax it can't strip, the import
+// throws loudly rather than silently testing stale code.
+const CONSTS = `const CALENDAR_DAYS = 90;
+const playDay = () => { throw new Error('playDay should not be reached: every test round sets playedOn'); };
+`;
+
+const stripped =
+  CONSTS +
+  [extract('nextDay'), extract('daysBetween'), extract('applyToTotals')]
+    .join('\n\n')
+    .replace(/export\s+/g, '')
+    // ` as Totals['mistakeHistogram']`, ` as Foo`, etc.
+    .replace(/\s+as\s+[A-Za-z_$][\w$.]*(\[[^\]]*\])?/g, '')
+    // `const t: Totals =`
+    .replace(/const\s+(\w+)\s*:\s*[A-Za-z_$][\w$.<>,\s]*=/g, 'const $1 =')
+    // parameter annotations
+    .replace(/\(prev:\s*Totals,\s*r:\s*PuzzleResult\)/g, '(prev, r)')
+    .replace(/\(day:\s*string\)/g, '(day)')
+    .replace(/\(a:\s*string,\s*b:\s*string\)/g, '(a, b)')
+    .replace(/\(s:\s*string\)/g, '(s)')
+    // return-type annotations
+    .replace(/\)\s*:\s*(string|number|Totals)\s*\{/g, ') {');
+
+const { applyToTotals, daysBetween } = await import(
+  `data:text/javascript,${encodeURIComponent(
+    `${stripped}\nexport { applyToTotals, daysBetween, nextDay };`
+  )}`
+);
+
+const EMPTY = {
+  played: 0,
+  won: 0,
+  perfect: 0,
+  mistakeHistogram: [0, 0, 0, 0],
+  byDifficulty: {
+    facil: { played: 0, won: 0 },
+    media: { played: 0, won: 0 },
+    dificil: { played: 0, won: 0 },
+  },
+  winStreak: 0,
+  bestWinStreak: 0,
+  dayStreak: 0,
+  bestDayStreak: 0,
+  lastPlayedOn: '',
+  daysPlayed: 0,
+  retried: 0,
+  firstPlayedAt: '',
+  recentDays: [],
+};
+
+const round = (day, status, extra = {}) => ({
+  puzzleId: `p-${day}-${Math.random()}`,
+  number: 1,
+  date: '',
+  status,
+  mistakes: status === 'won' ? 0 : 4,
+  grid: [],
+  completedAt: `${day}T12:00:00.000Z`,
+  playedOn: day,
+  difficulty: 'media',
+  ...extra,
+});
+
+let failures = 0;
+function check(label, actual, expected) {
+  const ok = JSON.stringify(actual) === JSON.stringify(expected);
+  if (!ok) {
+    failures += 1;
+    console.log(`FAIL  ${label}\n      expected ${JSON.stringify(expected)}\n      got      ${JSON.stringify(actual)}`);
+  } else {
+    console.log(`ok    ${label}`);
+  }
+}
+
+const fold = (rounds) => rounds.reduce((t, r) => applyToTotals(t, r), EMPTY);
+
+// ── date maths ───────────────────────────────────────────────────────────────
+check('daysBetween same day', daysBetween('2026-07-31', '2026-07-31'), 0);
+check('daysBetween consecutive', daysBetween('2026-07-31', '2026-08-01'), 1);
+check('daysBetween across month', daysBetween('2026-07-28', '2026-08-03'), 6);
+check('daysBetween across year', daysBetween('2026-12-31', '2027-01-01'), 1);
+// DST in America/Mexico_City historically shifted in early April.
+check('daysBetween across a DST boundary', daysBetween('2026-04-04', '2026-04-06'), 2);
+
+// ── win streak ───────────────────────────────────────────────────────────────
+let t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+]);
+check('3 wins → winStreak 3', t.winStreak, 3);
+check('3 wins → bestWinStreak 3', t.bestWinStreak, 3);
+
+t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'lost'),
+  round('2026-07-01', 'won'),
+]);
+check('loss resets winStreak', t.winStreak, 1);
+check('best survives the reset', t.bestWinStreak, 2);
+
+t = fold([round('2026-07-01', 'lost', { retried: true })]);
+check('retried round still books as a loss', t.winStreak, 0);
+check('retried round counted', t.retried, 1);
+check('retried loss is not a win', t.won, 0);
+
+// ── day streak ───────────────────────────────────────────────────────────────
+t = fold([round('2026-07-01', 'won'), round('2026-07-02', 'lost'), round('2026-07-03', 'won')]);
+check('3 consecutive days → dayStreak 3', t.dayStreak, 3);
+check('a loss does NOT break the day streak', t.dayStreak, 3);
+check('daysPlayed counts distinct days', t.daysPlayed, 3);
+
+t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+  round('2026-07-01', 'won'),
+]);
+check('many rounds one day → dayStreak 1', t.dayStreak, 1);
+check('many rounds one day → daysPlayed 1', t.daysPlayed, 1);
+
+t = fold([round('2026-07-01', 'won'), round('2026-07-03', 'won')]);
+check('a skipped day restarts dayStreak', t.dayStreak, 1);
+check('best day streak remembers the peak', t.bestDayStreak, 1);
+
+t = fold([
+  round('2026-07-01', 'won'),
+  round('2026-07-02', 'won'),
+  round('2026-07-03', 'won'),
+  round('2026-07-06', 'won'),
+]);
+check('gap after a run restarts at 1', t.dayStreak, 1);
+check('bestDayStreak keeps the 3', t.bestDayStreak, 3);
+
+t = fold([round('2026-07-31', 'won'), round('2026-08-01', 'won')]);
+check('month boundary extends the streak', t.dayStreak, 2);
+
+t = fold([round('2026-12-31', 'won'), round('2027-01-01', 'won')]);
+check('year boundary extends the streak', t.dayStreak, 2);
+
+// ── aggregates ───────────────────────────────────────────────────────────────
+t = fold([
+  round('2026-07-01', 'won', { difficulty: 'dificil' }),
+  round('2026-07-01', 'lost', { difficulty: 'dificil' }),
+  round('2026-07-01', 'won', { difficulty: 'facil', mistakes: 2 }),
+]);
+check('byDifficulty hard played', t.byDifficulty.dificil.played, 2);
+check('byDifficulty hard won', t.byDifficulty.dificil.won, 1);
+check('perfect counts only flawless wins', t.perfect, 1);
+check('histogram bucket 2', t.mistakeHistogram[2], 1);
+
+t = fold([round('2026-07-01', 'won', { hinted: true })]);
+check('a hinted win is not perfect', t.perfect, 0);
+
+t = fold([round('2026-07-01', 'won'), round('2026-07-02', 'won'), round('2026-07-02', 'won')]);
+check('recentDays has no duplicates', t.recentDays, ['2026-07-01', '2026-07-02']);
+
+console.log(failures ? `\n${failures} FAILING` : '\nall streak checks passed');
+process.exit(failures ? 1 : 0);

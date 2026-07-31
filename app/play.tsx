@@ -16,7 +16,8 @@ import { SolvedGroup } from '../src/components/SolvedGroup';
 import { WinCelebration } from '../src/components/WinCelebration';
 import { GradientButton } from '../src/components/GradientButton';
 import { buildShareText } from '../src/share/shareGrid';
-import { getSettings, getStats } from '../src/storage/store';
+import { maybePromptForReview } from '../src/rate';
+import { getSettings, getStats, type Stats } from '../src/storage/store';
 import type { Difficulty, Puzzle } from '../src/types';
 
 type FeedbackKind = 'correct' | 'wrong' | null;
@@ -38,7 +39,7 @@ function penaltyOf(u: CardUse, now: number): number {
 export default function Play() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const { playSfx, playRoundMusic, playWinFanfare, stopMusic, soundEnabled, toggleSound } = useAudio();
   const { n } = useLocalSearchParams<{ n?: string }>();
   const isArchive = !!n;
@@ -113,6 +114,13 @@ export default function Play() {
   const game = useGame(puzzle);
   const { state } = game;
   const finished = state.status !== 'playing';
+
+  /**
+   * The board stays on screen through a loss, so the retry has something to
+   * act on. It only comes down when the round is genuinely over: solved, or
+   * the player asked to see the answer.
+   */
+  const boardVisible = state.status === 'playing' || (state.status === 'lost' && !state.revealed);
 
   // Correct / wrong feedback burst.
   const feedback = useRef(new Animated.Value(0)).current;
@@ -259,10 +267,26 @@ export default function Play() {
 
   const shakeX = shake.interpolate({ inputRange: [-1, 1], outputRange: [-12, 12] });
 
-  const [lifetimeStreak, setLifetimeStreak] = useState<number | undefined>(undefined);
+  // Lifetime numbers, read once the round ends — used by the share text and by
+  // the review-prompt decision.
+  const [finalStats, setFinalStats] = useState<Stats | null>(null);
   useEffect(() => {
-    if (finished) getStats().then((s) => setLifetimeStreak(s.currentStreak));
+    if (finished) getStats().then(setFinalStats);
   }, [finished, puzzle.id]);
+
+  // Ask for a rating only at a peak, and only once the celebration is over — an
+  // OS dialog on top of the fireworks is how you get a reflexive dismissal.
+  // `maybePromptForReview` enforces the rest of the policy (flawless win, streak
+  // milestone, enough rounds played, once per version) and never throws.
+  const promptedRef = useRef(false);
+  useEffect(() => {
+    if (!finalStats || promptedRef.current) return;
+    if (state.status !== 'won' || !resultReady) return;
+    promptedRef.current = true;
+    const flawless = state.mistakes === 0 && !state.hintUsed && !state.retried;
+    const id = setTimeout(() => maybePromptForReview(finalStats, flawless), 900);
+    return () => clearTimeout(id);
+  }, [finalStats, resultReady, state.status, state.mistakes, state.hintUsed, state.retried]);
 
   function onSelect(id: string) {
     playSfx('select');
@@ -281,7 +305,13 @@ export default function Play() {
       grid: state.guesses.map((g) => g.tierOf),
       status: state.status === 'won' ? 'won' : 'lost',
       mistakes: state.mistakes,
-      currentStreak: isArchive ? lifetimeStreak : sessionStreak,
+      retried: state.retried,
+      // Lifetime streaks, not the session counter: the session number resets
+      // whenever the player leaves the screen, so it undersold anyone who came
+      // back the next day.
+      winStreak: finalStats?.winStreak,
+      dayStreak: finalStats?.dayStreakLive ? finalStats.dayStreak : undefined,
+      lang,
     });
     try {
       await Share.share({ message: text });
@@ -316,7 +346,14 @@ export default function Play() {
           <SolvedGroup key={g.theme} group={g} animate={i === state.solved.length - 1} />
         ))}
 
-        {!finished && (
+        {/* The answer. Only ever drawn once the player has asked for it —
+            revealing automatically on the loss is what made the retry
+            impossible, because a "retry" with the groups on screen is just
+            copying. */}
+        {state.revealed &&
+          game.unsolved.map((g) => <SolvedGroup key={g.theme} group={g} animate={false} />)}
+
+        {boardVisible && (
           <Animated.View style={[styles.grid, { transform: [{ translateX: shakeX }] }]}>
             {chunk(state.remaining, 4).map((row, ri) => (
               <View key={ri} style={styles.row}>
@@ -334,7 +371,7 @@ export default function Play() {
           </Animated.View>
         )}
 
-        {!game.relaxed && !finished && (
+        {!game.relaxed && boardVisible && (
           <View style={styles.mistakes}>
             <Text style={styles.dim}>{t.play.errors}</Text>
             {Array.from({ length: MAX_MISTAKES }).map((_, i) => (
@@ -373,20 +410,47 @@ export default function Play() {
           >
             <Text style={styles.resultTitle}>
               {state.status === 'won'
-                ? state.mistakes === 0 && !state.hintUsed
-                  ? t.play.perfect
-                  : t.play.solved
+                ? state.retried
+                  ? t.play.retriedWon
+                  : state.mistakes === 0 && !state.hintUsed
+                    ? t.play.perfect
+                    : t.play.solved
                 : t.play.lost}
             </Text>
             <View style={styles.resultDivider} />
-            {state.status === 'lost' && <Text style={styles.dim}>{t.play.lostNote}</Text>}
-            {state.status === 'won' && state.hintUsed && (
+            {state.status === 'lost' && (
+              <Text style={styles.dim}>
+                {state.revealed
+                  ? t.play.revealedNote
+                  : game.canRetry
+                    ? t.play.retryNote
+                    : t.play.retryAgainNote}
+              </Text>
+            )}
+            {state.status === 'won' && state.retried && (
+              <Text style={styles.dim}>{t.play.retriedWonNote}</Text>
+            )}
+            {state.status === 'won' && !state.retried && state.hintUsed && (
               <Text style={styles.hintNote}>💡 {t.play.hintNote}</Text>
             )}
             <View style={styles.resultActions}>
-              <GradientButton label={t.play.share} variant="ghost" onPress={onShare} />
-              {!isArchive && (
-                <GradientButton label={t.play.nextRound} variant="gold" onPress={nextRound} />
+              {/* A failed round offers the second crack FIRST and the answer
+                  second. Once the answer is out you can't un-see it, so the
+                  order is the whole design. */}
+              {state.status === 'lost' && !state.revealed ? (
+                <>
+                  {game.canRetry && (
+                    <GradientButton label={t.play.retry} variant="gold" onPress={game.retry} />
+                  )}
+                  <GradientButton label={t.play.reveal} variant="ghost" onPress={game.reveal} />
+                </>
+              ) : (
+                <>
+                  <GradientButton label={t.play.share} variant="ghost" onPress={onShare} />
+                  {!isArchive && (
+                    <GradientButton label={t.play.nextRound} variant="gold" onPress={nextRound} />
+                  )}
+                </>
               )}
             </View>
           </Animated.View>

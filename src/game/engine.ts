@@ -32,6 +32,18 @@ export interface GameState {
   hintPair: string[];
   /** True once the player has spent their one hint this round (drops "perfect"). */
   hintUsed: boolean;
+  /**
+   * The player used their one retry after failing. The round is already
+   * recorded as a loss — the retry buys closure, not credit — so this exists
+   * to stop them taking a second one and to let stats tell "gave up" from
+   * "came back and got it".
+   */
+  retried: boolean;
+  /**
+   * The unsolved groups are on screen. Terminal: you cannot retry after
+   * seeing the answer, because that would not be a retry, it would be copying.
+   */
+  revealed: boolean;
 }
 
 /** Which tier a given card belongs to in this puzzle. */
@@ -72,7 +84,50 @@ export function initGame(puzzle: Puzzle, seed?: number): GameState {
     status: 'playing',
     hintPair: [],
     hintUsed: false,
+    retried: false,
+    revealed: false,
   };
+}
+
+/** The groups the player never got — what a reveal has to show. */
+export function unsolvedGroups(state: GameState): Group[] {
+  const done = new Set(state.solved.map((g) => g.theme));
+  return state.puzzle.groups.filter((g) => !done.has(g.theme));
+}
+
+/** Can the player still take their one retry? */
+export function canRetry(state: GameState): boolean {
+  return state.status === 'lost' && !state.retried && !state.revealed;
+}
+
+/**
+ * Second crack at a failed board.
+ *
+ * Deliberately NOT a fresh start: the groups already solved stay solved and
+ * the player gets exactly one mistake back, so this is another go at the part
+ * they could not crack rather than a replay of a board they have half
+ * memorised. The cards are reshuffled so the layout does not just sit there
+ * confirming the guesses that already failed.
+ *
+ * Available once, and only before the answer is shown.
+ */
+export function retryRound(state: GameState): GameState {
+  if (!canRetry(state)) return state;
+  return {
+    ...state,
+    remaining: shuffle(state.remaining),
+    selected: [],
+    mistakes: Math.max(0, MAX_MISTAKES - 1),
+    status: 'playing',
+    hintPair: [],
+    retried: true,
+  };
+}
+
+/** Show the groups the player never found. One-way door. */
+export function revealAnswer(state: GameState): GameState {
+  if (state.status !== 'lost' || state.revealed) return state;
+  return { ...state, revealed: true, hintPair: [] };
 }
 
 export function toggleSelect(state: GameState, cardId: string): GameState {

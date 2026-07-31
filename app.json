@@ -54,6 +54,14 @@
           "microphonePermission": false,
           "enableBackgroundPlayback": false
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#0A0820",
+          "defaultChannel": "coplas.daily"
+        }
       ]
     ],
     "experiments": {

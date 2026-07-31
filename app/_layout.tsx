@@ -14,6 +14,7 @@ import { PurchasesProvider } from '../src/purchases';
 import { AppBackground } from '../src/components/AppBackground';
 import { HeaderBack } from '../src/components/HeaderBack';
 import { SplashSequence } from '../src/components/SplashSequence';
+import { ReminderSync } from '../src/components/ReminderSync';
 import { getSettings } from '../src/storage/store';
 
 // Session flag: the animated intro plays once per cold start ("every launch").
@@ -102,6 +103,9 @@ export default function RootLayout() {
           {/* Entitlement state is read by archive/settings/unlock, so it sits
               above the navigator. Inert while IAP_ENABLED is false. */}
           <PurchasesProvider>
+          {/* Renders nothing; rebuilds the daily reminder schedule on launch
+              and on language change. */}
+          <ReminderSync />
           <View style={{ flex: 1, backgroundColor: colors.bg }}>
             <AppBackground />
             <StatusBar style="light" />
@@ -155,6 +159,10 @@ export default function RootLayout() {
               <Stack.Screen
                 name="unlock"
                 options={{ title: '', headerLeft: () => <HeaderBack fallback="/archive" to="archive" /> }}
+              />
+              <Stack.Screen
+                name="achievements"
+                options={{ title: '', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
               />
             </Stack>
             </ThemeProvider>

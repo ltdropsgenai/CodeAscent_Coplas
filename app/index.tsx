@@ -199,12 +199,22 @@ export default function Home() {
         </View>
 
         {/* Stats float, separated by hairlines - no boxes. Each gets its own
-            card from the deck: El Fuego for the streak, La Corona for your
-            best, La Medalla for wins. */}
+            card from the deck: El Fuego for the win streak, El Calendario for
+            the day streak, La Medalla for wins.
+
+            Two streaks, deliberately. The win streak is the strict one and
+            resets the moment you lose — it makes a round matter. The day
+            streak is the forgiving one and only asks that you show up — it is
+            what brings people back. `dayStreakLive` guards against showing a
+            lapsed streak as if it were current. */}
         <View style={[styles.scoreboard, { marginTop: px(26) }]}>
-          <Stat label={t.home.streak} value={stats ? String(stats.currentStreak) : '-'} icon="el_fuego" />
+          <Stat label={t.home.streak} value={stats ? String(stats.winStreak) : '-'} icon="el_fuego" />
           <View style={styles.scoreRule} />
-          <Stat label={t.home.best} value={stats ? String(stats.bestStreak) : '-'} icon="la_corona" />
+          <Stat
+            label={t.home.days}
+            value={stats ? String(stats.dayStreakLive ? stats.dayStreak : 0) : '-'}
+            icon="el_calendario"
+          />
           <View style={styles.scoreRule} />
           <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '-'} icon="la_medalla" />
         </View>

@@ -8,6 +8,8 @@ import { useAudio } from '../src/audio';
 import { NavGroupLabel, NavRow } from '../src/components/NavRow';
 import { UpdateRow } from '../src/components/UpdateRow';
 import { usePurchases } from '../src/purchases';
+import { setReminderEnabled } from '../src/notify';
+import { openStoreListing } from '../src/rate';
 import { DEFAULT_SETTINGS, getSettings, saveSettings, type Settings } from '../src/storage/store';
 import type { Difficulty } from '../src/types';
 
@@ -33,6 +35,7 @@ export default function SettingsScreen() {
   const navigation = useNavigation();
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
   const [restoreNote, setRestoreNote] = useState<string | null>(null);
+  const [notifNote, setNotifNote] = useState<string | null>(null);
 
   useLayoutEffect(() => {
     navigation.setOptions({ title: t.nav.settings });
@@ -59,6 +62,12 @@ export default function SettingsScreen() {
       <NavRow href="/tutorial" label={t.home.howToPlay} hint={t.home.howToPlayHint} icon="el_naipe" first />
       <NavRow href="/archive" label={t.nav.archive} hint={t.home.archiveHint} icon="el_archivero" />
       <NavRow href="/stats" label={t.nav.stats} hint={t.home.statsHint} icon="el_trofeo" />
+      <NavRow
+        href="/achievements"
+        label={t.settings.achievements}
+        hint={t.settings.achievementsHint}
+        icon="la_corona"
+      />
 
       <NavGroupLabel>{t.settings.groupPrefs}</NavGroupLabel>
 
@@ -111,11 +120,20 @@ export default function SettingsScreen() {
         value={settings.relaxed}
         onValueChange={(v) => update({ relaxed: v })}
       />
+      {/* The reminder switch reflects what is actually SCHEDULED, not what was
+          tapped. `setReminderEnabled` does the permission round-trip and hands
+          back the state it really achieved, so a denied prompt leaves the
+          switch off with an explanation instead of on and silently dead —
+          which is what it did for every build before this one. */}
       <ToggleRow
         title={t.settings.notifTitle}
-        subtitle={t.settings.notifSub}
+        subtitle={notifNote ?? t.settings.notifSub}
         value={settings.notifications}
-        onValueChange={(v) => update({ notifications: v })}
+        onValueChange={async (v) => {
+          const actual = await setReminderEnabled(v, t.reminder);
+          setSettings((s) => ({ ...s, notifications: actual }));
+          setNotifNote(v && !actual ? t.settings.notifDenied : null);
+        }}
       />
 
       {/* Purchase group. The whole block is absent while the gate is off, so a
@@ -180,6 +198,17 @@ export default function SettingsScreen() {
       />
       {/* Over-the-air: pulls a JS/asset fix without a new App Store build. */}
       <UpdateRow />
+      {/* Always available, unlike the native review prompt, which the OS may
+          decline to show. This one always opens the listing. */}
+      <Pressable
+        onPress={openStoreListing}
+        style={({ pressed }) => [styles.row, pressed && styles.pressed]}
+      >
+        <View style={styles.rowText}>
+          <Text style={styles.title}>{t.rate.title}</Text>
+          <Text style={styles.subtitle}>{t.rate.hint}</Text>
+        </View>
+      </Pressable>
 
       <Text style={styles.version}>{t.settings.version}</Text>
     </ScrollView>
