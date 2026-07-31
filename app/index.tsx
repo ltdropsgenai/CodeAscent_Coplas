@@ -21,7 +21,8 @@ import { CardVideo } from '../src/components/CardVideo';
 import { ANIMATED_CARD_IDS } from '../src/data/cardVideos';
 import { thumbSource } from '../src/data/cardImages';
 import { getTodaysPuzzle } from '../src/data/puzzles';
-import { getResult, getStats, type Stats } from '../src/storage/store';
+import { computeAchievements, unlockedCount } from '../src/game/achievements';
+import { getResult, getSeenCards, getStats, type Stats } from '../src/storage/store';
 
 // ── Fitting home onto one screen ───────────────────────────────────────────
 // Home must never need scrolling to reach the menu. Hard-coding smaller sizes
@@ -115,6 +116,7 @@ export default function Home() {
   const { soundEnabled, toggleSound, playHomeMusic } = useAudio();
   const puzzle = getTodaysPuzzle();
   const [stats, setStats] = useState<Stats | null>(null);
+  const [badges, setBadges] = useState<{ got: number; total: number } | null>(null);
   const [playedToday, setPlayedToday] = useState(false);
   // A different animated card greets you each time the app is opened.
   const [heroId] = useState(
@@ -138,10 +140,16 @@ export default function Home() {
       // back from a round, which was playing a different genre).
       playHomeMusic();
       (async () => {
-        const [s, r] = await Promise.all([getStats(), getResult(puzzle.id)]);
+        const [s, r, seenCards] = await Promise.all([
+          getStats(),
+          getResult(puzzle.id),
+          getSeenCards(),
+        ]);
         if (!active) return;
         setStats(s);
         setPlayedToday(!!r);
+        const all = computeAchievements({ stats: s, seenCount: Object.keys(seenCards).length });
+        setBadges({ got: unlockedCount(all), total: all.length });
       })();
       return () => {
         active = false;
@@ -218,6 +226,31 @@ export default function Home() {
           <View style={styles.scoreRule} />
           <Stat label={t.home.wins} value={stats ? `${stats.winRate}%` : '-'} icon="la_medalla" />
         </View>
+
+        {/* Badge progress. This is the whole of a player's long-run progress on
+            a screen that must never scroll, so it is one line and one hairline:
+            a count, and how far along the bar sits. The round-complete screen
+            used to list every badge as it landed, which interrupted the game to
+            report on the game. It belongs here, where someone is deciding
+            whether to play rather than in the middle of playing. */}
+        {!!badges && (
+          <View style={[styles.badges, { marginTop: px(16) }]}>
+            <View style={styles.badgeRow}>
+              <Text style={styles.badgeLabel}>{t.achievements.title.toUpperCase()}</Text>
+              <Text style={styles.badgeCount}>
+                {badges.got} / {badges.total}
+              </Text>
+            </View>
+            <View style={styles.badgeTrack}>
+              <View
+                style={[
+                  styles.badgeFill,
+                  { width: `${badges.total ? (badges.got / badges.total) * 100 : 0}%` },
+                ]}
+              />
+            </View>
+          </View>
+        )}
 
         {/* Home stays about ONE thing: play today's copla. Everything else -
             the rules, the archive, stats, preferences and the legal pages -
@@ -333,6 +366,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scoreRule: { width: 1, height: 54, backgroundColor: 'rgba(244,185,66,0.28)' },
+  badges: { alignSelf: 'stretch' },
+  badgeRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' },
+  badgeLabel: {
+    color: colors.textDim,
+    fontFamily: monoFont,
+    fontSize: 11,
+    letterSpacing: 1.4,
+    ...floatShadow,
+  },
+  badgeCount: { color: colors.accent, fontFamily: monoFont, fontSize: 12, ...floatShadow },
+  badgeTrack: {
+    height: 2,
+    marginTop: 7,
+    borderRadius: 1,
+    backgroundColor: 'rgba(244,185,66,0.22)',
+    overflow: 'hidden',
+  },
+  badgeFill: { height: 2, borderRadius: 1, backgroundColor: colors.accent },
   statCell: { flex: 1, alignItems: 'center' },
   statIcon: {
     width: STAT_ICON_W,

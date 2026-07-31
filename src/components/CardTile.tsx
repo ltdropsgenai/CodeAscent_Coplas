@@ -46,6 +46,33 @@ interface Props {
  * react-native-web ignores useNativeDriver entirely, which is why this never
  * reproduced in the browser.
  */
+/**
+ * Type size for the name plate, decided from the name itself.
+ *
+ * The plate used to be a fixed 11pt with `adjustsFontSizeToFit`,
+ * `numberOfLines={2}` and `minimumFontScale={0.8}`. On iOS that combination
+ * shrinks unpredictably and does NOT honour the floor: "El Nopal" — the
+ * SHORTEST name on its board — rendered at roughly half the size of "El
+ * Alacrán" next to it. Auto-shrink cannot be trusted here.
+ *
+ * Choosing the size ourselves is predictable, and it lets the short names that
+ * make up most of the deck sit LARGER than the old fixed 11pt rather than
+ * smaller. Only the rare long ones step down.
+ *
+ * Budget: roughly 72pt of text width across at most two lines on a 4-up board.
+ * The long tail is real — "El Balón de Fútbol Americano" is 28 characters, and
+ * "Portarretratos" is 14 characters that cannot wrap — so an unbreakable word
+ * sets the ceiling, not the total length.
+ */
+function plateFontSize(name: string): number {
+  const longestWord = name.split(' ').reduce((m, w) => Math.max(m, w.length), 0);
+  if (longestWord > 12) return 9;
+  if (name.length <= 10) return 12.5;
+  if (name.length <= 16) return 11.5;
+  if (name.length <= 22) return 10;
+  return 9;
+}
+
 function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const glow = useRef(new Animated.Value(0)).current;
@@ -96,6 +123,7 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
 
   const frame = selected ? gradients.gold : (['#8A6A28', '#5A461C'] as const);
   const showImage = img != null && !imgError;
+  const nameSize = plateFontSize(card.name);
 
   return (
     <Animated.View
@@ -163,10 +191,9 @@ function CardTileBase({ card, selected, hinted, disabled, onPress }: Props) {
                   art rather than drifting off the card. */}
               <View style={styles.nameParchment}>
                 <Text
-                  style={styles.name}
+                  style={[styles.name, { fontSize: nameSize, lineHeight: nameSize + 2 }]}
                   numberOfLines={2}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.8}
+                  allowFontScaling={false}
                 >
                   {card.name}
                 </Text>
@@ -279,11 +306,10 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 3,
   },
+  // fontSize and lineHeight are set at the call site from plateFontSize().
   name: {
     color: '#3E2A0C',
     fontFamily: displayFont,
-    fontSize: 11,
-    lineHeight: 13,
     textAlign: 'center',
   },
 });

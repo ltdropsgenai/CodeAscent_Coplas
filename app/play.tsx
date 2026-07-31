@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Image, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, displayFont, floatShadow, monoFont } from '../src/theme';
@@ -16,12 +16,7 @@ import { WinCelebration } from '../src/components/WinCelebration';
 import { GradientButton } from '../src/components/GradientButton';
 import { buildShareText } from '../src/share/shareGrid';
 import { maybePromptForReview } from '../src/rate';
-import { thumbSource } from '../src/data/cardImages';
-import {
-  computeAchievements,
-  newlyUnlocked,
-  type Achievement,
-} from '../src/game/achievements';
+import { computeAchievements, newlyUnlocked } from '../src/game/achievements';
 import {
   getSeenAchievements,
   getSeenCards,
@@ -226,7 +221,6 @@ export default function Play() {
   useEffect(() => {
     setShowCelebration(false);
     setResultReady(false);
-    setUnlockedNow([]);
     setFinalStats(null);
   }, [puzzle.id]);
 
@@ -284,10 +278,6 @@ export default function Play() {
   // Lifetime numbers, read once the round ends — used by the share text and by
   // the review-prompt decision.
   const [finalStats, setFinalStats] = useState<Stats | null>(null);
-  // Badges tripped by THIS round — celebrated inline on the result panel.
-  // Without this the ladder is invisible unless you go looking for it in
-  // Settings, which is the same as not having one.
-  const [unlockedNow, setUnlockedNow] = useState<Achievement[]>([]);
 
   useEffect(() => {
     if (!finished) return;
@@ -300,13 +290,14 @@ export default function Play() {
       ]);
       if (!active) return;
       setFinalStats(s);
+      // Badges are still resolved and banked here — they are just not shown on
+      // this screen. The end of a round is for the round: what you solved, why,
+      // and whether you go again. Progress belongs on Home, where someone is
+      // deciding whether to play, not in the middle of already playing.
       const fresh = newlyUnlocked(
         computeAchievements({ stats: s, seenCount: Object.keys(seenCards).length }),
         celebrated
       );
-      setUnlockedNow(fresh);
-      // Marked as soon as they're shown: a badge should be celebrated once, and
-      // a crash between showing and marking is a worse bug than a missed toast.
       if (fresh.length) markAchievementsSeen(fresh.map((a) => a.id));
     })();
     return () => {
@@ -479,30 +470,11 @@ export default function Play() {
             {state.status === 'won' && state.retried && (
               <Text style={styles.dim}>{t.play.retriedWonNote}</Text>
             )}
-            {state.status === 'won' && !state.retried && state.hintUsed && (
-              <Text style={styles.hintNote}>💡 {t.play.hintNote}</Text>
-            )}
-            {/* Badges earned by this round. Shown for a loss too — "La vuelta"
-                and the day-streak badges can land on a round you didn't win,
-                and withholding them would be strange. */}
-            {unlockedNow.length > 0 && (
-              <View style={styles.unlocks}>
-                <Text style={styles.unlockTitle}>
-                  {unlockedNow.length === 1
-                    ? t.achievements.unlockedOne
-                    : t.achievements.unlockedMany(unlockedNow.length)}
-                </Text>
-                {unlockedNow.map((a) => (
-                  <View key={a.id} style={styles.unlockRow}>
-                    <Image source={thumbSource(a.icon, 26, 34)} style={styles.unlockIcon} resizeMode="cover" />
-                    <View style={styles.unlockBody}>
-                      <Text style={styles.unlockName}>{t.achievements.names[a.id] ?? a.id}</Text>
-                      <Text style={styles.unlockDesc}>{t.achievements.descs[a.id] ?? ''}</Text>
-                    </View>
-                  </View>
-                ))}
-              </View>
-            )}
+            {/* NO STATS AND NO BADGES HERE. The result panel carries the
+                outcome, whatever guidance the outcome needs, and the way
+                onward. Everything else — badges earned, streaks, win rate —
+                lives on Home. A tally between rounds interrupts the game to
+                report on the game. */}
 
             <View style={styles.resultActions}>
               {/* A failed round offers the second crack FIRST and the answer

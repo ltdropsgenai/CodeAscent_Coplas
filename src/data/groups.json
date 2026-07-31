@@ -236,10 +236,10 @@
       "el_sol",
       "la_luna",
       "el_mundo",
-      "la_corona"
+      "la_moneda"
     ],
     "theme": "Cosas redondas",
-    "why": "Sol, luna, mundo y corona: forma redonda.",
+    "why": "Sol, luna, mundo y moneda: forma redonda.",
     "exclude": [
       "el_anillo",
       "el_arandano",
@@ -298,6 +298,7 @@
       "la_cereza",
       "la_ciruela",
       "la_col",
+      "la_corona",
       "la_dona",
       "la_frambuesa",
       "la_galaxia",
@@ -312,7 +313,6 @@
       "la_mandarina",
       "la_manzana",
       "la_medalla",
-      "la_moneda",
       "la_mora",
       "la_naranja",
       "la_nuez",
