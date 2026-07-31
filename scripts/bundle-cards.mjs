@@ -55,19 +55,44 @@ for (const c of JSON.parse(readFileSync(join(root, 'src', 'data', 'expansion.car
 console.log(`bundling ${ids.length} cards at ${WIDTH}x${HEIGHT} (quality ${QUALITY})\n`);
 
 // ── download ─────────────────────────────────────────────────────────────────
-const ok = new Set();
+
+/**
+ * The extension has to describe the BYTES, not the source key.
+ *
+ * Supabase's object keys are named `.webp`, but its image-transform endpoint
+ * returns JPEG. The first version of this script wrote every response to
+ * `${id}.webp` on the strength of the key alone. Android rendered them anyway
+ * (Fresco sniffs content), so nothing caught it — but iOS resolves a bundled
+ * resource by its declared type, failed to decode all 995, and every card on
+ * the board fell back to CardTile's glyph placeholder. Shipped that way in
+ * build 6. Never trust the URL; read the magic bytes.
+ */
+function sniff(buf) {
+  if (buf[0] === 0xff && buf[1] === 0xd8) return 'jpg';
+  if (buf.slice(0, 4).toString('latin1') === 'RIFF' && buf.slice(8, 12).toString('latin1') === 'WEBP') return 'webp';
+  if (buf.slice(0, 8).toString('latin1') === '\x89PNG\r\n\x1a\n') return 'png';
+  throw new Error(`unrecognised image format (starts ${buf.slice(0, 4).toString('hex')})`);
+}
+
+const EXTS = ['jpg', 'webp', 'png'];
+
+/** id → the extension actually on disk. */
+const ok = new Map();
 const failed = [];
 let done = 0;
 let skipped = 0;
 let bytes = 0;
 
 async function one(id) {
-  const dest = join(OUT, `${id}.webp`);
-  if (existsSync(dest) && statSync(dest).size >= MIN_BYTES) {
-    ok.add(id);
-    bytes += statSync(dest).size;
-    skipped++;
-    return;
+  // Reuse whatever is already on disk, under whichever extension it landed as.
+  for (const ext of EXTS) {
+    const existing = join(OUT, `${id}.${ext}`);
+    if (existsSync(existing) && statSync(existing).size >= MIN_BYTES) {
+      ok.set(id, ext);
+      bytes += statSync(existing).size;
+      skipped++;
+      return;
+    }
   }
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
@@ -75,8 +100,9 @@ async function one(id) {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const buf = Buffer.from(await res.arrayBuffer());
       if (buf.length < MIN_BYTES) throw new Error(`too small (${buf.length}B)`);
-      writeFileSync(dest, buf);
-      ok.add(id);
+      const ext = sniff(buf);
+      writeFileSync(join(OUT, `${id}.${ext}`), buf);
+      ok.set(id, ext);
       bytes += buf.length;
       return;
     } catch (e) {
@@ -104,7 +130,12 @@ if (!ok.size) {
 }
 
 // ── regenerate cardImages.ts ─────────────────────────────────────────────────
-const entries = [...ok].sort().map((id) => `  ${id}: require('../../assets/cards/${id}.webp'),`);
+const entries = [...ok.keys()]
+  .sort()
+  .map((id) => `  ${id}: require('../../assets/cards/${id}.${ok.get(id)}'),`);
+
+const formats = [...new Set(ok.values())].sort().join(', ');
+console.log(`bundled formats on disk: ${formats}`);
 
 const ts = `import type { ImageSourcePropType } from 'react-native';
 
