@@ -139,6 +139,8 @@ interface AudioValue {
   setPlayAudio: (mode: Settings['playAudio']) => void;
   /** Stop the menu bed on leaving Home. No-op if a round already took over. */
   stopHomeMusic: () => void;
+  /** Held by app/_layout.tsx while the launch intro overlay is on screen. */
+  setIntroActive: (active: boolean) => void;
   playSfx: (key: Exclude<AudioKey, 'music'>) => void;
   /** Loop the home-screen bed. */
   playHomeMusic: () => void;
@@ -158,6 +160,7 @@ const AudioContext = createContext<AudioValue>({
   playAudio: 'musica',
   setPlayAudio: () => {},
   stopHomeMusic: () => {},
+  setIntroActive: () => {},
   playSfx: () => {},
   playHomeMusic: () => {},
   playRoundMusic: () => {},
@@ -217,6 +220,20 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   // player re-enables sound mid-screen (so we don't jump to a different song).
   const contextRef = useRef<'home' | 'round' | null>(null);
   const contextTrackRef = useRef<MusicSrc | null>(null);
+  /**
+   * True while the launch intro overlay is on screen.
+   *
+   * SplashSequence is a SIBLING of <Stack> in app/_layout.tsx, not a screen in
+   * it — so app/index.tsx is mounted AND focused underneath it, its focus
+   * effect fires immediately, and the menu bed started playing under the intro
+   * animation. The intro has no audio of its own, so what a player heard "on
+   * the splash" was already Home's music, arriving over an animation it was
+   * never scored for.
+   *
+   * Home still CLAIMS the context while this is set — it really is the screen
+   * that owns audio — it just does not start the bed until the overlay is gone.
+   */
+  const introActiveRef = useRef(false);
   const lastRoundRef = useRef<number>(-1);
   const lastHomeRef = useRef<number>(-1);
   const lastWinRef = useRef<number>(-1);
@@ -311,11 +328,31 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   }
 
   // ── Music bed ────────────────────────────────────────────────────────────
+  /**
+   * Tear the current bed down.
+   *
+   * PAUSE BEFORE REMOVE, and that order is the fix for a real bug rather than
+   * defensiveness. Every deliberate stop in this file pauses — `stopMusic()`
+   * does — but this function, which EVERY bed switch goes through, only called
+   * `remove()`. Toggling sound off was therefore the only thing in the whole
+   * app that actually paused a bed, which is exactly the workaround a player
+   * reported finding: menu music carried into a round and went away when they
+   * toggled sound off and on.
+   *
+   * `remove()` releases the native player, and a released player that was never
+   * paused can keep sounding with nothing left holding a reference to stop it.
+   * Pausing first means the audio is silent before we drop the handle.
+   */
   function removeBed() {
     bedFadeRef.current?.();
     bedFadeRef.current = null;
     bedEndSubRef.current?.();
     bedEndSubRef.current = null;
+    try {
+      musicRef.current?.pause();
+    } catch {
+      /* ignore */
+    }
     try {
       musicRef.current?.remove();
     } catch {
@@ -433,12 +470,38 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       contextTrackRef.current = HOME_BEDS[nextFrom(homePoolRef, HOME_BEDS.length, lastHomeRef)];
     }
     contextRef.current = 'home';
+    if (introActiveRef.current) return; // claimed, but silent until the intro ends
     if (!enabledRef.current || contextTrackRef.current == null) return;
     playBed(contextTrackRef.current, { loop: false, onEnd: advanceHome });
   }
 
+  /**
+   * Called by app/_layout.tsx around the launch intro.
+   *
+   * Releasing re-enters through the owning context's own starter rather than
+   * playing `contextTrackRef` directly: by the time the intro finishes the
+   * player may already have been sent to the tutorial and back, or straight
+   * into a round on a resumed session, and only the starter knows what that
+   * context is supposed to sound like.
+   */
+  function setIntroActive(active: boolean) {
+    introActiveRef.current = active;
+    if (active) {
+      // Silence anything that already started. SplashSequence and <Stack> are
+      // siblings, so Home's focus effect can fire BEFORE the overlay's mount
+      // effect gets here — setting the flag alone would arrive too late and
+      // leave the bed it was meant to prevent already playing. Home keeps its
+      // claim on the context and is resumed below when the intro ends.
+      removeBed();
+      return;
+    }
+    if (!enabledRef.current) return;
+    if (contextRef.current === 'round') playRoundMusic();
+    else if (contextRef.current === 'home') playHomeMusic();
+  }
+
   function advanceHome() {
-    if (!enabledRef.current || contextRef.current !== 'home') return;
+    if (!enabledRef.current || introActiveRef.current || contextRef.current !== 'home') return;
     const src = HOME_BEDS[nextFrom(homePoolRef, HOME_BEDS.length, lastHomeRef)];
     contextTrackRef.current = src;
     playBed(src, { loop: false, onEnd: advanceHome });
@@ -505,10 +568,11 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (!enabledRef.current) return;
     // Take the bed out under the fanfare rather than cutting it.
     //
-    // The beds are baked as seamless loops (scripts/encode-music.mjs), so the
-    // only abrupt thing left in the music is this transition — and it lands on
-    // the win, the one moment of the round the player is paying attention to.
-    // pause() here is a hard cut mid-phrase; a short ramp is not.
+    // A bed now ends on its own 2.5s fade (scripts/encode-music.mjs), but a win
+    // almost never lands on that ending — it lands wherever the player happened
+    // to solve the board, which is mid-phrase by definition. pause() there is a
+    // hard cut; a short ramp is not. And it lands on the win, the one moment of
+    // the round the player is paying attention to.
     //
     // It is deliberately shorter than a musical fade. The fanfare has to arrive
     // while the win still feels like it just happened, so the bed gets out of
@@ -667,6 +731,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         playAudio,
         setPlayAudio,
         stopHomeMusic,
+        setIntroActive,
         playSfx,
         playVoice,
         playHomeMusic,

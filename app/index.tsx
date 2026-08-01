@@ -117,7 +117,9 @@ export default function Home() {
   const puzzle = getTodaysPuzzle();
   const [stats, setStats] = useState<Stats | null>(null);
   const [badges, setBadges] = useState<{ got: number; total: number } | null>(null);
-  const [playedToday, setPlayedToday] = useState(false);
+  /** Whether today's copla has already been finished. Drives the CTA label. */
+  const [playedDaily, setPlayedDaily] = useState(false);
+
   // A different animated card greets you each time the app is opened.
   const [heroId] = useState(
     () => ANIMATED_CARD_IDS[Math.floor(Math.random() * ANIMATED_CARD_IDS.length)]
@@ -140,6 +142,9 @@ export default function Home() {
       // back from a round, which was playing a different genre).
       playHomeMusic();
       (async () => {
+        // The daily result is read back so the button can say "Ver resultado"
+        // instead of offering a board the player has already finished. Endless
+        // play has no such state — there is always another round.
         const [s, r, seenCards] = await Promise.all([
           getStats(),
           getResult(puzzle.id),
@@ -147,7 +152,7 @@ export default function Home() {
         ]);
         if (!active) return;
         setStats(s);
-        setPlayedToday(!!r);
+        setPlayedDaily(!!r);
         const all = computeAchievements({ stats: s, seenCount: Object.keys(seenCards).length });
         setBadges({ got: unlockedCount(all), total: all.length });
       })();
@@ -204,12 +209,33 @@ export default function Home() {
             {formatDate(puzzle.date, lang)}
           </Text>
 
+          {/* Two features, two buttons.
+
+              This block used to advertise "Copla de hoy #84" over a single
+              JUGAR that called router.push('/play') with no puzzle — which
+              always deals a freshly COMPOSED round. The board on offer was
+              never the board you got.
+
+              The daily copla is one puzzle a day, the same one worldwide, and
+              it is addressed explicitly. Endless play is its own thing and says
+              so. `playedDaily` swaps the label once it has been finished, so
+              the screen stops inviting a replay of a board already recorded. */}
           <GradientButton
-            label={t.home.play}
-            onPress={() => router.push('/play')}
+            label={playedDaily ? t.home.viewResult : t.home.playDaily}
+            onPress={() => router.push('/play?daily=1')}
             size="lg"
             style={{ marginTop: 4 }}
           />
+          <Text style={styles.ctaHint}>{t.home.dailyHint}</Text>
+
+          <GradientButton
+            label={t.home.playEndless}
+            variant="ghost"
+            onPress={() => router.push('/play')}
+            size="lg"
+            style={{ marginTop: 14 }}
+          />
+          <Text style={styles.ctaHint}>{t.home.endlessHint}</Text>
         </View>
 
         {/* Stats float, separated by hairlines - no boxes. Each gets its own
@@ -366,7 +392,17 @@ const styles = StyleSheet.create({
     ...floatShadow,
   },
   cardDate: { color: colors.textDim, fontSize: 14, ...floatShadow },
-  playedNote: { color: colors.textDim, fontSize: 12, marginTop: 12 },
+  // Sits under each CTA so the two buttons are told apart by what they DO, not
+  // by their labels alone — "Rondas sin fin" beside "Jugar la copla de hoy" is
+  // only obvious once you already know the difference.
+  ctaHint: {
+    color: colors.textDim,
+    fontSize: 12,
+    marginTop: 6,
+    textAlign: 'center',
+    ...floatShadow,
+  },
+
   scoreboard: {
     flexDirection: 'row',
     alignItems: 'center',

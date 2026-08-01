@@ -224,5 +224,78 @@ check('a hinted win is not perfect', t.perfect, 0);
 t = fold([round('2026-07-01', 'won'), round('2026-07-02', 'won'), round('2026-07-02', 'won')]);
 check('recentDays has no duplicates', t.recentDays, ['2026-07-01', '2026-07-02']);
 
+
+// ── resuming an interrupted session ──────────────────────────────────────────
+//
+// The behaviour this pins down, asked as a question and found to be broken:
+// "if I played up to round 25 and came back tomorrow, I should start at 26."
+//
+// Two things have to be true at once, and the first draft got both wrong by
+// storing them together. A FINISHED board must not come back — restoring one
+// drops the player onto a results screen they already dismissed, or makes them
+// re-solve the last group. But the session TALLIES must survive it, or
+// finishing round 25 and closing the app restarts at round 1 with an empty
+// anti-repeat history.
+//
+// `getSession` is where that split is enforced, so it is tested here on the
+// real source rather than a copy — `readJson` is the only thing stubbed.
+// `extract` slices from the word `function`, so the `export async` in front of
+// it is left behind — the `async` has to be put back or the `await` inside is
+// a syntax error.
+const getSessionSrc = extract('getSession')
+  .replace(/^function getSession\(\)\s*:\s*Promise<[^>]*>\s*\{/, 'async function getSession() {')
+  .replace(/readJson<[^>]*>\(/g, 'readJson(');
+
+const board = { groups: [{ theme: 'x', tier: 1, cardIds: ['a', 'b', 'c', 'd'], explanation: 'y' }] };
+const tallies = {
+  v: 1,
+  seq: 25,
+  roundNo: 25,
+  playCount: 25,
+  usage: { el_sol: { count: 3, last: 24 } },
+  themeUsage: { Astros: { count: 2, last: 23 } },
+  difficulty: 'media',
+  savedAt: '2026-08-01T00:00:00.000Z',
+};
+
+async function sessionFrom(saved) {
+  const mod = await import(
+    `data:text/javascript,${encodeURIComponent(
+      `const K_SESSION='k';\nconst readJson = async () => (${JSON.stringify(saved)});\n` +
+        `${getSessionSrc}\nexport { getSession };`
+    )}`
+  );
+  return mod.getSession();
+}
+
+// Mid-round: the exact board comes back.
+let s = await sessionFrom({ ...tallies, puzzle: board, state: { status: 'playing' } });
+check('mid-round: board is restored', !!s.puzzle, true);
+check('mid-round: round counter is restored', s.playCount, 25);
+
+// Finished and never advanced: the board is dropped, the tallies are not.
+// Without this, closing the app on a win handed round 25 back with three
+// groups already solved.
+s = await sessionFrom({ ...tallies, puzzle: board, state: { status: 'won' } });
+check('finished: board is dropped', s.puzzle, null);
+check('finished: state is dropped', s.state, null);
+check('finished: round counter survives', s.playCount, 25);
+check('finished: seq survives', s.seq, 25);
+check('finished: card history survives', s.usage.el_sol.count, 3);
+check('finished: theme history survives', s.themeUsage.Astros.count, 2);
+
+// A lost round is just as finished as a won one.
+s = await sessionFrom({ ...tallies, puzzle: board, state: { status: 'lost' } });
+check('lost: board is dropped', s.puzzle, null);
+check('lost: round counter survives', s.playCount, 25);
+
+// Already board-less (the normal shape after finishing a round).
+s = await sessionFrom({ ...tallies, puzzle: null, state: null });
+check('board-less: still returns tallies', s.playCount, 25);
+
+// A save written by an older build must be discarded, not misread.
+check('unknown schema version is ignored', await sessionFrom({ ...tallies, v: 99 }), undefined);
+check('absent save is ignored', await sessionFrom(null), undefined);
+
 console.log(failures ? `\n${failures} FAILING` : '\nall streak checks passed');
 process.exit(failures ? 1 : 0);

@@ -26,6 +26,7 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { colors, displayFont, monoFont, gradients } from '../theme';
 import { useI18n } from '../i18n';
+import { useAudio } from '../audio';
 
 const DURATION = 2600;
 
@@ -62,7 +63,27 @@ const PIECE_SPEC: (Omit<Piece, 'fromX' | 'fromY'> & { fx: number; fy: number })[
 export function SplashSequence({ onDone }: { onDone: () => void }) {
   const { width: W, height: H } = useWindowDimensions();
   const { lang } = useI18n();
+  const { setIntroActive } = useAudio();
   const p = useRef(new Animated.Value(0)).current;
+
+  /**
+   * Hold the music back for as long as this overlay is up.
+   *
+   * This sequence has no audio of its own, and it is a SIBLING of <Stack> in
+   * app/_layout.tsx rather than a screen inside it — so app/index.tsx is
+   * mounted and focused underneath, its focus effect fires straight away, and
+   * the menu bed used to start playing over an intro it was never scored for.
+   *
+   * Declared by the overlay itself rather than by the layout, because the
+   * layout renders <AudioProvider> and so cannot consume it. Cleanup releases
+   * the hold on unmount, which is the same moment `showIntro` flips false — so
+   * the music starts exactly when the intro clears, however it ended.
+   */
+  useEffect(() => {
+    setIntroActive(true);
+    return () => setIntroActive(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const EMBLEM = useMemo(() => Math.min(216, W * 0.56), [W]);
   const PIECES: Piece[] = useMemo(

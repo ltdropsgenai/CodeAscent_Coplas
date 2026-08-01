@@ -5,27 +5,32 @@
  *
  *     node scripts/encode-music.mjs        # then: node scripts/fetch-audio.mjs
  *
- * WHY THE LOOP WORK. A generated track is a little piece of music: it starts
- * from nothing and it ends on a cadence. Play it on repeat and you hear the
- * join every time — the music resolves, stops, and starts again. `loop = true`
- * cannot fix that, because the discontinuity is in the *music*, not in the
- * playback.
+ * WHY THE BEDS ARE NOT LOOPED, AND WERE.
  *
- * So we bake the loop into the file. Given a track of length D and a fade of X:
+ * This file used to bake a seamless loop into every bed: the last three seconds
+ * laid over the first three, so the file ended on exactly the audio it began
+ * with and could repeat forever with nothing to hear at the join. That was the
+ * right answer to the design at the time, where ONE track looped under a round.
  *
- *   loop length L = D - X
- *   output(t) = crossfade(source[L..D], source[0..X])   for t in [0, X)
- *             = source[t]                               for t in [X, L]
+ * The design changed. src/audio.tsx now plays a bed with `loop: false` and an
+ * `onEnd` that advances to a DIFFERENT track, precisely so a player does not
+ * hear the same fifty-five seconds come round again. The assets never caught
+ * up, and that mismatch was the whole defect — reported from a real session as
+ * "the looping tracks did not land".
  *
- * The last X seconds are laid over the first X seconds, the old fading out as
- * the new fades in. The result ends exactly where it begins — output(L) and
- * output(0) are both source(L) — so the join has nothing to hear. The file is
- * X seconds shorter, which is why the beds are generated at 60s and land at 57.
+ * It is worth being exact about why, because the playback code looked correct
+ * and was correct. A seamlessly-looped track has, BY CONSTRUCTION, no ending:
+ * the bake removes it. So each bed circled back to its own opening and then the
+ * texture abruptly changed as the next track began. Nothing ever resolved. The
+ * player was not hearing a loop bug; they were hearing sixty tracks each
+ * engineered never to finish.
  *
- * Silence has to come off both ends BEFORE that crossfade, or the fade-out the
- * generator wrote at the end gets blended into the head and you get a dip in
- * the loudness every time round instead of a click. That is a worse artefact
- * than the one we set out to remove, so the trim is not optional.
+ * So beds now get a plain BED_FADE_OUT fade at the end. The track resolves,
+ * there is a breath, and the next one starts — which is what a playlist is.
+ *
+ * Silence still has to come off both ends BEFORE that fade, or the generator's
+ * own fade-out stacks with ours and the track dies away twice. The trim is not
+ * optional.
  *
  * Loudness is normalised to -18 LUFS. With sixty-odd beds in rotation, tracks
  * that differ by a few dB mean the music changes volume every round, which
@@ -187,8 +192,8 @@ const WINS = {
 };
 
 const TRACKS = [
-  ...Object.entries({ ...HOME, ...BEDS }).map(([name, url]) => ({ name, url, loop: true })),
-  ...Object.entries(WINS).map(([name, url]) => ({ name, url, loop: false })),
+  ...Object.entries({ ...HOME, ...BEDS }).map(([name, url]) => ({ name, url, bed: true })),
+  ...Object.entries(WINS).map(([name, url]) => ({ name, url, bed: false })),
 ];
 
 // 96k stereo AAC. At 128k the set was ~3 MB for eighteen; at sixty-odd tracks
@@ -196,9 +201,16 @@ const TRACKS = [
 // bed mixed to 40% volume under gameplay it is not a difference anyone hears.
 const BITRATE = '96k';
 
-/** Seconds of tail laid over the head. Long enough to hide a cadence, short
- *  enough not to eat a bar of music. Shrinks automatically for short tracks. */
-const LOOP_FADE = 3;
+/**
+ * Seconds of fade at the end of a bed.
+ *
+ * These tracks no longer loop. src/audio.tsx plays one, and when it ends picks
+ * a different one, so each file needs an ENDING — the thing the old seamless
+ * bake specifically removed. 2.5s resolves cleanly without reading as a long
+ * cross-dissolve; shorter starts to sound like a cut. Shrinks for short tracks
+ * so it can never swallow more than a quarter of one.
+ */
+const BED_FADE_OUT = 2.5;
 
 /**
  * Hard ceiling on a win fanfare, and the fade that lands it.
@@ -324,59 +336,6 @@ function combine(e, i0, i1) {
 
 const dB = (v) => 20 * Math.log10(Math.max(v, 1e-9));
 
-/**
- * Where to splice the loop, in seconds from the start of the trimmed track.
- *
- * Fixing this at `duration - fade` was the last wrong assumption. It puts the
- * join wherever the clock happens to land, and the evidence that this matters
- * is reggaeton4: after the trim was fixed it failed with the head 17.5 dB
- * LOUDER than the tail — the opposite of every earlier failure. A fade can
- * only ever make the later side quieter, so a reversal means the splice was
- * landing on a rest. cumbia2 failed the same way in mirror image, with the
- * moment just after the splice near-silent.
- *
- * No amount of trimming fixes that, because the problem is not at the end of
- * the track. So the splice point is now chosen rather than assumed: walk every
- * 50 ms position in the back half, measure the 300 ms either side of it, and
- * take the one where those two match. That is precisely the continuity the
- * loop needs — the audio arriving after the join should sound like the audio
- * that was leaving.
- *
- * Positions where either side sits more than 8 dB under the track's median are
- * refused outright. Two equally quiet windows would score perfectly and give a
- * seamless loop through a lull, which is a different way to sound broken.
- *
- * Among candidates that match closely (within 1 dB) it takes the LATEST, since
- * everything past the splice is discarded and a longer loop repeats less.
- */
-function bestSplice(file, fade) {
-  const x = samples(file);
-  const step = 0.05;
-  const F = Math.round(PROBE_SR * step);
-  const e = [];
-  for (let i = 0; i + F <= x.length; i += F) e.push(frameRms(x, i, i + F));
-
-  const medDb = dB([...e].sort((p, q) => p - q)[e.length >> 1]);
-  const total = e.length * step;
-  const W = Math.round(0.3 / step);
-  const first = Math.max(Math.ceil(Math.max(25, total * 0.5) / step), W);
-  const last = Math.floor((total - fade) / step);
-
-  let close = -1;
-  let fallback = { i: last, d: Infinity };
-  for (let i = first; i <= last; i++) {
-    if (i - W < 0 || i + W >= e.length) continue;
-    const before = dB(combine(e, i - W, i));
-    const after = dB(combine(e, i, i + W));
-    if (before < medDb - 8 || after < medDb - 8) continue;
-    const d = Math.abs(before - after);
-    if (d <= 1) close = i; // keep the latest that qualifies
-    if (d < fallback.d) fallback = { i, d };
-  }
-
-  const i = close >= 0 ? close : fallback.i;
-  return Math.max(fade + 5, i * step);
-}
 
 function ff(args) {
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args], { stdio: 'inherit' });
@@ -431,7 +390,7 @@ let aacBytes = 0;
 const done = [];
 const failed = [];
 
-for (const { name, url, loop } of TRACKS) {
+for (const { name, url, bed } of TRACKS) {
   const wav = join(TMP, `${name}.wav`);
   const trimmed = join(CUT, `${name}.wav`);
   const m4a = join(OUT, `${name}.m4a`);
@@ -449,35 +408,31 @@ for (const { name, url, loop } of TRACKS) {
     ]);
     const d = duration(trimmed);
 
-    // 3. beds: fold the tail over the head so the file is its own loop
-    if (loop) {
-      const fade = Math.min(LOOP_FADE, Math.max(0.75, (d - 5) / 4));
-      const body = bestSplice(trimmed, fade);
-      if (body < 5) throw new Error(`too short to loop (${d.toFixed(1)}s)`);
-      // The tail is bounded at body+fade, NOT left running to the end of the
-      // file. acrossfade fades out the whole of its first input, so a tail
-      // longer than `fade` would stretch the crossfade over material the
-      // arithmetic does not account for — and now that `body` is chosen rather
-      // than pinned to d - fade, there usually IS audio after it.
+    // 3. beds: end the track properly, so the next one can begin
+    //
+    // These used to be baked into seamless loops — the last three seconds laid
+    // over the first three, so the file ended on exactly the audio it began
+    // with. That was right for the original design, where ONE track looped
+    // under a round.
+    //
+    // The design changed: src/audio.tsx now plays a bed with `loop: false` and
+    // an `onEnd` that advances to a different track. The assets never caught
+    // up, and that mismatch is the whole defect. A track engineered to be
+    // seamless has, by construction, no ending — so every bed circled back to
+    // its own opening and then the texture abruptly changed. A player reported
+    // it as "the looping tracks did not land", which is exactly right: they
+    // were hearing sixty tracks each built never to finish.
+    //
+    // A plain fade-out is the correct shape now. The track resolves, there is a
+    // breath, and the next one starts.
+    if (bed) {
+      const fade = Math.min(BED_FADE_OUT, d / 4);
       ff([
-        '-i',
-        trimmed,
-        '-filter_complex',
-        `[0:a]atrim=0:${body.toFixed(3)},asetpts=N/SR/TB[body];` +
-          `[0:a]atrim=start=${body.toFixed(3)}:end=${(body + fade).toFixed(3)},asetpts=N/SR/TB[tail];` +
-          // qsin, not tri. The two sides of this fade are different music, so
-          // linear gain sums to a ~3 dB power dip through the middle of the
-          // crossfade. Quarter-sine holds the power constant for uncorrelated
-          // material, which is exactly what a tail laid over a head is.
-          `[tail][body]acrossfade=d=${fade.toFixed(3)}:c1=qsin:c2=qsin[out]`,
-        '-map',
-        '[out]',
-        '-c:a',
-        'aac',
-        '-b:a',
-        BITRATE,
-        '-movflags',
-        '+faststart',
+        '-i', trimmed,
+        '-af', `afade=t=out:st=${(d - fade).toFixed(3)}:d=${fade.toFixed(3)}`,
+        '-c:a', 'aac',
+        '-b:a', BITRATE,
+        '-movflags', '+faststart',
         m4a,
       ]);
     } else {
@@ -499,7 +454,7 @@ for (const { name, url, loop } of TRACKS) {
     done.push(name);
     console.log(
       `  ✓ ${name.padEnd(14)} ${(statSync(wav).size / 1024).toFixed(0).padStart(6)} kB → ` +
-        `${(out / 1024).toFixed(0).padStart(4)} kB  ${duration(m4a).toFixed(1)}s${loop ? ' loop' : ''}`
+        `${(out / 1024).toFixed(0).padStart(4)} kB  ${duration(m4a).toFixed(1)}s${bed ? ' bed' : ' sting'}`
     );
   } catch (e) {
     failed.push(`${name}: ${e.message}`);

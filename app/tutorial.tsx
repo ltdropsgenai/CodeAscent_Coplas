@@ -32,7 +32,7 @@ const T = {
     rulesTrap:
       'Cuidado: algunas cartas parecen de un grupo pero pertenecen a otro. Esa es la trampa.',
     readyTitle: '¡Listo!',
-    readyBody: 'Una copla nueva cada día. Resuélvela y mantén tu racha.',
+    readyBody: 'Rondas sin fin, armadas al momento. Juega todas las que quieras y mantén tu racha.',
     reportBody:
       '¿Una carta mal dibujada, una categoría que no cuadra, algo que se rompe? Al terminar una ronda verás «Reportar un problema con esta ronda», y en Ajustes está la página de soporte. Los reportes los lee una persona.',
     reportCta: 'Ver la página de soporte',
@@ -58,7 +58,7 @@ const T = {
     rulesTrap:
       'Watch out: some cards look like one group but belong to another. That is the trap.',
     readyTitle: "You're ready!",
-    readyBody: 'A new copla every day. Solve it and keep your streak alive.',
+    readyBody: 'Endless rounds, built on the spot. Play as many as you like and keep your streak alive.',
     reportBody:
       'A card drawn wrong, a category that does not add up, something broken? At the end of a round you will see “Report a problem with this round”, and Settings has a support page. A person reads the reports.',
     reportCta: 'Open the support page',

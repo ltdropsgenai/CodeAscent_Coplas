@@ -4,7 +4,7 @@
  * The prose here is copied verbatim from app/legal.tsx in the Coplas repo,
  * with one deliberate correction: the app's copy still says art, music and
  * animation stream from the server, which stopped being true when the deck
- * was bundled. Only the animated clips stream now. legal.tsx needs the same
+ * was bundled, and then the clips were too — nothing streams now. legal.tsx needs the same
  * edit — a privacy page that overstates what leaves the device is the kind of
  * inaccuracy App Review reads as a red flag.
  *
@@ -122,7 +122,7 @@ const landing = `
   <div class="cards">
     <div class="card"><h3>Casi mil cartas</h3><p>Ilustradas a mano, con su nombre en español impreso en el naipe. Mucho más allá de las 54 clásicas.</p></div>
     <div class="card"><h3>Rondas infinitas</h3><p>No hay un solo puzle diario. Cada ronda se compone al momento desde cientos de categorías verificadas.</p></div>
-    <div class="card"><h3>Juega sin conexión</h3><p>La baraja entera viaja dentro de la app. Solo las animaciones se transmiten.</p></div>
+    <div class="card"><h3>Juega sin conexión</h3><p>La baraja entera — ilustraciones, animaciones, música y voces — viaja dentro de la app. No se descarga nada mientras juegas.</p></div>
     <div class="card"><h3>Sin anuncios ni cuentas</h3><p>No te pedimos registro ni correo. Nada tuyo sale del teléfono.</p></div>
   </div>
 </div>
@@ -138,7 +138,7 @@ const landing = `
   <div class="cards">
     <div class="card"><h3>Nearly a thousand cards</h3><p>Illustrated by hand, each with its Spanish name printed on the card. Far past the classic 54.</p></div>
     <div class="card"><h3>Endless rounds</h3><p>There's no single daily puzzle. Every round is composed on the spot from hundreds of hand-verified categories.</p></div>
-    <div class="card"><h3>Plays offline</h3><p>The whole deck ships inside the app. Only the animated clips stream.</p></div>
+    <div class="card"><h3>Plays offline</h3><p>The whole deck — illustrations, animations, music and voices — ships inside the app. Nothing is downloaded while you play.</p></div>
     <div class="card"><h3>No ads, no accounts</h3><p>We don't ask you to register or hand over an email. Nothing of yours leaves the phone.</p></div>
   </div>
 </div>`;
@@ -153,7 +153,7 @@ const PAGES = [
       [
         { lede: true, p: 'La versión corta: Coplas no te pide una cuenta, no te identifica y no recoge datos personales.' },
         { h: 'Lo que se queda en tu teléfono', p: 'Tu racha, tus partidas, tus logros y tus preferencias de idioma, sonido y dificultad se guardan únicamente en el almacenamiento local de tu dispositivo. No se envían a ningún servidor y desaparecen si borras la app.' },
-        { h: 'Lo que sale de tu teléfono', p: `Las ${DECK} ilustraciones, los efectos de sonido, las voces y la música viajan dentro de la app: no se descargan. Lo único que se transmite desde nuestro almacenamiento en Supabase son los clips animados de las cartas. Como en cualquier descarga por internet, ese servidor registra técnicamente la petición y la dirección IP desde la que llega, del mismo modo que al abrir una página web. No asociamos esos registros con ninguna persona ni los usamos para perfilar a nadie.` },
+        { h: 'Lo que sale de tu teléfono', p: `Nada, mientras juegas. Las ${DECK} ilustraciones, sus animaciones, los efectos de sonido, las voces y la música viajan dentro de la app y no se descargan: por eso Coplas funciona completo sin conexión. Tus partidas, tu racha y tus preferencias no se envían a ningún servidor nuestro, porque no tenemos ninguno al que enviarlas. Solo dos cosas usan la red, y las dos las inicias tú: tocar «Buscar actualización» en Ajustes, que consulta el servicio de actualizaciones de Expo, y escribirnos desde la página de soporte, que abre tu propia app de correo con el mensaje a la vista antes de que lo envíes.` },
         { h: 'Recordatorios', p: 'Si activas el recordatorio diario, la notificación la programa tu propio teléfono y se queda en él. No hay notificaciones push desde ningún servidor, y por tanto no existe ningún identificador de dispositivo registrado con nosotros.' },
         { h: 'Lo que no hacemos', p: 'No hay anuncios. No hay analítica de terceros. No hay SDK de seguimiento, ni identificadores publicitarios, ni venta o intercambio de datos. La app no pide acceso a tus contactos, tu ubicación, tu cámara, tu micrófono ni tus fotos. Si compartes tu resultado, se abre la hoja de compartir del sistema y tú eliges a dónde va — nosotros no vemos nada.' },
         { h: 'Menores', p: 'Coplas es apta para todo público y, como no recoge datos de nadie, tampoco recoge datos de menores.' },
@@ -162,7 +162,7 @@ const PAGES = [
       [
         { lede: true, p: 'The short version: Coplas asks for no account, does not identify you, and collects no personal data.' },
         { h: 'What stays on your phone', p: 'Your streak, your played rounds, your achievements and your language, sound and difficulty preferences are stored only in your device’s local storage. They are never sent to a server, and they disappear if you delete the app.' },
-        { h: 'What leaves your phone', p: `All ${DECK} illustrations, the sound effects, the voices and the music travel inside the app — none of them are downloaded. The only thing that streams from our Supabase storage is the animated card clips. As with any download over the internet, that server technically logs the request and the IP address it came from, exactly as it would if you opened a web page. We do not tie those logs to any person or use them to profile anyone.` },
+        { h: 'What leaves your phone', p: `Nothing, while you play. All ${DECK} illustrations, their animations, the sound effects, the voices and the music travel inside the app and are never downloaded — which is why Coplas works completely offline. Your games, your streak and your preferences are not sent to any server of ours, because we do not have one to send them to. Only two things use the network, and you start both: tapping “Check for update” in Settings, which contacts Expo’s update service, and writing to us from the support page, which opens your own mail app with the message in front of you before you send it.` },
         { h: 'Reminders', p: 'If you turn on the daily reminder, your own phone schedules that notification and it stays there. There are no push notifications from any server, and so there is no device identifier registered with us.' },
         { h: 'What we don’t do', p: 'No ads. No third-party analytics. No tracking SDKs, no advertising identifiers, no selling or sharing of data. The app does not ask for your contacts, location, camera, microphone or photos. If you share a result, the system share sheet opens and you choose where it goes — we see none of it.' },
         { h: 'Children', p: 'Coplas is suitable for all ages and, since it collects data from nobody, it collects no data from children.' },
@@ -200,7 +200,7 @@ const PAGES = [
         { lede: true, p: `Escríbenos a <a href="mailto:${CONTACT}">${CONTACT}</a>. Contestamos a todo, normalmente en un par de días.` },
         { h: 'Una agrupación te pareció injusta', p: 'Es lo que más nos interesa saber. Dinos qué categoría era y qué cartas salieron — una captura de pantalla basta — y la revisamos. Si una carta encaja en dos grupos del mismo tablero, es un error nuestro, no tuyo.' },
         { h: 'Perdiste tu racha o tus estadísticas', p: 'Las estadísticas viven solo en tu teléfono, así que borrar la app o cambiar de dispositivo las borra. No hay copia en la nube y no podemos recuperarlas: no tenemos ninguna cuenta tuya que consultar.' },
-        { h: 'Una carta no se ve o no se anima', p: 'Las ilustraciones viajan dentro de la app, así que deberían verse siempre, incluso sin conexión. Las animaciones sí se transmiten y necesitan señal. Si una carta sale en blanco, cuéntanos cuál y con qué teléfono.' },
+        { h: 'Una carta no se ve o no se anima', p: 'Las ilustraciones y las animaciones viajan dentro de la app, así que deberían verse siempre, incluso sin conexión — no hace falta señal para nada del juego. Si una carta sale en blanco o no se mueve, cuéntanos cuál y con qué teléfono.' },
         { h: 'El sonido no funciona', p: 'Revisa el interruptor de silencio del teléfono y los ajustes de sonido dentro de la app. Si sigue mudo, dinos el modelo del teléfono.' },
         { h: 'Reembolsos', p: 'Las compras las procesa App Store o Google Play, no nosotros, así que los reembolsos se piden directamente a la tienda. Nosotros no podemos emitirlos, pero si algo no funcionó como esperabas cuéntanoslo igual.' },
         { h: 'Borrar tus datos', p: 'Desinstalar la app borra todo. No guardamos nada tuyo en ningún servidor, así que no hay nada más que borrar.' },
@@ -209,7 +209,7 @@ const PAGES = [
         { lede: true, p: `Write to <a href="mailto:${CONTACT}">${CONTACT}</a>. We answer everything, usually within a couple of days.` },
         { h: 'A grouping felt unfair', p: 'This is the thing we most want to hear about. Tell us which category it was and which cards came up — a screenshot is enough — and we will look at it. If a card fits two groups on the same board, that is our mistake, not yours.' },
         { h: 'You lost your streak or your stats', p: 'Stats live only on your phone, so deleting the app or switching devices clears them. There is no cloud backup and we cannot restore them: there is no account of yours for us to look up.' },
-        { h: 'A card is blank or will not animate', p: 'The illustrations travel inside the app, so they should always appear, even with no signal. The animations do stream and need a connection. If a card comes up blank, tell us which one and which phone.' },
+        { h: 'A card is blank or will not animate', p: 'The illustrations and the animations both travel inside the app, so they should always appear, even with no signal — nothing in the game needs a connection. If a card comes up blank or will not move, tell us which one and which phone.' },
         { h: 'No sound', p: 'Check your phone’s silent switch and the sound settings inside the app. If it is still silent, tell us the phone model.' },
         { h: 'Refunds', p: 'Purchases are processed by the App Store or Google Play, not by us, so refunds are requested from the store directly. We cannot issue them, but if something did not work the way you expected, tell us anyway.' },
         { h: 'Deleting your data', p: 'Uninstalling the app deletes everything. We keep nothing of yours on any server, so there is nothing further to erase.' },

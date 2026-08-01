@@ -28,9 +28,15 @@ const STRINGS = {
     home: {
       tagline: 'Agrupa las cartas de la baraja mexicana.',
       todaysCopla: 'Copla de hoy',
+      // Two separate features, so two separate buttons. The daily copla is one
+      // board a day, identical worldwide; JUGAR is the endless stream.
+      playDaily: 'Jugar la copla de hoy',
+      playEndless: 'Rondas sin fin',
+      endlessHint: 'Juega todas las que quieras — cada ronda se arma al momento',
+      dailyHint: 'La misma para todo el mundo, hoy',
       play: 'Jugar',
       viewResult: 'Ver resultado',
-      playedNote: 'Ya jugaste la de hoy — vuelve mañana.',
+
       streak: 'Racha',
       best: 'Mejor',
       days: 'Días',
@@ -259,9 +265,13 @@ const STRINGS = {
     home: {
       tagline: 'Group the cards of the Mexican deck.',
       todaysCopla: "Today's copla",
+      playDaily: "Play today's copla",
+      playEndless: 'Endless rounds',
+      endlessHint: 'Play as many as you like — every round is built on the spot',
+      dailyHint: 'The same one for everyone, today',
       play: 'Play',
       viewResult: 'View result',
-      playedNote: 'You already played today — come back tomorrow.',
+
       streak: 'Streak',
       best: 'Best',
       days: 'Days',

@@ -111,29 +111,25 @@ if (prior && reencodeAll) {
 /**
  * Cards that ship as a STILL, on purpose. Not missing — omitted.
  *
- * The refusal below assumes an absent source clip is an accident, and it
- * usually is. These three are not. Each had its art regenerated because the
- * original picture was wrong (`el_talon` was drawn as a high-heeled shoe from
- * the ambiguous English prompt "a heel"; `la_mora` and `el_zancudo` duplicated
- * `la_zarzamora` and `el_mosquito`), and `replace-cards.mjs` deleted the old
- * clips along with the old stills — correctly, since those clips animate the
- * picture we just threw away. Re-fetching them would restore an animation of
- * the wrong card.
+ * EMPTY, AND THAT IS THE INTENDED RESTING STATE. Every card in the deck is
+ * animated. This exists for one situation: `replace-cards.mjs` regenerates a
+ * card's art and deletes the clip that animated the OLD picture — correctly,
+ * because re-fetching it would restore an animation of a card we just threw
+ * away. Between that deletion and the new clip being generated, the refusal
+ * below would otherwise block every build, since it cannot tell a deliberate
+ * omission from an accidentally missing file.
  *
- * A card with no clip degrades to its still, which the app already handles
- * (`cardVideo()` returns undefined; `hasCardVideo()` is false). The cost is
- * three cards out of 995 not moving. The cost of the alternative was blocking
- * a release on a generation round-trip.
+ * It was last used for `el_talon` (drawn as a high-heeled shoe from the
+ * ambiguous English prompt "a heel"), `la_mora` and `el_zancudo` (duplicating
+ * `la_zarzamora` and `el_mosquito`). All three are animated again, so all three
+ * entries are gone.
  *
- * REMOVE AN ENTRY THE MOMENT ITS CLIP IS RE-ANIMATED — the whole point of the
- * refusal is that it stays loud, and a permanent exemption list is how a gate
- * quietly stops being one.
+ * A card listed here degrades to its still, which the app already handles
+ * (`cardVideo()` returns undefined, `hasCardVideo()` is false). Entries are
+ * ignored automatically once the clip reappears and reported as stale — see
+ * the loop below — so this map cannot silently outlive its reason.
  */
-const STILL_ONLY = {
-  el_talon: 'art regenerated (was a high-heeled shoe); needs re-animating',
-  la_mora: 'art regenerated (duplicated la_zarzamora); needs re-animating',
-  el_zancudo: 'art regenerated (duplicated el_mosquito); needs re-animating',
-};
+const STILL_ONLY = {};
 
 let bytes = 0;
 let done = 0;

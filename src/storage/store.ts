@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { GuessRecord } from '../game/engine';
-import type { Difficulty } from '../types';
+import type { GameState, GuessRecord } from '../game/engine';
+import type { Difficulty, Puzzle } from '../types';
 import { todayInPuzzleTz } from '../data/puzzles';
 
 /**
@@ -38,6 +38,7 @@ const K_SETTINGS = 'coplas.settings.v1';
 const K_TOTALS = 'coplas.totals.v1';
 const K_SEEN = 'coplas.seen.v1'; // Record<cardId, timesSeen>
 const K_ACHIEVEMENTS = 'coplas.achievements.v1'; // string[] of celebrated ids
+const K_SESSION = 'coplas.session.v1'; // the round in progress, if any
 
 /**
  * Live rounds are unbounded, so the detailed list is capped. Bundled/archive
@@ -420,3 +421,95 @@ export async function saveSettings(patch: Partial<Settings>): Promise<Settings> 
   await AsyncStorage.setItem(K_SETTINGS, JSON.stringify(next));
   return next;
 }
+
+// ── the round in progress ───────────────────────────────────────────
+
+/** How recently and how often one card (or theme) has appeared this session. */
+export interface CardUse {
+  count: number;
+  last: number;
+}
+
+/**
+ * A round the player walked away from, and the session history around it.
+ *
+ * WHY THIS EXISTS. Everything that made a play session a session lived in
+ * memory: the composed puzzle and `GameState` in `useState`, and `liveSeq`,
+ * `roundNo`, `usage` and `themeUsage` in `useRef`. Navigating Home unmounts
+ * app/play.tsx, so all of it died — a player who stepped out mid-round came
+ * back to a brand new round 1 with their board gone.
+ *
+ * The board is the visible half. The quieter half is `usage` and `themeUsage`:
+ * those are the anti-repeat history the composer scores candidate rounds
+ * against, so discarding them reset the whole card- and theme-spreading effort
+ * every time somebody backed out. A player who dips in and out would meet
+ * repeats constantly, and no gate would ever show it, because every simulation
+ * in sim-rounds.mjs runs one uninterrupted session.
+ *
+ * THE PUZZLE IS STORED INLINE, not by reference. A live round is composed from
+ * the group library, and that library changes between releases — it grew by 82
+ * trap groups in one afternoon. Storing group ids would let a saved round
+ * rehydrate into different cards, or none. Storing the board itself makes a
+ * resumed round immune to anything we do to the library afterwards.
+ */
+export interface SavedSession {
+  /** Schema tag. A bump discards old saves rather than misreading them. */
+  v: 1;
+  /**
+   * The unfinished board, if there is one.
+   *
+   * NULL WHEN THE LAST ROUND WAS COMPLETED, and that split is the point. The
+   * board and the session tallies below have different lifetimes: a finished
+   * board must not come back (the player would land on a results screen they
+   * already dismissed, or re-solve a group), but the tallies must survive it,
+   * or finishing round 25 and closing the app would drop you back to round 1
+   * with an empty anti-repeat history.
+   *
+   * An earlier version stored them together and saved only while the status was
+   * 'playing'. That looked right and was wrong in both directions: win round 25
+   * without tapping through, and the last write on disk was the board as it
+   * stood BEFORE the winning guess — so the next launch handed you round 25
+   * again with three groups solved.
+   */
+  puzzle: Puzzle | null;
+  state: GameState | null;
+  /** Continuous-play bookkeeping. Outlives any single board — see above. */
+  seq: number;
+  roundNo: number;
+  /** Drives the "Ronda N" header, which is playCount + 1. */
+  playCount: number;
+  usage: Record<string, CardUse>;
+  themeUsage: Record<string, CardUse>;
+  difficulty: Difficulty;
+  /** Only for diagnosing a stale save; nothing decides on it. */
+  savedAt: string;
+}
+
+/**
+ * Read the saved session.
+ *
+ * The board is stripped unless it is genuinely mid-round, while the tallies are
+ * returned either way. A caller therefore always learns where the player was up
+ * to, and only sometimes gets a board to put them back on.
+ */
+export async function getSession(): Promise<SavedSession | undefined> {
+  const s = await readJson<SavedSession | null>(K_SESSION, null);
+  if (!s || s.v !== 1) return undefined;
+  const live = !!s.puzzle?.groups?.length && s.state?.status === 'playing';
+  return live ? s : { ...s, puzzle: null, state: null };
+}
+
+export async function saveSession(s: SavedSession): Promise<void> {
+  try {
+    await AsyncStorage.setItem(K_SESSION, JSON.stringify(s));
+  } catch {
+    // Losing a resume point is a small harm; crashing mid-round is a large one.
+  }
+}
+
+// There is deliberately no clearSession(). An earlier draft had one, called on
+// advancing to the next round — which would have wiped the round counter and
+// the anti-repeat history along with the finished board. Ending a round writes
+// a board-less session instead, so there is never a moment where the record
+// should be deleted outright, and a spare "delete everything" helper sitting
+// here would only be an invitation to reintroduce that bug.

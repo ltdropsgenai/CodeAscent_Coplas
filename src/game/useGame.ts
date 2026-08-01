@@ -61,8 +61,26 @@ export interface UseGame {
  * Drives a single puzzle: selection, submit, persistence of the final result,
  * and honoring the "relaxed" setting.
  */
-export function useGame(puzzle: Puzzle): UseGame {
-  const [state, setState] = useState<GameState>(() => initGame(puzzle));
+/**
+ * @param resume A board the player had already started, restored from storage.
+ *   Applied ONLY when its puzzle id matches `puzzle` — a mismatch means the
+ *   caller moved on and the save is stale, and hydrating then would put a
+ *   previous round's progress onto the current board.
+ */
+export function useGame(puzzle: Puzzle, resume?: GameState | null): UseGame {
+  // Read through a ref rather than a dep. `resume` is only ever meaningful on
+  // the first render for a given puzzle; keeping it out of the effect's deps
+  // stops a late-arriving async restore from re-initialising a board the
+  // player has already started guessing on.
+  const resumeRef = useRef(resume);
+  resumeRef.current = resume;
+
+  const hydrate = (p: Puzzle) => {
+    const r = resumeRef.current;
+    return r && r.status === 'playing' && p.id === puzzle.id ? r : initGame(p);
+  };
+
+  const [state, setState] = useState<GameState>(() => hydrate(puzzle));
   const [relaxed, setRelaxed] = useState(false);
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -92,7 +110,7 @@ export function useGame(puzzle: Puzzle): UseGame {
       if (!active) return;
       setRelaxed(settings.relaxed);
       setAlreadyPlayed(!!prior);
-      setState(initGame(puzzle));
+      setState(hydrate(puzzle));
       setLoading(false);
     })();
     return () => {

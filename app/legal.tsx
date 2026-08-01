@@ -59,7 +59,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'La baraja',
-          p: 'La baraja va mucho más allá de las 54 cartas clásicas: ' + DECK_SIZE + ' cartas ilustradas, cada una con su nombre en español impreso en el naipe, y ' + ANIMATED + ' de ellas animadas. Las ilustraciones, la música y las voces viajan dentro de la app, así que Coplas se juega sin conexión. Lo único que se transmite son los clips animados.',
+          p: 'La baraja va mucho más allá de las 54 cartas clásicas: ' + DECK_SIZE + ' cartas ilustradas, cada una con su nombre en español impreso en el naipe, ' + (ANIMATED === DECK_SIZE ? 'y todas animadas' : 'y ' + ANIMATED + ' de ellas animadas') + '. Las ilustraciones, las animaciones, la música y las voces viajan dentro de la app, así que Coplas se juega entero sin conexión.',
         },
         {
           h: 'Hecho por',
@@ -107,7 +107,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'Lo que sale de tu teléfono',
-          p: 'Las ' + DECK_SIZE + ' ilustraciones, los efectos de sonido, las voces y la música viajan dentro de la app: no se descargan. Lo único que se transmite desde nuestro almacenamiento en Supabase son los clips animados de las cartas. Como en cualquier descarga por internet, ese servidor registra técnicamente la petición y la dirección IP desde la que llega, del mismo modo que al abrir una página web. No asociamos esos registros con ninguna persona ni los usamos para perfilar a nadie.',
+          p: 'Nada, mientras juegas. Las ' + DECK_SIZE + ' ilustraciones, sus animaciones, los efectos de sonido, las voces y la música viajan dentro de la app y no se descargan: por eso Coplas funciona completo sin conexión. Tus partidas, tu racha y tus preferencias no se envían a ningún servidor nuestro, porque no tenemos ninguno al que enviarlas. Solo dos cosas usan la red, y las dos las inicias tú: tocar «Buscar actualización» en Ajustes, que consulta el servicio de actualizaciones de Expo, y escribirnos desde la página de soporte, que abre tu propia app de correo con el mensaje a la vista antes de que lo envíes.',
         },
         {
           h: 'Recordatorios',
@@ -145,7 +145,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'The deck',
-          p: 'The deck runs far past the classic 54: ' + DECK_SIZE + ' illustrated cards, each with its Spanish name printed on the card itself, and ' + ANIMATED + ' of them animated. The illustrations, music and voices travel inside the app, so Coplas plays offline. The only thing that streams is the animated clips.',
+          p: 'The deck runs far past the classic 54: ' + DECK_SIZE + ' illustrated cards, each with its Spanish name printed on the card itself, ' + (ANIMATED === DECK_SIZE ? 'and every one of them animated' : 'and ' + ANIMATED + ' of them animated') + '. The illustrations, the animations, the music and the voices all travel inside the app, so Coplas plays entirely offline.',
         },
         {
           h: 'Made by',
@@ -191,7 +191,7 @@ const DOCS: Record<'es' | 'en', Record<Doc, { title: string; blocks: Block[] }>>
         },
         {
           h: 'What leaves your phone',
-          p: 'All ' + DECK_SIZE + ' illustrations, the sound effects, the voices and the music travel inside the app — none of them are downloaded. The only thing that streams from our Supabase storage is the animated card clips. As with any download over the internet, that server technically logs the request and the IP address it came from, exactly as it would if you opened a web page. We do not tie those logs to any person or use them to profile anyone.',
+          p: 'Nothing, while you play. All ' + DECK_SIZE + ' illustrations, their animations, the sound effects, the voices and the music travel inside the app and are never downloaded — which is why Coplas works completely offline. Your games, your streak and your preferences are not sent to any server of ours, because we do not have one to send them to. Only two things use the network, and you start both: tapping “Check for update” in Settings, which contacts Expo’s update service, and writing to us from the support page, which opens your own mail app with the message in front of you before you send it.',
         },
         {
           h: 'Reminders',

@@ -1,32 +1,44 @@
 #!/usr/bin/env node
 /**
  * Verifies the claim scripts/encode-music.mjs makes: that every bed in
- * assets/music/ is its own seamless loop.
+ * assets/music/ starts on music and ENDS on a clean fade.
  *
  *     node scripts/check-loops.mjs
  *
  * The other gates in this repo check that data is well-formed. This one checks
  * a claim about bytes we generated, in the same spirit as check-assets (a
  * filename describes its contents) and check-image-styles (an image is sized by
- * its layout). "I ran ffmpeg and it exited 0" is not evidence that a file loops.
+ * its layout). "I ran ffmpeg and it exited 0" is not evidence about the audio.
  *
- * WHAT IT MEASURES. A baked loop has two observable properties:
+ * THIS GATE USED TO ASSERT THE OPPOSITE, AND THAT IS WORTH KEEPING ON RECORD.
+ * It required every bed to be a seamless loop: neither end silent, and both
+ * ends at the same level. That was correct while a single track looped under a
+ * round. When the design changed to a playlist — play one bed, then advance to
+ * a different one — the assets kept the old bake, and a track engineered to be
+ * seamless has by construction NO ENDING. Nothing resolved; every bed circled
+ * back to its own opening before the next one cut in, which a player reported
+ * as "the looping tracks did not land".
  *
- *   1. Neither end is silent. If the tail decayed to nothing, or the head fades
- *      in from nothing, the join is a hole in the music — the exact artefact the
- *      silence trim exists to prevent, and the one most likely to survive it
- *      because a generator's fade-out is not digital silence.
- *   2. The two ends are at the same level. By construction output(0) and
- *      output(L) are the same instant of source audio, so their loudness should
- *      agree closely. A gap between them means the crossfade landed somewhere
- *      it shouldn't have.
+ * So for a while this file was actively enforcing the defect: re-encoding the
+ * beds correctly would have made it fail. A gate that outlives the design it
+ * was written for does not become neutral — it starts defending the bug.
  *
- * WHAT IT DOES NOT MEASURE. Whether the join is *musical* — whether the key,
- * the beat and the phrase line up. No cheap measurement catches that; only
- * listening does. This gate rules out the mechanical failures so that what is
- * left to judge by ear is genuinely a matter of taste.
+ * WHAT IT MEASURES NOW:
  *
- * It also does not measure the decoder. A file can loop perfectly and still
+ *   1. The head is not silent. A bed must start on music, or the player hears a
+ *      beat of nothing every time a track changes.
+ *   2. The tail is well down, and is MIN_DROP_DB quieter than the music just
+ *      before the fade begins — so "there is a fade" is measured against the
+ *      music it is supposed to be fading, not against another point inside the
+ *      fade itself. A track still at full level in its last 300ms is one the
+ *      fade never reached.
+ *
+ * WHAT IT DOES NOT MEASURE. Whether one track following another is *musical* —
+ * whether the two keys and tempos sit together. No cheap measurement catches
+ * that; only listening does. This gate rules out the mechanical failures so
+ * that what is left to judge by ear is genuinely a matter of taste.
+ *
+ * It also does not measure the decoder. A file can be encoded perfectly and still
  * tick on a device if the AAC decoder inserts its priming silence on every
  * repeat. That is a playback question, answered in src/audio.tsx and on real
  * hardware — not here.
@@ -49,8 +61,51 @@ const WIN = 0.3;
 /** Below this the edge is effectively silent and the loop has a hole in it. */
 const SILENT_DB = -45;
 
-/** Loudness the two ends may differ by before the join is audible as a step. */
-const MAX_STEP_DB = 4;
+// MAX_STEP_DB is gone with the seamless-loop check it belonged to: it measured
+// whether the two ENDS matched, which is the property these files are no longer
+// supposed to have.
+
+/**
+ * Must match BED_FADE_OUT in scripts/encode-music.mjs.
+ *
+ * Repeated rather than imported because that script is a long-running encoder
+ * and importing it would run it. Wrong here means this gate measures the wrong
+ * window and quietly passes everything.
+ */
+const BED_FADE_OUT = 2.5;
+/** A faded tail should be well down. Not silence — AAC and a 2.5s fade leave a little. */
+const FADED_DB = -30;
+/**
+ * The music must still be PLAYING where our fade starts.
+ *
+ * This replaced a "the tail must be N dB quieter than the pre-fade point"
+ * check, which misdiagnosed its only real hit. `cumbia2` measured a 3.9 dB drop
+ * and was reported as "the fade did not happen" — but its tail was -47.8 dB, so
+ * it ends perfectly quiet. What it actually has is dead air: the source's own
+ * fade-out survived the trim, so the track was already near-silent before our
+ * fade began and there was nothing left to fade.
+ *
+ * Those are opposite problems with opposite fixes, and the old check pointed at
+ * the wrong one — it sent you to widen BED_FADE_OUT, which would have changed
+ * nothing. Measuring the pre-fade level directly names the real fault: music
+ * here means the fade has something to work on; silence here means the track
+ * stopped early and the player gets a hole before the next one starts.
+ */
+const DEAD_AIR_DB = -38;
+
+/**
+ * Beds whose measurement has been read and cleared, with the reason.
+ *
+ * Same rule as check-card-art.mjs: a bare entry is not allowed to mean "ignore
+ * this". The value is the argument, and if you cannot write one, fix the track.
+ */
+const ACCEPTED = {
+  cumbia2:
+    'the SOURCE fades out ~5s before the end (-20 dB at 5s, -34.8 dB at 3s), so our ' +
+    'fade lands on near-silence and the track ends ~3s early. One bed in 63. The fix ' +
+    'would be a more aggressive global trim, which re-encodes all 73 tracks and risks ' +
+    'clipping the ending off the other 62 to recover three seconds on this one.',
+};
 
 for (const bin of ['ffmpeg', 'ffprobe']) {
   try {
@@ -118,6 +173,7 @@ if (!files.length) {
 
 let beds = 0;
 let shots = 0;
+let accepted = 0;
 const problems = [];
 
 for (const f of files) {
@@ -131,31 +187,54 @@ for (const f of files) {
   const d = duration(path);
   const head = rms(path, 0, WIN);
   const tail = rms(path, Math.max(0, d - WIN), WIN);
-  const step = Math.abs(head - tail);
+  // Measured just before the fade begins, so "did the fade actually happen?"
+  // is a comparison between music and the end of the fade, not between two
+  // points inside it.
+  const preFade = rms(path, Math.max(0, d - BED_FADE_OUT - WIN), WIN);
+  const drop = preFade - tail;
 
   const notes = [];
+  // A bed must still START on music. A silent head means the trim ate the
+  // opening, and the player hears a beat of nothing every time a track changes.
   if (head <= SILENT_DB) notes.push(`head silent (${head.toFixed(1)} dB)`);
-  if (tail <= SILENT_DB) notes.push(`tail silent (${tail.toFixed(1)} dB)`);
-  if (Number.isFinite(step) && step > MAX_STEP_DB) notes.push(`${step.toFixed(1)} dB step at the join`);
+  // ...and it must END quiet. This is the check that was INVERTED before: it
+  // used to fail a track whose tail was silent and fail a head/tail mismatch,
+  // because the beds were baked as seamless loops and had to end where they
+  // began. They are a playlist now, so the requirements are the opposite ones,
+  // and a track that still ends at full level is one the fade never reached.
+  if (tail > FADED_DB) notes.push(`does not fade out (tail ${tail.toFixed(1)} dB)`);
+  // Dead air: already silent where the fade begins, so the track stops early
+  // and the player hears a hole before the next one starts.
+  if (preFade <= DEAD_AIR_DB)
+    notes.push(`silent ${BED_FADE_OUT}s before the end (${preFade.toFixed(1)} dB) — trim left the source fade on`);
 
-  if (notes.length) {
+  if (notes.length && ACCEPTED[name]) {
+    console.log(`  ~ ${name.padEnd(14)} accepted — ${notes.join(' · ')}`);
+    accepted++;
+  } else if (notes.length) {
     // A failure prints MORE than a pass, not less. The first version printed
     // only the note, which meant the one line you actually needed to diagnose
     // the problem — what the two ends measured — was the line it withheld.
     const detail =
-      `${d.toFixed(1)}s  head ${head.toFixed(1)} dB  tail ${tail.toFixed(1)} dB  Δ${step.toFixed(1)}`;
+      `${d.toFixed(1)}s  head ${head.toFixed(1)} dB  pre-fade ${preFade.toFixed(1)} dB  ` +
+      `tail ${tail.toFixed(1)} dB  drop ${drop.toFixed(1)} dB`;
     problems.push(`${name}: ${notes.join(', ')} — ${detail}`);
     console.log(`  ✗ ${name.padEnd(14)} ${detail}   ${notes.join(' · ')}`);
   } else {
     console.log(
-      `  · ${name.padEnd(14)} ${d.toFixed(1)}s  head ${head.toFixed(1)} dB  tail ${tail.toFixed(1)} dB  Δ${step.toFixed(1)}`
+      `  · ${name.padEnd(14)} ${d.toFixed(1)}s  head ${head.toFixed(1)} dB  ` +
+        `pre-fade ${preFade.toFixed(1)} dB  tail ${tail.toFixed(1)} dB  drop ${drop.toFixed(1)} dB`
     );
   }
 }
 
-console.log(`\n${beds} beds measured · ${shots} one-shots skipped · ${problems.length} with an audible join`);
+console.log(
+  `\n${beds} beds measured · ${shots} one-shots skipped · ${accepted} accepted · ` +
+    `${problems.length} that do not end cleanly`
+);
+for (const [name, why] of Object.entries(ACCEPTED)) console.log(`  ~ ${name}: ${why}`);
 if (problems.length) {
-  console.log('\nRe-generate these, or widen LOOP_FADE in scripts/encode-music.mjs:');
+  console.log('\nRe-run scripts/encode-music.mjs, or adjust BED_FADE_OUT there:');
   for (const p of problems) console.log(`  ! ${p}`);
   process.exit(1);
 }

@@ -31,10 +31,23 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUZZLES_PATH = join(root, 'src/data/puzzles.json');
 
 // ── Card names (for letter/rhyme ambiguity checks) ─────────────────────────
+//
+// BOTH decks. This read cards.ts alone, which is the original 54 — so the
+// ambiguity checks below were blind to the 941 expansion cards, and a letter
+// trap looked clean to the generator while the finished board carried eight
+// cards starting with the same letter. It shipped 159 unsolvable puzzles out of
+// 746 the first time the runway was extended, every one of them passing this
+// script and failing validate-puzzles.mjs immediately afterwards.
+//
+// The lesson is narrower than "load both files": a checker that reads a subset
+// of the data it is checking against does not fail, it approves.
 const cardsSrc = readFileSync(join(root, 'src/data/cards.ts'), 'utf8');
 const cardName = Object.fromEntries(
   [...cardsSrc.matchAll(/id:\s*'([a-z0-9_]+)',\s*name:\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
 );
+for (const c of JSON.parse(readFileSync(join(root, 'src/data/expansion.cards.json'), 'utf8'))) {
+  if (!(c.id in cardName)) cardName[c.id] = c.name;
+}
 const stripDiacritics = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 function noun(id) {
   const parts = (cardName[id] ?? '').split(' ');
@@ -44,63 +57,20 @@ const nounInitial = (id) => stripDiacritics(noun(id)).charAt(0).toUpperCase();
 const nounLower = (id) => noun(id).toLowerCase();
 
 // ── The library ────────────────────────────────────────────────────────────
-// kind: 'cat' (plain category) or a trap kind. `exclude` (colour/shape/hidden):
-// cards that, if present elsewhere in the puzzle, would make the group ambiguous.
+//
+// READ FROM DISK, not held inline. This was a 40-group literal that the script
+// also WROTE BACK over src/data/groups.json at the end — so running it silently
+// reverted the live library to whatever this file happened to say. Measured
+// before it was changed: a run today would have discarded «Hombres del pueblo»
+// and «Crecen parados», two theme fixes made hours earlier, and their whys with
+// them. A generator that quietly rewrites its own inputs is not a generator.
+//
+// It was also long out of date. The deck grew from 40 groups to 506, and a
+// solver drawing on 40 of them cannot build a long runway of puzzles however
+// high the targets are set.
 const LIB = {
-  // Categories ---------------------------------------------------------------
-  astros: { kind: 'cat', cards: ['el_sol', 'la_luna', 'la_estrella', 'el_mundo'], theme: 'Astros del cielo', why: 'Sol, Luna, Estrella y Mundo: cosas de allá arriba.' },
-  // NOTE: id 'el_pajaro' is the deck's card #20, renamed to "El Águila" (a
-  // specific bird) in cards.ts. The slug stays el_pajaro; only the display name
-  // + art changed. Since its name now starts with «A», it is NOT a «P» card.
-  aves: { kind: 'cat', cards: ['el_gallo', 'la_garza', 'el_pajaro', 'el_cotorro'], theme: 'Aves', why: 'Gallo, garza, águila y cotorro: aves de la baraja.' },
-  instrum: { kind: 'cat', cards: ['el_bandolon', 'el_violoncello', 'el_tambor', 'el_arpa'], theme: 'Instrumentos musicales', why: 'Bandolón, violoncello, tambor y arpa: puro sonido.' },
-  contenedores: { kind: 'cat', cards: ['la_botella', 'el_barril', 'el_cantarito', 'el_cazo'], theme: 'Guardan líquido', why: 'Botella, barril, cantarito y cazo cargan algo líquido.' },
-  macabro: { kind: 'cat', cards: ['la_muerte', 'la_calavera', 'el_diablito', 'el_alacran'], theme: 'Lo macabro', why: 'Muerte, calavera, diablito y alacrán dan escalofríos.' },
-  personas1: { kind: 'cat', cards: ['la_dama', 'el_catrin', 'el_valiente', 'el_soldado'], theme: 'Personajes', why: 'Dama, Catrín, Valiente y Soldado: gente de la baraja.' },
-  personas2: { kind: 'cat', cards: ['el_borracho', 'el_charro', 'el_musico', 'el_apache'], theme: 'Más personajes', why: 'Borracho, Charro, Músico y Apache: también son gente.' },
-  personas3: { kind: 'cat', cards: ['la_dama', 'el_catrin', 'el_borracho', 'el_musico'], theme: 'Pura gente', why: 'Dama, Catrín, Borracho y Músico: personajes de la baraja.' },
-  arboles: { kind: 'cat', cards: ['el_arbol', 'el_pino', 'la_palma', 'el_nopal'], theme: 'Árboles y plantas', why: 'Árbol, pino, palma y nopal salen de la tierra.' },
-  agua: { kind: 'cat', cards: ['la_sirena', 'el_pescado', 'la_chalupa', 'la_rana'], theme: 'Del agua', why: 'Sirena, pescado, chalupa y rana viven o flotan en el agua.' },
-  objetos: { kind: 'cat', cards: ['el_gorrito', 'la_bota', 'la_corona', 'el_paraguas'], theme: 'Cosas que se llevan', why: 'Gorrito, bota, corona y paraguas: se cargan o se ponen.' },
-  fauna: { kind: 'cat', cards: ['el_venado', 'la_rana', 'el_gallo', 'la_garza'], theme: 'Animales', why: 'Venado, rana, gallo y garza.' },
-  delmar: { kind: 'cat', cards: ['la_sirena', 'el_pescado', 'el_camaron', 'la_chalupa'], theme: 'Del mar', why: 'Sirena, pescado, camarón y chalupa: cosas del mar.' },
-  combate: { kind: 'cat', cards: ['las_jaras', 'el_soldado', 'el_apache', 'el_valiente'], theme: 'Del combate', why: 'Jaras, Soldado, Apache y Valiente: cosas de pelea.' },
-  armados: { kind: 'cat', cards: ['el_valiente', 'el_soldado', 'el_apache', 'el_charro'], theme: 'Andan armados', why: 'Valiente, Soldado, Apache y Charro: gente de armas.' },
-  frutas: { kind: 'cat', cards: ['el_melon', 'la_pera', 'la_sandia', 'el_nopal'], theme: 'Se comen', why: 'Melón, pera, sandía y nopal: al plato.' },
-  bichos: { kind: 'cat', cards: ['la_arana', 'el_alacran', 'el_camaron', 'la_rana'], theme: 'Bichos', why: 'Araña, alacrán, camarón y rana: criaturas pequeñas.' },
-  sonido: { kind: 'cat', cards: ['la_campana', 'el_tambor', 'el_arpa', 'el_bandolon'], theme: 'Hacen sonido', why: 'Campana, tambor, arpa y bandolón suenan.' },
-  casa: { kind: 'cat', cards: ['la_maceta', 'el_cazo', 'el_cantarito', 'la_campana'], theme: 'En el patio', why: 'Maceta, cazo, cantarito y campana: cosas de la casa.' },
-  jardin: { kind: 'cat', cards: ['la_rosa', 'la_maceta', 'el_nopal', 'el_arbol'], theme: 'Del jardín', why: 'Rosa, maceta, nopal y árbol: puro verdor.' },
-  rancho: { kind: 'cat', cards: ['el_charro', 'el_gallo', 'el_nopal', 'el_venado'], theme: 'Del rancho', why: 'Charro, gallo, nopal y venado: cosas del campo.' },
-
-  // Shape / physical (trap) --------------------------------------------------
-  redondos: { kind: 'shape', cards: ['el_sol', 'la_luna', 'el_mundo', 'la_corona'], theme: 'Cosas redondas', why: 'Sol, Luna, Mundo y Corona: forma redonda.', exclude: ['la_sandia', 'el_melon'] },
-  altas: { kind: 'shape', cards: ['la_escalera', 'la_palma', 'el_pino', 'el_arbol'], theme: 'Altas y largas', why: 'Escalera, palma, pino y árbol se estiran hacia arriba.', exclude: ['la_bandera'] },
-  puntiagudos: { kind: 'shape', cards: ['el_nopal', 'el_alacran', 'las_jaras', 'la_estrella'], theme: 'Con picos y puntas', why: 'Nopal, alacrán, jaras y estrella: puro pico y punta.', exclude: ['la_corona', 'el_pino'] },
-
-  // Colour (trap) ------------------------------------------------------------
-  rojo: { kind: 'color', cards: ['el_corazon', 'la_rosa', 'la_sandia', 'el_diablito'], theme: 'Cosas rojas', why: 'Corazón, rosa, sandía y diablito: puro rojo.', exclude: ['el_camaron'] },
-  rojo2: { kind: 'color', cards: ['el_corazon', 'la_rosa', 'la_sandia', 'el_camaron'], theme: 'Rojos y rosas', why: 'Corazón, rosa, sandía y camarón: tonos rojizos.', exclude: ['el_diablito'] },
-  verde: { kind: 'color', cards: ['el_nopal', 'el_pino', 'la_palma', 'la_rana'], theme: 'Cosas verdes', why: 'Nopal, pino, palma y rana: verdes todas.', exclude: ['el_arbol'] },
-  dorado: { kind: 'color', cards: ['el_sol', 'la_corona', 'la_estrella', 'la_campana'], theme: 'Cosas doradas', why: 'Sol, corona, estrella y campana: brillan en dorado.', exclude: [] },
-  blanco: { kind: 'color', cards: ['la_calavera', 'la_garza', 'la_luna', 'la_muerte'], theme: 'Cosas blancas', why: 'Calavera, garza, luna y muerte: pálidas, casi blancas.', exclude: ['el_gorrito'] },
-
-  // Rhyme (trap; unambiguous by construction) --------------------------------
-  rima_era: { kind: 'rhyme', cards: ['la_bandera', 'la_escalera', 'la_pera', 'la_calavera'], theme: 'Riman en «-era»', why: 'Bande-ra, escale-ra, pe-ra, calave-ra.' },
-  rima_on: { kind: 'rhyme', cards: ['el_camaron', 'el_melon', 'el_bandolon', 'el_corazon'], theme: 'Riman en «-ón»', why: 'Camar-ón, mel-ón, bandol-ón, coraz-ón.' },
-
-  // Letter-start (trap; validator + solver enforce no stray same-letter card) -
-  letraA: { kind: 'letter', cards: ['el_arbol', 'la_arana', 'el_alacran', 'el_apache'], theme: 'Empiezan con «A»', why: 'Árbol, Araña, Alacrán y Apache.' },
-  letraB: { kind: 'letter', cards: ['la_botella', 'el_barril', 'la_bota', 'el_borracho'], theme: 'Empiezan con «B»', why: 'Botella, Barril, Bota y Borracho.' },
-  letraB2: { kind: 'letter', cards: ['la_bandera', 'el_bandolon', 'el_barril', 'la_bota'], theme: 'Empiezan con «B»', why: 'Bandera, Bandolón, Barril y Bota.' },
-  letraM: { kind: 'letter', cards: ['la_mano', 'la_muerte', 'el_mundo', 'el_musico'], theme: 'Empiezan con «M»', why: 'Mano, Muerte, Mundo y Músico.' },
-  letraM2: { kind: 'letter', cards: ['el_melon', 'la_maceta', 'la_muerte', 'la_mano'], theme: 'Empiezan con «M»', why: 'Melón, Maceta, Muerte y Mano.' },
-  letraP: { kind: 'letter', cards: ['el_paraguas', 'la_pera', 'el_pino', 'el_pescado'], theme: 'Empiezan con «P»', why: 'Paraguas, Pera, Pino y Pescado.' },
-  letraS: { kind: 'letter', cards: ['la_sirena', 'el_sol', 'la_sandia', 'el_soldado'], theme: 'Empiezan con «S»', why: 'Sirena, Sol, Sandía y Soldado.' },
-
-  // Hidden word (trap) -------------------------------------------------------
-  esconden: { kind: 'hidden', cards: ['el_soldado', 'la_sandia', 'el_camaron', 'la_corona'], theme: 'Esconden otra palabra', why: 'Soldado esconde «sol», Sandía «día», Camarón «mar», Corona «ron».', exclude: ['la_campana', 'la_rosa', 'la_calavera', 'el_corazon', 'el_cantarito'] },
-  esconden2: { kind: 'hidden', cards: ['la_calavera', 'la_rosa', 'la_corona', 'la_campana'], theme: 'Esconden otra palabra', why: 'Calavera esconde «ave», Rosa «osa», Corona «oro», Campana «pan».', exclude: ['el_soldado', 'la_sandia', 'el_camaron', 'el_corazon', 'el_cantarito', 'la_mano'] },
+  ...JSON.parse(readFileSync(join(root, 'src/data/groups.json'), 'utf8')),
+  ...JSON.parse(readFileSync(join(root, 'src/data/expansion.groups.json'), 'utf8')),
 };
 
 const ALL = Object.keys(LIB);
@@ -225,7 +195,20 @@ for (const p of base) {
   }
 }
 
-const TARGETS = { facil: 30, media: 40, dificil: 34 };
+/**
+ * How many puzzles to author, by difficulty.
+ *
+ * Sized as a RUNWAY, not a number. `getTodaysPuzzle()` falls back to the most
+ * recent past puzzle when it runs off the end of the list — silently — so an
+ * exhausted run does not error, it hands every player in the world the same
+ * frozen board every day. The old targets totalled 104 and covered to
+ * 2026-10-19, seventy-nine days out, with nothing watching the horizon.
+ *
+ * ~2 years, keeping roughly the original difficulty mix. scripts/check-runway.mjs
+ * fails the build once the remaining run drops below its threshold, so this
+ * number is a decision that gets revisited on a schedule rather than forgotten.
+ */
+const TARGETS = { facil: 210, media: 290, dificil: 240 };
 const seenGlobal = new Set();
 
 console.log('Generating…');
@@ -259,9 +242,11 @@ const generated = plan.map(({ d, refs }, i) => {
 const out = [...base, ...generated];
 writeFileSync(PUZZLES_PATH, JSON.stringify(out, null, 2) + '\n');
 
-// Publish the group library so the app can compose fresh continuous-play rounds
-// at runtime (src/game/composer.ts) — single source of truth with this file.
-writeFileSync(join(root, 'src/data/groups.json'), JSON.stringify(LIB, null, 2) + '\n');
+// NOTE: this script no longer writes src/data/groups.json. It used to, from an
+// inline literal — which meant the library was whatever this file said, and any
+// edit made elsewhere was reverted the next time puzzles were generated. The
+// library is now an INPUT here, read from disk above, and this script only ever
+// writes puzzles.json.
 
 const counts = out.reduce((a, p) => ((a[p.difficulty] = (a[p.difficulty] || 0) + 1), a), {});
 console.log(`Wrote ${out.length} puzzles (${base.length} base + ${generated.length} generated).`);
