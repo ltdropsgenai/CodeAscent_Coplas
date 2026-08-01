@@ -6,6 +6,7 @@ import { colors, displayFont, floatShadow, monoFont } from '../src/theme';
 import { useI18n } from '../src/i18n';
 import { CARDS } from '../src/data/cards';
 import { ANIMATED_COUNT } from '../src/data/cardVideos';
+import { SUPPORT_EMAIL } from '../src/support';
 
 /**
  * The three informational pages — about, terms, privacy — behind one route.
@@ -30,7 +31,11 @@ type Doc = 'about' | 'terms' | 'privacy';
 type Block = { h?: string; p: string };
 
 const UPDATED = '2026-07-31';
-const CONTACT = 'tlondi@gmail.com';
+// Imported, not repeated. The privacy page, the about page and the support
+// screen must name the SAME address: App Review reads the policy and the
+// listing's support contact together, and two addresses in one app reads as
+// carelessness at best. src/support.ts is the single source of truth.
+const CONTACT = SUPPORT_EMAIL;
 // Read from the deck itself so the copy can never drift out of date as the
 // deck and the animation run grow.
 const DECK_SIZE = CARDS.length;

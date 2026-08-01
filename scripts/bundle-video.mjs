@@ -141,11 +141,18 @@ const missing = [];
 const failed = [];
 const omitted = [];
 
+const stale = [];
 for (const id of IDS) {
-  if (STILL_ONLY[id]) {
+  // An exemption is only honoured while the clip is genuinely absent. The
+  // moment a source clip shows up, the card is animated again and the entry in
+  // STILL_ONLY is stale — so it is ignored here and reported at the end.
+  // Requiring a human to remember to delete it is exactly how an exemption
+  // list outlives its reason and quietly turns a gate off.
+  if (STILL_ONLY[id] && !existsSync(join(ORIG, `${id}.mp4`))) {
     omitted.push(id);
     continue;
   }
+  if (STILL_ONLY[id]) stale.push(id);
   const src = join(ORIG, `${id}.mp4`);
   const dst = join(OUT, `${id}.mp4`);
   if (!existsSync(src)) {
@@ -195,9 +202,13 @@ if (omitted.length) {
   console.log(`\n${omitted.length} cards ship as a still, on purpose:`);
   for (const id of omitted) console.log(`  · ${id} — ${STILL_ONLY[id]}`);
 }
+if (stale.length) {
+  console.log(`\n✓ ${stale.length} card(s) are animated again: ${stale.join(', ')}`);
+  console.log('  Delete them from STILL_ONLY in this file — the entries no longer do anything.');
+}
 
 // ── registry ─────────────────────────────────────────────────────────────────
-const ANIMATED = IDS.filter((id) => !STILL_ONLY[id]);
+const ANIMATED = IDS.filter((id) => !omitted.includes(id));
 const lines = ANIMATED.map((id) => `  ${id}: require('../../assets/video/${id}.mp4'),`).join('\n');
 
 const ts = `/**

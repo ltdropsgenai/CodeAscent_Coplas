@@ -15,6 +15,7 @@ import { SolvedGroup } from '../src/components/SolvedGroup';
 import { WinCelebration } from '../src/components/WinCelebration';
 import { GradientButton } from '../src/components/GradientButton';
 import { buildShareText } from '../src/share/shareGrid';
+import { diagnostics, openMail } from '../src/support';
 import { maybePromptForReview } from '../src/rate';
 import { computeAchievements, newlyUnlocked } from '../src/game/achievements';
 import {
@@ -627,6 +628,35 @@ export default function Play() {
                 </>
               )}
             </View>
+
+            {/* Report this round.
+
+                Placed at the END of a finished round and nowhere else. A
+                report button on a live board is a button someone taps by
+                accident mid-guess, and — worse — a bug is usually only
+                describable once the reveal has shown what the answer was
+                supposed to be. By here the player can see all four groups,
+                which is exactly what makes "this category is wrong" a report
+                we can act on.
+
+                It carries the round's four themes so we do not have to ask
+                "which round?" — the single question that kills most reports. */}
+            <Pressable
+              onPress={() =>
+                openMail(
+                  t.support.bugSubject,
+                  `${t.support.bugTemplate}\n\n—————————————\n${diagnostics({
+                    lang,
+                    difficulty,
+                    round: puzzle.number,
+                    themes: puzzle.groups.map((g) => g.theme),
+                  })}`
+                )
+              }
+              style={({ pressed }) => [styles.reportRow, pressed && { opacity: 0.6 }]}
+            >
+              <Text style={styles.reportText}>{t.support.reportRound}</Text>
+            </Pressable>
           </Animated.View>
         )}
       </ScrollView>
@@ -686,6 +716,20 @@ function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 const styles = StyleSheet.create({
+  // Deliberately quiet: a dim, small, underlined line rather than a button.
+  // It has to be findable by someone who wants it and invisible to someone who
+  // does not — it sits directly under "Siguiente ronda", and anything with a
+  // border or a fill there competes with the action the player actually came
+  // for.
+  reportRow: { alignItems: 'center', paddingTop: 22, paddingBottom: 4 },
+  reportText: {
+    color: colors.textDim,
+    fontSize: 13,
+    letterSpacing: 0.3,
+    textDecorationLine: 'underline',
+    opacity: 0.75,
+    ...floatShadow,
+  },
   root: { flex: 1 },
   container: { paddingHorizontal: 12, paddingTop: 10 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },

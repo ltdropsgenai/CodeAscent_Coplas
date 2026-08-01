@@ -33,6 +33,9 @@ const T = {
       'Cuidado: algunas cartas parecen de un grupo pero pertenecen a otro. Esa es la trampa.',
     readyTitle: '¡Listo!',
     readyBody: 'Una copla nueva cada día. Resuélvela y mantén tu racha.',
+    reportBody:
+      '¿Una carta mal dibujada, una categoría que no cuadra, algo que se rompe? Al terminar una ronda verás «Reportar un problema con esta ronda», y en Ajustes está la página de soporte. Los reportes los lee una persona.',
+    reportCta: 'Ver la página de soporte',
     start: 'Empezar a jugar',
   },
   en: {
@@ -56,6 +59,9 @@ const T = {
       'Watch out: some cards look like one group but belong to another. That is the trap.',
     readyTitle: "You're ready!",
     readyBody: 'A new copla every day. Solve it and keep your streak alive.',
+    reportBody:
+      'A card drawn wrong, a category that does not add up, something broken? At the end of a round you will see “Report a problem with this round”, and Settings has a support page. A person reads the reports.',
+    reportCta: 'Open the support page',
     start: 'Start playing',
   },
 } as const;
@@ -207,6 +213,17 @@ export default function Tutorial() {
           <Step title={t.readyTitle}>
             <Text style={styles.bigEmoji}>🎴</Text>
             <Text style={styles.p}>{t.readyBody}</Text>
+            {/* Taught here, on the last card, rather than in the rules step.
+                Telling someone how to report a bug before they have played a
+                round is noise; telling them at the moment they are about to
+                start is the first point at which it can mean anything. */}
+            <Text style={[styles.p, styles.reportP]}>{t.reportBody}</Text>
+            <Pressable
+              onPress={() => router.push('/support')}
+              style={({ pressed }) => [pressed && styles.pressed]}
+            >
+              <Text style={styles.reportLink}>{t.reportCta}</Text>
+            </Pressable>
           </Step>
         )}
       </ScrollView>
@@ -296,6 +313,16 @@ const styles = StyleSheet.create({
   step: { alignItems: 'center' },
   title: { color: colors.text, fontFamily: displayFont, fontSize: 30, fontWeight: '700', marginBottom: 16, textAlign: 'center' },
   p: { color: colors.text, fontSize: 17, lineHeight: 25, textAlign: 'center', marginBottom: 14 },
+  // Smaller and dimmer than the headline promise above it — this is a useful
+  // aside, not a second pitch.
+  reportP: { fontSize: 15, lineHeight: 23, color: colors.textDim, marginTop: 4 },
+  reportLink: {
+    color: colors.accent,
+    fontSize: 15,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    marginBottom: 6,
+  },
   hint: { color: colors.textDim, fontSize: 14, textAlign: 'center', marginTop: 6, fontStyle: 'italic' },
   miniGrid: {
     flexDirection: 'row',

@@ -176,6 +176,28 @@ const STRINGS = {
         deck_all: 'Ve todas las cartas de la baraja.',
       } as Record<string, string>,
     },
+    support: {
+      title: 'Soporte',
+      lead: 'Si algo no funciona como esperabas, cuéntanoslo. Lo lee una persona.',
+      bugTitle: 'Reportar un error',
+      bugBody:
+        'Cuéntanos qué hacías, qué esperabas que pasara y qué pasó en su lugar. Si fue en una ronda, dinos qué grupo o qué carta se veía mal. Adjuntamos solos la versión de la app y tu dispositivo, así no tenemos que preguntártelo.',
+      bugCta: 'Escribir el reporte',
+      bugSubject: 'Coplas — reporte de error',
+      bugTemplate:
+        'Qué hacía:\n\nQué esperaba:\n\nQué pasó:\n',
+      contactTitle: 'Escríbenos',
+      contactBody:
+        'Una idea, una carta mal dibujada, una categoría que no cuadra, o solo saludar. Todo sirve.',
+      contactCta: 'Enviar un mensaje',
+      contactSubject: 'Coplas — mensaje',
+      privacyTitle: 'Qué se envía',
+      privacyBody:
+        'Solo lo que escribas y las líneas técnicas que verás al final del correo: versión, sistema, idioma, dificultad y la ronda. Nada que te identifique. El correo lo mandas tú desde tu propia app de correo, así que puedes leerlo entero — y borrar lo que quieras — antes de enviarlo.',
+      noMail: 'No encontramos una app de correo. Mantén pulsada la dirección para copiarla.',
+      tapToCopy: 'Mantén pulsado para copiar',
+      reportRound: 'Reportar un problema con esta ronda',
+    },
     rate: {
       title: 'Califica Coplas',
       hint: 'Si te está gustando, dilo en la tienda',
@@ -198,6 +220,16 @@ const STRINGS = {
       notifDenied: 'Sin permiso de notificaciones. Actívalo en los ajustes del sistema.',
       achievements: 'Logros',
       achievementsHint: 'Lo que has ido consiguiendo',
+      // Ambiente de la partida. Tres modos, no un interruptor: apagar la música
+      // no es lo mismo que querer silencio, y el tic-tac existe porque varios
+      // jugadores querían sentir que el tiempo pasa sin que hubiera reloj.
+      playAudioTitle: 'Durante la partida',
+      playAudioSub: 'Qué se oye mientras juegas. Las voces de celebración suenan en los tres.',
+      playAudioMusica: 'Música',
+      playAudioTictac: 'Tic-tac',
+      playAudioSilencio: 'Silencio',
+      support: 'Soporte y reportar un error',
+      supportHint: 'Escríbenos: algo falla o quieres decirnos algo',
       soundTitle: 'Sonido',
       soundSub: 'Música de fondo y efectos durante el juego.',
       difficultyTitle: 'Dificultad',
@@ -375,6 +407,28 @@ const STRINGS = {
         deck_all: 'See every card in the deck.',
       } as Record<string, string>,
     },
+    support: {
+      title: 'Support',
+      lead: 'If something is not working the way you expected, tell us. A person reads it.',
+      bugTitle: 'Report a bug',
+      bugBody:
+        'Tell us what you were doing, what you expected, and what happened instead. If it was during a round, say which group or which card looked wrong. We attach the app version and your device automatically, so we do not have to ask.',
+      bugCta: 'Write the report',
+      bugSubject: 'Coplas — bug report',
+      bugTemplate:
+        'What I was doing:\n\nWhat I expected:\n\nWhat happened:\n',
+      contactTitle: 'Write to us',
+      contactBody:
+        'An idea, a card drawn wrong, a category that does not add up, or just hello. All of it helps.',
+      contactCta: 'Send a message',
+      contactSubject: 'Coplas — message',
+      privacyTitle: 'What gets sent',
+      privacyBody:
+        'Only what you type, plus the technical lines you will see at the end of the mail: version, system, language, difficulty and the round. Nothing that identifies you. You send the mail yourself from your own mail app, so you can read all of it — and delete any of it — before it goes.',
+      noMail: 'We could not find a mail app. Long-press the address below to copy it.',
+      tapToCopy: 'Long-press to copy',
+      reportRound: 'Report a problem with this round',
+    },
     rate: {
       title: 'Rate Coplas',
       hint: 'If you are enjoying it, say so in the store',
@@ -397,6 +451,13 @@ const STRINGS = {
       notifDenied: 'Notifications are not permitted. Turn them on in system settings.',
       achievements: 'Achievements',
       achievementsHint: 'What you have picked up so far',
+      playAudioTitle: 'During a round',
+      playAudioSub: 'What you hear while you play. The celebration voices play in all three.',
+      playAudioMusica: 'Music',
+      playAudioTictac: 'Tick-tock',
+      playAudioSilencio: 'Silence',
+      support: 'Support & report a bug',
+      supportHint: 'Write to us: something is broken, or you want to tell us something',
       soundTitle: 'Sound',
       soundSub: 'Background music and effects during play.',
       difficultyTitle: 'Difficulty',

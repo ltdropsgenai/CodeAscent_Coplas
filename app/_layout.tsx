@@ -164,6 +164,13 @@ export default function RootLayout() {
                 name="achievements"
                 options={{ title: '', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
               />
+              {/* Support. Reachable from Ajustes, from the tutorial, and from
+                  the end of a round — so the back arrow falls back to settings
+                  but honours a real navigation stack when there is one. */}
+              <Stack.Screen
+                name="support"
+                options={{ title: '', headerLeft: () => <HeaderBack fallback="/settings" to="settings" /> }}
+              />
             </Stack>
             </ThemeProvider>
             </View>

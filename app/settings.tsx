@@ -16,6 +16,15 @@ import type { Difficulty } from '../src/types';
 const DIFFS: Difficulty[] = ['facil', 'media', 'dificil'];
 
 /**
+ * What plays under a round. Three modes, not a switch, because "turn the music
+ * off" and "I want silence" are different asks: the tick-tock exists for players
+ * who wanted to feel time passing without the game ever adding a clock.
+ *
+ * Order is deliberate — loudest to quietest, so the row reads as a dial.
+ */
+const PLAY_AUDIO: Settings['playAudio'][] = ['musica', 'tictac', 'silencio'];
+
+/**
  * The one hub behind home.
  *
  * Home is deliberately about a single action — play today's copla — so
@@ -30,7 +39,7 @@ const DIFFS: Difficulty[] = ['facil', 'media', 'dificil'];
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const { t, lang, setLang } = useI18n();
-  const { soundEnabled, toggleSound } = useAudio();
+  const { soundEnabled, toggleSound, setPlayAudio } = useAudio();
   const { gateActive, unlocked, busy, restore } = usePurchases();
   const navigation = useNavigation();
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
@@ -114,6 +123,46 @@ export default function SettingsScreen() {
         value={soundEnabled}
         onValueChange={() => toggleSound()}
       />
+
+      {/* Only meaningful while sound is on at all, so it is hidden when the
+          master switch is off rather than shown as three dead buttons. */}
+      {soundEnabled && (
+        <>
+          <View style={styles.row}>
+            <View style={styles.rowText}>
+              <Text style={styles.title}>{t.settings.playAudioTitle}</Text>
+              <Text style={styles.subtitle}>{t.settings.playAudioSub}</Text>
+            </View>
+          </View>
+          <View style={styles.diffRow}>
+            {PLAY_AUDIO.map((m) => (
+              <Pressable
+                key={m}
+                onPress={() => {
+                  update({ playAudio: m });
+                  // The audio engine keeps its own ref so a mode change takes
+                  // effect on the CURRENT round, not the next one — a player
+                  // reaching for silence mid-round means now.
+                  setPlayAudio(m);
+                }}
+                style={({ pressed }) => [
+                  styles.diffBtn,
+                  settings.playAudio === m && styles.diffBtnActive,
+                  pressed && styles.pressed,
+                ]}
+              >
+                <Text
+                  style={[styles.diffText, settings.playAudio === m && styles.diffTextActive]}
+                >
+                  {t.settings[
+                    `playAudio${m.charAt(0).toUpperCase()}${m.slice(1)}` as 'playAudioMusica'
+                  ]}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+        </>
+      )}
       <ToggleRow
         title={t.settings.relaxedTitle}
         subtitle={t.settings.relaxedSub}
@@ -195,6 +244,15 @@ export default function SettingsScreen() {
         label={t.settings.privacy}
         hint={t.settings.privacyHint}
         icon="el_candado"
+      />
+      {/* Support sits in About rather than in its own group on purpose: a
+          player looking for it is looking for "the boring pages", and burying
+          it one level deeper is how a bug report becomes a one-star review. */}
+      <NavRow
+        href="/support"
+        label={t.settings.support}
+        hint={t.settings.supportHint}
+        icon="el_sobre"
       />
       {/* Over-the-air: pulls a JS/asset fix without a new App Store build. */}
       <UpdateRow />

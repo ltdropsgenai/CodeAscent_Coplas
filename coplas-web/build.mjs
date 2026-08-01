@@ -18,7 +18,10 @@ const OUT = new URL('./public/', import.meta.url);
 mkdirSync(OUT, { recursive: true });
 
 const UPDATED = '2026-07-31';
-const CONTACT = 'tlondi@gmail.com';
+// MUST match SUPPORT_EMAIL in src/support.ts, which app/legal.tsx imports.
+// This file cannot import the TS module, so the value is repeated here and
+// asserted by scripts/check-legal-parity.mjs rather than trusted to memory.
+const CONTACT = 'sysadmin@codeascent.online';
 const DECK = 995;
 const IOS = 'https://apps.apple.com/app/id6796142121';
 const PLAY = 'https://play.google.com/store/apps/details?id=com.codeascent.coplas';
