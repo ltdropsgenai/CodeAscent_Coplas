@@ -18,3 +18,20 @@ _trim/
 # `bareGitIgnore` source in `expo-updates fingerprint:generate`. Editing it
 # changes runtimeVersion. Nested .gitignore files are not fingerprint sources.
 # Same reasoning as coplas-web/.gitignore; see that file.
+
+# Caches for optimize-video.mjs. _video_orig/ is ~1.26 GB of pristine source
+# clips and is the ONLY way back if a re-encode turns out too aggressive —
+# keep it until the contact sheet has been approved and the app has shipped.
+# _video_uploaded.txt is the append-on-success ledger that makes an interrupted
+# upload resumable rather than a redo.
+_video_orig/
+_video_small/
+_video_uploaded.txt
+video-compare.png
+_scene_orig/
+_scene_test/
+_tier_test/
+tier-compare.png
+_video_settings.json
+_fps_test/
+crf-compare.png

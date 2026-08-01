@@ -26,7 +26,15 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
  * `.wav` while actually being ~187 kbps compressed audio, exactly as the cards
  * arrived named `.webp` while actually being JPEG. A filename is a claim.
  */
-const SOURCES = ['cardImages.ts', 'audioAssets.ts'].map((f) => join(root, 'src', 'data', f));
+// All four generated registries. cardVideos.ts and sceneImages.ts were added
+// once their assets became bundled: a require() pointing at a file that is not
+// there is a Metro BUILD failure, not a missing picture, so it takes the whole
+// app down rather than one card or one background. scripts/optimize-scenes.mjs
+// rewrites those scene paths by hand, which is exactly the kind of edit that
+// deserves a gate behind it.
+const SOURCES = ['cardImages.ts', 'audioAssets.ts', 'cardVideos.ts', 'sceneImages.ts'].map((f) =>
+  join(root, 'src', 'data', f)
+);
 
 /** Magic-byte sniffers, in the order it is cheapest to test them. */
 const SNIFFERS = [
@@ -39,7 +47,12 @@ const SNIFFERS = [
   ['wav', (b) => b.slice(0, 4).toString('latin1') === 'RIFF' && b.slice(8, 12).toString('latin1') === 'WAVE'],
 ];
 
-/** Extensions that are just spellings of the same format. */
+/** Extensions that are just spellings of the same format.
+ *  mp4 and m4a share the ISO base-media container and the same `ftyp` header,
+ *  so the sniffer genuinely cannot tell them apart from the first 16 bytes —
+ *  distinguishing them would mean reading the brand and the track types. The
+ *  claim this gate exists to check is "the bytes are what the extension says",
+ *  and for these two that is answered by the container. */
 const ALIASES = { jpeg: 'jpg', aac: 'm4a', mp4: 'm4a' };
 const norm = (e) => ALIASES[e] ?? e;
 
@@ -89,7 +102,7 @@ for (const rel of paths) {
   formats.set(actual ?? '?', (formats.get(actual ?? '?') ?? 0) + 1);
 }
 
-console.log(`required assets  ${paths.length}  (art + audio)`);
+console.log(`required assets  ${paths.length}  (art + audio + video + scenes)`);
 console.log(`on disk          ${paths.length - missing.length}  (${(bytes / 1024 / 1024).toFixed(1)} MB)`);
 console.log(`formats          ${[...formats].map(([k, v]) => `${k}×${v}`).join(', ') || '—'}`);
 console.log(`MISSING — required but not on disk:              ${missing.length}`);

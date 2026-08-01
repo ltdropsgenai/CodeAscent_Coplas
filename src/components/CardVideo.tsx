@@ -22,26 +22,35 @@ interface Props {
  *
  * The still image ALWAYS renders underneath as a poster; the looping video
  * fades in over it only once the player reports it's ready. So a card with no
- * clip, a slow network, or a decode failure simply shows the static card
- * instead of a black hole. Clips are silent and loop seamlessly.
+ * clip, or a decode failure on some device we have never seen, simply shows
+ * the static card instead of a black hole. Clips are silent and loop
+ * seamlessly.
+ *
+ * Clips are BUNDLED now (scripts/bundle-video.mjs), so `cardVideo` returns a
+ * Metro asset handle rather than a URL and there is no network in this path at
+ * all. The poster is still drawn first: decoding is not instant even from
+ * local storage, and the fade is what makes the transition read as intended
+ * rather than as a flash.
  */
 export function CardVideo({ cardId, borderColor, cornerRadius, style }: Props) {
-  const uri = cardVideo(cardId);
+  const clip = cardVideo(cardId);
   const img = cardImage(cardId);
   const [ready, setReady] = useState(false);
   const fade = useState(() => new Animated.Value(0))[0];
 
   /**
-   * `useCaching` lets expo-video persist the clip on device, so replaying a
-   * card (very common — the same cards recur across rounds) costs no network.
-   * These are ~1.4 MB each, so this materially cuts cellular usage.
+   * A bundled asset handle, not a URL. `useCaching` used to sit here and is
+   * gone with the network — its comment claimed replays were "very common",
+   * which the round composer actively contradicts: it prefers cards seen least
+   * recently, precisely so the deck is worked through before anything repeats.
+   * The cache mostly missed. Bundling makes the question moot.
    */
-  const source = useMemo(() => (uri ? { uri, useCaching: true } : null), [uri]);
+  const source = useMemo(() => clip ?? null, [clip]);
 
   // useVideoPlayer must be called unconditionally (hook rules); a null source
-  // simply yields an idle player for cards that aren't animated yet.
+  // simply yields an idle player for cards that aren't animated.
   const player = useVideoPlayer(source, (p) => {
-    if (!uri) return;
+    if (clip == null) return;
     try {
       p.loop = true;
       p.muted = true;
@@ -53,7 +62,7 @@ export function CardVideo({ cardId, borderColor, cornerRadius, style }: Props) {
 
   // Fade the video in once it can actually show frames.
   useEffect(() => {
-    if (!uri || !player) return;
+    if (clip == null || !player) return;
     let sub: { remove: () => void } | undefined;
     try {
       sub = player.addListener('statusChange', (payload: { status?: string }) => {
@@ -70,7 +79,7 @@ export function CardVideo({ cardId, borderColor, cornerRadius, style }: Props) {
         /* ignore */
       }
     };
-  }, [uri, player]);
+  }, [clip, player]);
 
   useEffect(() => {
     if (!ready) return;
@@ -101,7 +110,7 @@ export function CardVideo({ cardId, borderColor, cornerRadius, style }: Props) {
         </LinearGradient>
       )}
 
-      {!!uri && (
+      {clip != null && (
         <Animated.View style={[styles.abs, { opacity: fade }]} pointerEvents="none">
           <VideoView
             player={player}
