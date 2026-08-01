@@ -73,8 +73,8 @@
       "el_musico",
       "el_albanil"
     ],
-    "theme": "Más personajes",
-    "why": "Borracho, charro, músico y albañil: también son gente."
+    "theme": "Hombres del pueblo",
+    "why": "Borracho, charro, músico y albañil: hombres de todos los días."
   },
   "personas3": {
     "kind": "cat",
@@ -95,8 +95,8 @@
       "la_palma",
       "el_nopal"
     ],
-    "theme": "Árboles y plantas",
-    "why": "Árbol, pino, palma y nopal."
+    "theme": "Crecen parados",
+    "why": "Árbol, pino, palma y nopal: todo lo que crece parado y no se mueve."
   },
   "agua": {
     "kind": "cat",

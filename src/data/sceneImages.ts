@@ -25,7 +25,11 @@ export const SCENES: Array<string | number> = [
   require('../../assets/scenes/hf_20260729_004011_be3bb945-8ce0-44ce-9d46-b6b43d5a730a.jpg'), // Lake Atitlán at sunset
   // ── Dominican Republic ──
   require('../../assets/scenes/hf_20260729_004013_243ea9db-bda1-41f7-aaad-51c66cb88e73.jpg'), // Santo Domingo Zona Colonial
-  require('../../assets/scenes/hf_20260729_004016_3a8e089b-2a5c-4e2b-b933-f10e79180b27.jpg'), // DR Caribbean coastal village, golden hour
+  // REMOVED: hf_20260729_004016_3a8e089b (DR Caribbean coastal village) — the
+  // render is a photograph OF A SMARTPHONE standing in the landscape, so the
+  // app drew a phone bezel behind its own UI. Same fault as _004810 below.
+  // The generator was asked for a scene and returned a product shot; the file
+  // is still in assets/scenes/ but is no longer required, so Metro drops it.
   require('../../assets/scenes/hf_20260729_004748_48ed4b76-28f3-4187-b79c-8f51865a5741.jpg'), // Puerto Plata Victorian gingerbread houses
   require('../../assets/scenes/hf_20260729_004751_6ae99c97-013a-4f00-bbdf-b0ccf896d598.jpg'), // Los Haitises karst islands + turquoise bay
   // ── Cuba ──
@@ -62,5 +66,6 @@ export const SCENES: Array<string | number> = [
   // ── Brazil ──
   require('../../assets/scenes/hf_20260729_004805_2c9c6f61-63df-4e1a-be74-35acf86e34aa.jpg'), // Rio de Janeiro, Christ + Sugarloaf, golden hour
   require('../../assets/scenes/hf_20260729_004808_87f09115-a25a-454e-b38b-292842e06563.jpg'), // Pelourinho, Salvador da Bahia
-  require('../../assets/scenes/hf_20260729_004810_15333d19-539d-4fc0-b820-3a2bd9bd4504.jpg'), // Iguaçu Falls
+  // REMOVED: hf_20260729_004810_15333d19 (Iguaçu Falls) — also a photograph of
+  // a smartphone, not of the falls. See the note above.
 ];

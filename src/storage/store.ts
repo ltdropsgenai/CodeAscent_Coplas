@@ -81,8 +81,21 @@ export interface Settings {
   relaxed: boolean;
   lang: 'es' | 'en';
   notifications: boolean;
-  /** Background music + sound effects on/off. */
+  /** Background music + sound effects on/off. The master switch. */
   soundEnabled: boolean;
+  /**
+   * What plays under a round, when sound is on at all.
+   *
+   * 'musica'  — a bed plays through, then a DIFFERENT one starts. Never loops
+   *              on itself and never repeats a track until the pool is spent.
+   * 'tictac'  — no bed; a soft tick marks time passing. Deliberately NOT a
+   *              timer: nothing is counted and nothing runs out.
+   * 'silencio'— nothing under the round. SFX and the win still play.
+   *
+   * Home and the win celebration are unaffected by this — it governs the round
+   * only, which is where a bed either helps concentration or ruins it.
+   */
+  playAudio: 'musica' | 'tictac' | 'silencio';
   /** True once the player has seen (or skipped) the first-launch tutorial. */
   tutorialDone: boolean;
   /** Which difficulty pool continuous play draws from. */
@@ -98,6 +111,7 @@ export const DEFAULT_SETTINGS: Settings = {
   lang: 'es',
   notifications: true,
   soundEnabled: true,
+  playAudio: 'musica',
   tutorialDone: false,
   difficulty: 'media',
   reminderTime: '19:00',

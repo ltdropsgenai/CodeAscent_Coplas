@@ -9,7 +9,7 @@ import {
 import { Platform } from 'react-native';
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 import { AUDIO, MUSIC, VOICE, type AudioKey } from './data/audioAssets';
-import { getSettings, saveSettings } from './storage/store';
+import { getSettings, saveSettings, type Settings } from './storage/store';
 
 /**
  * A music track: a remote URL while the beds stream, a Metro asset handle
@@ -48,6 +48,26 @@ const HOME_BEDS: MusicSrc[] = Array.isArray(HOME_SRC)
  * the win rather than after it. At 40 ms a step that is nine steps.
  */
 const BED_FADE_MS = 360;
+
+/**
+ * The win mix, and the reasoning behind these three numbers.
+ *
+ * The fanfare used to sit at 0.85 and buried the voice line underneath it.
+ * Raising the voice was not available — it was already at 1.0, the ceiling —
+ * so the only way to hear it was to bring the music down. The voice is the
+ * more important of the two: a mariachi flourish is decoration, and "¡tá to'!
+ * in a Dominican accent is the game reacting to *you*.
+ *
+ * WIN_DUCK is a further cut applied only while a voice line is actually
+ * sounding, then released. Between lines the fanfare comes back up, so it
+ * still reads as a celebration rather than as background.
+ */
+const WIN_VOLUME = 0.45;
+const WIN_DUCK = 0.22;
+const VOICE_VOLUME = 1;
+
+/** The tic-tac bed. Well under the music — it is a presence, not a part. */
+const TICK_VOLUME = 0.22;
 
 /**
  * Start a player, tolerating both synchronous throws and the async rejection
@@ -114,6 +134,11 @@ function fadeAndPause(p: AudioPlayer | null | undefined, ms: number): () => void
 interface AudioValue {
   soundEnabled: boolean;
   toggleSound: () => void;
+  /** What plays under a round: music, a tic-tac, or nothing. */
+  playAudio: Settings['playAudio'];
+  setPlayAudio: (mode: Settings['playAudio']) => void;
+  /** Stop the menu bed on leaving Home. No-op if a round already took over. */
+  stopHomeMusic: () => void;
   playSfx: (key: Exclude<AudioKey, 'music'>) => void;
   /** Loop the home-screen bed. */
   playHomeMusic: () => void;
@@ -130,6 +155,9 @@ interface AudioValue {
 const AudioContext = createContext<AudioValue>({
   soundEnabled: true,
   toggleSound: () => {},
+  playAudio: 'musica',
+  setPlayAudio: () => {},
+  stopHomeMusic: () => {},
   playSfx: () => {},
   playHomeMusic: () => {},
   playRoundMusic: () => {},
@@ -155,6 +183,7 @@ const AudioContext = createContext<AudioValue>({
  */
 export function AudioProvider({ children }: { children: ReactNode }) {
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [playAudio, setPlayAudioState] = useState<Settings['playAudio']>('musica');
   const enabledRef = useRef(true);
 
   // The looping background bed (home or round) and the one-shot win fanfare.
@@ -170,6 +199,14 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   // still be stepping the volume of a player the next round has already
   // reused, which silences a bed that is supposed to be playing.
   const bedFadeRef = useRef<(() => void) | null>(null);
+  // Detaches the end-of-track listener when a bed is replaced. Without it the
+  // listeners accumulate one per track change and every one of them advances
+  // the playlist, so the music starts skipping faster and faster.
+  const bedEndSubRef = useRef<(() => void) | null>(null);
+  // Shuffled deal queues, so no track repeats until its pool is exhausted.
+  const roundPoolRef = useRef<number[]>([]);
+  const homePoolRef = useRef<number[]>([]);
+  const playAudioRef = useRef<Settings['playAudio']>('musica');
   const sfxRef = useRef<Partial<Record<AudioKey, AudioPlayer>>>({});
   // Web can't call play() until a user gesture unlocks audio; native is always
   // unlocked. We create players eagerly but defer actual playback until this
@@ -197,6 +234,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         /* not fatal */
       }
       const s = await getSettings();
+      playAudioRef.current = s.playAudio ?? 'musica';
+      setPlayAudioState(s.playAudio ?? 'musica');
       setSoundEnabled(s.soundEnabled);
     })();
 
@@ -210,10 +249,13 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       };
       const resume = () => {
         unlockedRef.current = true;
-        // Resume the exact track the active screen chose, not a fresh draw —
-        // the bed was already picked when the screen mounted, and re-picking
-        // here would swap the music on the player's first tap.
-        if (enabledRef.current && contextTrackRef.current) playBed(contextTrackRef.current);
+        // Re-enter through the context's own starter rather than replaying the
+        // last src directly, so the round honours the tic-tac / silencio
+        // setting and the end-of-track advance is wired up either way.
+        if (enabledRef.current) {
+          if (contextRef.current === 'round') playRoundMusic();
+          else if (contextRef.current === 'home') playHomeMusic();
+        }
         cleanupGesture();
       };
       window.addEventListener('pointerdown', resume);
@@ -272,6 +314,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   function removeBed() {
     bedFadeRef.current?.();
     bedFadeRef.current = null;
+    bedEndSubRef.current?.();
+    bedEndSubRef.current = null;
     try {
       musicRef.current?.remove();
     } catch {
@@ -281,8 +325,15 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     bedSrcRef.current = null;
   }
 
-  /** Loop `src` as the background bed, reusing the player if it's already it. */
-  function playBed(src: MusicSrc) {
+  /**
+   * Play `src` as the background bed.
+   *
+   * `loop` is false for music and true for the tic-tac. Music beds do NOT loop
+   * on themselves any more — when one ends, `onEnd` picks a different track.
+   * Hearing the same fifty-five seconds come round again is what made the
+   * music feel thin no matter how many tracks were in the pool.
+   */
+  function playBed(src: MusicSrc, opts: { loop: boolean; volume?: number; onEnd?: () => void }) {
     try {
       if (bedSrcRef.current === src && musicRef.current) {
         // Cancel any fade still running on this player and restore the bed
@@ -290,7 +341,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         bedFadeRef.current?.();
         bedFadeRef.current = null;
         try {
-          musicRef.current.volume = BED_VOLUME;
+          musicRef.current.volume = opts.volume ?? BED_VOLUME;
         } catch {
           /* ignore */
         }
@@ -299,14 +350,64 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       }
       removeBed();
       const p = createAudioPlayer(src);
-      p.loop = true;
-      p.volume = BED_VOLUME;
+      p.loop = opts.loop;
+      p.volume = opts.volume ?? BED_VOLUME;
       musicRef.current = p;
       bedSrcRef.current = src;
+
+      if (opts.onEnd) {
+        const onEnd = opts.onEnd;
+        try {
+          // `didJustFinish` is the only reliable end signal here; a status of
+          // 'idle' also fires when a player is torn down, which would advance
+          // the playlist every time we simply stopped it.
+          const sub = p.addListener(
+            'playbackStatusUpdate',
+            (s: { didJustFinish?: boolean }) => {
+              if (!s?.didJustFinish) return;
+              if (musicRef.current !== p) return; // superseded; do not advance
+              onEnd();
+            }
+          );
+          bedEndSubRef.current = () => {
+            try {
+              sub.remove();
+            } catch {
+              /* ignore */
+            }
+          };
+        } catch {
+          /* older API shape — the bed simply stops at the end of the track */
+        }
+      }
       startPlayer(p);
     } catch {
       /* ignore */
     }
+  }
+
+  /**
+   * The next track index from a pool, never repeating until the pool is spent.
+   *
+   * Anti-repeat used to be "not the previous index", which at sixty tracks
+   * still let the same handful recur within a sitting — with 60 beds a naive
+   * random draw repeats something about every 8 rounds. This shuffles the whole
+   * pool and deals from it, so you hear all sixty before hearing any twice, and
+   * the refill excludes whatever just played so the seam is not a repeat either.
+   */
+  function nextFrom(poolRef: { current: number[] }, size: number, lastRef: { current: number }) {
+    if (size <= 1) return 0;
+    if (!poolRef.current.length) {
+      const all = Array.from({ length: size }, (_, i) => i).filter((i) => i !== lastRef.current);
+      for (let i = all.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [all[i], all[j]] = [all[j], all[i]];
+      }
+      poolRef.current = all;
+    }
+    const i = poolRef.current.pop() ?? 0;
+    lastRef.current = i;
+    return i;
   }
 
   function stopWin() {
@@ -329,28 +430,75 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   function playHomeMusic() {
     stopWin();
     if (contextRef.current !== 'home' || contextTrackRef.current == null) {
-      const tracks = HOME_BEDS;
-      let i = Math.floor(Math.random() * tracks.length);
-      if (tracks.length > 1 && i === lastHomeRef.current) i = (i + 1) % tracks.length;
-      lastHomeRef.current = i;
-      contextTrackRef.current = tracks[i];
+      contextTrackRef.current = HOME_BEDS[nextFrom(homePoolRef, HOME_BEDS.length, lastHomeRef)];
     }
     contextRef.current = 'home';
     if (!enabledRef.current || contextTrackRef.current == null) return;
-    playBed(contextTrackRef.current);
+    playBed(contextTrackRef.current, { loop: false, onEnd: advanceHome });
   }
 
+  function advanceHome() {
+    if (!enabledRef.current || contextRef.current !== 'home') return;
+    const src = HOME_BEDS[nextFrom(homePoolRef, HOME_BEDS.length, lastHomeRef)];
+    contextTrackRef.current = src;
+    playBed(src, { loop: false, onEnd: advanceHome });
+  }
+
+  /**
+   * Stop the menu bed — but ONLY if Home still owns it.
+   *
+   * Called from Home's focus-effect cleanup. The guard is the whole point: on
+   * some transitions the play screen mounts and starts its own bed BEFORE Home
+   * is told it lost focus, and an unguarded stop here would then kill the round
+   * music a moment after it started. Checking the context means this can only
+   * ever stop something Home itself put there.
+   */
+  function stopHomeMusic() {
+    if (contextRef.current !== 'home') return;
+    contextRef.current = null;
+    contextTrackRef.current = null;
+    removeBed();
+  }
+
+  /**
+   * Start whatever plays under a round, per the player's `playAudio` setting.
+   *
+   * Note the unconditional removeBed() before the switch. Entering a round has
+   * to silence Home immediately and in every mode — including 'silencio', where
+   * there is nothing to replace it with, and that is exactly the case a
+   * "replace the bed" approach would have missed.
+   */
   function playRoundMusic() {
-    // Pick a fresh genre, never the one we just played (anti-repeat).
-    const tracks = MUSIC.rounds;
-    let i = Math.floor(Math.random() * tracks.length);
-    if (tracks.length > 1 && i === lastRoundRef.current) i = (i + 1) % tracks.length;
-    lastRoundRef.current = i;
     contextRef.current = 'round';
-    contextTrackRef.current = tracks[i];
+    contextTrackRef.current = null;
     stopWin();
+    removeBed();
     if (!enabledRef.current) return;
-    playBed(tracks[i]);
+
+    if (playAudioRef.current === 'silencio') return;
+
+    if (playAudioRef.current === 'tictac') {
+      // Looked up by string rather than as AUDIO.tictac on purpose. AudioKey is
+      // GENERATED from scripts/fetch-audio.mjs, so the key only enters the type
+      // after that script has run — and typing it statically would make the
+      // whole repo fail typecheck until someone remembers to. The clip is
+      // verified by `npm run assets` instead, which checks it is really on disk.
+      const tick = (AUDIO as Record<string, unknown>).tictac as MusicSrc | undefined;
+      // If it did not bundle, a round is simply quiet rather than a crash.
+      if (tick != null) playBed(tick, { loop: true, volume: TICK_VOLUME });
+      return;
+    }
+
+    advanceRound();
+  }
+
+  function advanceRound() {
+    if (!enabledRef.current || contextRef.current !== 'round') return;
+    if (playAudioRef.current !== 'musica') return;
+    const tracks = MUSIC.rounds;
+    const src = tracks[nextFrom(roundPoolRef, tracks.length, lastRoundRef)];
+    contextTrackRef.current = src;
+    playBed(src, { loop: false, onEnd: advanceRound });
   }
 
   function playWinFanfare() {
@@ -379,7 +527,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       }
       winRef.current = createAudioPlayer(tracks[i]);
       winRef.current.loop = false;
-      winRef.current.volume = 0.85;
+      winRef.current.volume = WIN_VOLUME;
       startPlayer(winRef.current);
     } catch {
       /* ignore */
@@ -420,9 +568,46 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       }
       voiceRef.current = createAudioPlayer(VOICE[i]);
       voiceRef.current.loop = false;
-      // Sits on top of the fanfare rather than replacing it, so it needs to cut
-      // through without shouting.
-      voiceRef.current.volume = 1;
+      voiceRef.current.volume = VOICE_VOLUME;
+
+      // Duck the fanfare under the line, then let it back up.
+      //
+      // The voice is already at 1.0, so there was no headroom left to raise it
+      // — the only way to hear the line was to lower what was covering it. The
+      // release matters as much as the duck: hold it down and the celebration
+      // ends in a whimper, so the music comes back the moment the voice stops.
+      try {
+        if (winRef.current) winRef.current.volume = WIN_DUCK;
+      } catch {
+        /* ignore */
+      }
+      try {
+        const vp = voiceRef.current;
+        const sub = vp.addListener('playbackStatusUpdate', (s: { didJustFinish?: boolean }) => {
+          if (!s?.didJustFinish) return;
+          try {
+            if (winRef.current) winRef.current.volume = WIN_VOLUME;
+          } catch {
+            /* ignore */
+          }
+          try {
+            sub.remove();
+          } catch {
+            /* ignore */
+          }
+        });
+      } catch {
+        // No status events on this platform: restore on a timer instead, so a
+        // missed event cannot leave the fanfare permanently ducked.
+        setTimeout(() => {
+          try {
+            if (winRef.current) winRef.current.volume = WIN_VOLUME;
+          } catch {
+            /* ignore */
+          }
+        }, 2500);
+      }
+
       startPlayer(voiceRef.current);
     } catch {
       /* ignore */
@@ -443,6 +628,19 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     stopWin();
   }
 
+  /**
+   * Change what plays under a round, and apply it to the round in progress.
+   *
+   * Applying it live is the point: a setting you have to leave and re-enter a
+   * round to hear is a setting nobody can evaluate.
+   */
+  function setPlayAudio(mode: Settings['playAudio']) {
+    playAudioRef.current = mode;
+    setPlayAudioState(mode);
+    saveSettings({ playAudio: mode });
+    if (contextRef.current === 'round') playRoundMusic();
+  }
+
   function toggleSound() {
     setSoundEnabled((prev) => {
       const next = !prev;
@@ -450,10 +648,12 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       saveSettings({ soundEnabled: next });
       if (!next) {
         stopMusic();
-      } else if (contextTrackRef.current) {
-        // Whatever this screen was playing, not a new draw — toggling sound off
-        // and on again should not change the song.
-        playBed(contextTrackRef.current);
+      } else if (contextRef.current === 'round') {
+        // Re-enter through playRoundMusic so the tic-tac and silencio modes are
+        // honoured; resuming the last track directly would ignore the setting.
+        playRoundMusic();
+      } else if (contextRef.current === 'home') {
+        playHomeMusic();
       }
       return next;
     });
@@ -464,6 +664,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       value={{
         soundEnabled,
         toggleSound,
+        playAudio,
+        setPlayAudio,
+        stopHomeMusic,
         playSfx,
         playVoice,
         playHomeMusic,

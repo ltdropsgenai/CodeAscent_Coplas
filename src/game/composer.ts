@@ -66,17 +66,43 @@ const LIB: Record<string, LibGroup> = { ...BASE_LIB, ...EXP_LIB };
 const BASE_REFS = Object.keys(BASE_LIB);
 const CATS_BASE = BASE_REFS.filter((r) => BASE_LIB[r].kind === 'cat');
 const TRAPS_BASE = BASE_REFS.filter((r) => BASE_LIB[r].kind !== 'cat');
-const EXP_CAT_REFS = Object.keys(EXP_LIB).filter((r) => EXP_LIB[r].kind === 'cat');
-/** Every category in the library. The expansion contributes no traps. */
+const EXP_REFS = Object.keys(EXP_LIB);
+const EXP_CAT_REFS = EXP_REFS.filter((r) => EXP_LIB[r].kind === 'cat');
+const EXP_TRAP_REFS = EXP_REFS.filter((r) => EXP_LIB[r].kind !== 'cat');
+
+/** Every category in the library. */
 const CATS_FULL = [...CATS_BASE, ...EXP_CAT_REFS];
+/** Every trap in the library. */
+const TRAPS_FULL = [...TRAPS_BASE, ...EXP_TRAP_REFS];
 
 /** Category refs. */
 function catsPool(): string[] {
   return CATS_FULL;
 }
-/** Trap refs — colour/shape/letter/rhyme/hidden, all hand-authored in base. */
+
+/**
+ * Trap refs — colour/shape/letter/rhyme/hidden.
+ *
+ * This read `return TRAPS_BASE` until now, and that one word was the whole
+ * reason a player met «Empiezan con B» five times in seventeen rounds. When the
+ * expansion landed, the category pool went from 31 groups to 416 and the trap
+ * pool stayed at the nineteen written for the original 54 cards — because this
+ * function named the base library directly, so even a trap authored in the
+ * expansion could never have been drawn. Difícil takes two traps per round out
+ * of nineteen; the repetition was arithmetic, not bad luck, and no amount of
+ * card-level anti-repeat could touch it, because the scarce thing was the
+ * groups rather than the cards inside them.
+ *
+ * The other half of the fix is scripts/gen-traps.mjs, which mines the deck for
+ * rhyme/letter/hidden groups the expansion never got.
+ *
+ * Selecting on `kind !== 'cat'` rather than listing the trap kinds means a new
+ * mechanic added to the generator is picked up without a matching edit here,
+ * and it cannot go wrong: CATS_FULL uses the exact complement, so every group
+ * lands in one pool and no group lands in both.
+ */
 function trapsPool(): string[] {
-  return TRAPS_BASE;
+  return TRAPS_FULL;
 }
 
 // ── Card-name helpers (for letter/rhyme ambiguity checks) ──────────────────
@@ -174,16 +200,31 @@ function sameTheme(refs: string[]): boolean {
 }
 
 /**
- * Compose a fresh continuous-play round at the given difficulty, minimizing the
- * total `penalty` of its 16 cards. `penalty` maps a card id to a cost that
- * reflects how recently and how often it has appeared this session (see
- * play.tsx `cardPenalties`); cards absent from the map cost 0. Returns a
- * synthetic Puzzle with a `live-<seq>` id — never persisted.
+ * Compose a fresh continuous-play round at the given difficulty, minimising the
+ * combined cost of its 16 cards AND its four themes.
+ *
+ * `penalty` maps a card id to a cost reflecting how recently and how often it
+ * has appeared this session (see play.tsx `penaltyOf`); cards absent cost 0.
+ *
+ * `themePenalty` does the same for the theme STRING, and it exists because
+ * spreading cards turned out not to spread categories. The trap tier draws from
+ * only nineteen groups — every one of them written for the original 54-card
+ * deck, none added by the 385-group expansion — so a player saw «Empiezan con
+ * B» five times in seventeen rounds while the card penalty happily reported
+ * that the individual cards were fresh. Sixteen fresh cards arranged into the
+ * same category is still the same round.
+ *
+ * Keyed on the theme rather than the group id on purpose: `letraB` and
+ * `letraB2` are different groups showing the same words to the player, and it
+ * is the words they read that feel repeated.
+ *
+ * Returns a synthetic Puzzle with a `live-<seq>` id — never persisted.
  */
 export function composeRound(
   difficulty: Difficulty,
   penalty: Map<string, number>,
-  seq: number
+  seq: number,
+  themePenalty: Map<string, number> = new Map()
 ): Puzzle {
   let best: string[] | null = null;
   let bestCost = Infinity;
@@ -193,9 +234,9 @@ export function composeRound(
     const refs = composeOnce(difficulty);
     if (!refs) continue;
     valid++;
-    const cost = refs
-      .flatMap((r) => LIB[r].cards)
-      .reduce((n, c) => n + (penalty.get(c) ?? 0), 0);
+    const cost =
+      refs.flatMap((r) => LIB[r].cards).reduce((n, c) => n + (penalty.get(c) ?? 0), 0) +
+      refs.reduce((n, r) => n + (themePenalty.get(LIB[r].theme) ?? 0), 0);
     if (cost < bestCost) {
       best = refs;
       bestCost = cost;

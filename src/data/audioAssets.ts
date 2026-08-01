@@ -6,7 +6,7 @@
  * the moment had passed; music is AAC now rather than WAV, which made bundling
  * it affordable too. Nothing in this file touches the network at runtime.
  */
-export type AudioKey = 'music' | 'select' | 'correct' | 'wrong' | 'jingle' | 'barajar' | 'pista' | 'grupo' | 'reparto' | 'quitar' | 'reintentar' | 'racha' | 'perdida';
+export type AudioKey = 'music' | 'select' | 'correct' | 'wrong' | 'jingle' | 'barajar' | 'pista' | 'grupo' | 'reparto' | 'quitar' | 'reintentar' | 'racha' | 'perdida' | 'tictac';
 
 type AudioSrc = number | string | { uri: string };
 
@@ -23,6 +23,7 @@ export const AUDIO: Partial<Record<AudioKey, AudioSrc>> = {
   reintentar: require('../../assets/audio/reintentar.mp3'),
   racha: require('../../assets/audio/racha.mp3'),
   perdida: require('../../assets/audio/perdida.mp3'),
+  tictac: require('../../assets/audio/tictac.mp3'),
 };
 
 /**

@@ -35,3 +35,7 @@ tier-compare.png
 _video_settings.json
 _fps_test/
 crf-compare.png
+_ocr/
+_replaced/
+_new_*.png
+_tessdata/

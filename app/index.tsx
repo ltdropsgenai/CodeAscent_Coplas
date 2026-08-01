@@ -113,7 +113,7 @@ export default function Home() {
   // exactly the trade we're refusing to make.
   const px = (base: number) => Math.round(base * s);
   const tx = (base: number) => Math.max(11, Math.round(base * s));
-  const { soundEnabled, toggleSound, playHomeMusic } = useAudio();
+  const { soundEnabled, toggleSound, playHomeMusic, stopHomeMusic } = useAudio();
   const puzzle = getTodaysPuzzle();
   const [stats, setStats] = useState<Stats | null>(null);
   const [badges, setBadges] = useState<{ got: number; total: number } | null>(null);
@@ -153,6 +153,12 @@ export default function Home() {
       })();
       return () => {
         active = false;
+        // Stop the menu bed the moment Home loses focus, so it cannot carry on
+        // underneath a round. stopHomeMusic no-ops if the play screen has
+        // already claimed the bed, which it sometimes does before this cleanup
+        // runs — without that guard this line would kill the round music a
+        // moment after it started.
+        stopHomeMusic();
       };
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [puzzle.id])

@@ -27,11 +27,11 @@ import type { ImageSourcePropType } from 'react-native';
  * directly over it. That is intentional and is not a duplicate label — do not
  * "fix" it by hiding the plate. The bundled width is chosen for the ART.
  *
- * NOTE: video is deliberately NOT bundled. The clip set is 1,258 MB and fits
- * under no store limit; it stays streamed and capped per round.
+ * NOTE: video IS bundled now. That sentence used to say the opposite — "the
+ * clip set is 1,258 MB and fits under no store limit" — which was true of the
+ * originals and stopped being true once they were re-encoded to 320 px CRF 32:
+ * 995 clips, 29.5 MB, in assets/video/. See scripts/bundle-video.mjs.
  */
-
-const CARDS_CDN = 'https://bmybvrqbpachjxrejxdj.supabase.co/storage/v1/object/public/cards';
 
 /** Bundled art, id → Metro asset handle. */
 const BUNDLED: Record<string, number> = {
@@ -1032,31 +1032,39 @@ const BUNDLED: Record<string, number> = {
   saturno: require('../../assets/cards/saturno.jpg'),
 };
 
-/** True when this card's art ships in the binary. */
-export function isBundled(id: string): boolean {
-  return id in BUNDLED;
-}
+// (Removed) isBundled(id). It existed to branch between bundled art and the
+// Supabase fallback; with the whole deck bundled it could only ever return
+// true, so every call site was dead weight and a reader could reasonably
+// assume it meant something. Nothing referenced it.
 
 /**
- * Art for a card: the bundled asset handle when we have it, otherwise the
- * remote original. Callers that hand this straight to <Image> should prefer
- * `imageSource()`, which builds the right shape for both cases.
- */
-export function cardImage(id: string): number | string {
-  return BUNDLED[id] ?? `${CARDS_CDN}/${id}.webp`;
-}
-
-/**
- * <Image source> for a card, correct whether the art is bundled or remote.
+ * Art for a card, or undefined if we have none.
  *
- * This exists because a bundled asset is a NUMBER and a remote one needs
- * `{ uri }`. Wrapping a number as `{ uri: n }` renders nothing and throws no
- * error — silent blank cards — which is exactly what SolvedGroup's
- * `cardImage(id) as string` cast used to do the moment art was bundled.
+ * There used to be a fallback here to a Supabase URL for anything not in
+ * BUNDLED. The whole deck is bundled, so that branch was already unreachable —
+ * but it left a live CDN URL in the binary, and it was wrong twice over: those
+ * bucket objects are JPEG data named `.webp` (the defect that shipped blank
+ * cards once already), and a card added without art would have quietly gone to
+ * the network on a device the user believes is offline.
+ *
+ * Returning undefined instead lets CardTile fall back to the card's emoji,
+ * which is a visible, honest "no art" rather than a hidden request.
+ */
+export function cardImage(id: string): number | undefined {
+  return BUNDLED[id];
+}
+
+/**
+ * <Image source> for a card.
+ *
+ * Kept as a separate function even though everything is a bundled NUMBER now,
+ * because every call site already goes through it and the indirection is what
+ * caught the last shape bug: wrapping a number as `{ uri: n }` renders nothing
+ * and throws no error — silent blank cards — which is exactly what
+ * SolvedGroup's `cardImage(id) as string` cast did the moment art was bundled.
  */
 export function imageSource(id: string): ImageSourcePropType {
-  const v = cardImage(id);
-  return typeof v === 'number' ? v : { uri: v };
+  return cardImage(id) as ImageSourcePropType;
 }
 
 

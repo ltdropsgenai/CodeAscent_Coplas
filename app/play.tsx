@@ -43,6 +43,27 @@ function penaltyOf(u: CardUse, now: number): number {
   return recency + u.count * 8;
 }
 
+/**
+ * The same idea for the CATEGORY, and the reason it had to be added separately.
+ *
+ * Spreading cards does not spread categories. The trap tier draws from only
+ * nineteen groups, all of them written for the original 54-card deck, so a
+ * player met «Empiezan con B» five times in seventeen rounds while every card
+ * penalty reported the cards themselves as perfectly fresh. They were. Sixteen
+ * fresh cards arranged into a category you just solved is still a repeat.
+ *
+ * The numbers are an order of magnitude above the card ones on purpose. A card
+ * penalty is summed over sixteen cards, so a per-theme figure has to be large
+ * to compete — and with only nineteen traps in the pool, a theme seen four
+ * rounds ago genuinely should lose to one never seen.
+ */
+function themePenaltyOf(u: CardUse, now: number): number {
+  const gap = now - u.last;
+  const recency =
+    gap <= 0 ? 20000 : gap === 1 ? 12000 : gap === 2 ? 6000 : gap === 3 ? 2500 : gap <= 6 ? 800 : 0;
+  return recency + u.count * 400;
+}
+
 export default function Play() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
@@ -62,6 +83,7 @@ export default function Play() {
   const diffRef = useRef<Difficulty>('media');
   const liveSeq = useRef(0);
   const usage = useRef<Record<string, CardUse>>({});
+  const themeUsage = useRef<Record<string, CardUse>>({});
   const roundNo = useRef(0);
   // Whether the current round is still untouched — lets the connectivity probe
   // safely swap round 1 for the expanded deck the moment we confirm we're online.
@@ -74,13 +96,24 @@ export default function Play() {
     return m;
   }, []);
 
-  // Fold a finished round's cards into the session usage history.
-  const recordRound = useCallback((cardIds: string[]) => {
+  const themePenalties = useCallback((): Map<string, number> => {
+    const now = roundNo.current;
+    const m = new Map<string, number>();
+    for (const th in themeUsage.current) m.set(th, themePenaltyOf(themeUsage.current[th], now));
+    return m;
+  }, []);
+
+  // Fold a finished round's cards AND its four themes into the session history.
+  const recordRound = useCallback((cardIds: string[], themes: string[]) => {
     roundNo.current += 1;
     const now = roundNo.current;
     for (const id of cardIds) {
       const u = usage.current[id] ?? { count: 0, last: -99 };
       usage.current[id] = { count: u.count + 1, last: now };
+    }
+    for (const th of themes) {
+      const u = themeUsage.current[th] ?? { count: 0, last: -99 };
+      themeUsage.current[th] = { count: u.count + 1, last: now };
     }
   }, []);
 
@@ -180,7 +213,11 @@ export default function Play() {
 
   // SFX + feedback burst on every guess; jingle on a win.
   const prevGuesses = useRef(0);
+  // When a voice line last played, so the win does not stack a second one on
+  // top of a trap line that has only just finished.
+  const lastVoiceAtRef = useRef(0);
   useEffect(() => {
+    let trapVoice: ReturnType<typeof setTimeout> | undefined;
     if (state.guesses.length > prevGuesses.current) {
       const last = state.guesses[state.guesses.length - 1];
       // NOTE: `grupo` deliberately does NOT play here. A solved group already
@@ -194,8 +231,38 @@ export default function Play() {
         Animated.spring(feedback, { toValue: 1, useNativeDriver: true, friction: 5, tension: 140 }),
         Animated.timing(feedback, { toValue: 0, duration: 450, delay: 300, useNativeDriver: true }),
       ]).start(() => setFeedbackKind(null));
+
+      /**
+       * A celebration voice line when — and only when — the TRAP group falls.
+       *
+       * Tier 4 is the purple one: the group built to look like something else.
+       * Solving it is the only moment in a round that is genuinely clever
+       * rather than merely correct, which makes it the one moment worth a
+       * human voice.
+       *
+       * Firing on every solved group was the obvious alternative and is worse.
+       * Four lines a round cycles all forty-six inside a dozen rounds, and a
+       * voice you expect is wallpaper — the same way the round beds felt thin
+       * before they stopped repeating. Rarity is what makes it land.
+       *
+       * Offset behind the `correct` sting for the same reason the win line is
+       * offset behind the jingle: stacked on one frame the two smear into a
+       * single noise; sequenced, the sting reads as the game and the voice as
+       * a person.
+       */
+      const justSolved = state.solved[state.solved.length - 1];
+      if (last.correct && justSolved?.tier === 4) {
+        trapVoice = setTimeout(() => {
+          lastVoiceAtRef.current = Date.now();
+          playVoice();
+        }, 420);
+      }
     }
     prevGuesses.current = state.guesses.length;
+    return () => {
+      if (trapVoice) clearTimeout(trapVoice);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.guesses, playSfx, feedback]);
 
   // On a win: a quick sting immediately, then a short beat so the last group
@@ -213,7 +280,15 @@ export default function Play() {
       // The exclamation lands a beat INTO the fanfare, not on top of the
       // jingle. Stacked on the same frame they smear into noise; offset, the
       // sting reads as the game reacting and the voice as someone reacting.
-      const cheer = setTimeout(playVoice, 1250);
+      //
+      // Suppressed if the trap group was the LAST one solved — its voice line
+      // fired barely a second ago and a second line on top of it is two people
+      // talking over each other, not twice the celebration.
+      const cheer = setTimeout(() => {
+        if (Date.now() - lastVoiceAtRef.current < 3000) return;
+        lastVoiceAtRef.current = Date.now();
+        playVoice();
+      }, 1250);
       return () => {
         clearTimeout(beat);
         clearTimeout(cheer);
@@ -250,9 +325,9 @@ export default function Play() {
     // Fold the round just played into the session usage history, then compose a
     // fresh round that prefers the least-recently/least-often seen cards.
     const justPlayed = puzzle.groups.flatMap((g) => g.cardIds);
-    recordRound(justPlayed);
+    recordRound(justPlayed, puzzle.groups.map((g) => g.theme));
     liveSeq.current += 1;
-    setLivePuzzle(composeRound(difficulty, cardPenalties(), liveSeq.current));
+    setLivePuzzle(composeRound(difficulty, cardPenalties(), liveSeq.current, themePenalties()));
     setPlayCount((c) => c + 1);
   }
 

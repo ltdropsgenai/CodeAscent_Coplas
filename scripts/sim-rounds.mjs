@@ -43,7 +43,13 @@ const initial = (id) => strip(noun(id)).charAt(0).toUpperCase();
 const lower = (id) => noun(id).toLowerCase();
 
 const CATS = Object.keys(LIB).filter((r) => LIB[r].kind === 'cat');
-const TRAPS = Object.keys(BASE).filter((r) => BASE[r].kind !== 'cat');
+// Drawn from LIB, not BASE. This line said `Object.keys(BASE)` and so carried
+// the exact bug it exists to catch: composer.ts's trapsPool() was base-only,
+// and the simulator that is supposed to independently verify the composer had
+// been written by copying it. Both files agreed, both were wrong, and 800
+// green rounds per difficulty said nothing about the trap groups because not
+// one of them was ever drawn. A mirror is only a check if it can disagree.
+const TRAPS = Object.keys(LIB).filter((r) => LIB[r].kind !== 'cat');
 const N_TRAPS = { facil: 0, media: 1, dificil: 2 };
 
 function shuffle(a) {
@@ -94,9 +100,9 @@ function sameTheme(refs) {
   return false;
 }
 
-function composeOnce(difficulty) {
+function composeOnce(difficulty, pool = TRAPS) {
   const n = N_TRAPS[difficulty];
-  const traps = n ? pickGroups(TRAPS, n, new Set()) : [];
+  const traps = n ? pickGroups(pool, n, new Set()) : [];
   if (n && !traps) return null;
   const trapCards = new Set((traps ?? []).flatMap((r) => LIB[r].cards));
   const cats = pickGroups(CATS, 4 - n, trapCards);
@@ -172,4 +178,79 @@ for (const diff of ['facil', 'media', 'dificil']) {
 console.log(`\nbroken rounds: ${bad}`);
 for (const e of examples.slice(0, 10)) console.log(`  ✗ ${e}`);
 if (!bad) console.log('✅ every simulated round has 16 unique cards and exactly one valid answer per group');
+
+// ── 3. THE TRAP TIER DOES NOT REPEAT ITSELF ─────────────────────────────────
+//
+// The checks above prove each round is individually solvable. They cannot see
+// the defect a player actually reported: «Empiezan con B» five times in
+// seventeen rounds. Every one of those rounds was valid. The problem was the
+// SEQUENCE, and nothing here was looking at sequences.
+//
+// So this replays a real session — `composeRound`'s scored search plus the
+// per-theme penalty from app/play.tsx — and reports how often the worst-
+// repeating trap theme comes back. It runs the same session against the old
+// base-only trap pool as well, so the number has something to be compared to;
+// a lone figure would be unfalsifiable.
+//
+// Mirrors app/play.tsx `themePenaltyOf` and composer.ts `composeRound`.
+function themePenaltyOf(u, now) {
+  const gap = now - u.last;
+  const recency =
+    gap <= 0 ? 20000 : gap === 1 ? 12000 : gap === 2 ? 6000 : gap === 3 ? 2500 : gap <= 6 ? 800 : 0;
+  return recency + u.count * 400;
+}
+
+function composeScored(diff, pool, themePenalty) {
+  let best = null;
+  let bestCost = Infinity;
+  for (let i = 0, valid = 0; i < 4000 && valid < 500; i++) {
+    const refs = composeOnce(diff, pool);
+    if (!refs) continue;
+    valid++;
+    const cost = refs.reduce((n, r) => n + (themePenalty.get(LIB[r].theme) ?? 0), 0);
+    if (cost < bestCost) {
+      best = refs;
+      bestCost = cost;
+      if (cost === 0) break;
+    }
+  }
+  return best;
+}
+
+/** Worst repeat count of any single trap theme across one N-round session. */
+function sessionWorstRepeat(diff, pool, rounds) {
+  const usage = {};
+  const counts = {};
+  for (let r = 0; r < rounds; r++) {
+    const pen = new Map();
+    for (const th in usage) pen.set(th, themePenaltyOf(usage[th], r));
+    const refs = composeScored(diff, pool, pen);
+    if (!refs) continue;
+    for (const ref of refs) {
+      const th = LIB[ref].theme;
+      usage[th] = { last: r, count: (usage[th]?.count ?? 0) + 1 };
+      if (LIB[ref].kind !== 'cat') counts[th] = (counts[th] ?? 0) + 1;
+    }
+  }
+  return Math.max(0, ...Object.values(counts));
+}
+
+const TRAPS_OLD = Object.keys(BASE).filter((r) => BASE[r].kind !== 'cat');
+const SESSIONS = 60;
+const LEN = 17; // the length of the session the defect was reported from
+
+console.log(`\ntrap-theme repetition — worst-repeating theme in a ${LEN}-round session,`);
+console.log(`mean over ${SESSIONS} sessions (lower is better)\n`);
+console.log(`  difficulty   before (${TRAPS_OLD.length} traps)   after (${TRAPS.length} traps)`);
+for (const diff of ['media', 'dificil']) {
+  const mean = (pool) =>
+    Array.from({ length: SESSIONS }, () => sessionWorstRepeat(diff, pool, LEN)).reduce(
+      (a, b) => a + b,
+      0
+    ) / SESSIONS;
+  const before = mean(TRAPS_OLD);
+  const after = mean(TRAPS);
+  console.log(`  ${diff.padEnd(12)} ${before.toFixed(2).padStart(13)}   ${after.toFixed(2).padStart(12)}`);
+}
+
 process.exit(bad ? 1 : 0);

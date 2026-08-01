@@ -10,7 +10,7 @@
     "updates": {
       "url": "https://u.expo.dev/f990c709-fa91-4123-9591-8c3a11ffbfcc",
       "fallbackToCacheTimeout": 0,
-      "checkAutomatically": "ON_LOAD"
+      "checkAutomatically": "NEVER"
     },
     "scheme": "coplas",
     "userInterfaceStyle": "light",

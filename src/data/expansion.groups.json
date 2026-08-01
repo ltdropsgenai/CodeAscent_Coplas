@@ -73,8 +73,8 @@
       "el_datil",
       "la_ciruela"
     ],
-    "theme": "De hueso",
-    "why": "Aguacate, chabacano, dátil y ciruela: traen hueso."
+    "theme": "Frutas con hueso",
+    "why": "Aguacate, chabacano, dátil y ciruela: cada una guarda un solo hueso grande."
   },
   "frutas_de_hueso_2": {
     "kind": "cat",
@@ -84,30 +84,30 @@
       "el_durazno",
       "la_ciruela"
     ],
-    "theme": "De hueso",
-    "why": "Chabacano, dátil, durazno y ciruela: traen hueso."
+    "theme": "Frutas con hueso",
+    "why": "Chabacano, dátil, durazno y ciruela: cada una guarda un solo hueso grande."
   },
   "frutas_de_racimo_y_parra_1": {
     "kind": "cat",
     "cards": [
-      "el_higo",
+      "la_uva",
       "el_kiwi",
-      "el_melon",
-      "el_platano"
+      "el_platano",
+      "el_maracuya"
     ],
     "theme": "De racimo y parra",
-    "why": "Higo, kiwi, melón y plátano."
+    "why": "Uva, kiwi, plátano y maracuyá: crecen en racimo o en enredadera."
   },
   "frutas_de_racimo_y_parra_2": {
     "kind": "cat",
     "cards": [
-      "el_higo",
+      "la_uva",
       "el_kiwi",
-      "el_melon",
-      "la_uva"
+      "el_maracuya",
+      "el_melon"
     ],
     "theme": "De racimo y parra",
-    "why": "Higo, kiwi, melón y uva."
+    "why": "Uva, kiwi, maracuyá y melón: crecen en racimo o en enredadera."
   },
   "frutas_manzanas_y_peras_1": {
     "kind": "cat",
@@ -115,21 +115,21 @@
       "el_membrillo",
       "la_manzana",
       "la_pera",
-      "la_sandia"
+      "el_durazno"
     ],
-    "theme": "Manzanas y peras",
-    "why": "Membrillo, manzana, pera y sandía."
+    "theme": "De pulpa firme",
+    "why": "Membrillo, manzana, pera y durazno: se muerden crujientes."
   },
   "frutas_manzanas_y_peras_2": {
     "kind": "cat",
     "cards": [
-      "la_guayaba",
+      "el_membrillo",
       "la_manzana",
       "la_pera",
-      "la_sandia"
+      "la_guayaba"
     ],
-    "theme": "Manzanas y peras",
-    "why": "Guayaba, manzana, pera y sandía."
+    "theme": "De pulpa firme",
+    "why": "Membrillo, manzana, pera y guayaba: se muerden crujientes."
   },
   "verduras_de_la_tierra_1": {
     "kind": "cat",
@@ -174,17 +174,6 @@
     ],
     "theme": "Verduras verdes",
     "why": "Brócoli, ejote, pepino y espinaca."
-  },
-  "verduras_picantes_y_bulbos_1": {
-    "kind": "cat",
-    "cards": [
-      "el_ajo",
-      "el_chile",
-      "el_pimiento",
-      "la_cebolla"
-    ],
-    "theme": "Picantes y bulbos",
-    "why": "Ajo, chile, pimiento y cebolla."
   },
   "verduras_picantes_y_bulbos_2": {
     "kind": "cat",
@@ -321,13 +310,13 @@
   "aves_de_rapina_2": {
     "kind": "cat",
     "cards": [
-      "el_pajaro",
+      "el_condor",
       "el_halcon",
       "el_zopilote",
       "la_lechuza"
     ],
     "theme": "De rapiña",
-    "why": "Águila, halcón, zopilote y lechuza."
+    "why": "Cóndor, halcón, zopilote y lechuza: cazan o carroñean."
   },
   "aves_coloridas_1": {
     "kind": "cat",
@@ -359,8 +348,8 @@
       "el_pelicano",
       "la_gaviota"
     ],
-    "theme": "De agua",
-    "why": "Cisne, pato, pelícano y gaviota."
+    "theme": "Aves de agua",
+    "why": "Cisne, pato, pelícano y gaviota: aves que nadan o pescan."
   },
   "aves_de_agua_2": {
     "kind": "cat",
@@ -370,8 +359,8 @@
       "la_garza",
       "la_gaviota"
     ],
-    "theme": "De agua",
-    "why": "Pato, pelícano, garza y gaviota."
+    "theme": "Aves de agua",
+    "why": "Pato, pelícano, garza y gaviota: aves que nadan o pescan."
   },
   "aves_aves_de_jardin_1": {
     "kind": "cat",
@@ -530,24 +519,24 @@
   "mamiferos_del_frio_y_desierto_1": {
     "kind": "cat",
     "cards": [
-      "el_canguro",
-      "el_erizo",
       "la_foca",
-      "la_morsa"
+      "la_morsa",
+      "el_oso",
+      "el_zorro"
     ],
-    "theme": "Del frío y desierto",
-    "why": "Canguro, erizo, foca y morsa."
+    "theme": "Del frío",
+    "why": "Foca, morsa, oso y zorro: aguantan el hielo."
   },
   "mamiferos_del_frio_y_desierto_2": {
     "kind": "cat",
     "cards": [
       "el_camello",
       "el_canguro",
-      "la_foca",
-      "la_morsa"
+      "el_erizo",
+      "el_zorro"
     ],
-    "theme": "Del frío y desierto",
-    "why": "Camello, canguro, foca y morsa."
+    "theme": "Del desierto",
+    "why": "Camello, canguro, erizo y zorro: viven donde casi no llueve."
   },
   "mar_peces_1": {
     "kind": "cat",
@@ -601,8 +590,8 @@
       "el_pulpo",
       "la_medusa"
     ],
-    "theme": "Del fondo",
-    "why": "Caballito de mar, calamar, pulpo y medusa."
+    "theme": "Raros del mar",
+    "why": "Caballito de mar, calamar, pulpo y medusa: ninguno parece un pez."
   },
   "mar_del_fondo_2": {
     "kind": "cat",
@@ -612,8 +601,8 @@
       "la_estrella_de_mar",
       "la_medusa"
     ],
-    "theme": "Del fondo",
-    "why": "Caballito de mar, pulpo, estrella de mar y medusa."
+    "theme": "Raros del mar",
+    "why": "Caballito de mar, pulpo, estrella de mar y medusa: ninguno parece un pez."
   },
   "mar_gigantes_1": {
     "kind": "cat",
@@ -621,21 +610,21 @@
       "el_delfin",
       "la_ballena",
       "la_orca",
-      "la_tortuga"
+      "el_tiburon"
     ],
     "theme": "Gigantes",
-    "why": "Delfín, ballena, orca y tortuga."
+    "why": "Delfín, ballena, orca y tiburón: los grandes del mar."
   },
   "mar_gigantes_2": {
     "kind": "cat",
     "cards": [
       "la_ballena",
       "la_orca",
-      "la_raya",
-      "la_tortuga"
+      "el_tiburon",
+      "el_pez_espada"
     ],
     "theme": "Gigantes",
-    "why": "Ballena, orca, raya y tortuga."
+    "why": "Ballena, orca, tiburón y pez espada: los grandes del mar."
   },
   "bichos_voladores_1": {
     "kind": "cat",
@@ -689,8 +678,8 @@
       "la_arana",
       "la_garrapata"
     ],
-    "theme": "Con aguijón",
-    "why": "Alacrán, ciempiés, araña y garrapata."
+    "theme": "Pican",
+    "why": "Alacrán, ciempiés, araña y garrapata: más vale no tocarlos."
   },
   "bichos_con_aguijon_2": {
     "kind": "cat",
@@ -700,8 +689,8 @@
       "la_avispa",
       "la_garrapata"
     ],
-    "theme": "Con aguijón",
-    "why": "Ciempiés, araña, avispa y garrapata."
+    "theme": "Pican",
+    "why": "Ciempiés, araña, avispa y garrapata: más vale no tocarlos."
   },
   "bichos_de_la_noche_1": {
     "kind": "cat",
@@ -821,8 +810,8 @@
       "la_pala",
       "la_regadera"
     ],
-    "theme": "Para el jardín",
-    "why": "Azadón, rastrillo, pala y regadera."
+    "theme": "De jardinero",
+    "why": "Azadón, rastrillo, pala y regadera: las herramientas del jardinero."
   },
   "herramientas_para_el_jardin_2": {
     "kind": "cat",
@@ -832,8 +821,8 @@
       "la_pala",
       "la_regadera"
     ],
-    "theme": "Para el jardín",
-    "why": "Rastrillo, carretilla, pala y regadera."
+    "theme": "De jardinero",
+    "why": "Rastrillo, carretilla, pala y regadera: las herramientas del jardinero."
   },
   "herramientas_de_medir_y_sujetar_1": {
     "kind": "cat",
@@ -1082,11 +1071,11 @@
     "cards": [
       "el_cinturon",
       "el_guante",
-      "el_mono",
-      "la_corbata"
+      "la_corbata",
+      "la_bufanda"
     ],
     "theme": "Detalles",
-    "why": "Cinturón, guante, mono y corbata."
+    "why": "Cinturón, guante, corbata y bufanda: rematan el atuendo."
   },
   "ropa_detalles_2": {
     "kind": "cat",
@@ -1151,19 +1140,8 @@
       "la_mascada",
       "los_lentes"
     ],
-    "theme": "En la cara",
-    "why": "Abanico, antifaz, mascada y lentes."
-  },
-  "accesorios_en_la_cara_2": {
-    "kind": "cat",
-    "cards": [
-      "el_abanico",
-      "el_antifaz",
-      "el_reloj",
-      "los_lentes"
-    ],
-    "theme": "En la cara",
-    "why": "Abanico, antifaz, reloj y lentes."
+    "theme": "Tapan la cara",
+    "why": "Abanico, antifaz, mascada y lentes: todo tapa algo de la cara."
   },
   "vehiculos_de_ciudad_1": {
     "kind": "cat",
@@ -1327,8 +1305,8 @@
       "el_talon",
       "la_una"
     ],
-    "theme": "Dedos y detalles",
-    "why": "Dedo, hombro, talón y uña."
+    "theme": "De las orillas",
+    "why": "Dedo, hombro, talón y uña: todo queda en las orillas del cuerpo."
   },
   "cuerpo_dedos_y_detalles_2": {
     "kind": "cat",
@@ -1338,8 +1316,8 @@
       "el_talon",
       "la_rodilla"
     ],
-    "theme": "Dedos y detalles",
-    "why": "Dedo, hombro, talón y rodilla."
+    "theme": "De las orillas",
+    "why": "Dedo, hombro, talón y rodilla: todo queda en las orillas del cuerpo."
   },
   "cuerpo_cabeza_1": {
     "kind": "cat",
@@ -1349,8 +1327,8 @@
       "la_barba",
       "la_lengua"
     ],
-    "theme": "Cabeza",
-    "why": "Bigote, diente, barba y lengua."
+    "theme": "Alrededor de la boca",
+    "why": "Bigote, diente, barba y lengua: todo alrededor de la boca."
   },
   "cuerpo_cabeza_2": {
     "kind": "cat",
@@ -1360,8 +1338,8 @@
       "el_diente",
       "la_barba"
     ],
-    "theme": "Cabeza",
-    "why": "Bigote, cabello, diente y barba."
+    "theme": "Alrededor de la boca",
+    "why": "Bigote, cabello, diente y barba: todo alrededor de la boca."
   },
   "cuerpo_por_dentro_1": {
     "kind": "cat",
@@ -1635,8 +1613,8 @@
       "el_sauce",
       "la_palmera"
     ],
-    "theme": "Árboles",
-    "why": "Ciprés, roble, sauce y palmera."
+    "theme": "Puro tronco y rama",
+    "why": "Ciprés, roble, sauce y palmera: árboles de tronco grueso y copa alta."
   },
   "arboles_arboles_2": {
     "kind": "cat",
@@ -1646,30 +1624,19 @@
       "el_sauce",
       "la_palmera"
     ],
-    "theme": "Árboles",
-    "why": "Pino, roble, sauce y palmera."
+    "theme": "Puro tronco y rama",
+    "why": "Pino, roble, sauce y palmera: árboles de tronco grueso y copa alta."
   },
   "arboles_dan_fruto_1": {
     "kind": "cat",
     "cards": [
-      "el_bambu",
-      "el_naranjo",
-      "el_olivo",
-      "el_tronco"
-    ],
-    "theme": "Dan fruto",
-    "why": "Bambú, naranjo, olivo y tronco."
-  },
-  "arboles_dan_fruto_2": {
-    "kind": "cat",
-    "cards": [
-      "el_bambu",
       "el_manzano",
       "el_naranjo",
-      "el_tronco"
+      "el_olivo",
+      "la_palmera"
     ],
     "theme": "Dan fruto",
-    "why": "Bambú, manzano, naranjo y tronco."
+    "why": "Manzano, naranjo, olivo y palmera: de ellos se cosecha."
   },
   "cocina_utensilios_1": {
     "kind": "cat",
@@ -2097,8 +2064,8 @@
       "la_cadena",
       "la_cerradura"
     ],
-    "theme": "Llaves y candados",
-    "why": "Candado, cerrojo, cadena y cerradura."
+    "theme": "De cerrar",
+    "why": "Candado, cerrojo, cadena y cerradura: todo es cosa de cerrar."
   },
   "hogar_llaves_y_candados_2": {
     "kind": "cat",
@@ -2108,8 +2075,8 @@
       "la_cerradura",
       "la_llave"
     ],
-    "theme": "Llaves y candados",
-    "why": "Candado, cadena, cerradura y llave."
+    "theme": "De cerrar",
+    "why": "Candado, cadena, cerradura y llave: todo es cosa de cerrar."
   },
   "bano_del_bano_1": {
     "kind": "cat",
@@ -2185,8 +2152,8 @@
       "el_herrero",
       "el_zapatero"
     ],
-    "theme": "Con las manos",
-    "why": "Albañil, carpintero, herrero y zapatero."
+    "theme": "Puro oficio",
+    "why": "Albañil, carpintero, herrero y zapatero: oficios que se aprenden haciendo."
   },
   "oficios_con_las_manos_2": {
     "kind": "cat",
@@ -2196,8 +2163,8 @@
       "el_herrero",
       "el_sastre"
     ],
-    "theme": "Con las manos",
-    "why": "Albañil, carpintero, herrero y sastre."
+    "theme": "Puro oficio",
+    "why": "Albañil, carpintero, herrero y sastre: oficios que se aprenden haciendo."
   },
   "oficios_del_campo_y_mar_1": {
     "kind": "cat",
@@ -2405,8 +2372,8 @@
       "el_naipe",
       "el_silbato"
     ],
-    "theme": "Juguetes de feria",
-    "why": "Balero, dado, naipe y silbato."
+    "theme": "De mano",
+    "why": "Balero, dado, naipe y silbato: caben en un puño."
   },
   "juguetes_juguetes_de_feria_2": {
     "kind": "cat",
@@ -2416,8 +2383,8 @@
       "el_silbato",
       "la_matraca"
     ],
-    "theme": "Juguetes de feria",
-    "why": "Balero, dado, silbato y matraca."
+    "theme": "De mano",
+    "why": "Balero, dado, silbato y matraca: caben en un puño."
   },
   "escuela_para_escribir_1": {
     "kind": "cat",
@@ -2845,8 +2812,8 @@
       "el_vampiro",
       "la_bruja"
     ],
-    "theme": "Fantasmales",
-    "why": "Esqueleto de fiesta, fantasma, vampiro y bruja."
+    "theme": "Dan miedo",
+    "why": "Esqueleto de fiesta, fantasma, vampiro y bruja: para la noche de brujas."
   },
   "mito_fantasmales_2": {
     "kind": "cat",
@@ -2856,8 +2823,8 @@
       "el_vampiro",
       "la_momia"
     ],
-    "theme": "Fantasmales",
-    "why": "Esqueleto de fiesta, fantasma, vampiro y momia."
+    "theme": "Dan miedo",
+    "why": "Esqueleto de fiesta, fantasma, vampiro y momia: para la noche de brujas."
   },
   "mito_del_cielo_y_mar_1": {
     "kind": "cat",
@@ -2867,8 +2834,8 @@
       "el_hada",
       "el_ogro"
     ],
-    "theme": "Del cielo y mar",
-    "why": "Ángel, diablito, hada y ogro."
+    "theme": "Seres de cuento",
+    "why": "Ángel, diablito, hada y ogro: criaturas de cuentos y leyendas."
   },
   "mito_del_cielo_y_mar_2": {
     "kind": "cat",
@@ -2878,8 +2845,8 @@
       "el_duende",
       "el_hada"
     ],
-    "theme": "Del cielo y mar",
-    "why": "Ángel, diablito, duende y hada."
+    "theme": "Seres de cuento",
+    "why": "Ángel, diablito, duende y hada: criaturas de cuentos y leyendas."
   },
   "historico_de_combate_1": {
     "kind": "cat",
@@ -2889,8 +2856,8 @@
       "la_espada",
       "la_lanza"
     ],
-    "theme": "De combate",
-    "why": "Casco de guerra, escudo, espada y lanza."
+    "theme": "Del guerrero",
+    "why": "Casco de guerra, escudo, espada y lanza: con qué se armaba un guerrero."
   },
   "historico_de_combate_2": {
     "kind": "cat",
@@ -2900,8 +2867,8 @@
       "la_espada",
       "la_lanza"
     ],
-    "theme": "De combate",
-    "why": "Arco, casco de guerra, espada y lanza."
+    "theme": "Del guerrero",
+    "why": "Arco, casco de guerra, espada y lanza: con qué se armaba un guerrero."
   },
   "historico_del_pasado_1": {
     "kind": "cat",
@@ -3175,8 +3142,8 @@
       "el_trilobite",
       "el_velociraptor"
     ],
-    "theme": "Prehistóricos",
-    "why": "Dodo, tigre dientes de sable, trilobite y velociraptor."
+    "theme": "Extintos",
+    "why": "Dodo, tigre dientes de sable, trilobite y velociraptor: ya no queda ninguno."
   },
   "dinos_prehistoricos_2": {
     "kind": "cat",
@@ -3186,8 +3153,8 @@
       "el_trilobite",
       "el_velociraptor"
     ],
-    "theme": "Prehistóricos",
-    "why": "Mamut, tigre dientes de sable, trilobite y velociraptor."
+    "theme": "Extintos",
+    "why": "Mamut, tigre dientes de sable, trilobite y velociraptor: ya no queda ninguno."
   },
   "aves2_de_caza_y_monte_1": {
     "kind": "cat",
@@ -3200,17 +3167,6 @@
     "theme": "De caza y monte",
     "why": "Correcaminos, faisán, codorniz y perdiz."
   },
-  "aves2_de_caza_y_monte_2": {
-    "kind": "cat",
-    "cards": [
-      "el_correcaminos",
-      "el_faisan",
-      "el_pato",
-      "la_codorniz"
-    ],
-    "theme": "De caza y monte",
-    "why": "Correcaminos, faisán, pato y codorniz."
-  },
   "aves2_del_arbol_1": {
     "kind": "cat",
     "cards": [
@@ -3219,8 +3175,8 @@
       "el_pajaro_carpintero",
       "el_ruisenor"
     ],
-    "theme": "Del árbol",
-    "why": "Canario, jilguero, pájaro carpintero y ruiseñor."
+    "theme": "Cantan en la rama",
+    "why": "Canario, jilguero, pájaro carpintero y ruiseñor: pájaros de rama y canto."
   },
   "aves2_del_arbol_2": {
     "kind": "cat",
@@ -3230,8 +3186,8 @@
       "el_martin_pescador",
       "el_ruisenor"
     ],
-    "theme": "Del árbol",
-    "why": "Canario, jilguero, martín pescador y ruiseñor."
+    "theme": "Cantan en la rama",
+    "why": "Canario, jilguero, martín pescador y ruiseñor: pájaros de rama y de canto."
   },
   "insectos2_insectos_del_jardin_1": {
     "kind": "cat",
@@ -3336,23 +3292,12 @@
     "kind": "cat",
     "cards": [
       "el_craneo",
-      "el_musculo",
-      "la_columna",
-      "la_vena"
-    ],
-    "theme": "Estructura",
-    "why": "Cráneo, músculo, columna y vena."
-  },
-  "cuerpo2_estructura_2": {
-    "kind": "cat",
-    "cards": [
-      "el_musculo",
       "la_columna",
       "la_costilla",
-      "la_vena"
+      "el_musculo"
     ],
-    "theme": "Estructura",
-    "why": "Músculo, columna, costilla y vena."
+    "theme": "Lo que te sostiene",
+    "why": "Cráneo, columna, costilla y músculo: el armazón que te mantiene de pie."
   },
   "cuerpo2_la_cara_de_cerca_1": {
     "kind": "cat",
@@ -3472,8 +3417,8 @@
       "la_balanza",
       "la_tabla_de_picar"
     ],
-    "theme": "Cortar y medir",
-    "why": "Exprimidor, rodillo de cocina, balanza y tabla de picar."
+    "theme": "De preparar",
+    "why": "Exprimidor, rodillo de cocina, balanza y tabla de picar: antes de que entre al fuego."
   },
   "cocina2_cortar_y_medir_2": {
     "kind": "cat",
@@ -3483,8 +3428,8 @@
       "el_rodillo_de_cocina",
       "la_balanza"
     ],
-    "theme": "Cortar y medir",
-    "why": "Exprimidor, molde, rodillo de cocina y balanza."
+    "theme": "De preparar",
+    "why": "Exprimidor, molde, rodillo de cocina y balanza: antes de que entre al fuego."
   },
   "mesa_poner_la_mesa_1": {
     "kind": "cat",
@@ -3560,8 +3505,8 @@
       "la_sopa",
       "los_frijoles"
     ],
-    "theme": "De sopa y guiso",
-    "why": "Arroz cocido, guisado, sopa y frijoles."
+    "theme": "De la fonda",
+    "why": "Arroz cocido, guisado, sopa y frijoles: el menú corrido de mediodía."
   },
   "comida2_de_sopa_y_guiso_2": {
     "kind": "cat",
@@ -3571,8 +3516,8 @@
       "el_guisado",
       "los_frijoles"
     ],
-    "theme": "De sopa y guiso",
-    "why": "Arroz cocido, caldo, guisado y frijoles."
+    "theme": "De la fonda",
+    "why": "Arroz cocido, caldo, guisado y frijoles: el menú corrido de mediodía."
   },
   "dulces2_dulces_de_feria_1": {
     "kind": "cat",
@@ -3692,8 +3637,8 @@
       "el_trineo_de_nieve",
       "la_patineta_electrica"
     ],
-    "theme": "Sobre nieve y arena",
-    "why": "Trineo, moto de nieve, camello y globo."
+    "theme": "De paseo",
+    "why": "Carruaje, monopatín, trineo de nieve y patineta eléctrica: para pasear, no para trabajar."
   },
   "transporte2_sobre_nieve_y_arena_2": {
     "kind": "cat",
@@ -3703,8 +3648,8 @@
       "el_triciclo",
       "el_trineo_de_nieve"
     ],
-    "theme": "Sobre nieve y arena",
-    "why": "Trineo, moto de nieve, camello y globo."
+    "theme": "De paseo",
+    "why": "Carruaje, monopatín, triciclo y trineo de nieve: para pasear, no para trabajar."
   },
   "espacio2_explorar_1": {
     "kind": "cat",
@@ -3758,8 +3703,8 @@
       "el_pantano",
       "la_selva"
     ],
-    "theme": "Verde y frondoso",
-    "why": "Bosque, oasis, pantano y selva."
+    "theme": "Todo verde",
+    "why": "Bosque, oasis, pantano y selva: verde hasta donde alcanza la vista."
   },
   "naturaleza2_verde_y_frondoso_2": {
     "kind": "cat",
@@ -3769,8 +3714,8 @@
       "el_pantano",
       "la_pradera"
     ],
-    "theme": "Verde y frondoso",
-    "why": "Bosque, oasis, pantano y pradera."
+    "theme": "Todo verde",
+    "why": "Bosque, oasis, pantano y pradera: verde hasta donde alcanza la vista."
   },
   "naturaleza2_de_hielo_y_fuego_1": {
     "kind": "cat",
@@ -3780,8 +3725,8 @@
       "la_catarata",
       "la_duna"
     ],
-    "theme": "De hielo y fuego",
-    "why": "Glaciar, iceberg, catarata y duna."
+    "theme": "Paisajes extremos",
+    "why": "Glaciar, iceberg, catarata y duna: paisajes de récord."
   },
   "naturaleza2_de_hielo_y_fuego_2": {
     "kind": "cat",
@@ -3791,8 +3736,8 @@
       "el_iceberg",
       "la_duna"
     ],
-    "theme": "De hielo y fuego",
-    "why": "Géiser, glaciar, iceberg y duna."
+    "theme": "Paisajes extremos",
+    "why": "Géiser, glaciar, iceberg y duna: paisajes de récord."
   },
   "flores2_del_ramo_1": {
     "kind": "cat",
@@ -3841,24 +3786,13 @@
   "arboles2_del_norte_1": {
     "kind": "cat",
     "cards": [
+      "el_abeto",
       "el_arce",
-      "el_baobab",
       "el_cerezo",
       "la_secuoya"
     ],
     "theme": "Del norte",
-    "why": "Arce, baobab, cerezo y secuoya."
-  },
-  "arboles2_del_norte_2": {
-    "kind": "cat",
-    "cards": [
-      "el_abeto",
-      "el_arce",
-      "el_baobab",
-      "el_cerezo"
-    ],
-    "theme": "Del norte",
-    "why": "Abeto, arce, baobab y cerezo."
+    "why": "Abeto, arce, cerezo y secuoya: crecen donde hace frío."
   },
   "medico_del_doctor_1": {
     "kind": "cat",
@@ -3912,8 +3846,8 @@
       "la_bascula",
       "la_secadora_de_pelo"
     ],
-    "theme": "En el lavabo",
-    "why": "Inodoro, lavabo, báscula y secadora de pelo."
+    "theme": "Del baño moderno",
+    "why": "Inodoro, lavabo, báscula y secadora de pelo: nada de esto se unta."
   },
   "bano2_en_el_lavabo_2": {
     "kind": "cat",
@@ -3923,8 +3857,8 @@
       "la_pasta_de_dientes",
       "la_secadora_de_pelo"
     ],
-    "theme": "En el lavabo",
-    "why": "Lavabo, báscula, pasta de dientes y secadora de pelo."
+    "theme": "Del baño moderno",
+    "why": "Lavabo, báscula, pasta de dientes y secadora de pelo: el baño de hoy."
   },
   "oficina2_de_la_oficina_1": {
     "kind": "cat",
@@ -4000,8 +3934,8 @@
       "el_sitar",
       "el_ukulele"
     ],
-    "theme": "Más cuerdas",
-    "why": "Charango, laúd, sitar y ukulele."
+    "theme": "De cuerda pulsada",
+    "why": "Charango, laúd, sitar y ukulele: la cuerda se pellizca, no se frota."
   },
   "musica2_mas_cuerdas_2": {
     "kind": "cat",
@@ -4011,30 +3945,30 @@
       "el_ukulele",
       "la_mandolina"
     ],
-    "theme": "Más cuerdas",
-    "why": "Charango, sitar, ukulele y mandolina."
+    "theme": "De cuerda pulsada",
+    "why": "Charango, sitar, ukulele y mandolina: la cuerda se pellizca, no se frota."
   },
   "musica2_bateria_1": {
     "kind": "cat",
     "cards": [
       "el_bongo",
       "el_guiro",
-      "la_bateria",
-      "la_conga"
+      "la_conga",
+      "las_maracas"
     ],
-    "theme": "Batería",
-    "why": "Bongó, güiro, batería y conga."
+    "theme": "Percusión afrolatina",
+    "why": "Bongó, güiro, conga y maracas: el pulso que llegó de África al Caribe."
   },
   "musica2_bateria_2": {
     "kind": "cat",
     "cards": [
-      "el_bongo",
-      "el_guiro",
-      "la_conga",
-      "los_platillos"
+      "la_bateria",
+      "los_platillos",
+      "el_tambor",
+      "los_timbales"
     ],
-    "theme": "Batería",
-    "why": "Bongó, güiro, conga y platillos."
+    "theme": "Del baterista",
+    "why": "Batería, platillos, tambor y timbales: todo se golpea con baqueta."
   },
   "deportes2_gimnasio_1": {
     "kind": "cat",
@@ -4057,17 +3991,6 @@
     ],
     "theme": "Gimnasio",
     "why": "Colchoneta, cuerda para saltar, kettlebell y pesas."
-  },
-  "deportes2_de_punteria_1": {
-    "kind": "cat",
-    "cards": [
-      "el_arco_y_flecha",
-      "el_bolo",
-      "el_guante_de_box",
-      "el_palo_de_golf"
-    ],
-    "theme": "De puntería",
-    "why": "Dardos, boliche, arco y guante de box."
   },
   "deportes2_de_punteria_2": {
     "kind": "cat",
@@ -4116,13 +4039,13 @@
   "oficios2_que_cuidan_2": {
     "kind": "cat",
     "cards": [
-      "el_astronauta",
       "el_bibliotecario",
       "el_maestro",
-      "el_veterinario"
+      "el_veterinario",
+      "la_enfermera"
     ],
     "theme": "Que cuidan",
-    "why": "Astronauta, bibliotecario, maestro y veterinario."
+    "why": "Bibliotecario, maestro, veterinario y enfermera: su oficio es cuidar."
   },
   "oficios2_del_espectaculo_1": {
     "kind": "cat",
@@ -4299,5 +4222,2464 @@
     ],
     "theme": "Marcan la hora",
     "why": "Cronómetro, despertador, reloj de sol y alarma."
+  },
+  "trampa_rhyme_ador_1": {
+    "kind": "rhyme",
+    "cards": [
+      "el_cargador",
+      "el_despertador",
+      "el_martin_pescador",
+      "el_planeador"
+    ],
+    "theme": "Riman en «-ador»",
+    "why": "Carg-ador, despert-ador, martín pesc-ador, plane-ador: la misma terminación."
+  },
+  "trampa_rhyme_ador_2": {
+    "kind": "rhyme",
+    "cards": [
+      "el_desarmador",
+      "el_marcador",
+      "el_pescador",
+      "el_tostador"
+    ],
+    "theme": "Riman en «-ador»",
+    "why": "Desarm-ador, marc-ador, pesc-ador, tost-ador: la misma terminación."
+  },
+  "trampa_rhyme_ante_3": {
+    "kind": "rhyme",
+    "cards": [
+      "el_diamante",
+      "el_elefante",
+      "el_guante",
+      "el_hidrante"
+    ],
+    "theme": "Riman en «-ante»",
+    "why": "Diam-ante, elef-ante, gu-ante, hidr-ante: la misma terminación."
+  },
+  "trampa_rhyme_ario_4": {
+    "kind": "rhyme",
+    "cards": [
+      "el_bibliotecario",
+      "el_calendario",
+      "el_canario",
+      "el_diccionario"
+    ],
+    "theme": "Riman en «-ario»",
+    "why": "Bibliotec-ario, calend-ario, can-ario, diccion-ario: la misma terminación."
+  },
+  "trampa_rhyme_dora_5": {
+    "kind": "rhyme",
+    "cards": [
+      "la_aspiradora",
+      "la_caja_registradora",
+      "la_engrapadora",
+      "la_mecedora"
+    ],
+    "theme": "Riman en «-dora»",
+    "why": "Aspira-dora, caja registra-dora, engrapa-dora, mece-dora: la misma terminación."
+  },
+  "trampa_rhyme_dora_6": {
+    "kind": "rhyme",
+    "cards": [
+      "la_barredora",
+      "la_calculadora",
+      "la_excavadora",
+      "la_perforadora"
+    ],
+    "theme": "Riman en «-dora»",
+    "why": "Barre-dora, calcula-dora, excava-dora, perfora-dora: la misma terminación."
+  },
+  "trampa_rhyme_ella_7": {
+    "kind": "rhyme",
+    "cards": [
+      "la_botella",
+      "la_estrella",
+      "la_grosella",
+      "la_paella"
+    ],
+    "theme": "Riman en «-ella»",
+    "why": "Bot-ella, estr-ella, gros-ella, pa-ella: la misma terminación."
+  },
+  "trampa_rhyme_illa_8": {
+    "kind": "rhyme",
+    "cards": [
+      "la_ardilla",
+      "la_mantequilla",
+      "la_polilla",
+      "la_semilla"
+    ],
+    "theme": "Riman en «-illa»",
+    "why": "Ard-illa, mantequ-illa, pol-illa, sem-illa: la misma terminación."
+  },
+  "trampa_rhyme_illa_9": {
+    "kind": "rhyme",
+    "cards": [
+      "la_carretilla",
+      "la_mejilla",
+      "la_quesadilla",
+      "la_silla"
+    ],
+    "theme": "Riman en «-illa»",
+    "why": "Carret-illa, mej-illa, quesad-illa, s-illa: la misma terminación."
+  },
+  "trampa_rhyme_illa_10": {
+    "kind": "rhyme",
+    "cards": [
+      "la_pastilla",
+      "la_rodilla",
+      "la_sombrilla",
+      "la_vainilla"
+    ],
+    "theme": "Riman en «-illa»",
+    "why": "Past-illa, rod-illa, sombr-illa, vain-illa: la misma terminación."
+  },
+  "trampa_rhyme_illo_11": {
+    "kind": "rhyme",
+    "cards": [
+      "el_anillo",
+      "el_cepillo",
+      "el_ladrillo",
+      "el_rastrillo"
+    ],
+    "theme": "Riman en «-illo»",
+    "why": "An-illo, cep-illo, ladr-illo, rastr-illo: la misma terminación."
+  },
+  "trampa_rhyme_illo_12": {
+    "kind": "rhyme",
+    "cards": [
+      "el_castillo",
+      "el_grillo",
+      "el_membrillo",
+      "el_rodillo"
+    ],
+    "theme": "Riman en «-illo»",
+    "why": "Cast-illo, gr-illo, membr-illo, rod-illo: la misma terminación."
+  },
+  "trampa_rhyme_lote_13": {
+    "kind": "rhyme",
+    "cards": [
+      "el_ajolote",
+      "el_elote",
+      "el_papalote",
+      "el_zopilote"
+    ],
+    "theme": "Riman en «-lote»",
+    "why": "Ajo-lote, e-lote, papa-lote, zopi-lote: la misma terminación."
+  },
+  "trampa_rhyme_nero_14": {
+    "kind": "rhyme",
+    "cards": [
+      "el_cocinero",
+      "el_granero",
+      "el_habanero",
+      "el_jardinero"
+    ],
+    "theme": "Riman en «-nero»",
+    "why": "Coci-nero, gra-nero, haba-nero, jardi-nero: la misma terminación."
+  },
+  "trampa_rhyme_neta_15": {
+    "kind": "rhyme",
+    "cards": [
+      "el_planeta",
+      "la_camioneta",
+      "la_colchoneta",
+      "la_patineta"
+    ],
+    "theme": "Riman en «-neta»",
+    "why": "Pla-neta, camio-neta, colcho-neta, pati-neta: la misma terminación."
+  },
+  "trampa_rhyme_rina_16": {
+    "kind": "rhyme",
+    "cards": [
+      "la_bailarina",
+      "la_catrina",
+      "la_golondrina",
+      "la_mandarina"
+    ],
+    "theme": "Riman en «-rina»",
+    "why": "Baila-rina, cat-rina, golond-rina, manda-rina: la misma terminación."
+  },
+  "trampa_rhyme_ueta_17": {
+    "kind": "rhyme",
+    "cards": [
+      "la_etiqueta",
+      "la_palanqueta",
+      "la_raqueta",
+      "la_volqueta"
+    ],
+    "theme": "Riman en «-ueta»",
+    "why": "Etiq-ueta, palanq-ueta, raq-ueta, volq-ueta: la misma terminación."
+  },
+  "trampa_letter_a_18": {
+    "kind": "letter",
+    "cards": [
+      "el_abaco",
+      "el_ancla",
+      "el_arroz_cocido",
+      "la_almohada"
+    ],
+    "theme": "Empiezan con «A»",
+    "why": "Ábaco, ancla, arroz cocido y almohada: sólo comparten la primera letra."
+  },
+  "trampa_letter_a_19": {
+    "kind": "letter",
+    "cards": [
+      "el_abanico",
+      "el_anfora",
+      "el_astronauta",
+      "la_amapola"
+    ],
+    "theme": "Empiezan con «A»",
+    "why": "Abanico, ánfora, astronauta y amapola: sólo comparten la primera letra."
+  },
+  "trampa_letter_a_20": {
+    "kind": "letter",
+    "cards": [
+      "el_abeto",
+      "el_angel",
+      "el_atole",
+      "la_ambulancia"
+    ],
+    "theme": "Empiezan con «A»",
+    "why": "Abeto, ángel, atole y ambulancia: sólo comparten la primera letra."
+  },
+  "trampa_letter_b_21": {
+    "kind": "letter",
+    "cards": [
+      "el_babero",
+      "el_betabel",
+      "el_broche",
+      "la_batidora"
+    ],
+    "theme": "Empiezan con «B»",
+    "why": "Babero, betabel, broche y batidora: sólo comparten la primera letra."
+  },
+  "trampa_letter_b_22": {
+    "kind": "letter",
+    "cards": [
+      "el_balero",
+      "el_bibliotecario",
+      "el_bufalo",
+      "la_bicicleta"
+    ],
+    "theme": "Empiezan con «B»",
+    "why": "Balero, bibliotecario, búfalo y bicicleta: sólo comparten la primera letra."
+  },
+  "trampa_letter_b_23": {
+    "kind": "letter",
+    "cards": [
+      "el_balon_de_basquetbol",
+      "el_bigote",
+      "el_buho",
+      "la_blusa"
+    ],
+    "theme": "Empiezan con «B»",
+    "why": "Balón de básquetbol, bigote, búho y blusa: sólo comparten la primera letra."
+  },
+  "trampa_letter_c_24": {
+    "kind": "letter",
+    "cards": [
+      "el_caballete",
+      "el_cempasuchil",
+      "el_cometa",
+      "la_cantimplora"
+    ],
+    "theme": "Empiezan con «C»",
+    "why": "Caballete, cempasúchil, cometa y cantimplora: sólo comparten la primera letra."
+  },
+  "trampa_letter_c_25": {
+    "kind": "letter",
+    "cards": [
+      "el_caballito_de_mar",
+      "el_cepillo",
+      "el_comino",
+      "la_carambola"
+    ],
+    "theme": "Empiezan con «C»",
+    "why": "Caballito de mar, cepillo, comino y carambola: sólo comparten la primera letra."
+  },
+  "trampa_letter_c_26": {
+    "kind": "letter",
+    "cards": [
+      "el_cabello",
+      "el_cereal",
+      "el_condor",
+      "la_carpeta"
+    ],
+    "theme": "Empiezan con «C»",
+    "why": "Cabello, cereal, cóndor y carpeta: sólo comparten la primera letra."
+  },
+  "trampa_letter_d_27": {
+    "kind": "letter",
+    "cards": [
+      "el_dado",
+      "el_desarmador",
+      "el_diccionario",
+      "el_dragon"
+    ],
+    "theme": "Empiezan con «D»",
+    "why": "Dado, desarmador, diccionario y dragón: sólo comparten la primera letra."
+  },
+  "trampa_letter_d_28": {
+    "kind": "letter",
+    "cards": [
+      "el_dedo",
+      "el_despertador",
+      "el_doctor",
+      "el_durazno"
+    ],
+    "theme": "Empiezan con «D»",
+    "why": "Dedo, despertador, doctor y durazno: sólo comparten la primera letra."
+  },
+  "trampa_letter_d_29": {
+    "kind": "letter",
+    "cards": [
+      "el_delfin",
+      "el_diablito",
+      "el_dodo",
+      "la_dalia"
+    ],
+    "theme": "Empiezan con «D»",
+    "why": "Delfín, diablito, dodo y dalia: sólo comparten la primera letra."
+  },
+  "trampa_letter_e_30": {
+    "kind": "letter",
+    "cards": [
+      "el_ejote",
+      "el_escudo",
+      "el_estuche",
+      "la_esmeralda"
+    ],
+    "theme": "Empiezan con «E»",
+    "why": "Ejote, escudo, estuche y esmeralda: sólo comparten la primera letra."
+  },
+  "trampa_letter_e_31": {
+    "kind": "letter",
+    "cards": [
+      "el_elefante",
+      "el_esparrago",
+      "el_exprimidor",
+      "la_espada"
+    ],
+    "theme": "Empiezan con «E»",
+    "why": "Elefante, espárrago, exprimidor y espada: sólo comparten la primera letra."
+  },
+  "trampa_letter_e_32": {
+    "kind": "letter",
+    "cards": [
+      "el_elote",
+      "el_espejo",
+      "la_enchilada",
+      "la_espatula"
+    ],
+    "theme": "Empiezan con «E»",
+    "why": "Elote, espejo, enchilada y espátula: sólo comparten la primera letra."
+  },
+  "trampa_letter_f_33": {
+    "kind": "letter",
+    "cards": [
+      "el_faisan",
+      "el_filete",
+      "el_frijol",
+      "la_fogata"
+    ],
+    "theme": "Empiezan con «F»",
+    "why": "Faisán, filete, frijol y fogata: sólo comparten la primera letra."
+  },
+  "trampa_letter_f_34": {
+    "kind": "letter",
+    "cards": [
+      "el_fantasma",
+      "el_flamenco",
+      "el_fuego",
+      "la_frambuesa"
+    ],
+    "theme": "Empiezan con «F»",
+    "why": "Fantasma, flamenco, fuego y frambuesa: sólo comparten la primera letra."
+  },
+  "trampa_letter_f_35": {
+    "kind": "letter",
+    "cards": [
+      "el_faro",
+      "el_flan",
+      "la_falda",
+      "la_frente"
+    ],
+    "theme": "Empiezan con «F»",
+    "why": "Faro, flan, falda y frente: sólo comparten la primera letra."
+  },
+  "trampa_letter_g_36": {
+    "kind": "letter",
+    "cards": [
+      "el_ganso",
+      "el_globo_terraqueo",
+      "el_guante_de_box",
+      "la_gema"
+    ],
+    "theme": "Empiezan con «G»",
+    "why": "Ganso, globo terráqueo, guante de box y gema: sólo comparten la primera letra."
+  },
+  "trampa_letter_g_37": {
+    "kind": "letter",
+    "cards": [
+      "el_garbanzo",
+      "el_gorila",
+      "el_guiro",
+      "la_golondrina"
+    ],
+    "theme": "Empiezan con «G»",
+    "why": "Garbanzo, gorila, güiro y golondrina: sólo comparten la primera letra."
+  },
+  "trampa_letter_g_38": {
+    "kind": "letter",
+    "cards": [
+      "el_gato",
+      "el_gorrion",
+      "el_guisado",
+      "la_goma"
+    ],
+    "theme": "Empiezan con «G»",
+    "why": "Gato, gorrión, guisado y goma: sólo comparten la primera letra."
+  },
+  "trampa_letter_h_39": {
+    "kind": "letter",
+    "cards": [
+      "el_haba",
+      "el_helado",
+      "el_higo",
+      "el_hotcake"
+    ],
+    "theme": "Empiezan con «H»",
+    "why": "Haba, helado, higo y hotcake: sólo comparten la primera letra."
+  },
+  "trampa_letter_h_40": {
+    "kind": "letter",
+    "cards": [
+      "el_habanero",
+      "el_helecho",
+      "el_hipopotamo",
+      "el_hueso"
+    ],
+    "theme": "Empiezan con «H»",
+    "why": "Habanero, helecho, hipopótamo y hueso: sólo comparten la primera letra."
+  },
+  "trampa_letter_h_41": {
+    "kind": "letter",
+    "cards": [
+      "el_hacha",
+      "el_helicoptero",
+      "el_hombro",
+      "el_huevo"
+    ],
+    "theme": "Empiezan con «H»",
+    "why": "Hacha, helicóptero, hombro y huevo: sólo comparten la primera letra."
+  },
+  "trampa_letter_i_42": {
+    "kind": "letter",
+    "cards": [
+      "el_iceberg",
+      "el_inodoro",
+      "el_intestino",
+      "la_iglesia"
+    ],
+    "theme": "Empiezan con «I»",
+    "why": "Iceberg, inodoro, intestino y iglesia: sólo comparten la primera letra."
+  },
+  "trampa_letter_j_43": {
+    "kind": "letter",
+    "cards": [
+      "el_jaguar",
+      "el_jardinero",
+      "el_jilguero",
+      "el_jugo"
+    ],
+    "theme": "Empiezan con «J»",
+    "why": "Jaguar, jardinero, jilguero y jugo: sólo comparten la primera letra."
+  },
+  "trampa_letter_j_44": {
+    "kind": "letter",
+    "cards": [
+      "el_jalapeno",
+      "el_jazmin",
+      "el_jitomate",
+      "la_jarra"
+    ],
+    "theme": "Empiezan con «J»",
+    "why": "Jalapeño, jazmín, jitomate y jarra: sólo comparten la primera letra."
+  },
+  "trampa_letter_j_45": {
+    "kind": "letter",
+    "cards": [
+      "el_jamon",
+      "el_jengibre",
+      "el_juez",
+      "la_jeringa"
+    ],
+    "theme": "Empiezan con «J»",
+    "why": "Jamón, jengibre, juez y jeringa: sólo comparten la primera letra."
+  },
+  "trampa_letter_l_46": {
+    "kind": "letter",
+    "cards": [
+      "el_ladrillo",
+      "el_lienzo",
+      "la_lavanda",
+      "la_linterna"
+    ],
+    "theme": "Empiezan con «L»",
+    "why": "Ladrillo, lienzo, lavanda y linterna: sólo comparten la primera letra."
+  },
+  "trampa_letter_l_47": {
+    "kind": "letter",
+    "cards": [
+      "el_lagarto",
+      "el_limon",
+      "la_leche",
+      "la_litera"
+    ],
+    "theme": "Empiezan con «L»",
+    "why": "Lagarto, limón, leche y litera: sólo comparten la primera letra."
+  },
+  "trampa_letter_l_48": {
+    "kind": "letter",
+    "cards": [
+      "el_lago",
+      "el_lingote",
+      "la_lechuga",
+      "la_llave"
+    ],
+    "theme": "Empiezan con «L»",
+    "why": "Lago, lingote, lechuga y llave: sólo comparten la primera letra."
+  },
+  "trampa_letter_m_49": {
+    "kind": "letter",
+    "cards": [
+      "el_maestro",
+      "el_mazapan",
+      "el_mosquito",
+      "la_matraca"
+    ],
+    "theme": "Empiezan con «M»",
+    "why": "Maestro, mazapán, mosquito y matraca: sólo comparten la primera letra."
+  },
+  "trampa_letter_m_50": {
+    "kind": "letter",
+    "cards": [
+      "el_maiz",
+      "el_melon",
+      "el_musico",
+      "la_medalla"
+    ],
+    "theme": "Empiezan con «M»",
+    "why": "Maíz, melón, músico y medalla: sólo comparten la primera letra."
+  },
+  "trampa_letter_m_51": {
+    "kind": "letter",
+    "cards": [
+      "el_malabarista",
+      "el_membrillo",
+      "la_maleta",
+      "la_medusa"
+    ],
+    "theme": "Empiezan con «M»",
+    "why": "Malabarista, membrillo, maleta y medusa: sólo comparten la primera letra."
+  },
+  "trampa_letter_n_52": {
+    "kind": "letter",
+    "cards": [
+      "el_naipe",
+      "el_nivel",
+      "la_nariz",
+      "la_nochebuena"
+    ],
+    "theme": "Empiezan con «N»",
+    "why": "Naipe, nivel, nariz y nochebuena: sólo comparten la primera letra."
+  },
+  "trampa_letter_n_53": {
+    "kind": "letter",
+    "cards": [
+      "el_nanche",
+      "el_nopal",
+      "la_neblina",
+      "la_nube"
+    ],
+    "theme": "Empiezan con «N»",
+    "why": "Nanche, nopal, neblina y nube: sólo comparten la primera letra."
+  },
+  "trampa_letter_o_54": {
+    "kind": "letter",
+    "cards": [
+      "el_oasis",
+      "el_organo",
+      "el_overol",
+      "la_oreja"
+    ],
+    "theme": "Empiezan con «O»",
+    "why": "Oasis, órgano, overol y oreja: sólo comparten la primera letra."
+  },
+  "trampa_letter_o_55": {
+    "kind": "letter",
+    "cards": [
+      "el_ogro",
+      "el_osito",
+      "el_ovni",
+      "la_orquidea"
+    ],
+    "theme": "Empiezan con «O»",
+    "why": "Ogro, osito, ovni y orquídea: sólo comparten la primera letra."
+  },
+  "trampa_letter_p_56": {
+    "kind": "letter",
+    "cards": [
+      "el_palo_de_golf",
+      "el_piano",
+      "el_pterodactilo",
+      "la_perforadora"
+    ],
+    "theme": "Empiezan con «P»",
+    "why": "Palo de golf, piano, pterodáctilo y perforadora: sólo comparten la primera letra."
+  },
+  "trampa_letter_p_57": {
+    "kind": "letter",
+    "cards": [
+      "el_panadero",
+      "el_piloto",
+      "el_pulgon",
+      "la_pestana"
+    ],
+    "theme": "Empiezan con «P»",
+    "why": "Panadero, piloto, pulgón y pestaña: sólo comparten la primera letra."
+  },
+  "trampa_letter_p_58": {
+    "kind": "letter",
+    "cards": [
+      "el_pantalon",
+      "el_pimiento",
+      "el_pulmon",
+      "la_piedra"
+    ],
+    "theme": "Empiezan con «P»",
+    "why": "Pantalón, pimiento, pulmón y piedra: sólo comparten la primera letra."
+  },
+  "trampa_letter_r_59": {
+    "kind": "letter",
+    "cards": [
+      "el_rabano",
+      "el_relampago",
+      "el_roble",
+      "el_ruisenor"
+    ],
+    "theme": "Empiezan con «R»",
+    "why": "Rábano, relámpago, roble y ruiseñor: sólo comparten la primera letra."
+  },
+  "trampa_letter_r_60": {
+    "kind": "letter",
+    "cards": [
+      "el_rallador",
+      "el_reloj",
+      "el_robot",
+      "la_raiz"
+    ],
+    "theme": "Empiezan con «R»",
+    "why": "Rallador, reloj, robot y raíz: sólo comparten la primera letra."
+  },
+  "trampa_letter_r_61": {
+    "kind": "letter",
+    "cards": [
+      "el_rascacielos",
+      "el_reloj_de_bolsillo",
+      "el_rodillo",
+      "la_raqueta"
+    ],
+    "theme": "Empiezan con «R»",
+    "why": "Rascacielos, reloj de bolsillo, rodillo y raqueta: sólo comparten la primera letra."
+  },
+  "trampa_letter_s_62": {
+    "kind": "letter",
+    "cards": [
+      "el_sacacorchos",
+      "el_saxofon",
+      "el_soldado",
+      "la_selva"
+    ],
+    "theme": "Empiezan con «S»",
+    "why": "Sacacorchos, saxofón, soldado y selva: sólo comparten la primera letra."
+  },
+  "trampa_letter_s_63": {
+    "kind": "letter",
+    "cards": [
+      "el_sacapuntas",
+      "el_sello",
+      "el_sombrero",
+      "la_semilla"
+    ],
+    "theme": "Empiezan con «S»",
+    "why": "Sacapuntas, sello, sombrero y semilla: sólo comparten la primera letra."
+  },
+  "trampa_letter_s_64": {
+    "kind": "letter",
+    "cards": [
+      "el_saco",
+      "el_semaforo",
+      "el_soplete",
+      "la_serpentina"
+    ],
+    "theme": "Empiezan con «S»",
+    "why": "Saco, semáforo, soplete y serpentina: sólo comparten la primera letra."
+  },
+  "trampa_letter_t_65": {
+    "kind": "letter",
+    "cards": [
+      "el_tabano",
+      "el_termo_escolar",
+      "el_tren",
+      "la_tarjeta"
+    ],
+    "theme": "Empiezan con «T»",
+    "why": "Tábano, termo escolar, tren y tarjeta: sólo comparten la primera letra."
+  },
+  "trampa_letter_t_66": {
+    "kind": "letter",
+    "cards": [
+      "el_taladro",
+      "el_tiburon",
+      "el_triceratops",
+      "la_television"
+    ],
+    "theme": "Empiezan con «T»",
+    "why": "Taladro, tiburón, triceratops y televisión: sólo comparten la primera letra."
+  },
+  "trampa_letter_t_67": {
+    "kind": "letter",
+    "cards": [
+      "el_talon",
+      "el_tigre",
+      "el_triciclo",
+      "la_termita"
+    ],
+    "theme": "Empiezan con «T»",
+    "why": "Talón, tigre, triciclo y termita: sólo comparten la primera letra."
+  },
+  "trampa_letter_u_68": {
+    "kind": "letter",
+    "cards": [
+      "la_uva_pasa",
+      "el_ukulele",
+      "el_unicornio",
+      "la_una"
+    ],
+    "theme": "Empiezan con «U»",
+    "why": "Uva pasa, ukulele, unicornio y uña: sólo comparten la primera letra."
+  },
+  "trampa_letter_v_69": {
+    "kind": "letter",
+    "cards": [
+      "el_vagon",
+      "el_venado",
+      "el_volcan",
+      "la_velita"
+    ],
+    "theme": "Empiezan con «V»",
+    "why": "Vagón, venado, volcán y velita: sólo comparten la primera letra."
+  },
+  "trampa_letter_v_70": {
+    "kind": "letter",
+    "cards": [
+      "el_vaquero",
+      "el_veterinario",
+      "la_vainilla",
+      "la_venda"
+    ],
+    "theme": "Empiezan con «V»",
+    "why": "Vaquero, veterinario, vainilla y venda: sólo comparten la primera letra."
+  },
+  "trampa_letter_v_71": {
+    "kind": "letter",
+    "cards": [
+      "el_vaso",
+      "el_viento",
+      "la_vasija",
+      "la_ventana"
+    ],
+    "theme": "Empiezan con «V»",
+    "why": "Vaso, viento, vasija y ventana: sólo comparten la primera letra."
+  },
+  "trampa_letter_z_72": {
+    "kind": "letter",
+    "cards": [
+      "el_zafiro",
+      "el_zapatero",
+      "el_zapote",
+      "el_zorro"
+    ],
+    "theme": "Empiezan con «Z»",
+    "why": "Zafiro, zapatero, zapote y zorro: sólo comparten la primera letra."
+  },
+  "trampa_letter_z_73": {
+    "kind": "letter",
+    "cards": [
+      "el_zancudo",
+      "el_zapato",
+      "el_zopilote",
+      "la_zanahoria"
+    ],
+    "theme": "Empiezan con «Z»",
+    "why": "Zancudo, zapato, zopilote y zanahoria: sólo comparten la primera letra."
+  },
+  "trampa_hidden_x_74": {
+    "kind": "hidden",
+    "cards": [
+      "el_barco",
+      "el_cronometro",
+      "el_petirrojo",
+      "la_avena"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Barco esconde «arco», Cronómetro «metro», Petirrojo «ojo», Avena «vena».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_75": {
+    "kind": "hidden",
+    "cards": [
+      "el_brocoli",
+      "el_escarabajo",
+      "el_piloto",
+      "la_balanza"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Brócoli esconde «col», Escarabajo «ajo», Piloto «loto», Balanza «lanza».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_76": {
+    "kind": "hidden",
+    "cards": [
+      "el_camaleon",
+      "el_estomago",
+      "el_piojo",
+      "la_campana"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Camaleón esconde «león», Estómago «mago», Piojo «ojo», Campana «pan».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_77": {
+    "kind": "hidden",
+    "cards": [
+      "el_candado",
+      "el_girasol",
+      "el_remolino",
+      "la_carpa"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Candado esconde «dado», Girasol «sol», Remolino «molino», Carpa «arpa».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "la_luna",
+      "la_piedra",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_78": {
+    "kind": "hidden",
+    "cards": [
+      "el_caracol",
+      "el_globo",
+      "el_soldado",
+      "la_cebolla"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Caracol esconde «col», Globo «lobo», Soldado «dado», Cebolla «olla».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_79": {
+    "kind": "hidden",
+    "cards": [
+      "el_cerrojo",
+      "el_jaguar",
+      "el_termometro",
+      "la_granada"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Cerrojo esconde «ojo», Jaguar «agua», Termómetro «metro», Granada «rana».",
+    "exclude": [
+      "la_toronja",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_80": {
+    "kind": "hidden",
+    "cards": [
+      "el_chabacano",
+      "el_pantalon",
+      "el_tiburon",
+      "la_guacamaya"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Chabacano esconde «haba», Pantalón «talón», Tiburón «buró», Guacamaya «cama».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_81": {
+    "kind": "hidden",
+    "cards": [
+      "el_chocolate",
+      "el_paraguas",
+      "el_transbordador",
+      "la_jicama"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Chocolate esconde «col», Paraguas «agua», Transbordador «dado», Jícama «cama».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_perezoso",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "el_contrabajo",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "la_almohada",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "la_serpentina",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
+  },
+  "trampa_hidden_x_82": {
+    "kind": "hidden",
+    "cards": [
+      "el_contrabajo",
+      "el_perezoso",
+      "la_almohada",
+      "la_serpentina"
+    ],
+    "theme": "Esconden otra palabra",
+    "why": "Contrabajo esconde «ajo», Perezoso «oso», Almohada «hada», Serpentina «tina».",
+    "exclude": [
+      "la_toronja",
+      "la_granada",
+      "la_papaya",
+      "el_chabacano",
+      "el_aguacate",
+      "el_platano",
+      "el_brocoli",
+      "la_espinaca",
+      "el_pepino",
+      "la_cebolla",
+      "el_champinon",
+      "la_guacamaya",
+      "el_colibri",
+      "el_pavorreal",
+      "el_gorrion",
+      "el_petirrojo",
+      "el_jaguar",
+      "la_pantera",
+      "el_venado",
+      "el_mapache",
+      "el_tiburon",
+      "el_pez_espada",
+      "el_camaron",
+      "la_estrella_de_mar",
+      "el_escarabajo",
+      "el_caracol",
+      "la_arana",
+      "el_ciempies",
+      "la_serpiente",
+      "el_camaleon",
+      "el_cocodrilo",
+      "el_ajolote",
+      "la_llave_inglesa",
+      "la_trombon",
+      "la_pandereta",
+      "el_pantalon",
+      "el_zapato",
+      "la_sandalia",
+      "la_pantufla",
+      "el_collar",
+      "el_paraguas",
+      "el_globo_aerostatico",
+      "el_barco",
+      "la_pierna",
+      "el_arcoiris",
+      "el_remolino",
+      "la_luna",
+      "la_piedra",
+      "el_girasol",
+      "el_tulipan",
+      "la_licuadora",
+      "la_batidora",
+      "las_papas_fritas",
+      "el_chocolate_caliente",
+      "el_agua_fresca",
+      "la_limonada",
+      "el_chocolate",
+      "el_escritorio",
+      "la_cuna",
+      "el_colchon",
+      "el_farol",
+      "el_reloj_de_pared",
+      "el_candado",
+      "el_cerrojo",
+      "la_regadera_de_bano",
+      "las_tijeras_de_unas",
+      "el_rastrillo_de_afeitar",
+      "el_espejo_de_mano",
+      "el_piloto",
+      "el_soldado",
+      "la_pelota_de_tenis",
+      "el_balon_de_futbol_americano",
+      "el_guante_de_beisbol",
+      "la_tabla_de_surf",
+      "el_papalote",
+      "el_globo",
+      "el_crayon",
+      "las_tijeras_escolares",
+      "el_globo_terraqueo",
+      "la_mochila_escolar",
+      "la_campana_escolar",
+      "la_camara",
+      "el_calendario",
+      "la_llave_musical",
+      "la_carpa",
+      "la_pinata",
+      "el_pastel_de_fiesta",
+      "el_cohete_de_fiesta",
+      "la_campana",
+      "el_farolito",
+      "la_veladora",
+      "el_esqueleto_de_fiesta",
+      "el_casco_de_guerra",
+      "el_mapa_del_tesoro",
+      "el_reloj_de_arena",
+      "la_zarzamora",
+      "la_uva_pasa",
+      "la_tuna",
+      "la_jicama",
+      "la_coliflor",
+      "el_habanero",
+      "la_avena",
+      "el_clavo_de_olor",
+      "el_tiranosaurio",
+      "el_estegosaurio",
+      "el_braquiosaurio",
+      "el_tigre_dientes_de_sable",
+      "la_codorniz",
+      "el_pajaro_carpintero",
+      "el_canario",
+      "el_martin_pescador",
+      "el_escarabajo_rinoceronte",
+      "el_piojo",
+      "la_pirana",
+      "el_erizo_de_mar",
+      "el_pez_payaso",
+      "el_estomago",
+      "los_pulmones",
+      "la_columna",
+      "el_gato_hidraulico",
+      "la_cubeta_de_pintura",
+      "la_cinta_de_pintor",
+      "el_colador",
+      "la_tabla_de_picar",
+      "la_balanza",
+      "el_rodillo_de_cocina",
+      "la_costilla_bbq",
+      "el_arroz_cocido",
+      "los_frijoles",
+      "la_manzana_acaramelada",
+      "la_palanqueta",
+      "el_mazapan",
+      "el_tamarindo_dulce",
+      "la_champana",
+      "el_camion_de_bomberos",
+      "la_camioneta",
+      "la_montana_rusa",
+      "la_rueda_de_la_fortuna",
+      "el_carrito_chocon",
+      "el_trineo_de_nieve",
+      "el_monopatin",
+      "la_patineta_electrica",
+      "el_transbordador",
+      "el_pantano",
+      "la_duna",
+      "el_lirio",
+      "el_termometro",
+      "la_silla_de_ruedas",
+      "la_pasta_de_dientes",
+      "la_escuadra_escolar",
+      "el_diccionario",
+      "el_termo_escolar",
+      "la_bateria",
+      "la_colchoneta",
+      "el_arco_y_flecha",
+      "el_guante_de_box",
+      "el_panadero",
+      "el_veterinario",
+      "el_bibliotecario",
+      "la_carriola",
+      "el_carrito_de_compras",
+      "la_caja_registradora",
+      "la_palapa",
+      "la_pelota_de_playa",
+      "el_castillo_de_arena",
+      "el_saco_de_dormir",
+      "el_hacha_de_campo",
+      "la_paleta_de_colores",
+      "el_cronometro",
+      "el_reloj_de_bolsillo",
+      "el_reloj_de_sol"
+    ]
   }
 }

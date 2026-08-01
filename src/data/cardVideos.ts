@@ -8,7 +8,7 @@
  * was least likely to appear exactly when it mattered. A bundled clip is not a
  * race.
  *
- * ~30 kB each, 30 MB for the deck, at 320 px wide. The two places
+ * ~30 kB each, 29 MB for the deck, at 320 px wide. The two places
  * clips appear are the Home hero at 128 pt (384 px on a 3x screen) and the
  * celebration tiles at ~80 pt (240 px), so this is native for the tiles and a
  * slight stretch on the hero — one tier, deliberately, rather than two
@@ -550,7 +550,6 @@ const VIDEOS: Record<string, number> = {
   el_tabano: require('../../assets/video/el_tabano.mp4'),
   el_taco: require('../../assets/video/el_taco.mp4'),
   el_taladro: require('../../assets/video/el_taladro.mp4'),
-  el_talon: require('../../assets/video/el_talon.mp4'),
   el_tamal: require('../../assets/video/el_tamal.mp4'),
   el_tamarindo: require('../../assets/video/el_tamarindo.mp4'),
   el_tamarindo_dulce: require('../../assets/video/el_tamarindo_dulce.mp4'),
@@ -621,7 +620,6 @@ const VIDEOS: Record<string, number> = {
   el_yoyo: require('../../assets/video/el_yoyo.mp4'),
   el_yunque: require('../../assets/video/el_yunque.mp4'),
   el_zafiro: require('../../assets/video/el_zafiro.mp4'),
-  el_zancudo: require('../../assets/video/el_zancudo.mp4'),
   el_zapatero: require('../../assets/video/el_zapatero.mp4'),
   el_zapato: require('../../assets/video/el_zapato.mp4'),
   el_zapote: require('../../assets/video/el_zapote.mp4'),
@@ -861,7 +859,6 @@ const VIDEOS: Record<string, number> = {
   la_moneda: require('../../assets/video/la_moneda.mp4'),
   la_montana: require('../../assets/video/la_montana.mp4'),
   la_montana_rusa: require('../../assets/video/la_montana_rusa.mp4'),
-  la_mora: require('../../assets/video/la_mora.mp4'),
   la_morsa: require('../../assets/video/la_morsa.mp4'),
   la_mosca: require('../../assets/video/la_mosca.mp4'),
   la_motocicleta: require('../../assets/video/la_motocicleta.mp4'),

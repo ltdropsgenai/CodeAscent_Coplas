@@ -59,6 +59,15 @@ const SFX = {
   reintentar: `${CDN}/72624be4-847b-465d-8517-8d2c021623f0.mp3`,
   racha: `${CDN}/dab108f2-d84e-49f0-b236-4fdcae16e941.mp3`,
   perdida: `${CDN}/e59d58c8-9460-4605-98d1-ac0baaa88d80.mp3`,
+  /**
+   * The tic-tac bed, added 2026-08-01. Eight seconds of soft wooden clock,
+   * looped, for players who want to feel time passing without music.
+   *
+   * It is NOT a timer and must never become one — nothing is counted and
+   * nothing runs out. It exists because silence under a round makes the SFX
+   * and the voice lines feel exposed, not because the game should feel timed.
+   */
+  tictac: `${CDN}/8ff77207-8b68-47a4-a78a-8db3ec4e074d.mp3`,
 };
 
 /**
