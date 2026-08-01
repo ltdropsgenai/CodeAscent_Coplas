@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm run validate && npm run groups && npm run i18n && npm run copy && npm run senses && npm run assets && npm run images && npm run sim && npm test",
     "assets": "node scripts/check-assets.mjs",
+    "loops": "node scripts/check-loops.mjs",
     "images": "node scripts/check-image-styles.mjs",
     "senses": "node scripts/check-card-senses.mjs"
   },

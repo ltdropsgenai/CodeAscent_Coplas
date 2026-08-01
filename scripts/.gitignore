@@ -1,0 +1,20 @@
+# Download and scratch caches for encode-music.mjs.
+#
+# _wav/ is ~98 MB of source WAVs pulled from Supabase and vidIQ. It is a cache,
+# not a source: every URL in it is recorded in encode-music.mjs, so it can be
+# rebuilt from scratch at any time. The script deliberately does NOT delete it
+# on success, because wiping it meant every adjustment to the trim or the
+# crossfade cost a full re-download before you could see whether the adjustment
+# worked. Delete it by hand when the music is settled.
+#
+# _trim/ is the intermediate between trimming and encoding and is removed
+# automatically; it is listed here only so an interrupted run cannot leave it
+# staged.
+_wav/
+_trim/
+
+# THIS FILE LIVES HERE, NOT IN THE ROOT .gitignore, AND THAT IS DELIBERATE.
+# The root .gitignore is an input to the Expo fingerprint — it appears as a
+# `bareGitIgnore` source in `expo-updates fingerprint:generate`. Editing it
+# changes runtimeVersion. Nested .gitignore files are not fingerprint sources.
+# Same reasoning as coplas-web/.gitignore; see that file.

@@ -158,6 +158,10 @@ export default function Play() {
   // recompose — swaps the track; leaving the screen stops it.
   useEffect(() => {
     playRoundMusic();
+    // The deal. Fires on the same frame the new board mounts, including the
+    // archive and the retry recompose — anywhere sixteen fresh cards appear,
+    // which is what the sound is describing.
+    playSfx('reparto');
     return () => stopMusic();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzle.id]);
@@ -179,6 +183,10 @@ export default function Play() {
   useEffect(() => {
     if (state.guesses.length > prevGuesses.current) {
       const last = state.guesses[state.guesses.length - 1];
+      // NOTE: `grupo` deliberately does NOT play here. A solved group already
+      // has this sound, and stacking the two on one frame reads as a single
+      // muddy noise rather than as two events. It found its own moment on the
+      // reveal instead — see onReveal.
       playSfx(last.correct ? 'correct' : 'wrong');
       setFeedbackKind(last.correct ? 'correct' : 'wrong');
       feedback.setValue(0);
@@ -212,6 +220,7 @@ export default function Play() {
       };
     }
     if (state.status === 'lost') {
+      playSfx('perdida');
       setResultReady(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -319,6 +328,23 @@ export default function Play() {
     return () => clearTimeout(id);
   }, [finalStats, resultReady, state.status, state.mistakes, state.hintUsed, state.retried]);
 
+  // The streak sting, held back until the celebration has finished. Fired at
+  // the moment of the win it would be the fourth sound on one beat — jingle,
+  // fanfare, voice line and this — which is noise rather than celebration.
+  //
+  // Every fifth win only, and never in the archive (replays don't move the
+  // streak, so a sting there would be claiming something that didn't happen).
+  // A sound on every win is not a milestone; it is the win sound, and there is
+  // one of those already.
+  const rachaRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (isArchive || !finalStats || !resultReady || state.status !== 'won') return;
+    if (rachaRef.current === puzzle.id) return;
+    rachaRef.current = puzzle.id;
+    if (finalStats.winStreak >= 5 && finalStats.winStreak % 5 === 0) playSfx('racha');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finalStats, resultReady, state.status, puzzle.id, isArchive]);
+
   function onSelect(id: string) {
     playSfx('select');
     game.select(id);
@@ -326,8 +352,38 @@ export default function Play() {
 
   function onHint() {
     if (!game.canHint) return;
-    playSfx('select');
+    playSfx('pista');
     game.hint();
+  }
+
+  function onShuffle() {
+    playSfx('barajar');
+    game.shuffle();
+  }
+
+  function onDeselect() {
+    playSfx('quitar');
+    game.deselect();
+  }
+
+  function onRetry() {
+    playSfx('reintentar');
+    game.retry();
+  }
+
+  /**
+   * Giving up and showing the four groups.
+   *
+   * This is where `grupo` belongs. It is the one moment in the round where
+   * four groups resolve at once and nothing else is making a sound — `perdida`
+   * has already played and faded by the time anyone decides to tap this, so
+   * the clip has the moment to itself rather than fighting `correct` for it.
+   * Until now the reveal was silent, which made the most deflating action in
+   * the game the only one with no acknowledgement at all.
+   */
+  function onReveal() {
+    playSfx('grupo');
+    game.reveal();
   }
 
   async function onShare() {
@@ -425,11 +481,11 @@ export default function Play() {
         {!finished && (
           <View style={styles.actions}>
             <GradientButton label={t.play.hint} variant="ghost" onPress={onHint} disabled={!game.canHint} />
-            <GradientButton label={t.play.shuffle} variant="ghost" onPress={game.shuffle} />
+            <GradientButton label={t.play.shuffle} variant="ghost" onPress={onShuffle} />
             <GradientButton
               label={t.play.remove}
               variant="ghost"
-              onPress={game.deselect}
+              onPress={onDeselect}
               disabled={state.selected.length === 0}
             />
             <GradientButton label={t.play.submit} onPress={game.submit} disabled={!game.canSubmit} />
@@ -483,9 +539,9 @@ export default function Play() {
               {state.status === 'lost' && !state.revealed ? (
                 <>
                   {game.canRetry && (
-                    <GradientButton label={t.play.retry} variant="gold" onPress={game.retry} />
+                    <GradientButton label={t.play.retry} variant="gold" onPress={onRetry} />
                   )}
-                  <GradientButton label={t.play.reveal} variant="ghost" onPress={game.reveal} />
+                  <GradientButton label={t.play.reveal} variant="ghost" onPress={onReveal} />
                 </>
               ) : (
                 <>

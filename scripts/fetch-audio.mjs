@@ -48,6 +48,17 @@ const SFX = {
   correct: `${CDN}/0f4efc0b-f120-464b-97d3-ea576bf3e485.mp3`,
   wrong: `${CDN}/8d8b4f3b-5a0a-472d-b108-1a1094eb32a4.mp3`,
   jingle: `${CDN}/c51b7720-6596-4610-a155-be45e68ce8ae.mp3`,
+  // Added 2026-07-31. Not yet wired to game events — bundling them first means
+  // the assets exist whenever the wiring lands, instead of a second scramble
+  // against another 24-hour link expiry.
+  barajar: `${CDN}/b0e0f549-3b0b-411c-bd46-bb4b5966bb6a.mp3`,
+  pista: `${CDN}/a1c60cf2-8cc2-4d16-9d12-b095e85de638.mp3`,
+  grupo: `${CDN}/594f118c-14d2-4dd6-bc3f-3e718630ccb2.mp3`,
+  reparto: `${CDN}/7eb10d8f-796b-4959-aac2-2be9a9114e14.mp3`,
+  quitar: `${CDN}/342456c7-b080-4cb9-96eb-ece0fa8675a4.mp3`,
+  reintentar: `${CDN}/72624be4-847b-465d-8517-8d2c021623f0.mp3`,
+  racha: `${CDN}/dab108f2-d84e-49f0-b236-4fdcae16e941.mp3`,
+  perdida: `${CDN}/e59d58c8-9460-4605-98d1-ac0baaa88d80.mp3`,
 };
 
 /**
@@ -87,6 +98,50 @@ const VOICE = {
   eso: `${CDN}/5887c32a-708e-4a79-80c5-8ae83f7e6286.mp3`,
   que_buena: `${CDN}/a8c59464-3645-4670-b604-dc94327ab71c.mp3`,
   bien_hecho: `${CDN}/40f96c14-9cf4-4d05-9357-3d35ca70752c.mp3`,
+
+  // ── Added 2026-07-31 ────────────────────────────────────────────────────
+  // Dominican (es-DO). Nine voices, cast so no line repeats a speaker.
+  // Written with the elisions intact — ta' to', eso e' así — because that is
+  // how the phrase is said; a voice that "corrects" them back to full
+  // Castilian is the wrong voice for the line.
+  ta_to: `${CDN}/f570f3e2-1c3f-4252-b56d-a9a147044304.mp3`,
+  eso_e_asi: `${CDN}/c2515bed-8550-4feb-83aa-f4aad86fd951.mp3`,
+  que_vaina_buena: `${CDN}/8df223f8-8773-4138-8e70-6dda7302a7e5.mp3`,
+  ta_duro: `${CDN}/92539843-afe9-4b85-b8df-853c3e72e83b.mp3`,
+  se_formo: `${CDN}/35bfa0a2-4259-408a-a519-01ab5d68300a.mp3`,
+  ta_pila: `${CDN}/387e5e4b-517d-489b-9439-e33b078c8817.mp3`,
+  que_chuleria: `${CDN}/f5004673-705e-4aca-8bb9-bb606089efee.mp3`,
+  ta_brutal: `${CDN}/12493e3a-d9d6-4fb5-9fed-68b10476f945.mp3`,
+  dimelo_campeon: `${CDN}/bbf273ac-180c-4721-a662-812e976008b2.mp3`,
+
+  // Mexican (es-MX). Only the six voices ElevenLabs labels es-MX carry these.
+  que_chido: `${CDN}/1b569a05-274d-4a03-89c6-14ec3d992f8f.mp3`,
+  padrisimo: `${CDN}/49f05b99-4261-4e3d-8451-2d6d8abc102e.mp3`,
+  ya_la_hiciste: `${CDN}/ebe0c9d1-ae78-4696-b462-908b86710d2f.mp3`,
+  te_la_rifaste: `${CDN}/ae4a4bd4-dec6-47c1-8f6a-525c33196e8c.mp3`,
+  eso_mero: `${CDN}/25171397-9edc-4b3f-88a1-e3179a575898.mp3`,
+  andale_pues: `${CDN}/9a36f87e-101e-4be0-9f5c-9c8fe43d97b9.mp3`,
+  que_maquina: `${CDN}/f11f8fba-6740-47c0-9ce9-59b8bef5fb88.mp3`,
+  va_que_va: `${CDN}/c2a3d2d5-6d6d-4a0a-b034-01714b65d457.mp3`,
+  no_inventes: `${CDN}/cfac00b9-82b9-4f8e-af41-3d89ae9abfff.mp3`,
+  que_barbaro: `${CDN}/6f57d2e4-adec-4fda-abf3-515a9bb36d9a.mp3`,
+  sale: `${CDN}/29d25244-0c71-4dab-af35-d4fed9872f99.mp3`,
+
+  // Pan-regional. Safe in any accent, so these spread across the neutral
+  // voices — including Daniela and Miguel Zermeno, whose accent labels are
+  // ambiguous and who therefore never carry regionally marked slang.
+  increible: `${CDN}/4f1a4642-ecf6-47e7-8264-dd671435cf67.mp3`,
+  fantastico: `${CDN}/7830cb8c-a27a-4cd6-8673-46bdef9ffaca.mp3`,
+  buenisimo: `${CDN}/6ad2cbc3-0ba2-4346-ad09-7cb970a269fe.mp3`,
+  magnifico: `${CDN}/c5109e9b-83bc-4c9f-8545-28cdd5eb6dd4.mp3`,
+  impecable: `${CDN}/4d612a65-f949-4839-87de-45c74d54e3a1.mp3`,
+  que_racha: `${CDN}/05f51ae2-efde-413e-8baa-a8e915e97dc7.mp3`,
+  campeon: `${CDN}/12be02f9-4198-4e08-9588-4828e1b1f8a9.mp3`,
+  lo_hiciste: `${CDN}/14143096-8344-4a49-8944-8f9942ee7269.mp3`,
+  muy_bien_hecho: `${CDN}/1ca2a1e5-e801-4f20-8d94-c4ef26c02f53.mp3`,
+  tremendo: `${CDN}/74cee656-aae4-4289-b893-c13625483e99.mp3`,
+  genial: `${CDN}/331fc62e-19df-4f23-a063-3b2f59d1a552.mp3`,
+  sin_un_error: `${CDN}/f32ffcf9-2979-4f23-8261-934892e5585a.mp3`,
 };
 
 async function grab(url, dest, label) {
@@ -142,12 +197,29 @@ const sfxLines = sfxGot.map((k) => `  ${k}: require('../../assets/audio/${k}.mp3
 const voiceLines = voiceGot.map((k) => `  require('../../assets/audio/voice/${k}.mp3'),`).join('\n');
 
 // ── music: bundled if scripts/encode-music.mjs has run, else streamed ────────
+// Must match scripts/encode-music.mjs exactly. If a name here has no .m4a in
+// assets/music/, `musicBundled` goes false and the generated MUSIC falls back
+// to streaming EVERY track from Supabase — where the expansion tracks do not
+// exist. So a typo here is not a missing song, it is silent music everywhere.
 const MUSIC_TRACKS = {
-  home: ['home'],
-  wins: ['win', 'win2', 'win3', 'win4', 'win5'],
+  home: ['home', 'home2', 'home3'],
+  wins: ['win', 'win2', 'win3', 'win4', 'win5', 'win6', 'win7', 'win8', 'win9', 'win10'],
   rounds: [
-    'bachata', 'reggaeton', 'cumbia', 'bolero', 'son_jarocho', 'marimba',
-    'bachata2', 'reggaeton2', 'cumbia2', 'bolero2', 'son_jarocho2', 'marimba2',
+    'bachata', 'bachata2', 'bachata3', 'bachata4',
+    'reggaeton', 'reggaeton2', 'reggaeton3', 'reggaeton4',
+    'cumbia', 'cumbia2', 'cumbia3', 'cumbia4',
+    'bolero', 'bolero2', 'bolero3', 'bolero4',
+    'son_jarocho', 'son_jarocho2', 'son_jarocho3', 'son_jarocho4',
+    'marimba', 'marimba2', 'marimba3', 'marimba4',
+    'mariachi', 'mariachi2', 'mariachi3', 'mariachi4',
+    'nortena', 'nortena2', 'nortena3', 'nortena4',
+    'banda', 'banda2', 'banda3', 'banda4',
+    'merengue', 'merengue2', 'merengue3', 'merengue4',
+    'huapango', 'huapango2', 'huapango3', 'huapango4',
+    'danzon', 'danzon2', 'danzon3', 'danzon4',
+    'ranchera', 'ranchera2', 'ranchera3', 'ranchera4',
+    'salsa', 'salsa2', 'salsa3', 'salsa4',
+    'trova', 'trova2', 'trova3', 'trova4',
   ],
 };
 const MUSIC_DIR = join(root, 'assets', 'music');
@@ -163,13 +235,18 @@ const musicBlock = musicBundled
   ? `/**
  * Background music — BUNDLED as AAC by scripts/encode-music.mjs.
  *
- * These were 21 MB of uncompressed WAV streamed one track per round. At 128 kbps
- * AAC the whole set is a few MB, so there is no reason to stream them: bundling
- * removes the last per-round audio fetch. With the card deck also bundled, only
- * video still touches the network.
+ * Sixty round beds across fifteen Latin genres, three home beds and ten win
+ * fanfares. Every bed is baked into a seamless loop by that script, so it can
+ * be played with loop = true and never expose a join.
+ *
+ * These were streamed as uncompressed WAV, one track per round. At 96 kbps AAC
+ * the whole set fits in the bundle, which removes the last per-round audio
+ * fetch. With the card deck also bundled, only video still touches the network.
  */
 export const MUSIC = {
-  home: ${musicRef('home')},
+  home: [
+${musicList(MUSIC_TRACKS.home)}
+  ],
   wins: [
 ${musicList(MUSIC_TRACKS.wins)}
   ],
@@ -187,7 +264,9 @@ ${musicList(MUSIC_TRACKS.rounds)}
 const MUSIC_CDN = 'https://bmybvrqbpachjxrejxdj.supabase.co/storage/v1/object/public/audio';
 
 export const MUSIC = {
-  home: ${musicRef('home')},
+  home: [
+${musicList(MUSIC_TRACKS.home)}
+  ],
   wins: [
 ${musicList(MUSIC_TRACKS.wins)}
   ],
@@ -199,12 +278,12 @@ ${musicList(MUSIC_TRACKS.rounds)}
 const ts = `/**
  * Audio asset registry. GENERATED by scripts/fetch-audio.mjs — edit that, not this.
  *
- * SFX and voice lines are BUNDLED (require()): they are small, and both are
+ * Everything is BUNDLED (require()). SFX and voice lines are small and are
  * needed the instant something happens, so a network fetch would arrive after
- * the moment had passed. Music is STREAMED from our own Supabase bucket —
- * those files are megabytes and would bloat the download.
+ * the moment had passed; music is AAC now rather than WAV, which made bundling
+ * it affordable too. Nothing in this file touches the network at runtime.
  */
-export type AudioKey = 'music' | 'select' | 'correct' | 'wrong' | 'jingle';
+export type AudioKey = 'music' | ${Object.keys(SFX).map((k) => `'${k}'`).join(' | ')};
 
 type AudioSrc = number | string | { uri: string };
 
@@ -213,9 +292,11 @@ ${sfxLines}
 };
 
 /**
- * Celebration voice lines — fourteen clips across eight Spanish voices, so
- * that with a line on every win neither the phrase nor the speaker repeats
- * often. Played at random with no immediate repeat; see src/audio.tsx.
+ * Celebration voice lines — clips across Mexican, Dominican, Argentine and
+ * accent-neutral Spanish voices, so that with a line on every win neither the
+ * phrase nor the speaker repeats often. Regionally marked slang is cast only
+ * to voices from that region; see scripts/fetch-audio.mjs for the casting.
+ * Played at random with no immediate repeat; see src/audio.tsx.
  */
 export const VOICE: number[] = [
 ${voiceLines}

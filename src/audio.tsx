@@ -19,6 +19,36 @@ import { getSettings, saveSettings } from './storage/store';
  */
 type MusicSrc = number | string;
 
+/** Background beds sit well under the SFX and the voice lines. */
+const BED_VOLUME = 0.4;
+
+/**
+ * MUSIC.home was a single track and is now a list of three.
+ *
+ * This normalises both shapes, for the window between editing this file and
+ * re-running scripts/fetch-audio.mjs. In that window `MUSIC.home` is still a
+ * lone `require()` — typed `any`, so reading `.length` off it compiles
+ * perfectly and then plays no music, with no error anywhere.
+ *
+ * The hop through `unknown` is deliberate. Once the registry is regenerated,
+ * `MUSIC.home` is a readonly 3-tuple and TypeScript rightly objects to casting
+ * a tuple to a single source — the branch is unreachable, but only for as long
+ * as the generated file stays in its current shape, which is exactly the thing
+ * this guard exists to not depend on.
+ */
+const HOME_SRC: unknown = MUSIC.home;
+const HOME_BEDS: MusicSrc[] = Array.isArray(HOME_SRC)
+  ? (HOME_SRC as MusicSrc[])
+  : [HOME_SRC as MusicSrc];
+
+/**
+ * How long the bed takes to get out of the way when a round is won.
+ *
+ * Long enough not to be a cut, short enough that the fanfare still lands on
+ * the win rather than after it. At 40 ms a step that is nine steps.
+ */
+const BED_FADE_MS = 360;
+
 /**
  * Start a player, tolerating both synchronous throws and the async rejection
  * web browsers raise (`NotAllowedError`) when audio hasn't been unlocked by a
@@ -35,6 +65,50 @@ function safePlay(p: AudioPlayer | null | undefined): void {
   } catch {
     /* ignore */
   }
+}
+
+/**
+ * Ramp a player's volume to silence over `ms`, pause it, then put the volume
+ * back where it was so the player is reusable.
+ *
+ * expo-audio has no fade, so this is a plain interval stepping `volume`. 40 ms
+ * is below the threshold where a listener hears the steps as steps rather than
+ * as a fade, and it is coarse enough that a few hundred milliseconds of it
+ * costs nothing.
+ *
+ * Guarded throughout: the player it is fading can be removed out from under it
+ * (a new round starting during the fade), and writing to a removed player
+ * throws rather than no-opping.
+ */
+function fadeAndPause(p: AudioPlayer | null | undefined, ms: number): () => void {
+  if (!p) return () => {};
+  let from = 1;
+  try {
+    from = p.volume ?? 1;
+  } catch {
+    /* ignore */
+  }
+  const steps = Math.max(1, Math.round(ms / 40));
+  let i = 0;
+  const id = setInterval(() => {
+    i += 1;
+    try {
+      p.volume = from * (1 - i / steps);
+    } catch {
+      clearInterval(id);
+      return;
+    }
+    if (i >= steps) {
+      clearInterval(id);
+      try {
+        p.pause();
+        p.volume = from; // so resuming this bed later is not silent
+      } catch {
+        /* ignore */
+      }
+    }
+  }, 40);
+  return () => clearInterval(id);
 }
 
 interface AudioValue {
@@ -65,11 +139,15 @@ const AudioContext = createContext<AudioValue>({
 });
 
 /**
- * Central audio. A single looping *bed* plays under each screen — the home
- * track on the menu, a rotating Latin genre (bachata, reggaetón, cumbia…) per
+ * Central audio. A single looping *bed* plays under each screen — one of three
+ * menu tracks on Home, and one of sixty beds across fifteen Latin genres per
  * round so no two rounds sound alike — while short SFX fire on events and a
- * mariachi *fanfare* celebrates a win over the (briefly paused) bed. Music is
- * streamed from our Supabase `audio` bucket.
+ * mariachi *fanfare* celebrates a win over the bed, which fades out from under
+ * it rather than cutting.
+ *
+ * Every track is bundled. Nothing here touches the network — see
+ * scripts/encode-music.mjs, which also bakes each bed into a seamless loop so
+ * `loop = true` has no join to expose.
  *
  * Everything is guarded: sources missing from the registry simply don't play,
  * and any platform hiccup is swallowed — so the app never crashes for want of
@@ -88,6 +166,10 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   // createAudioPlayer already takes numbers here (see VOICE) — but the types
   // have to admit it or the switch to bundled music breaks the build.
   const bedSrcRef = useRef<MusicSrc | null>(null);
+  // Cancels an in-flight bed fade. Without it, a fade started by one win can
+  // still be stepping the volume of a player the next round has already
+  // reused, which silences a bed that is supposed to be playing.
+  const bedFadeRef = useRef<(() => void) | null>(null);
   const sfxRef = useRef<Partial<Record<AudioKey, AudioPlayer>>>({});
   // Web can't call play() until a user gesture unlocks audio; native is always
   // unlocked. We create players eagerly but defer actual playback until this
@@ -99,6 +181,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const contextRef = useRef<'home' | 'round' | null>(null);
   const contextTrackRef = useRef<MusicSrc | null>(null);
   const lastRoundRef = useRef<number>(-1);
+  const lastHomeRef = useRef<number>(-1);
   const lastWinRef = useRef<number>(-1);
   const lastVoiceRef = useRef<number>(-1);
 
@@ -127,12 +210,10 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       };
       const resume = () => {
         unlockedRef.current = true;
-        if (enabledRef.current) {
-          if (contextRef.current === 'home') playBed(MUSIC.home);
-          else if (contextRef.current === 'round' && contextTrackRef.current) {
-            playBed(contextTrackRef.current);
-          }
-        }
+        // Resume the exact track the active screen chose, not a fresh draw —
+        // the bed was already picked when the screen mounted, and re-picking
+        // here would swap the music on the player's first tap.
+        if (enabledRef.current && contextTrackRef.current) playBed(contextTrackRef.current);
         cleanupGesture();
       };
       window.addEventListener('pointerdown', resume);
@@ -142,9 +223,12 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
     return () => {
       removeGesture?.();
+      bedFadeRef.current?.(); // an interval outliving the provider is a leak
+      bedFadeRef.current = null;
       try {
         musicRef.current?.remove();
         winRef.current?.remove();
+        voiceRef.current?.remove();
         Object.values(sfxRef.current).forEach((p) => p?.remove());
       } catch {
         /* ignore */
@@ -186,6 +270,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   // ── Music bed ────────────────────────────────────────────────────────────
   function removeBed() {
+    bedFadeRef.current?.();
+    bedFadeRef.current = null;
     try {
       musicRef.current?.remove();
     } catch {
@@ -199,13 +285,22 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   function playBed(src: MusicSrc) {
     try {
       if (bedSrcRef.current === src && musicRef.current) {
+        // Cancel any fade still running on this player and restore the bed
+        // level, or resuming lands mid-fade and the bed comes back quiet.
+        bedFadeRef.current?.();
+        bedFadeRef.current = null;
+        try {
+          musicRef.current.volume = BED_VOLUME;
+        } catch {
+          /* ignore */
+        }
         startPlayer(musicRef.current);
         return;
       }
       removeBed();
       const p = createAudioPlayer(src);
       p.loop = true;
-      p.volume = 0.4;
+      p.volume = BED_VOLUME;
       musicRef.current = p;
       bedSrcRef.current = src;
       startPlayer(p);
@@ -222,12 +317,27 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  /**
+   * The menu bed. Three of them now, drawn on ARRIVAL at the home screen — not
+   * on every call.
+   *
+   * app/index.tsx calls this from a focus effect, which can fire more than once
+   * for a single visit. Re-drawing each time would restart the music under
+   * someone who is standing still on the menu, so a fresh track is only chosen
+   * when we are coming from somewhere else.
+   */
   function playHomeMusic() {
-    contextRef.current = 'home';
-    contextTrackRef.current = MUSIC.home;
     stopWin();
-    if (!enabledRef.current) return;
-    playBed(MUSIC.home);
+    if (contextRef.current !== 'home' || contextTrackRef.current == null) {
+      const tracks = HOME_BEDS;
+      let i = Math.floor(Math.random() * tracks.length);
+      if (tracks.length > 1 && i === lastHomeRef.current) i = (i + 1) % tracks.length;
+      lastHomeRef.current = i;
+      contextTrackRef.current = tracks[i];
+    }
+    contextRef.current = 'home';
+    if (!enabledRef.current || contextTrackRef.current == null) return;
+    playBed(contextTrackRef.current);
   }
 
   function playRoundMusic() {
@@ -245,12 +355,18 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   function playWinFanfare() {
     if (!enabledRef.current) return;
-    // Duck out the bed so the fanfare rings clear.
-    try {
-      musicRef.current?.pause();
-    } catch {
-      /* ignore */
-    }
+    // Take the bed out under the fanfare rather than cutting it.
+    //
+    // The beds are baked as seamless loops (scripts/encode-music.mjs), so the
+    // only abrupt thing left in the music is this transition — and it lands on
+    // the win, the one moment of the round the player is paying attention to.
+    // pause() here is a hard cut mid-phrase; a short ramp is not.
+    //
+    // It is deliberately shorter than a musical fade. The fanfare has to arrive
+    // while the win still feels like it just happened, so the bed gets out of
+    // the way rather than making an exit.
+    bedFadeRef.current?.();
+    bedFadeRef.current = fadeAndPause(musicRef.current, BED_FADE_MS);
     // Pick a fresh fanfare, never the one we just played (anti-repeat).
     const tracks = MUSIC.wins;
     let i = Math.floor(Math.random() * tracks.length);
@@ -273,10 +389,16 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   /**
    * A celebratory exclamation on a win — ¡Órale!, ¡Qué padre!, ¡Lo lograste!
    *
-   * Fourteen clips across eight Spanish voices (four Mexican, four Argentine),
-   * so with a line on every win neither the phrase nor the speaker repeats
-   * often enough to become wallpaper. The regionally-marked slang is all in the
-   * Mexican voices; see scripts/fetch-audio.mjs for the casting.
+   * Forty-six clips across Mexican, Dominican, Argentine and accent-neutral
+   * Spanish voices, so with a line on every win neither the phrase nor the
+   * speaker repeats often enough to become wallpaper.
+   *
+   * Regionally marked slang is cast only to voices from that region — ¡órale!
+   * and ¡qué padre! to Mexican actors, ¡tá to'! and ¡qué vaina buena! to
+   * Dominican ones — because an actor performing another country's slang is
+   * exactly what this audience hears instantly. Voices whose accent label is
+   * ambiguous carry only pan-regional lines. See scripts/fetch-audio.mjs for
+   * the casting.
    *
    * Anti-repeat is on the *previous* index only, matching how the fanfares and
    * round beds already behave: cheap, and enough to kill the thing players
@@ -328,9 +450,9 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       saveSettings({ soundEnabled: next });
       if (!next) {
         stopMusic();
-      } else if (contextRef.current === 'home') {
-        playBed(MUSIC.home);
-      } else if (contextRef.current === 'round' && contextTrackRef.current) {
+      } else if (contextTrackRef.current) {
+        // Whatever this screen was playing, not a new draw — toggling sound off
+        // and on again should not change the song.
         playBed(contextTrackRef.current);
       }
       return next;
