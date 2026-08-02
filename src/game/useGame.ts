@@ -36,6 +36,11 @@ function haptic(type: 'ok' | 'err') {
 
 export interface UseGame {
   state: GameState;
+  /**
+   * The screen is showing a result that was already recorded, not a live round.
+   * Nothing is playable and nothing will be written.
+   */
+  viewingResult: boolean;
   relaxed: boolean;
   alreadyPlayed: boolean;
   loading: boolean;
@@ -75,12 +80,23 @@ export function useGame(puzzle: Puzzle, resume?: GameState | null): UseGame {
   const resumeRef = useRef(resume);
   resumeRef.current = resume;
 
+  // Deliberately does NOT require `status === 'playing'`. That filter used to
+  // live here, which meant the only state this hook would accept was an
+  // unfinished one — and app/play.tsx needs to hand it a FINISHED board on
+  // purpose, to show a player the daily copla they already completed.
+  //
+  // Deciding what is resumable belongs to the caller: `getSession` strips a
+  // finished board before returning it, so the resume path is unchanged, and
+  // the result-view path can pass a solved board without fighting a guard
+  // written for a different question.
   const hydrate = (p: Puzzle) => {
     const r = resumeRef.current;
-    return r && r.status === 'playing' && p.id === puzzle.id ? r : initGame(p);
+    return r && p.id === puzzle.id ? r : initGame(p);
   };
 
   const [state, setState] = useState<GameState>(() => hydrate(puzzle));
+  /** True when this screen is showing an already-recorded result, not a round. */
+  const [viewingResult] = useState(() => resume != null && resume.status !== 'playing');
   const [relaxed, setRelaxed] = useState(false);
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -120,11 +136,18 @@ export function useGame(puzzle: Puzzle, resume?: GameState | null): UseGame {
 
   // Persist the result exactly once, the moment the round first ends.
   //
+  // A hydrated finished board (the result view) must not re-enter this path: it
+  // is a replay of a record, not a new one. `saveResult` is write-once anyway
+  // — "first result wins" — so this is belt and braces, but a second write
+  // attempt on every viewing is the kind of thing that becomes a bug the day
+  // someone relaxes that rule.
   // "First" matters: writing at the loss rather than when the player dismisses
   // the screen is what stops someone banking a non-loss by force-quitting, and
   // it is why a later retry can only ever add a flag, never upgrade the record
   // to a win.
+  const openedFinished = useRef(resume != null && resume.status !== 'playing');
   useEffect(() => {
+    if (openedFinished.current) return;
     if (state.status === 'playing' || savedRef.current) return;
     savedRef.current = true;
     saveResult({
@@ -186,6 +209,7 @@ export function useGame(puzzle: Puzzle, resume?: GameState | null): UseGame {
 
   return {
     state,
+    viewingResult,
     relaxed,
     alreadyPlayed,
     loading,

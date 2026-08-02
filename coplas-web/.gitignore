@@ -10,3 +10,6 @@ public/
 # changes runtimeVersion, which orphans every build already in the field from
 # any future OTA update. Nested .gitignore files are not fingerprint sources.
 # Put project-local ignores in the subdirectory that owns them.
+
+.vercel
+.env*

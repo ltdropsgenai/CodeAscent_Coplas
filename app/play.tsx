@@ -19,6 +19,7 @@ import { diagnostics, openMail } from '../src/support';
 import { maybePromptForReview } from '../src/rate';
 import { computeAchievements, newlyUnlocked } from '../src/game/achievements';
 import {
+  getResult,
   getSeenAchievements,
   getSeenCards,
   getSession,
@@ -29,7 +30,7 @@ import {
   type CardUse,
   type Stats,
 } from '../src/storage/store';
-import type { Difficulty, Puzzle } from '../src/types';
+import type { Difficulty, Puzzle, Tier } from '../src/types';
 
 type FeedbackKind = 'correct' | 'wrong' | null;
 
@@ -75,7 +76,11 @@ export default function Play() {
   const { t, lang } = useI18n();
   const { playSfx, playRoundMusic, playWinFanfare, playVoice, stopMusic, soundEnabled, toggleSound } =
     useAudio();
-  const { n, daily } = useLocalSearchParams<{ n?: string; daily?: string }>();
+  const { n, daily, result } = useLocalSearchParams<{
+    n?: string;
+    daily?: string;
+    result?: string;
+  }>();
 
   /**
    * Three ways to arrive here, and they are genuinely different features.
@@ -97,6 +102,8 @@ export default function Play() {
   const isArchive = !!n;
   const isDaily = daily === '1' && !n;
   const isFixed = isArchive || isDaily;
+  /** Arrived via "Ver resultado": show what was recorded, do not deal a board. */
+  const wantsResult = result === '1' && isFixed;
 
   // Continuous play: every round is composed fresh from the group library
   // (see src/game/composer.ts). `usage` records how recently/often each card
@@ -156,8 +163,66 @@ export default function Play() {
    * replaced by their old one.
    */
   const [resumed, setResumed] = useState<GameState | null | undefined>(
-    isFixed ? null : undefined
+    isFixed && !wantsResult ? null : undefined
   );
+
+  // The fixed puzzle, resolved early because the result effect below runs
+  // before the main `puzzle` memo. Safe to compute twice: both branches are
+  // pure lookups over bundled data.
+  const puzzleForResult = useMemo(
+    () => (n ? (getPuzzleByNumber(Number(n)) ?? getTodaysPuzzle()) : getTodaysPuzzle()),
+    [n]
+  );
+
+  /**
+   * Rebuild the finished board from the stored record, for "Ver resultado".
+   *
+   * Home swapped its label to "Ver resultado" once the daily was done but kept
+   * routing to the same place, which dealt a fresh unsolved copy of the copla
+   * the player had just finished. The label promised something with nothing
+   * behind it.
+   *
+   * A PuzzleResult does not record which cards were tapped, only the tier grid.
+   * That is enough: the four groups come from the puzzle itself so the reveal
+   * is exact, and `grid` reproduces the share text byte for byte. The only
+   * thing lost is the tap ORDER within each guess, which nothing displays.
+   */
+  useEffect(() => {
+    if (!wantsResult) return;
+    let active = true;
+    getResult(puzzleForResult.id)
+      .then((r) => {
+        if (!active) return;
+        // No record after all - fall through to a playable board rather than
+        // presenting an empty result screen.
+        if (!r) return setResumed(null);
+        setResumed({
+          puzzle: puzzleForResult,
+          remaining: [],
+          selected: [],
+          solved: [...puzzleForResult.groups],
+          // `grid` is stored as number[][]; the tiers are 1-4 by construction
+          // (validate-puzzles enforces it), so the cast is narrowing a value
+          // JSON simply cannot carry a literal type for.
+          guesses: r.grid.map((tierOf) => ({
+            cardIds: [],
+            correct: true,
+            tierOf: tierOf as Tier[],
+          })),
+          mistakes: r.mistakes,
+          status: r.status,
+          hintPair: [],
+          hintUsed: !!r.hinted,
+          retried: !!r.retried,
+          revealed: true,
+        });
+      })
+      .catch(() => active && setResumed(null));
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wantsResult]);
 
   // Restore once, on mount. Archive rounds are addressable by number and are
   // never composed, so they have nothing to resume.
@@ -236,6 +301,45 @@ export default function Play() {
 
   const game = useGame(puzzle, resumed);
   const { state } = game;
+  const finished = state.status !== 'playing';
+
+  /**
+   * Tally each round's result once (skip archive replays).
+   *
+   * A ROUND COUNTS WHEN IT ENDS, NOT WHEN THE PLAYER TAPS THROUGH. `recordRound`
+   * used to live in `nextRound()`, i.e. behind the "Siguiente ronda" button, so
+   * a player who solved a round and went back to Home had that round leave no
+   * trace: its sixteen cards and four themes never entered the anti-repeat
+   * history, and the composer was free to deal them straight back. Reported as
+   * "I completed round 2, exited, came back and got a different round 2".
+   *
+   * The retry path is safe from double-counting: a retried board keeps its
+   * `puzzle.id`, so `countedRef` has already claimed it.
+   *
+   * DECLARED BEFORE THE SAVE EFFECT ON PURPOSE. React runs effects in hook
+   * declaration order within a commit, and `roundNo`/`usage` are refs, so
+   * nothing re-renders when they change. If this ran after the save, the
+   * write triggered by the round ending would carry the OLD history — and
+   * there would be no second write to correct it, because on a loss
+   * `setSessionStreak(0)` is usually a no-op and React bails out of the
+   * re-render entirely. Moving this below the save silently re-breaks the
+   * anti-repeat across app restarts. Keep it here.
+   */
+  const countedRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (isFixed || !finished || countedRef.current === puzzle.id) return;
+    countedRef.current = puzzle.id;
+    recordRound(
+      puzzle.groups.flatMap((g) => g.cardIds),
+      puzzle.groups.map((g) => g.theme)
+    );
+    if (state.status === 'won') {
+      setSessionWon((x) => x + 1);
+      setSessionStreak((x) => x + 1);
+    } else {
+      setSessionStreak(0);
+    }
+  }, [finished, state.status, puzzle, isFixed, recordRound]);
 
   /**
    * Write the round on every change, not on unmount.
@@ -261,14 +365,22 @@ export default function Play() {
       state: live ? state : null,
       seq: liveSeq.current,
       roundNo: roundNo.current,
-      playCount,
+      // A finished round is counted here, not in `playCount` itself. The
+      // in-memory counter stays put through the results screen so the header
+      // does not flip to "Ronda 4" while the player is still reading round 3's
+      // result — but what goes to disk has to be the number of rounds actually
+      // COMPLETED, or a player who finishes a round and walks away comes back
+      // to the same round number and plays it again. Which is what happened.
+      playCount: playCount + (live ? 0 : 1),
       usage: usage.current,
       themeUsage: themeUsage.current,
       difficulty,
       savedAt: new Date().toISOString(),
     });
+    // `roundNo`/`usage` are refs and cannot appear in these deps. The tally
+    // effect above is what mutates them, and it is declared first so this
+    // write always sees the round that just ended already folded in.
   }, [state, puzzle, isFixed, resumed, difficulty, playCount]);
-  const finished = state.status !== 'playing';
 
   /**
    * The board stays on screen through a loss, so the retry has something to
@@ -295,7 +407,9 @@ export default function Play() {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isDaily
-        ? t.home.todaysCopla
+        ? game.viewingResult
+          ? t.home.viewResult
+          : t.home.todaysCopla
         : isArchive
           ? `Coplas #${puzzle.number}`
           : `${t.play.round} ${playCount + 1}`,
@@ -307,7 +421,17 @@ export default function Play() {
     });
     // headerLeft (‹ Inicio) is supplied once for every screen by the Stack
     // options in app/_layout.tsx — don't re-declare it here or it drifts.
-  }, [navigation, puzzle.number, playCount, isArchive, isDaily, t, soundEnabled, toggleSound]);
+  }, [
+    navigation,
+    puzzle.number,
+    playCount,
+    isArchive,
+    isDaily,
+    game.viewingResult,
+    t,
+    soundEnabled,
+    toggleSound,
+  ]);
 
   // Each round gets a fresh background genre (rotates, never repeats the last).
   // Keyed on the round id so every new round — including the online-flip
@@ -431,28 +555,15 @@ export default function Play() {
     setFinalStats(null);
   }, [puzzle.id]);
 
-  // Tally each round's result once (skip archive replays).
-  const countedRef = useRef<string | undefined>(undefined);
-  useEffect(() => {
-    if (isFixed || !finished || countedRef.current === puzzle.id) return;
-    countedRef.current = puzzle.id;
-    if (state.status === 'won') {
-      setSessionWon((x) => x + 1);
-      setSessionStreak((x) => x + 1);
-    } else {
-      setSessionStreak(0);
-    }
-  }, [finished, state.status, puzzle.id, isFixed]);
-
   function nextRound() {
     // No clearSession() here. The save effect already dropped the board when
     // the round ended and kept the tallies, and wiping the record now would
     // throw away the round counter and the anti-repeat history along with it.
     setResumed(null);
-    // Fold the round just played into the session usage history, then compose a
-    // fresh round that prefers the least-recently/least-often seen cards.
-    const justPlayed = puzzle.groups.flatMap((g) => g.cardIds);
-    recordRound(justPlayed, puzzle.groups.map((g) => g.theme));
+    // The round just played was folded into the session history when it ENDED
+    // (see the tally effect above), not here — otherwise leaving without
+    // tapping this button erased it. All that is left to do is compose a fresh
+    // round preferring the least-recently/least-often seen cards.
     liveSeq.current += 1;
     setLivePuzzle(composeRound(difficulty, cardPenalties(), liveSeq.current, themePenalties()));
     setPlayCount((c) => c + 1);
@@ -757,6 +868,9 @@ export default function Play() {
                   {!isFixed && (
                     <GradientButton label={t.play.nextRound} variant="gold" onPress={nextRound} />
                   )}
+                  {/* Offered whether the daily was just finished or is being
+                      re-read from the record — in both cases there is no next
+                      daily, and endless play is where the player goes. */}
                   {isDaily && (
                     <GradientButton
                       label={t.home.playEndless}

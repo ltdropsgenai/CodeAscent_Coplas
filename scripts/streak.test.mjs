@@ -297,5 +297,57 @@ check('board-less: still returns tallies', s.playCount, 25);
 check('unknown schema version is ignored', await sessionFrom({ ...tallies, v: 99 }), undefined);
 check('absent save is ignored', await sessionFrom(null), undefined);
 
+// ── when a round counts ──────────────────────────────────────────────────────
+//
+// Reported: "I completed round 1 and then round 2, exited to the home screen,
+// clicked continuous round again and was routed to a new round 2 — with
+// different cards from the one I completed."
+//
+// The save-state was fine. `recordRound` and the round counter both lived
+// inside `nextRound()`, behind the "Siguiente ronda" button, so a round the
+// player finished and walked away from left no trace at all: not in the
+// counter, and not in the usage/theme history the composer scores against.
+//
+// This cannot be tested by running the screen — there is no React here. What
+// it CAN pin down is the two structural properties the fix rests on, both of
+// which a later edit could undo without any visible symptom.
+const playSrc = readFileSync(new URL('../app/play.tsx', import.meta.url), 'utf8');
+
+// 1. The round is folded in when it ENDS, not when the player taps through.
+const nextRoundBody = playSrc.slice(
+  playSrc.indexOf('function nextRound()'),
+  playSrc.indexOf('// --- Board animations ---')
+);
+check('nextRound() no longer records the round', /\brecordRound\s*\(/.test(nextRoundBody), false);
+check(
+  'the round-end tally records it instead',
+  /countedRef\.current = puzzle\.id;\s*recordRound\(/.test(playSrc),
+  true
+);
+
+// 2. That tally must be DECLARED BEFORE the save effect. `roundNo` and `usage`
+//    are refs, so mutating them re-renders nothing; React runs effects in hook
+//    declaration order, and if the save ran first it would persist the round
+//    that just ended with the history from before it — with no second write to
+//    correct it, since on a loss `setSessionStreak(0)` is usually a no-op and
+//    React bails out of the re-render. Nothing about that failure is visible:
+//    the app looks right, and only the next session repeats cards.
+//    Both anchors are asserted present first: `indexOf` returns -1 for a
+//    marker that has been renamed away, and -1 is less than everything, so a
+//    bare comparison would PASS on a file that no longer contains the code it
+//    claims to be ordering.
+const tallyAt = playSrc.indexOf('const countedRef');
+const saveAt = playSrc.indexOf('saveSession({');
+check('the round-end tally is still there to order', tallyAt >= 0, true);
+check('the save effect is still there to order', saveAt >= 0, true);
+check('the round-end tally is declared before the save effect', tallyAt < saveAt, true);
+
+// 3. What reaches disk is rounds COMPLETED, not rounds tapped through.
+check(
+  'the saved counter includes an unadvanced finished round',
+  /playCount: playCount \+ \(live \? 0 : 1\)/.test(playSrc),
+  true
+);
+
 console.log(failures ? `\n${failures} FAILING` : '\nall streak checks passed');
 process.exit(failures ? 1 : 0);

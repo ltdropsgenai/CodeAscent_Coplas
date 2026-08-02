@@ -220,9 +220,12 @@ export default function Home() {
               it is addressed explicitly. Endless play is its own thing and says
               so. `playedDaily` swaps the label once it has been finished, so
               the screen stops inviting a replay of a board already recorded. */}
+          {/* The route changes with the label. An earlier version swapped the
+              text to "Ver resultado" and kept pushing /play?daily=1, which
+              dealt a fresh unsolved copy of the copla just completed. */}
           <GradientButton
             label={playedDaily ? t.home.viewResult : t.home.playDaily}
-            onPress={() => router.push('/play?daily=1')}
+            onPress={() => router.push(playedDaily ? '/play?daily=1&result=1' : '/play?daily=1')}
             size="lg"
             style={{ marginTop: 4 }}
           />
