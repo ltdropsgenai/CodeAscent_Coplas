@@ -32,7 +32,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 // app down rather than one card or one background. scripts/optimize-scenes.mjs
 // rewrites those scene paths by hand, which is exactly the kind of edit that
 // deserves a gate behind it.
-const SOURCES = ['cardImages.ts', 'audioAssets.ts', 'cardVideos.ts', 'sceneImages.ts'].map((f) =>
+const SOURCES = ['cardImages.ts', 'audioAssets.ts', 'cardVideos.ts', 'sceneImages.ts', 'abuelaAssets.ts'].map((f) =>
   join(root, 'src', 'data', f)
 );
 

@@ -28,6 +28,7 @@ import {
   getStats,
   markAchievementsSeen,
   saveSession,
+  setAbuelaNod,
   type CardUse,
   type Stats,
 } from '../src/storage/store';
@@ -664,7 +665,12 @@ export default function Play() {
         computeAchievements({ stats: s, seenCount: Object.keys(seenCards).length }),
         celebrated
       );
-      if (fresh.length) markAchievementsSeen(fresh.map((a) => a.id));
+      if (fresh.length) {
+        markAchievementsSeen(fresh.map((a) => a.id));
+        // Home is where progress is shown, so Home is where she reacts. One
+        // flag rather than a second notion of "something special happened".
+        setAbuelaNod();
+      }
     })();
     return () => {
       active = false;

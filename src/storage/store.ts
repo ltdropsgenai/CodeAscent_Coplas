@@ -39,6 +39,7 @@ const K_TOTALS = 'coplas.totals.v1';
 const K_SEEN = 'coplas.seen.v1'; // Record<cardId, timesSeen>
 const K_ACHIEVEMENTS = 'coplas.achievements.v1'; // string[] of celebrated ids
 const K_SESSION = 'coplas.session.v1'; // the round in progress, if any
+const K_ABUELA_NOD = 'coplas.abuelaNod.v1'; // one-shot: something was earned
 
 /**
  * Live rounds are unbounded, so the detailed list is capped. Bundled/archive
@@ -244,6 +245,25 @@ export async function markAchievementsSeen(ids: string[]): Promise<void> {
   const seen = new Set(await getSeenAchievements());
   for (const id of ids) seen.add(id);
   await AsyncStorage.setItem(K_ACHIEVEMENTS, JSON.stringify([...seen]));
+}
+
+/**
+ * One-shot: something was earned since Home was last seen.
+ *
+ * Separate from the achievements bookkeeping on purpose. Those are marked seen
+ * the instant they resolve, at the end of a round, because the achievements
+ * screen needs that. This flag exists so Home can react ONCE to the same event
+ * without changing when badges are banked.
+ */
+export async function setAbuelaNod(): Promise<void> {
+  await AsyncStorage.setItem(K_ABUELA_NOD, '1');
+}
+
+/** Reads AND clears — this is the one-shot. A second read returns false. */
+export async function takeAbuelaNod(): Promise<boolean> {
+  const v = await AsyncStorage.getItem(K_ABUELA_NOD);
+  if (v) await AsyncStorage.removeItem(K_ABUELA_NOD);
+  return !!v;
 }
 
 export async function getSeenCards(): Promise<Record<string, number>> {

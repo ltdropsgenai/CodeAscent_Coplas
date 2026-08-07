@@ -8,6 +8,8 @@ import { CardTile } from '../src/components/CardTile';
 import { ScenicBackground } from '../src/components/ScenicBackground';
 import { useI18n } from '../src/i18n';
 import { saveSettings } from '../src/storage/store';
+import { Abuela } from '../src/components/Abuela';
+import { useAudio } from '../src/audio';
 
 /** Bilingual copy for the tutorial. */
 const T = {
@@ -15,6 +17,10 @@ const T = {
     skip: 'Saltar',
     next: 'Siguiente',
     stepOf: (a: number, b: number) => `${a} de ${b}`,
+    abuelaTitle: 'Antes de empezar',
+    abuela1: 'De niña, jugábamos lotería en la mesa de mi abuela. Frijoles para marcar, todos gritando.',
+    abuela2: 'Antes de cada carta se cantaba un versito. Una copla. De ahí el nombre de este juego.',
+    abuela3: 'Aquí no cantamos — aquí buscamos. Dieciséis cartas, cuatro grupos de cuatro. Encuéntralos.',
     goalTitle: 'El objetivo',
     goalBody:
       'Cada día hay 16 cartas que esconden 4 grupos de 4. Tu misión es encontrar los cuatro grupos.',
@@ -42,6 +48,10 @@ const T = {
     skip: 'Skip',
     next: 'Next',
     stepOf: (a: number, b: number) => `${a} of ${b}`,
+    abuelaTitle: 'Before we start',
+    abuela1: "When I was small, we played lotería at my grandmother's table. Beans for markers, everybody shouting.",
+    abuela2: "Before each card, the caller would sing a little verse. A copla. That's where this game gets its name.",
+    abuela3: "Here we don't sing — here we look. Sixteen cards, four groups of four. Go find them.",
     goalTitle: 'The goal',
     goalBody:
       'Every day there are 16 cards hiding 4 groups of 4. Your job is to find all four groups.',
@@ -66,7 +76,7 @@ const T = {
   },
 } as const;
 
-const STEPS = 4;
+const STEPS = 5;
 
 // Practice: 4 "sky" cards + 4 distractors.
 const SKY = ['la_luna', 'la_estrella', 'el_sol', 'el_mundo'];
@@ -85,8 +95,10 @@ export default function Tutorial() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const { lang, setLang } = useI18n();
+  const { soundEnabled } = useAudio();
 
   const [step, setStep] = useState(0);
+  const [beat, setBeat] = useState<1 | 2 | 3>(1);
 
   // Practice state
   const [selected, setSelected] = useState<string[]>([]);
@@ -122,7 +134,7 @@ export default function Tutorial() {
     }
   }
 
-  const canAdvance = step !== 1 || solved;
+  const canAdvance = step !== 2 || solved;
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
@@ -140,6 +152,28 @@ export default function Tutorial() {
 
       <ScrollView contentContainerStyle={styles.body}>
         {step === 0 && (
+          <Step title={t.abuelaTitle}>
+            {/* A tap advances her too. A beat that can only be left by waiting
+                out a video is a trap, and reduce-motion turns the video into a
+                still with no end event at all. */}
+            <Pressable
+              onPress={() => setBeat((b) => (b < 3 ? ((b + 1) as 1 | 2 | 3) : b))}
+              style={{ alignSelf: 'stretch' }}
+            >
+              <Abuela
+                beat={beat}
+                lang={lang}
+                pose="greeting"
+                muted={!soundEnabled}
+                onEnd={() => setBeat((b) => (b < 3 ? ((b + 1) as 1 | 2 | 3) : b))}
+                style={{ marginBottom: 18 }}
+              />
+            </Pressable>
+            <Text style={styles.p}>{t[`abuela${beat}` as 'abuela1' | 'abuela2' | 'abuela3']}</Text>
+          </Step>
+        )}
+
+        {step === 1 && (
           <Step title={t.goalTitle}>
             <Text style={styles.p}>{t.goalBody}</Text>
             <View style={styles.miniGrid}>
@@ -154,7 +188,7 @@ export default function Tutorial() {
           </Step>
         )}
 
-        {step === 1 && (
+        {step === 2 && (
           <Step title={t.tryTitle}>
             <Text style={styles.p}>{t.tryPrompt}</Text>
             <View style={styles.practice}>
@@ -193,7 +227,7 @@ export default function Tutorial() {
           </Step>
         )}
 
-        {step === 2 && (
+        {step === 3 && (
           <Step title={t.rulesTitle}>
             <Bullet dotColor={colors.danger} text={t.rulesMistakes} />
             <View style={styles.tierRow}>
@@ -209,7 +243,7 @@ export default function Tutorial() {
           </Step>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <Step title={t.readyTitle}>
             <Text style={styles.bigEmoji}>🎴</Text>
             <Text style={styles.p}>{t.readyBody}</Text>

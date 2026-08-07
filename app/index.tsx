@@ -18,11 +18,34 @@ import { useAudio } from '../src/audio';
 import { GradientButton } from '../src/components/GradientButton';
 import { NavRow } from '../src/components/NavRow';
 import { CardVideo } from '../src/components/CardVideo';
+import { Abuela, type AbuelaPose } from '../src/components/Abuela';
 import { ANIMATED_CARD_IDS } from '../src/data/cardVideos';
 import { thumbSource } from '../src/data/cardImages';
 import { getTodaysPuzzle } from '../src/data/puzzles';
 import { computeAchievements, unlockedCount } from '../src/game/achievements';
-import { getResult, getSeenCards, getStats, type Stats } from '../src/storage/store';
+import {
+  getResult,
+  getSeenCards,
+  getStats,
+  takeAbuelaNod,
+  type Stats,
+} from '../src/storage/store';
+
+/**
+ * Provisional. She is on Home to see whether she reads as part of the game's
+ * furniture or as clutter. Removing her is this one line — nothing else should
+ * ever depend on it being true.
+ */
+const ABUELA_ON_HOME = true;
+
+/**
+ * Her width, as a fraction of the design's full size — she scales with the fit
+ * factor exactly as the hero card beside her does. There is deliberately no
+ * height term in the budget below: she is positioned ABSOLUTELY, out of flow,
+ * so she contributes nothing to the height the solver has to fit. See the
+ * render for the coordinates and what they were checked against.
+ */
+const ABUELA_W_PT = 96;
 
 // ── Fitting home onto one screen ───────────────────────────────────────────
 // Home must never need scrolling to reach the menu. Hard-coding smaller sizes
@@ -120,6 +143,37 @@ export default function Home() {
   /** Whether today's copla has already been finished. Drives the CTA label. */
   const [playedDaily, setPlayedDaily] = useState(false);
 
+  /**
+   * 'proud' only when a round has just banked an achievement, and only once.
+   * The results screen deliberately shows no badges (see app/play.tsx) — this
+   * is the same event surfacing where progress already lives.
+   */
+  const [abuelaPose, setAbuelaPose] = useState<AbuelaPose>('home');
+  useFocusEffect(
+    useCallback(() => {
+      // The kill switch must not have side effects. takeAbuelaNod() clears the
+      // flag as it reads, so running it with ABUELA_ON_HOME = false would burn
+      // a banked nod that nothing displays — turning her off would silently
+      // eat the achievement rather than just hiding her.
+      if (!ABUELA_ON_HOME) return;
+      let on = true;
+      // takeAbuelaNod clears as it reads, so she is proud on this visit and
+      // back to 'home' on the next one.
+      //
+      // The pose is SET on both branches, not only when a nod is pending. This
+      // is a Stack navigator: Home stays mounted underneath a round, so its
+      // state survives the trip. A `if (nod) setPose('proud')` would clear the
+      // stored flag and then leave her proud for the rest of the process —
+      // the one-shot would be one-shot in storage only.
+      takeAbuelaNod().then((nod) => {
+        if (on) setAbuelaPose(nod ? 'proud' : 'home');
+      });
+      return () => {
+        on = false;
+      };
+    }, [])
+  );
+
   // A different animated card greets you each time the app is opened.
   const [heroId] = useState(
     () => ANIMATED_CARD_IDS[Math.floor(Math.random() * ANIMATED_CARD_IDS.length)]
@@ -201,6 +255,45 @@ export default function Home() {
               <CardVideo cardId={heroId} cornerRadius={8} />
             </View>
           )}
+
+          {/* Abuela stands in the gutter beside the hero card.
+
+              ABSOLUTELY positioned, so she costs the fit solver ZERO height
+              and the "home never needs scrolling" rule above is untouched. In
+              flow she was 120 pt of non-scalable height: that overflowed an
+              iPhone SE outright and pulled every other handset from s≈0.87
+              down to s≈0.67. Out of flow she costs nothing, on any screen.
+
+              THE COORDINATES, and what they were checked against. `top` and
+              `right` are read against this `today` block, whose own children
+              run: hero card, COPLA DE HOY kicker, the #84 numeral, the date,
+              then the two CTAs. She occupies y ∈ [px(20), px(20) + px(96)·1.25]
+              — at s=0.87 that is 17…121, entirely inside the band the hero
+              card alone owns (4…153). The kicker does not start until ~167,
+              the first CTA not until ~320. On an SE at s=0.51 she is 10…71
+              against a card of 4…91: still inside it.
+
+              Horizontally she ends flush with the block's right edge while
+              the card is centred, so she can only reach the card if
+              160·s > width/2 — s > 1.07 on the narrowest handset we fit, and
+              s is capped at 1. It cannot happen. She is likewise clear of the
+              centred text column (~x 109…234 at its widest, in either
+              language), though the vertical separation already settles it.
+
+              She scales with s like the card does: out of flow that costs the
+              solver nothing, and it keeps her the card's companion instead of
+              a fixed sticker that swallows a small screen.
+
+              pointerEvents="none" so she never eats a tap meant for a CTA. */}
+          {ABUELA_ON_HOME && (
+            <View
+              pointerEvents="none"
+              style={{ position: 'absolute', top: px(20), right: 0, width: px(ABUELA_W_PT) }}
+            >
+              <Abuela pose={abuelaPose} />
+            </View>
+          )}
+
           <Text style={styles.cardKicker}>{t.home.todaysCopla}</Text>
           <Text style={[styles.cardNumber, { fontSize: tx(48), lineHeight: tx(48) * 1.15 }]}>
             #{puzzle.number}
