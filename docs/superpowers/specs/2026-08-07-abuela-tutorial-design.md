@@ -164,3 +164,32 @@ gate in this repo exists because something was asserted and never checked.
 - `select.mp3` (a failed render at -77 dBFS RMS, needs regenerating) and
   `grupo.mp3` (clipping at +1.0 dBFS). Both are real and both belong to an SFX
   pass with its own gate.
+
+## Parked: Abuela as the dealer between rounds
+
+Proposed 2026-08-07, after build 23 shipped the deal animation. **Not decided.
+Do not build until a real session has been played.**
+
+The idea: she shuffles the deck between rounds, and the shuffle runs into the
+deal that already exists — she becomes the dealer rather than a spectator, one
+continuous gesture instead of two unrelated animations. One clip, language
+agnostic, no lip-sync, so it costs a fraction of the tutorial beats. A shuffle
+is a TRANSITION, not a performance, and transitions survive repetition in a way
+performances do not; a dealer shuffles every hand and nobody tires of it.
+
+**She does not speak here.** The original proposal had her say "bravo" on every
+win. Rejected, by the same reasoning as video-on-every-win and for the second
+time in one conversation: wins feel varied because they draw on 46 lines cast by
+region, and replacing that with one repeated word trades all of it away. If the
+word did not replace them, two voices would congratulate the player over the
+same second.
+
+**Why it is parked rather than planned.** The gap between rounds is the moment a
+player repeats most, and the deal was deliberately made shorter after round one
+to keep it from becoming friction. Whether that gap wants more in it or less is
+answerable only after a proper session with build 23 — which had been in the
+user's hands for about an hour when this was proposed. Deciding now means
+guessing at it twice.
+
+Revisit after twenty or so continuous rounds on 23. If the between-rounds beat
+feels empty, she goes there. If it already feels long, this was saved work.
