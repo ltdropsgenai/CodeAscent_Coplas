@@ -38,17 +38,17 @@ Three beats, ~7 seconds each, ~20 seconds per language.
 
 **Español**
 
-1. "Cuando yo era niña, jugábamos lotería en la mesa de mi abuela. Frijoles para
-   marcar, y todos gritando."
-2. "Antes de cada carta, el que cantaba decía un versito. Una copla. De ahí viene
-   el nombre de este juego."
+1. "De niña, jugábamos lotería en la mesa de mi abuela. Frijoles para marcar,
+   todos gritando."
+2. "Antes de cada carta se cantaba un versito. Una copla. De ahí el nombre de
+   este juego."
 3. "Aquí no cantamos — aquí buscamos. Dieciséis cartas, cuatro grupos de cuatro.
    Encuéntralos."
 
 **English**
 
-1. "When I was small, we played lotería at my grandmother's table. Beans to mark
-   your card, and everybody shouting."
+1. "When I was small, we played lotería at my grandmother's table. Beans for
+   markers, everybody shouting."
 2. "Before each card, the caller would sing a little verse. A copla. That's where
    this game gets its name."
 3. "Here we don't sing — here we look. Sixteen cards, four groups of four. Go
@@ -193,3 +193,110 @@ guessing at it twice.
 
 Revisit after twenty or so continuous rounds on 23. If the between-rounds beat
 feels empty, she goes there. If it already feels long, this was saved work.
+
+## Casting: Grandma Aurora (es-AR), and why the accent was accepted
+
+**Voice: `aYQAm4rWuigkeuRA5i92`** — "Grandma Aurora", ElevenLabs, `es-AR`, age
+`old`, tagged for character animation. One voice for BOTH languages: her Spanish
+accent carries into English through the multilingual model, so the English
+Abuela sounds like the same woman rather than an American stand-in.
+
+**She is Argentine, and the game is Mexican.** This was chosen with the conflict
+understood. `app/play.tsx` takes the opposite line for the celebration pack —
+regionally marked slang is cast only to voices from that region, "because an
+actor performing another country's slang is exactly what this audience hears
+instantly" — and the primary market is Mexico and US-Hispanic.
+
+Accepted anyway, for three reasons:
+
+1. She is the only voice available that is actually a grandmother. Every
+   alternative was middle-aged, which mismatches the approved stills and cannot
+   be fixed by settings — cadence can suggest age, timbre cannot invent it.
+2. **The script carries no regional slang.** It was written plain to avoid
+   factual claims, and the side effect is near-neutral Latin American Spanish.
+   There is no *órale* or *qué padre* to expose her. The one exposed word is
+   *frijoles*, which an Argentine would more likely call *porotos*.
+3. The alternative mismatch was not cheaper. A middle-aged Mexican voice over
+   visibly elderly stills is also wrong, and the accent problem cannot be
+   corrected after six lip-synced clips exist, while the stills could have been.
+
+The rejected alternative was Fernanda (`ARmPWZKt7WpXh6QDHA6x`, es-MX,
+middle-aged) with the stills regenerated a decade younger. Recorded here because
+it is the fallback if Aurora's accent proves distracting in play.
+
+**Settings:** speed 0.95, stability 0.45, style 0.30, `eleven_multilingual_v2`.
+Slowed because cadence carries age better than timbre. Any regeneration must use
+these, or the beats will not match each other.
+
+## Amendment 2026-08-07: ES beat 1 reworded for the accent
+
+The original line was "Cuando **yo** era niña… **y** todos gritando." Both
+italicised words are `y` sounds, and Rioplatense Spanish renders `ll` and `y` as
+*sh* — sheísmo, the most recognisable marker in Latin American Spanish, which a
+Mexican listener places in one syllable. With Aurora cast as an Argentine voice,
+those two sounds in the opening sentence were the whole exposure: beats 2 and 3
+contain no `ll` or `y` at all, and beat 3's `Encuéntralos` cannot leak voseo
+because the TTS reads the tú form as written.
+
+Rewording removed both triggers, kept the meaning and the warmth, and made the
+line a word shorter. What remains is intonation, which is far subtler.
+
+Amended BEFORE any video existed, which is the only window in which the locked
+script is cheap to change. The lock is not that the words can never move; it is
+that they must not move once six lip-synced clips depend on them.
+
+The English beat 1 is unchanged — no accent issue exists in English, and "When I
+was small" already parallels "De niña".
+
+## Amendment 2026-08-07: ES beat 2 shortened to fit the clip
+
+The line was cut off mid-speech in the generated video, twice — first at a 7
+second clip and again at 10.
+
+Root cause was mine: the first pass set each clip's duration by ESTIMATING how
+long the speech would run, and Spanish runs slower per character than the
+estimate assumed. ES beat 2 was the longest Spanish line at 102 characters,
+against 89 and 90 for the two beats that played correctly.
+
+The cloud session is firewalled from the ElevenLabs and Higgsfield CDNs, so the
+audio could not be measured directly from there — which is exactly why the
+estimate was made in the first place, and exactly why it was wrong. Rather than
+keep raising the duration against a model whose output length could not be
+verified, the line was cut to 84 characters: shorter than beat 1, which plays.
+
+Meaning is unchanged and arguably improved — "se cantaba" puts the singing in
+the foreground, which is the point of the beat.
+
+The lasting fix is scripts/fetch-abuela-video.mjs, which trims every clip to the
+MEASURED end of speech via silence detection on the video's own audio track,
+rather than to a duration anyone guessed. Same correction master-voice.mjs makes
+to the voice lines, for the same reason.
+
+English beat 2 was left alone: it is 102 characters but plays correctly, because
+English runs faster per character.
+
+## Amendment 2026-08-07: EN beat 1 shortened for lip-sync
+
+Reported as not properly synced. At 111 characters it was the longest line in
+the script — longer than ES beat 2, which had already failed twice for related
+reasons. English runs faster per character than Spanish, so it did not run out
+of clip the way ES2 did; the sync itself degraded.
+
+Cut to 100 characters, below EN beat 2 at 102, which syncs correctly. "Beans for
+markers" replaces "beans to mark your card, and" — tighter, and closer to how
+someone actually speaks.
+
+A pattern was claimed here — "every clip that fails is the longest line for its
+language" — and it was WRONG. EN beat 3 then failed to sync at 84 characters,
+the shortest line in the whole script. The claim was made on one data point per
+language and stated as a rule.
+
+What is actually supported: over-long lines caused the two TRUNCATIONS, and
+shortening fixed both. Sync quality is a separate matter and appears to be
+partly stochastic — wan2_7 is a sampling model, and one poor take in six is
+ordinary variance rather than evidence of a rule. Treat a sync failure by
+regenerating the same input first, and only change the words if the same input
+fails twice.
+
+Length still matters for truncation. 84-102 characters is proven to fit; longer
+lines are what ran out of clip.
