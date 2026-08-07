@@ -300,3 +300,65 @@ fails twice.
 
 Length still matters for truncation. 84-102 characters is proven to fit; longer
 lines are what ran out of clip.
+
+## Amendment 2026-08-07: Spanish beat 3 had been shipping cut off
+
+Reported as "out of sync, with obvious breaks where the 3 clips were joined."
+Two of those three words were wrong, and finding out which took two measurement
+bugs of my own.
+
+**The clip was truncated, not desynchronised.** The generator cut Spanish beat 3
+while she was still talking: the last 0.4 s of the original 9.03 s file measures
+−27 dB, which is speech. `optimize-abuela-video.mjs` then made it worse. It
+decided a silence window was the trailing one when it closed within 350 ms of
+the file ending, and the last window it could see was a MID-SENTENCE PAUSE that
+closed 65 ms before the file did. Inside the guard band, read as the tail,
+everything after it discarded. The clip shipped at 8.93 s. The regenerated one
+runs to 10.76 s. Roughly 1.8 seconds of that beat had never been heard.
+
+**The joins are not the problem.** Measured at the resolution that ships, PSNR
+between one clip's last frame and the next clip's first:
+
+    join      before   after
+    es 1→2     22.6     17.5
+    es 2→3     24.1     25.1
+    en 1→2     23.1     22.5
+    en 2→3     22.6     19.9
+
+English measures WORSE at both joins than the Spanish that was reported broken,
+and English was reported as landing fine. Asking her in the prompt to settle
+back into the opening pose as the last words land did not work. Every clip is
+generated from the same start image, so each opens on the identical portrait and
+closes wherever her motion left her; closing that gap for real means chaining —
+feeding clip N's last frame in as clip N+1's start image — which is available
+and was not spent, because the evidence says the seam is not what anyone noticed.
+What ships instead is a 200 ms dip in `app/tutorial.tsx`: the picture inside the
+frame fades to the dark panel, the clip AND the caption change in that dark
+moment, and it comes back over 260 ms. The gold hairline never moves.
+
+**Two measurement bugs, same family as the one this project already named.**
+
+1. `ffErr` returned `''` on success and read stderr only from the exception. But
+   ffmpeg exits 0 for both `silencedetect` and `psnr`, so it read nothing every
+   time. The trim became a no-op that printed `11.0s → 11.0s` and called it
+   success. *A checker that reads less than the data it checks doesn't fail, it
+   approves* — written in these docs, and written again here by me.
+2. Reference PSNR figures of 27–29 dB were measured on 200 px thumbnails and
+   then quoted as thresholds against 640 px output, where the same joins measure
+   17–25 dB. PSNR is not scale-invariant. The script now prints before-and-after
+   at one resolution and no verdict.
+
+**The lasting fix** is `scripts/lib/speech-end.mjs` — ONE copy, imported by all
+three scripts that trim a clip. It reverses the audio and looks for silence at
+the start, so trailing silence is found by construction and there is no "is this
+really the end" judgement left to get wrong. A clip still above the threshold at
+its last sample reports itself as truncated, which now blocks promotion instead
+of being trimmed shorter still. The three previous copies of this logic were
+pasted from one another, exactly as `sim-rounds.mjs` inherited the `trapsPool()`
+bug by copy-paste.
+
+**Operational note.** Do not run `git` through the device bridge. The VM cannot
+delete files, so any git command that creates `.git/index.lock` leaves it behind
+and blocks the next command on Windows. Both `index.lock` incidents in this work
+were caused this way, by me, and the first one was misdiagnosed as a crashed
+editor.

@@ -42,3 +42,9 @@ google-services.json
 
 # Scratch
 fp.mjs
+
+# Abuela review staging. Regenerated clips land here to be watched BEFORE they
+# replace anything in assets/abuela/, and _abuela_prev holds the copy that was
+# replaced so a bad take can be undone. Both are large and neither ships.
+scripts/_abuela_new/
+scripts/_abuela_prev/

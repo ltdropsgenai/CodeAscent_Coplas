@@ -15,7 +15,15 @@
  * The frame is SQUARED with a gold hairline. Not rounded. See theme.ts.
  */
 import { useEffect, useState } from 'react';
-import { AccessibilityInfo, Image, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+import {
+  AccessibilityInfo,
+  Animated,
+  Image,
+  StyleSheet,
+  View,
+  type StyleProp,
+  type ViewStyle,
+} from 'react-native';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { colors, radius } from '../theme';
 import { ABUELA_POSES, abuelaClip, type AbuelaLang } from '../data/abuelaAssets';
@@ -30,11 +38,21 @@ interface Props {
   pose: AbuelaPose;
   /** Muted playback — the caller decides, because the app has a sound toggle. */
   muted?: boolean;
+  /**
+   * Opacity of the picture INSIDE the frame, so a caller can dip between beats.
+   * The frame itself does not fade: the gold hairline and the dark panel stay
+   * put, and the picture changes inside them. Fading the whole frame instead
+   * reads as the panel flickering.
+   *
+   * Owned by the caller because the caption has to change in the same dark
+   * moment as the clip, and only the caller knows about the caption.
+   */
+  contentOpacity?: Animated.AnimatedInterpolation<number> | Animated.Value;
   onEnd?: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
-export function Abuela({ beat, lang = 'es', pose, muted, onEnd, style }: Props) {
+export function Abuela({ beat, lang = 'es', pose, muted, contentOpacity, onEnd, style }: Props) {
   const [reduced, setReduced] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -85,16 +103,18 @@ export function Abuela({ beat, lang = 'es', pose, muted, onEnd, style }: Props) 
 
   return (
     <View style={[styles.frame, style]}>
-      {useVideo ? (
-        <VideoView
-          style={styles.fill}
-          player={player}
-          nativeControls={false}
-          contentFit="cover"
-        />
-      ) : (
-        <Image source={ABUELA_POSES[pose]} style={styles.fill} resizeMode="cover" />
-      )}
+      <Animated.View style={[styles.fill, contentOpacity != null && { opacity: contentOpacity }]}>
+        {useVideo ? (
+          <VideoView
+            style={styles.fill}
+            player={player}
+            nativeControls={false}
+            contentFit="cover"
+          />
+        ) : (
+          <Image source={ABUELA_POSES[pose]} style={styles.fill} resizeMode="cover" />
+        )}
+      </Animated.View>
     </View>
   );
 }

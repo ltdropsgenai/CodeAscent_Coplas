@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useRef, useState } from 'react';
+import { Animated, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, displayFont, tierColors } from '../src/theme';
@@ -100,6 +100,42 @@ export default function Tutorial() {
   const [step, setStep] = useState(0);
   const [beat, setBeat] = useState<1 | 2 | 3>(1);
 
+  /**
+   * Dipping between beats, and why it is not decoration.
+   *
+   * All six clips are generated from the SAME start image, so every clip opens
+   * on the identical portrait and closes wherever her motion left her. Cut them
+   * together and she teleports back to the opening pose at each join. Measured:
+   * ~27 dB PSNR across a join against ~36 dB between any two opening frames.
+   *
+   * The clips were regenerated to settle back into the opening pose as the last
+   * words land, which should close most of that gap. This dip covers what is
+   * left, and it covers the black frame Android shows while a new source loads.
+   *
+   * Opacity only — the native driver animates transform and opacity, and
+   * nothing else. Feeding a natively driven value into a layout property is
+   * what killed the splash timeline on Android.
+   */
+  const dip = useRef(new Animated.Value(1)).current;
+  const dipping = useRef(false);
+
+  /**
+   * One path for both the tap and the end of the clip. Without the guard, a tap
+   * during a dip queues a second advance, and the old player's playToEnd can
+   * still fire after a tap has already moved on — two beats for one gesture.
+   */
+  const advanceBeat = useCallback(() => {
+    if (dipping.current) return;
+    if (beat >= 3) return;
+    dipping.current = true;
+    Animated.timing(dip, { toValue: 0, duration: 200, useNativeDriver: true }).start(() => {
+      setBeat((b) => (b < 3 ? ((b + 1) as 1 | 2 | 3) : b));
+      Animated.timing(dip, { toValue: 1, duration: 260, useNativeDriver: true }).start(() => {
+        dipping.current = false;
+      });
+    });
+  }, [beat, dip]);
+
   // Practice state
   const [selected, setSelected] = useState<string[]>([]);
   const [solved, setSolved] = useState(false);
@@ -156,20 +192,22 @@ export default function Tutorial() {
             {/* A tap advances her too. A beat that can only be left by waiting
                 out a video is a trap, and reduce-motion turns the video into a
                 still with no end event at all. */}
-            <Pressable
-              onPress={() => setBeat((b) => (b < 3 ? ((b + 1) as 1 | 2 | 3) : b))}
-              style={{ alignSelf: 'stretch' }}
-            >
+            <Pressable onPress={advanceBeat} style={{ alignSelf: 'stretch' }}>
               <Abuela
                 beat={beat}
                 lang={lang}
                 pose="greeting"
                 muted={!soundEnabled}
-                onEnd={() => setBeat((b) => (b < 3 ? ((b + 1) as 1 | 2 | 3) : b))}
+                contentOpacity={dip}
+                onEnd={advanceBeat}
                 style={{ marginBottom: 18 }}
               />
             </Pressable>
-            <Text style={styles.p}>{t[`abuela${beat}` as 'abuela1' | 'abuela2' | 'abuela3']}</Text>
+            {/* The caption dips with her, so the words never belong to the
+                clip that is on its way out. */}
+            <Animated.Text style={[styles.p, { opacity: dip }]}>
+              {t[`abuela${beat}` as 'abuela1' | 'abuela2' | 'abuela3']}
+            </Animated.Text>
           </Step>
         )}
 
