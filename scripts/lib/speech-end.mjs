@@ -60,6 +60,14 @@ export function duration(file) {
  *   truncated  true when the audio is still above the threshold at the last
  *              sample — the clip ran out before she finished
  */
+/** Mean level over the final 150 ms. Below −45 dBFS is a decay, not a cut. */
+function quietAtEnd(file) {
+  const out = ff(['-v', 'info', '-sseof', '-0.15', '-i', file, '-af', 'volumedetect', '-f', 'null', '-']);
+  const m = out.match(/mean_volume:\s*(-?[\d.]+) dB/);
+  if (!m) throw new Error(`volumedetect produced no reading for ${file} — the measurement is broken, not the clip`);
+  return Number(m[1]) < -45;
+}
+
 export function speechEnd(file) {
   const dur = duration(file);
   const out = ff(['-v', 'info', '-i', file,
@@ -76,7 +84,19 @@ export function speechEnd(file) {
   // In the reversed signal, a window starting at (or just after) zero is the
   // original's trailing silence. Anything later is a pause in the middle.
   const leads = starts.map((s, i) => [s, ends[i]]).filter(([s]) => s <= 0.05);
-  if (!leads.length) return { end: dur, trailing: 0, truncated: true, dur };
+  if (!leads.length) {
+    // silencedetect needs a window at least `d` long below the threshold. A
+    // clip that ends the instant the last word decays has a real tail, just a
+    // shorter one than the detector can see, and calling that "cut off mid-word"
+    // is a false alarm — it blocked a take whose final syllable was complete.
+    //
+    // So ask the amplitude directly. Speech that was severed is LOUD at the last
+    // sample: the Spanish beat 3 that actually shipped truncated measured
+    // −27 dBFS across its final 0.4 s. A decayed ending measures below −45.
+    return quietAtEnd(file)
+      ? { end: dur, trailing: 0.15, truncated: false, dur }
+      : { end: dur, trailing: 0, truncated: true, dur };
+  }
 
   const trailing = leads[0][1];
   if (!Number.isFinite(trailing)) return { end: dur, trailing: 0, truncated: true, dur };

@@ -362,3 +362,46 @@ delete files, so any git command that creates `.git/index.lock` leaves it behind
 and blocks the next command on Windows. Both `index.lock` incidents in this work
 were caused this way, by me, and the first one was misdiagnosed as a crashed
 editor.
+
+## Amendment 2026-08-07: one take per language, not three clips
+
+"I don't want this to play like 3 clips joined, I want it to play like one
+entire video clip." Every earlier attempt treated that as a presentation problem
+— hard cut, then a dip, then a cross-dissolve — and each one only changed what
+the seam looked like. Three takes do not become one take.
+
+**The narration is now a single continuous take per language.** A 30-second
+unbroken shot was generated once (seedance_2_5, t2v), then lip-synced to the
+full narration in one pass (sync_so) against Aurora's read of the locked script,
+generated through the user's own ElevenLabs voice and imported to the generator
+by URL. Two files: `assets/abuela/es.mp4` and `en.mp4`, 23.71 s each. There is
+no second clip in either language, so there is nothing that can show a join.
+The captions follow playback time from `src/data/abuelaMarks.json`.
+
+### The ceiling that forced three clips in the first place
+Every model here that lip-syncs to a SUPPLIED audio track caps at 15 seconds:
+wan2_7, minimax_h3 and kling3_0 all clamp a 30-second request to 15. The only
+model that generates 30 seconds, seedance_2_5, rejects reference images — its
+IP check on the reference never completes, across three separate copies of the
+portrait and ten minutes of retries. So the 30-second plate had to be generated
+from the character DESCRIPTION rather than from the approved portrait.
+
+**The open risk that follows from that:** she may not match the Home still and
+the four achievement poses. If she has drifted, re-derive those stills from a
+frame of this take. Do not go back to three clips.
+
+### Two more measurement defects, both mine
+- **The trim gate raised a false alarm.** `sync_mode: 'cut_off'` ends the file
+  the instant the audio ends, so the trailing silence is ~0.15 s — shorter than
+  the minimum window `silencedetect` can see. No window found was being read as
+  "cut off mid-word", and it blocked a take whose last syllable was complete.
+  `speech-end.mjs` now asks the amplitude directly in that case: below −45 dBFS
+  across the final 150 ms is a decay, above it is a severed word. The Spanish
+  beat 3 that really did ship truncated measures −27 dB and is still caught.
+- **The caption marks were right in Spanish and wrong in English.** The beat
+  boundary after "everybody shouting" sits at 7.72–8.04 s with a floor between
+  −40 and −38 dB, so at −40 dB / 0.30 s it was invisible and the
+  nearest-to-one-third rule fell back on the sentence break at 4.34 s — the
+  second caption would have changed mid-sentence. Detection is now −38 dB over
+  0.15 s. **Correct in the language you happen to check is how this ships.**
+  Every candidate pause is printed for exactly that reason.
