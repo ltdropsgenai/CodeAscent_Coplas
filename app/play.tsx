@@ -12,6 +12,7 @@ import { MAX_MISTAKES, type GameState } from '../src/game/engine';
 import { composeRound } from '../src/game/composer';
 import { CardTile } from '../src/components/CardTile';
 import { SolvedGroup } from '../src/components/SolvedGroup';
+import { DealOverlay } from '../src/components/DealOverlay';
 import { WinCelebration } from '../src/components/WinCelebration';
 import { GradientButton } from '../src/components/GradientButton';
 import { buildShareText } from '../src/share/shareGrid';
@@ -438,13 +439,56 @@ export default function Play() {
   // recompose — swaps the track; leaving the screen stops it.
   useEffect(() => {
     playRoundMusic();
-    // The deal. Fires on the same frame the new board mounts, including the
-    // archive and the retry recompose — anywhere sixteen fresh cards appear,
-    // which is what the sound is describing.
-    playSfx('reparto');
+    // The deal sound, now matched to the deal it was always describing.
+    //
+    // `reparto` runs 1.480s with 0.680s of activity; `barajar` runs 1.000s with
+    // 0.588s. Measured, because the full deal is ~1.4s and the abbreviated one
+    // ~0.7s, and pairing them the other way round would leave a sound playing
+    // over an animation that had already finished — the same mismatch the voice
+    // offset had, a cue describing something that is not happening.
+    playSfx(dealtOnceRef.current ? 'barajar' : 'reparto');
     return () => stopMusic();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzle.id]);
+
+  /**
+   * The deal.
+   *
+   * Armed per puzzle id and only for a board nobody has touched. A resumed
+   * round comes back with groups already solved, and dealing sixteen face-down
+   * cards onto a half-finished board would be a lie about what is in front of
+   * you. `viewingResult` is excluded for the same reason.
+   *
+   * The grid measures itself with onLayout and the overlay is positioned to
+   * match, so the flight coordinates are local — no window-space conversion,
+   * and nothing to go wrong when the shell column width changes on a tablet.
+   */
+  const [gridBox, setGridBox] = useState<{ width: number; height: number } | null>(null);
+  const [dealing, setDealing] = useState(false);
+  const [dealSkip, setDealSkip] = useState(false);
+  const dealtRef = useRef<string | undefined>(undefined);
+  /** First deal of a visit is the full one; later rounds get the short version. */
+  const dealtOnceRef = useRef(false);
+
+  useEffect(() => {
+    if (game.viewingResult || restoring) return;
+    if (dealtRef.current === puzzle.id) return;
+    const untouched =
+      state.guesses.length === 0 && state.solved.length === 0 && state.status === 'playing';
+    if (!untouched) {
+      dealtRef.current = puzzle.id;
+      return;
+    }
+    dealtRef.current = puzzle.id;
+    setDealSkip(false);
+    setDealing(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [puzzle.id, restoring, game.viewingResult]);
+
+  const onDealDone = useCallback(() => {
+    setDealing(false);
+    dealtOnceRef.current = true;
+  }, []);
 
   // Live snapshot of whether the current round has been touched yet.
   useEffect(() => {
@@ -763,7 +807,14 @@ export default function Play() {
           game.unsolved.map((g) => <SolvedGroup key={g.theme} group={g} animate={false} />)}
 
         {boardVisible && (
-          <Animated.View style={[styles.grid, { transform: [{ translateX: shakeX }] }]}>
+          <View style={styles.gridWrap}>
+          <Animated.View
+            style={[styles.grid, { transform: [{ translateX: shakeX }], opacity: dealing ? 0 : 1 }]}
+            onLayout={(e) => {
+              const { width, height } = e.nativeEvent.layout;
+              setGridBox((b) => (b && b.width === width && b.height === height ? b : { width, height }));
+            }}
+          >
             {chunk(state.remaining, 4).map((row, ri) => (
               <View key={ri} style={styles.row}>
                 {row.map((id) => (
@@ -778,6 +829,26 @@ export default function Play() {
               </View>
             ))}
           </Animated.View>
+          {dealing && gridBox && (
+            <>
+              <DealOverlay
+                width={gridBox.width}
+                height={gridBox.height}
+                fast={dealtOnceRef.current}
+                skip={dealSkip}
+                onDone={onDealDone}
+              />
+              {/* Covers the board while the deal runs: the real tiles are still
+                  mounted underneath at opacity 0 and would otherwise take taps
+                  the player cannot see the result of. Tapping skips. */}
+              <Pressable
+                style={StyleSheet.absoluteFill}
+                onPress={() => setDealSkip(true)}
+                accessibilityLabel="Saltar reparto"
+              />
+            </>
+          )}
+          </View>
         )}
 
         {!game.relaxed && boardVisible && (
@@ -993,6 +1064,7 @@ const styles = StyleSheet.create({
   // is a proper caption, and both sit at higher contrast than before.
   sub: { color: colors.text, fontSize: 17, textAlign: 'center', opacity: 0.92 },
   session: { color: colors.accent, fontFamily: monoFont, fontSize: 14, letterSpacing: 0.2, textAlign: 'center', marginTop: 6, marginBottom: 12, fontWeight: '700' },
+  gridWrap: { position: 'relative' },
   grid: { marginTop: 2 },
   row: { flexDirection: 'row' },
   mistakes: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16 },

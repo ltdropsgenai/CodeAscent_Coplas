@@ -14,6 +14,7 @@
  */
 import { useEffect, useMemo, useRef } from 'react';
 import {
+  AccessibilityInfo,
   Animated,
   Easing,
   Image,
@@ -101,18 +102,54 @@ export function SplashSequence({ onDone }: { onDone: () => void }) {
     onDone();
   };
 
+  /**
+   * Ask whether this device wants motion BEFORE starting, not after.
+   *
+   * AppBackground has always honoured reduce-motion; this screen never did, and
+   * an intro is the single worst place to ignore it. It also matters for
+   * diagnosis: Android's "animator duration scale" and battery saver both make
+   * `Animated.timing` complete in zero time, which looks identical to a broken
+   * animation — the whole thing snaps to its final frame. If the device has
+   * asked for less motion, hold the finished frame for a beat and move on,
+   * deliberately, instead of flashing it.
+   *
+   * The 250 ms fallback matters: if the accessibility query never settles, the
+   * intro must still play rather than wait for ever on a promise.
+   */
   useEffect(() => {
-    const anim = Animated.timing(p, {
-      toValue: 1,
-      duration: DURATION,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    });
-    animRef.current = anim;
-    anim.start(({ finished }) => {
-      if (finished) setTimeout(finish, 360);
-    });
-    return () => anim.stop();
+    let cancelled = false;
+    let started = false;
+
+    const begin = (reduced: boolean) => {
+      if (cancelled || started) return;
+      started = true;
+      if (reduced) {
+        p.setValue(1);
+        setTimeout(finish, 700);
+        return;
+      }
+      const anim = Animated.timing(p, {
+        toValue: 1,
+        duration: DURATION,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      });
+      animRef.current = anim;
+      anim.start(({ finished }) => {
+        if (finished) setTimeout(finish, 360);
+      });
+    };
+
+    AccessibilityInfo.isReduceMotionEnabled()
+      .then((v) => begin(!!v))
+      .catch(() => begin(false));
+    const fallback = setTimeout(() => begin(false), 250);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(fallback);
+      animRef.current?.stop();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -143,7 +180,19 @@ export function SplashSequence({ onDone }: { onDone: () => void }) {
   // Title.
   const titleOpacity = range(0.66, 0.86, 0, 1);
   const titleY = range(0.66, 0.86, 16, 0);
-  const ruleW = range(0.72, 0.9, 0, 118);
+  /**
+   * The rule draws by SCALE, not by width.
+   *
+   * It used to be `width: ruleW`, animated off the same `p` that is started
+   * with `useNativeDriver: true` — and the native driver can only animate
+   * `transform` and `opacity`. Feeding a natively-driven value into a layout
+   * property is the classic source of "Attempting to run JS driven animation on
+   * an animated node that has been moved to native", which Android raises far
+   * more readily than iOS. One rejected node takes the whole timeline with it,
+   * and every other interpolation here hangs off `p` — so a three-pixel gold
+   * line was enough to freeze the entire intro on one platform.
+   */
+  const ruleScale = range(0.72, 0.9, 0, 1);
   const tagOpacity = range(0.8, 0.96, 0, 1);
 
   return (
@@ -243,7 +292,7 @@ export function SplashSequence({ onDone }: { onDone: () => void }) {
           <Animated.Text style={[styles.title, { opacity: titleOpacity, transform: [{ translateY: titleY }] }]}>
             Coplas
           </Animated.Text>
-          <Animated.View style={[styles.rule, { width: ruleW }]} />
+          <Animated.View style={[styles.rule, { transform: [{ scaleX: ruleScale }] }]} />
           <Animated.Text style={[styles.tag, { opacity: tagOpacity }]}>CARTAS · CONEXIONES</Animated.Text>
         </View>
       </View>
@@ -275,7 +324,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 22,
   },
-  rule: { height: 3, borderRadius: 2, backgroundColor: colors.accent, marginTop: 10, opacity: 0.85 },
+  rule: { width: 118, height: 3, borderRadius: 2, backgroundColor: colors.accent, marginTop: 10, opacity: 0.85 },
   tag: { color: colors.text, fontFamily: monoFont, fontSize: 12, letterSpacing: 4, marginTop: 12 },
   skip: { position: 'absolute', top: 46, right: 22, paddingHorizontal: 8, paddingVertical: 4 },
   skipText: { color: colors.textDim, fontSize: 15, fontWeight: '700' },
