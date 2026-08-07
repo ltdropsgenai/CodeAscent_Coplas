@@ -38,6 +38,25 @@ export const colors = {
   // Scrim over the scene background for legibility.
   scrimTop: 'rgba(8, 6, 16, 0.62)',
   scrimBottom: 'rgba(8, 6, 16, 0.86)',
+
+  /**
+   * Extra full-bleed dim on screens you READ rather than play.
+   *
+   * NOT a panel, a card, or a pill behind any row — it is edge to edge, with no
+   * border, radius or inset, so the rows still float on the scene exactly as
+   * they do on home. The scene does not go away; it sits back.
+   *
+   * The value is measured, not chosen. The scenes are mostly dark with very
+   * bright highlights: across the 32 bundled scenes the median luminance in the
+   * content band is 0.03-0.35 while the 90th percentile runs 0.18-0.94. The
+   * three-band vignette was tuned against that dark median, so wherever a bright
+   * sky lands it does almost nothing, and `textDim` came out at 1.06:1 against
+   * the worst scene and 1.69:1 against the median one. 0.66 is what it takes to
+   * clear 4.5:1 on the brightest scene in the deck. scripts/check-contrast.mjs
+   * recomputes this from the actual images and fails the build if a new scene
+   * or a nudged constant drops any screen below that.
+   */
+  readingScrim: 'rgba(8, 6, 16, 0.66)',
 };
 
 /** Soft shadow that lets text/marks float legibly directly over the scene. */

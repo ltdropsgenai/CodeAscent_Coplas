@@ -35,6 +35,13 @@ const PLAY_AUDIO: Settings['playAudio'][] = ['musica', 'tictac', 'silencio'];
  * No panels. Rows are separated by gold hairlines and float on the animated
  * scene, matching home and the rest of the CodeAscent apps — bordered boxes
  * around every setting is the giveaway house style we're avoiding.
+ *
+ * That principle survived the legibility fix. Secondary copy here was measuring
+ * 1.06:1 against the brightest scene, and the fix is NOT a card, a panel or a
+ * pill behind any of these rows: AppBackground dims the whole scene edge to edge
+ * on this route (colors.readingScrim). The rows still float on the photo. The
+ * photo just steps back while you read. Anything that adds a rounded box behind
+ * a row here is undoing a deliberate decision, not fixing an oversight.
  */
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();

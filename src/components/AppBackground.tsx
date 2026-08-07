@@ -35,6 +35,30 @@ import { CoplasMotif } from './CoplasMotif';
 const BASE_COLOR = colors.bgDeep;
 const KB_DURATION = 14000; // one direction of the ping-pong
 
+/**
+ * Routes you READ rather than play, which get the extra dim (colors.readingScrim).
+ *
+ * The split is by what the screen asks of you, not by how much text it holds.
+ * Home and the board carry their text on cards, buttons and solved-group tiles
+ * that bring their own background, so they keep the scene at full strength.
+ * These screens put body copy straight onto the photo, and body copy on a photo
+ * is the thing the vignette alone cannot carry — see colors.readingScrim.
+ *
+ * A route that is missing here does not fail loudly, it just stays hard to read,
+ * so scripts/check-contrast.mjs walks app/ and reports any screen that renders
+ * `textDim` but is not listed.
+ */
+const READING_ROUTES = new Set([
+  '/settings',
+  '/legal',
+  '/stats',
+  '/achievements',
+  '/tutorial',
+  '/support',
+  '/archive',
+  '/unlock',
+]);
+
 // Session seed so the scene-per-route mapping feels fresh each cold start.
 const SESSION_SEED = Math.floor(Math.random() * 0x7fffffff);
 
@@ -74,6 +98,18 @@ function AppBackgroundInner() {
   const fade = useRef(new Animated.Value(1)).current; // scene opacity
   const kb = useRef(new Animated.Value(0)).current;
   const bokeh = useRef(BOKEH.map(() => new Animated.Value(0))).current;
+
+  // Cross-faded rather than toggled, so moving between home and Ajustes reads as
+  // the scene settling back instead of the screen flinching.
+  const reading = READING_ROUTES.has(pathname || '/');
+  const readingDim = useRef(new Animated.Value(reading ? 1 : 0)).current;
+  useEffect(() => {
+    Animated.timing(readingDim, {
+      toValue: reading ? 1 : 0,
+      duration: 260,
+      useNativeDriver: true,
+    }).start();
+  }, [reading, readingDim]);
 
   // Respect the OS "reduce motion" setting.
   useEffect(() => {
@@ -184,7 +220,17 @@ function AppBackgroundInner() {
         style={[StyleSheet.absoluteFill, { top: '68%' }]}
       />
 
-      {/* 5. Subtle Coplas motif — drifting frijol markers + gold sparkles. */}
+      {/* 5. Extra full-bleed dim on reading screens. Deliberately absoluteFill —
+          no inset, no radius, no per-row backing — so nothing on those screens
+          gains a box or a pill. See colors.readingScrim. */}
+      <Animated.View
+        style={[
+          StyleSheet.absoluteFill,
+          { backgroundColor: colors.readingScrim, opacity: readingDim },
+        ]}
+      />
+
+      {/* 6. Subtle Coplas motif — drifting frijol markers + gold sparkles. */}
       <CoplasMotif />
     </View>
   );

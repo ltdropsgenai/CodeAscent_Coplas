@@ -63,6 +63,22 @@ export interface UseGame {
 }
 
 /**
+ * Nothing has happened to this board yet, so replacing it wholesale loses
+ * nothing. This is the guard that lets a late-arriving restore be applied
+ * safely: a board the player has started guessing on fails every clause.
+ */
+function untouched(s: GameState): boolean {
+  return (
+    s.status === 'playing' &&
+    s.guesses.length === 0 &&
+    s.solved.length === 0 &&
+    s.selected.length === 0 &&
+    s.mistakes === 0 &&
+    !s.hintUsed
+  );
+}
+
+/**
  * Drives a single puzzle: selection, submit, persistence of the final result,
  * and honoring the "relaxed" setting.
  */
@@ -91,12 +107,26 @@ export function useGame(puzzle: Puzzle, resume?: GameState | null): UseGame {
   // written for a different question.
   const hydrate = (p: Puzzle) => {
     const r = resumeRef.current;
-    return r && p.id === puzzle.id ? r : initGame(p);
+    // `r.puzzle.id`, not `p.id === puzzle.id`. The old comparison tested the
+    // argument against this hook's own puzzle, which is trivially true at every
+    // call site — so the guard the paragraph above describes did not exist, and
+    // a stale resume would have been laid over whatever board was current. It
+    // never fired only because app/play.tsx happens to set the board and the
+    // resume together.
+    return r && r.puzzle?.id === p.id ? r : initGame(p);
   };
 
   const [state, setState] = useState<GameState>(() => hydrate(puzzle));
-  /** True when this screen is showing an already-recorded result, not a round. */
-  const [viewingResult] = useState(() => resume != null && resume.status !== 'playing');
+  /**
+   * True when this screen is showing an already-recorded result, not a round.
+   *
+   * The initialiser is only a fast path for a resume that is available
+   * synchronously. It is NEVER true in practice — see the apply effect below —
+   * so the state setter is what does the real work.
+   */
+  const [viewingResult, setViewingResult] = useState(
+    () => resume != null && resume.status !== 'playing'
+  );
   const [relaxed, setRelaxed] = useState(false);
   const [alreadyPlayed, setAlreadyPlayed] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -146,6 +176,44 @@ export function useGame(puzzle: Puzzle, resume?: GameState | null): UseGame {
   // it is why a later retry can only ever add a flag, never upgrade the record
   // to a win.
   const openedFinished = useRef(resume != null && resume.status !== 'playing');
+
+  /**
+   * Apply a resume that ARRIVES, rather than one that happens to be present on
+   * the first render.
+   *
+   * `resume` is asynchronous. app/play.tsx has to read AsyncStorage before it
+   * knows whether there is a finished board to show or an interrupted one to
+   * restore, so on the first render it is `undefined` — always, for every
+   * caller. Everything this hook derived from it was derived in a useState or
+   * useRef INITIALISER, and initialisers run once: `viewingResult` and
+   * `openedFinished` were therefore pinned to false for the life of the screen,
+   * and the board itself only ever became the finished one by luck. The mount
+   * effect below re-reads the ref when its own `Promise.all` settles, so
+   * whether "Ver resultado" showed the completed copla or a fresh unsolved copy
+   * of it came down to which AsyncStorage read finished first — this hook's
+   * pair, or play.tsx's single one. That shipped in build 20 and was reported
+   * as the daily copla being playable again from its own results button.
+   *
+   * Reacting to `resume` was originally avoided so that a late restore could
+   * not stomp a board the player had already started guessing on. That concern
+   * is real, so it is enforced directly instead of by never looking: the resume
+   * is applied only to a board nothing has been done to yet.
+   */
+  const applied = useRef<GameState | null>(null);
+  useEffect(() => {
+    if (!resume || applied.current === resume) return;
+    if (resume.puzzle?.id !== puzzle.id) return;
+    applied.current = resume;
+    if (!untouched(state)) return;
+    // Set before the state, so the result-persisting effect below sees the flag
+    // in the same commit that first shows it a finished board.
+    if (resume.status !== 'playing') {
+      openedFinished.current = true;
+      setViewingResult(true);
+    }
+    setState(resume);
+  }, [resume, puzzle.id, state]);
+
   useEffect(() => {
     if (openedFinished.current) return;
     if (state.status === 'playing' || savedRef.current) return;
