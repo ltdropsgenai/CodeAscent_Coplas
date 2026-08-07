@@ -12,6 +12,7 @@
  * matching, this exits non-zero rather than quietly measuring nothing.
  */
 import { readFileSync, existsSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -48,17 +49,54 @@ function must(v, what) {
 const reg = read('src/data/abuelaAssets.ts');
 const errs = [];
 
-// 1. Every beat has a clip in every language, and the file exists.
+// 1. Every language has a narration reel, the file exists, and the caption
+//    marks land inside it in order.
+//
+//    The marks are what make one file behave like three beats. A mark past the
+//    end of the reel, or out of order, does not crash and does not look wrong
+//    to whoever built it — the caption simply never changes, which is the same
+//    invisible-to-the-builder failure this whole gate exists for.
+const marksRaw = read('src/data/abuelaMarks.json');
+let marks = {};
+try {
+  marks = JSON.parse(marksRaw);
+} catch {
+  errs.push('src/data/abuelaMarks.json is not valid JSON');
+}
+const reelSeconds = {};
 for (const lang of LANGS) {
-  for (let b = 1; b <= BEATS; b += 1) {
-    const key = `${lang}-${b}`;
-    const m = reg.match(new RegExp(`'${key}':\\s*require\\('([^']+)'\\)`));
-    if (!m) {
-      errs.push(`registry has no clip for ${key}`);
-      continue;
-    }
-    const p = join(root, 'src/data', m[1]);
-    if (!existsSync(p)) errs.push(`${key} points at a file that does not exist: ${m[1]}`);
+  const m = reg.match(new RegExp(`\\b${lang}:\\s*require\\('([^']+)'\\)`));
+  if (!m) {
+    errs.push(`registry has no narration reel for ${lang}`);
+    continue;
+  }
+  const file = join(root, 'src/data', m[1]);
+  if (!existsSync(file)) {
+    errs.push(`the ${lang} reel points at a file that does not exist: ${m[1]}`);
+    continue;
+  }
+  const r = spawnSync('ffprobe',
+    ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file],
+    { encoding: 'utf8' });
+  const dur = Number(String(r.stdout ?? '').trim());
+  if (!Number.isFinite(dur) || dur <= 0) {
+    errs.push(`ffprobe could not read a duration from the ${lang} reel — this check is measuring nothing`);
+    continue;
+  }
+  reelSeconds[lang] = dur;
+
+  const mk = marks[lang];
+  if (!Array.isArray(mk) || mk.length !== BEATS) {
+    errs.push(`${lang} needs ${BEATS} caption marks, has ${Array.isArray(mk) ? mk.length : 'none'}`);
+    continue;
+  }
+  if (mk[0] !== 0) errs.push(`${lang} caption marks must start at 0, start at ${mk[0]}`);
+  for (let i = 1; i < mk.length; i += 1) {
+    if (!(mk[i] > mk[i - 1])) errs.push(`${lang} caption mark ${i + 1} (${mk[i]}s) does not come after mark ${i} (${mk[i - 1]}s)`);
+  }
+  // A last mark at the very end means the third caption is never read.
+  if (mk[mk.length - 1] > dur - 1) {
+    errs.push(`${lang} caption ${BEATS} starts at ${mk[mk.length - 1]}s in a ${dur.toFixed(1)}s reel — nobody would read it`);
   }
 }
 
@@ -96,7 +134,11 @@ for (let b = 1; b <= BEATS; b += 1) {
   }
 }
 
-console.log(`beats           ${BEATS} × ${LANGS.join('/')}`);
+for (const lang of LANGS) {
+  const mk = marks[lang];
+  const dur = reelSeconds[lang];
+  console.log(`reel ${lang}         ${dur ? dur.toFixed(1) + 's' : '—'}  captions at ${Array.isArray(mk) ? mk.join(' / ') : '—'}s`);
+}
 console.log(`poses           ${poses.join(', ')}`);
 
 if (errs.length) {
@@ -104,4 +146,4 @@ if (errs.length) {
   for (const e of errs) console.error(`  ${e}`);
   process.exit(1);
 }
-console.log(`\n✅ every beat, caption and pose is present in both languages`);
+console.log(`\n✅ one narration reel per language, marks in order, every caption and pose present`);

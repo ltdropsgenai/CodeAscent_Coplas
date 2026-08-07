@@ -1,7 +1,7 @@
 /**
  * Abuela, framed.
  *
- * ONE component for both uses — a still pose, or a lip-synced beat — so the
+ * ONE component for both uses — a still pose, or the narration reel — so the
  * frame, the palette and the fallback behaviour cannot drift between the
  * tutorial and everywhere else she appears.
  *
@@ -12,12 +12,20 @@
  *   clip missing   → the still, matching the audio system's rule that sources
  *                    missing from the registry simply do not play
  *
+ * THE NARRATION IS ONE FILE PER LANGUAGE, NOT ONE PER BEAT. It used to be three
+ * files swapped in the player as the narration advanced, and every swap was a
+ * visible cut — expo-video holds the previous frame until the new source has
+ * one, Android flashes black, and all three clips opened on the same portrait
+ * so she snapped back to it at each join. Covering that with a dip produced a
+ * fade AND a cut. The beats are now cross-dissolved into a single file by
+ * scripts/build-abuela-reel.mjs, so there is nothing left to swap, and the
+ * caption follows playback time instead of a file boundary.
+ *
  * The frame is SQUARED with a gold hairline. Not rounded. See theme.ts.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
-  Animated,
   Image,
   StyleSheet,
   View,
@@ -26,35 +34,44 @@ import {
 } from 'react-native';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { colors, radius } from '../theme';
-import { ABUELA_POSES, abuelaClip, type AbuelaLang } from '../data/abuelaAssets';
+import { ABUELA_POSES, abuelaReel, type AbuelaLang } from '../data/abuelaAssets';
 
 export type AbuelaPose = 'greeting' | 'proud' | 'delighted' | 'sympathetic' | 'home';
 
+/** How often playback time is reported. Captions change on a ~0.3 s dissolve. */
+const TIME_INTERVAL = 0.2;
+
 interface Props {
-  /** Play this beat as video. Omit for a still. */
-  beat?: number;
+  /** Play the narration reel for this language. Omit for a still. */
+  narrate?: boolean;
   lang?: AbuelaLang;
-  /** Shown as a still, and as the fallback for a beat that cannot play. */
+  /** Shown as a still, and as the fallback whenever the reel cannot play. */
   pose: AbuelaPose;
   /** Muted playback — the caller decides, because the app has a sound toggle. */
   muted?: boolean;
+  /** Seconds into the reel, so the caller can pick the caption. */
+  onTime?: (seconds: number) => void;
   /**
-   * Opacity of the picture INSIDE the frame, so a caller can dip between beats.
-   * The frame itself does not fade: the gold hairline and the dark panel stay
-   * put, and the picture changes inside them. Fading the whole frame instead
-   * reads as the panel flickering.
-   *
-   * Owned by the caller because the caption has to change in the same dark
-   * moment as the clip, and only the caller knows about the caption.
+   * The reel cannot play at all: reduce-motion, or a missing file. The caller
+   * has to advance the captions itself, because playback never will.
    */
-  contentOpacity?: Animated.AnimatedInterpolation<number> | Animated.Value;
+  onStill?: () => void;
   onEnd?: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
-export function Abuela({ beat, lang = 'es', pose, muted, contentOpacity, onEnd, style }: Props) {
+export function Abuela({ narrate, lang = 'es', pose, muted, onTime, onStill, onEnd, style }: Props) {
   const [reduced, setReduced] = useState(false);
   const [failed, setFailed] = useState(false);
+
+  // Held in refs so a caller passing inline arrows does not re-run the player
+  // effects on every render.
+  const timeCb = useRef(onTime);
+  timeCb.current = onTime;
+  const stillCb = useRef(onStill);
+  stillCb.current = onStill;
+  const endCb = useRef(onEnd);
+  endCb.current = onEnd;
 
   useEffect(() => {
     let on = true;
@@ -66,55 +83,60 @@ export function Abuela({ beat, lang = 'es', pose, muted, contentOpacity, onEnd, 
     };
   }, []);
 
-  const src = beat != null ? abuelaClip(lang, beat) : undefined;
+  const src = narrate ? abuelaReel(lang) : undefined;
   const useVideo = src != null && !reduced && !failed;
 
   const player = useVideoPlayer(useVideo ? src : null, (p) => {
     p.loop = false;
     p.muted = !!muted;
+    p.timeUpdateEventInterval = TIME_INTERVAL;
   });
 
   useEffect(() => {
-    if (!useVideo || !player) return;
+    if (!narrate) return;
+    if (!useVideo || !player) {
+      // Nothing will ever report a time, so say so once and let the caller
+      // fall back to its own pacing.
+      stillCb.current?.();
+      return;
+    }
     try {
       player.play();
     } catch {
       setFailed(true);
       return;
     }
-    const sub = player.addListener('playToEnd', () => onEnd?.());
+    const subs = [
+      player.addListener('timeUpdate', (e: unknown) => {
+        const t = typeof e === 'number' ? e : (e as { currentTime?: number })?.currentTime;
+        if (typeof t === 'number') timeCb.current?.(t);
+      }),
+      player.addListener('playToEnd', () => endCb.current?.()),
+    ];
     return () => {
-      try {
-        sub.remove();
-      } catch {
-        /* ignore */
+      for (const s of subs) {
+        try {
+          s.remove();
+        } catch {
+          /* ignore */
+        }
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [useVideo, player]);
-
-  // A still has no end event, so anything waiting on one must not wait for ever.
-  useEffect(() => {
-    if (useVideo || beat == null) return;
-    const id = setTimeout(() => onEnd?.(), 4000);
-    return () => clearTimeout(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [useVideo, beat]);
+  }, [narrate, useVideo, player, lang]);
 
   return (
     <View style={[styles.frame, style]}>
-      <Animated.View style={[styles.fill, contentOpacity != null && { opacity: contentOpacity }]}>
-        {useVideo ? (
-          <VideoView
-            style={styles.fill}
-            player={player}
-            nativeControls={false}
-            contentFit="cover"
-          />
-        ) : (
-          <Image source={ABUELA_POSES[pose]} style={styles.fill} resizeMode="cover" />
-        )}
-      </Animated.View>
+      {useVideo ? (
+        <VideoView
+          style={styles.fill}
+          player={player}
+          nativeControls={false}
+          contentFit="cover"
+        />
+      ) : (
+        <Image source={ABUELA_POSES[pose]} style={styles.fill} resizeMode="cover" />
+      )}
     </View>
   );
 }
