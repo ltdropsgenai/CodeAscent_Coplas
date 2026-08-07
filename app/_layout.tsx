@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { Stack, ThemeProvider, DarkTheme, useRouter, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -7,7 +7,7 @@ import * as SplashScreen from 'expo-splash-screen';
 // CodeAscent house type — the same faces the other apps use.
 import { useFonts, Fraunces_400Regular, Fraunces_700Bold } from '@expo-google-fonts/fraunces';
 import { SpaceMono_400Regular, SpaceMono_700Bold } from '@expo-google-fonts/space-mono';
-import { colors, displayFont } from '../src/theme';
+import { CARD_ASPECT, colors, displayFont } from '../src/theme';
 import { I18nProvider } from '../src/i18n';
 import { AudioProvider } from '../src/audio';
 import { PurchasesProvider } from '../src/purchases';
@@ -66,8 +66,45 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   );
 }
 
+/**
+ * How wide the content column is allowed to get.
+ *
+ * The column exists so the game does not stretch edge to edge on anything
+ * bigger than a phone. It was a flat `maxWidth: 480` applied on every platform,
+ * which on a 10" tablet renders the whole app as a phone-width strip floating
+ * in the middle of the panel — the thing large-screen quality guidelines flag,
+ * and the thing a tablet screenshot would have shown.
+ *
+ * PHONES CANNOT BE AFFECTED BY THIS. A phone is roughly 390-430pt wide, so 480
+ * never binds there; the function returns the old constant unchanged below
+ * TABLET_MIN and the phone layout is bit-for-bit what it was.
+ *
+ * On a tablet the cap is bounded by HEIGHT as well as width, because the board
+ * is four rows of CARD_ASPECT cards inside this column: its height is about
+ * `column / CARD_ASPECT`. Widening on width alone would push the bottom row off
+ * screen on a short panel. Sixteen cards you can see at once is the entire
+ * mechanic, so the column is never allowed to grow past what keeps them all
+ * visible.
+ */
+const PHONE_SHELL = 480;
+const TABLET_MIN = 600;
+const TABLET_SHELL_MAX = 760;
+/** Header, solved groups, mistakes row and the action buttons, above and below the grid. */
+const BOARD_CHROME = 380;
+
+function shellWidth(width: number, height: number): number {
+  if (width < TABLET_MIN) return PHONE_SHELL;
+  const byWidth = width * 0.86;
+  const byHeight = (height - BOARD_CHROME) * CARD_ASPECT;
+  // Never narrower than a phone: a short landscape panel must not end up with
+  // less room than the device it was meant to improve on.
+  return Math.max(PHONE_SHELL, Math.min(TABLET_SHELL_MAX, byWidth, byHeight));
+}
+
 export default function RootLayout() {
   const router = useRouter();
+  const { width: winW, height: winH } = useWindowDimensions();
+  const shellMax = useMemo(() => shellWidth(winW, winH), [winW, winH]);
   const [fontsLoaded, fontError] = useFonts({
     Fraunces_400Regular,
     Fraunces_700Bold,
@@ -110,7 +147,7 @@ export default function RootLayout() {
             <AppBackground />
             <StatusBar style="light" />
             {/* Constrain to a phone-width column and center it (matters on web/desktop). */}
-            <View style={styles.shell}>
+            <View style={[styles.shell, { maxWidth: shellMax }]}>
             <ThemeProvider value={navTheme}>
             <Stack
               screenOptions={{
@@ -187,7 +224,9 @@ const styles = StyleSheet.create({
   shell: {
     flex: 1,
     width: '100%',
-    maxWidth: 480,
+    // Overridden per render by shellWidth() — see above. The literal stays as a
+    // floor so a failure to compute cannot leave the column unbounded.
+    maxWidth: PHONE_SHELL,
     alignSelf: 'center',
   },
   errRoot: { flex: 1, backgroundColor: colors.bg },

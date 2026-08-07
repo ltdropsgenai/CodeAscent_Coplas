@@ -29,6 +29,8 @@ import { useI18n } from '../i18n';
 import { useAudio } from '../audio';
 
 const DURATION = 2600;
+/** How far the wordmark block extends below the emblem, inside the stage box. */
+const STAGE_DROP = 130;
 
 type Piece = {
   kind: 'card' | 'ring' | 'spark';
@@ -147,53 +149,80 @@ export function SplashSequence({ onDone }: { onDone: () => void }) {
   return (
     <View style={styles.root} pointerEvents="box-none">
       <LinearGradient colors={gradients.night} style={StyleSheet.absoluteFill} />
+      {/*
+        Halo and converging pieces live in their OWN full-screen layer.
+
+        They used to be children of the EMBLEM-sized stage box below — 216pt at
+        most — while the pieces start at `fx * W` and `fy * H`, which is about
+        ±196pt across and -273pt up on an ordinary phone. Every piece therefore
+        spent almost its entire flight outside its parent's bounds. iOS draws
+        children that overflow their parent; ANDROID CLIPS THEM. So on Android
+        the assembly was invisible and the emblem simply appeared already built,
+        which is exactly how it was reported. The halo, at EMBLEM * 1.3 inside an
+        EMBLEM box, was being clipped on Android too — the gold glow was missing
+        with it.
+
+        This layer is the whole window, so nothing has to draw outside itself. It
+        is nudged up by half of STAGE_DROP to sit on the EMBLEM's centre rather
+        than the screen's, because the stage box below is EMBLEM + STAGE_DROP
+        tall with the emblem at its top.
+      */}
+      <View
+        style={[
+          StyleSheet.absoluteFill,
+          styles.center,
+          { transform: [{ translateY: -STAGE_DROP / 2 }] },
+        ]}
+        pointerEvents="none"
+      >
+        {/* gold halo */}
+        <Animated.View
+          style={[
+            styles.halo,
+            { width: EMBLEM * 1.3, height: EMBLEM * 1.3, borderRadius: EMBLEM, opacity: haloOpacity, transform: [{ scale: haloScale }] },
+          ]}
+        />
+
+        {/* converging pieces */}
+        {PIECES.map((pc, i) => {
+          const [a, b] = pc.win;
+          const tx = range(a, b, pc.fromX, pc.dx ?? 0);
+          const ty = range(a, b, pc.fromY, 0);
+          const rot = range(a, b, pc.rot * 2.2, pc.rot);
+          const op =
+            pc.kind === 'card'
+              ? p.interpolate({ inputRange: [a, (a + b) / 2, 0.5, 0.62], outputRange: [0, 1, 1, 0], extrapolate: 'clamp' })
+              : p.interpolate({ inputRange: [a, (a + b) / 2, 0.48, 0.58], outputRange: [0, 1, 1, 0], extrapolate: 'clamp' });
+          const rotStr = rot.interpolate({ inputRange: [-360, 360], outputRange: ['-360deg', '360deg'] });
+          const common = { opacity: op, transform: [{ translateX: tx }, { translateY: ty }, { rotate: rotStr }] } as any;
+          if (pc.kind === 'card') {
+            return (
+              <Animated.View key={i} style={[styles.piece, common]}>
+                <LinearGradient colors={gradients.gold} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.card} />
+              </Animated.View>
+            );
+          }
+          if (pc.kind === 'ring') {
+            const rs = range(a, b, 1.7, 1);
+            return (
+              <Animated.View
+                key={i}
+                style={[styles.piece, { opacity: op, transform: [{ scale: rs }] }]}
+              >
+                <View style={[styles.ring, { width: EMBLEM * 0.94, height: EMBLEM * 0.94, borderRadius: EMBLEM }]} />
+              </Animated.View>
+            );
+          }
+          return (
+            <Animated.View key={i} style={[styles.piece, styles.spark, common]} />
+          );
+        })}
+      </View>
+
       <View style={[StyleSheet.absoluteFill, styles.center]}>
         {/* stage centred on the emblem */}
-        <View style={{ width: EMBLEM, height: EMBLEM + 130, alignItems: 'center', justifyContent: 'flex-start' }}>
+        <View style={{ width: EMBLEM, height: EMBLEM + STAGE_DROP, alignItems: 'center', justifyContent: 'flex-start' }}>
           <View style={{ width: EMBLEM, height: EMBLEM, alignItems: 'center', justifyContent: 'center' }}>
-            {/* gold halo */}
-            <Animated.View
-              style={[
-                styles.halo,
-                { width: EMBLEM * 1.3, height: EMBLEM * 1.3, borderRadius: EMBLEM, opacity: haloOpacity, transform: [{ scale: haloScale }] },
-              ]}
-            />
-
-            {/* converging pieces */}
-            {PIECES.map((pc, i) => {
-              const [a, b] = pc.win;
-              const tx = range(a, b, pc.fromX, pc.dx ?? 0);
-              const ty = range(a, b, pc.fromY, 0);
-              const rot = range(a, b, pc.rot * 2.2, pc.rot);
-              const op =
-                pc.kind === 'card'
-                  ? p.interpolate({ inputRange: [a, (a + b) / 2, 0.5, 0.62], outputRange: [0, 1, 1, 0], extrapolate: 'clamp' })
-                  : p.interpolate({ inputRange: [a, (a + b) / 2, 0.48, 0.58], outputRange: [0, 1, 1, 0], extrapolate: 'clamp' });
-              const rotStr = rot.interpolate({ inputRange: [-360, 360], outputRange: ['-360deg', '360deg'] });
-              const common = { opacity: op, transform: [{ translateX: tx }, { translateY: ty }, { rotate: rotStr }] } as any;
-              if (pc.kind === 'card') {
-                return (
-                  <Animated.View key={i} style={[styles.piece, common]}>
-                    <LinearGradient colors={gradients.gold} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.card} />
-                  </Animated.View>
-                );
-              }
-              if (pc.kind === 'ring') {
-                const rs = range(a, b, 1.7, 1);
-                return (
-                  <Animated.View
-                    key={i}
-                    style={[styles.piece, { opacity: op, transform: [{ scale: rs }] }]}
-                  >
-                    <View style={[styles.ring, { width: EMBLEM * 0.94, height: EMBLEM * 0.94, borderRadius: EMBLEM }]} />
-                  </Animated.View>
-                );
-              }
-              return (
-                <Animated.View key={i} style={[styles.piece, styles.spark, common]} />
-              );
-            })}
-
             {/* the real emblem + shimmer */}
             <Animated.View style={{ position: 'absolute', opacity: emblemOpacity, transform: [{ scale: emblemScale }] }}>
               <View style={{ width: EMBLEM, height: EMBLEM, borderRadius: EMBLEM * 0.22, overflow: 'hidden' }}>

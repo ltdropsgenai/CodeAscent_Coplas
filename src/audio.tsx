@@ -64,6 +64,16 @@ const BED_FADE_MS = 360;
  */
 const WIN_VOLUME = 0.45;
 const WIN_DUCK = 0.22;
+/**
+ * How far the round bed drops while a voice line is speaking.
+ *
+ * WIN_DUCK above only ever touched the win fanfare, which is the wrong player
+ * for the case players actually reported. The trap-group line fires MID-ROUND
+ * (app/play.tsx), where no fanfare exists — so the duck ducked something that
+ * was not playing, and the bed ran underneath the voice at full BED_VOLUME.
+ * That unducked bed is the "hum in the background when the voice is played".
+ */
+const VOICE_BED_DUCK = 0.15;
 const VOICE_VOLUME = 1;
 
 /** The tic-tac bed. Well under the music — it is a presence, not a part. */
@@ -100,8 +110,15 @@ function safePlay(p: AudioPlayer | null | undefined): void {
  * (a new round starting during the fade), and writing to a removed player
  * throws rather than no-opping.
  */
-function fadeAndPause(p: AudioPlayer | null | undefined, ms: number): () => void {
-  if (!p) return () => {};
+function fadeAndPause(
+  p: AudioPlayer | null | undefined,
+  ms: number,
+  onDone?: () => void
+): () => void {
+  if (!p) {
+    onDone?.();
+    return () => {};
+  }
   let from = 1;
   try {
     from = p.volume ?? 1;
@@ -110,25 +127,53 @@ function fadeAndPause(p: AudioPlayer | null | undefined, ms: number): () => void
   }
   const steps = Math.max(1, Math.round(ms / 40));
   let i = 0;
+  let settled = false;
+
+  /**
+   * Stop the bed. This is the POINT of the function; the fade is decoration.
+   *
+   * The previous version treated them the other way round: a throw from the
+   * volume setter did `clearInterval(id); return;` and never reached pause(),
+   * so one failed write left the bed playing underneath the win fanfare for the
+   * rest of the round — two tracks at once, reported on Android. A silent
+   * no-op setter would not have caused it (the pause still ran at the end), so
+   * this only bit where the setter throws, which is exactly the sort of thing
+   * that differs across platforms. Losing the ramp is a cosmetic failure.
+   * Losing the pause is an audible one, and it must not be the fallback.
+   */
+  const stop = () => {
+    if (settled) return;
+    settled = true;
+    clearInterval(id);
+    try {
+      p.pause();
+      p.volume = from; // so resuming this bed later is not silent
+    } catch {
+      /* ignore */
+    }
+    onDone?.();
+  };
+
   const id = setInterval(() => {
     i += 1;
     try {
       p.volume = from * (1 - i / steps);
     } catch {
-      clearInterval(id);
+      stop(); // cut rather than carry on playing
       return;
     }
-    if (i >= steps) {
-      clearInterval(id);
-      try {
-        p.pause();
-        p.volume = from; // so resuming this bed later is not silent
-      } catch {
-        /* ignore */
-      }
-    }
+    if (i >= steps) stop();
   }, 40);
-  return () => clearInterval(id);
+
+  // Backstop: if the interval is throttled or never fires — Android suspends
+  // timers aggressively when the app is backgrounded mid-round — the bed still
+  // stops. `stop` is idempotent, so whichever gets there first wins.
+  const guard = setTimeout(stop, ms + 400);
+
+  return () => {
+    clearInterval(id);
+    clearTimeout(guard);
+  };
 }
 
 interface AudioValue {
@@ -578,7 +623,14 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     // while the win still feels like it just happened, so the bed gets out of
     // the way rather than making an exit.
     bedFadeRef.current?.();
-    bedFadeRef.current = fadeAndPause(musicRef.current, BED_FADE_MS);
+    // Cleared on completion. It used to be set and left set, so after the first
+    // win of a session `bedFadeRef.current` stayed truthy for ever — which the
+    // voice duck below reads as "a fade owns the bed, leave it alone". From
+    // round two onward the bed would therefore never duck under a voice line,
+    // silently undoing that fix for every round but the first.
+    bedFadeRef.current = fadeAndPause(musicRef.current, BED_FADE_MS, () => {
+      bedFadeRef.current = null;
+    });
     // Pick a fresh fanfare, never the one we just played (anti-repeat).
     const tracks = MUSIC.wins;
     let i = Math.floor(Math.random() * tracks.length);
@@ -634,26 +686,62 @@ export function AudioProvider({ children }: { children: ReactNode }) {
       voiceRef.current.loop = false;
       voiceRef.current.volume = VOICE_VOLUME;
 
-      // Duck the fanfare under the line, then let it back up.
+      // Duck whatever is playing under the line, then let it back up.
       //
-      // The voice is already at 1.0, so there was no headroom left to raise it
-      // — the only way to hear the line was to lower what was covering it. The
-      // release matters as much as the duck: hold it down and the celebration
-      // ends in a whimper, so the music comes back the moment the voice stops.
+      // The voice is already at 1.0, so there is no headroom left to raise it —
+      // the only way to hear the line is to lower what is covering it. BOTH
+      // players have to come down. The original only ducked the fanfare, which
+      // meant the win line worked and the trap line did not: that one fires
+      // mid-round, where the fanfare is silent and the bed is not.
+      //
+      // The bed's level is CAPTURED rather than assumed. It is BED_VOLUME under
+      // music and TICK_VOLUME under the tic-tac, so restoring to a constant
+      // would quietly change the tic-tac's level every time somebody solved a
+      // trap. If a fade already owns the bed, leave it alone entirely — it is
+      // on its way out and fighting it would strand the bed at the wrong level.
+      let bedWas: number | null = null;
       try {
         if (winRef.current) winRef.current.volume = WIN_DUCK;
       } catch {
         /* ignore */
       }
       try {
+        if (musicRef.current && !bedFadeRef.current) {
+          bedWas = musicRef.current.volume;
+          musicRef.current.volume = VOICE_BED_DUCK;
+        }
+      } catch {
+        /* ignore */
+      }
+
+      // The release matters as much as the duck: hold it down and the
+      // celebration ends in a whimper. Every clip now carries exactly 80 ms of
+      // tail (scripts/master-voice.mjs), so end-of-file is end-of-speech to
+      // within a frame — it used to be up to 449 ms of silence, which is why
+      // the bed came back conspicuously late.
+      let released = false;
+      const release = () => {
+        if (released) return;
+        released = true;
+        try {
+          if (winRef.current) winRef.current.volume = WIN_VOLUME;
+        } catch {
+          /* ignore */
+        }
+        try {
+          if (musicRef.current && bedWas != null && !bedFadeRef.current) {
+            musicRef.current.volume = bedWas;
+          }
+        } catch {
+          /* ignore */
+        }
+      };
+
+      try {
         const vp = voiceRef.current;
         const sub = vp.addListener('playbackStatusUpdate', (s: { didJustFinish?: boolean }) => {
           if (!s?.didJustFinish) return;
-          try {
-            if (winRef.current) winRef.current.volume = WIN_VOLUME;
-          } catch {
-            /* ignore */
-          }
+          release();
           try {
             sub.remove();
           } catch {
@@ -661,16 +749,12 @@ export function AudioProvider({ children }: { children: ReactNode }) {
           }
         });
       } catch {
-        // No status events on this platform: restore on a timer instead, so a
-        // missed event cannot leave the fanfare permanently ducked.
-        setTimeout(() => {
-          try {
-            if (winRef.current) winRef.current.volume = WIN_VOLUME;
-          } catch {
-            /* ignore */
-          }
-        }, 2500);
+        /* no status events on this platform — the timer below covers it */
       }
+      // Belt and braces, on every platform rather than only in the catch: a
+      // missed didJustFinish must not leave the bed ducked for the rest of the
+      // round. `release` is idempotent, so whichever fires first wins.
+      setTimeout(release, 2500);
 
       startPlayer(voiceRef.current);
     } catch {
