@@ -461,3 +461,37 @@ original reproduced the previous output byte for byte.
 
 **The pattern, again:** a script that silently prefers stale input is the same
 family as a checker that reads less than the data it checks. Both report success.
+
+## Amendment 2026-08-08: she animated on Android and would not answer a tap
+
+Reported: the idle loop played, the tap did nothing — no line, no navigation.
+
+The Pressable was correct and so was the handler. The picture inside it is a
+`VideoView`, which on Android is a NATIVE SURFACE. A native child that is not a
+React touch target takes the touch at that point and the Pressable never hears
+about it. iOS was forgiving, as it has been every other time this app has hit an
+Android/iOS split.
+
+Three changes, and only the first is the diagnosis:
+
+1. **The visual is `pointerEvents="none"`**, so the video is out of hit-testing
+   altogether, with a transparent `absoluteFill` View after it so the topmost
+   thing under a finger is a view React owns.
+2. **`zIndex: 2` and `elevation: 2`.** Android dispatches a touch to the LAST
+   sibling whose bounds contain the point, whatever is painted — and everything
+   after her in the `today` block is a full-width `Text` or button. The vertical
+   gap should hold at every fit scale, but it should not have to.
+3. `collapsable={false}` on both wrappers, so Android's view flattening cannot
+   remove a View whose only job is to exist for touch.
+
+**This is a diagnosis I could not test.** There is no OTA channel and no device
+in this session, so it goes out as a store build on reasoning alone. If the tap
+still does nothing after this, the video is NOT the cause and the next suspect
+is the parent bounds: Android does not hit-test an absolutely-positioned child
+outside its parent's box, and she is absolutely positioned inside `today`.
+
+The third Android/iOS split in this project, all the same shape — Android is
+strict where iOS is permissive:
+- Android CLIPS children that overflow their parent; iOS draws them.
+- Android refuses natively-driven layout properties far more readily.
+- Android will not route a touch through a native surface to a JS parent.

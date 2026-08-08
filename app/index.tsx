@@ -321,16 +321,48 @@ export default function Home() {
               onPress={onAbuelaPress}
               accessibilityRole="button"
               accessibilityLabel={t.home.abuelaHint}
-              hitSlop={6}
-              style={{ position: 'absolute', top: px(20), right: 0, width: px(ABUELA_W_PT) }}
+              hitSlop={8}
+              testID="abuela-home"
+              style={{
+                position: 'absolute',
+                top: px(20),
+                right: 0,
+                width: px(ABUELA_W_PT),
+                // Android dispatches a touch to the LAST sibling whose bounds
+                // contain the point, regardless of what is painted. Everything
+                // after her in this block is a full-width Text or button, so
+                // she is explicitly raised above them rather than trusting the
+                // vertical gap to hold at every fit scale. elevation is the
+                // Android half of that; zIndex alone does not move touch order.
+                zIndex: 2,
+                elevation: 2,
+              }}
             >
               {/* She is now a target, where the comment above used to say she
                   must never be one. That still holds for the CTAs: the band she
                   occupies belongs to the hero card alone, and she can only
-                  reach the card if s > 1.07, which the solver caps at 1. What
-                  changed is that a tap landing on HER now has somewhere to go
-                  instead of falling through to nothing. */}
-              <Abuela idle pose={abuelaPose} />
+                  reach the card if s > 1.07, which the solver caps at 1.
+
+                  WHY THE VISUAL IS pointerEvents="none" INSIDE A PRESSABLE, and
+                  why there is a bare View on top of it.
+
+                  She animated on Android and did not respond to a tap. The
+                  Pressable was right and the handler was right; the picture is
+                  a VideoView, which on Android is a native surface, and a
+                  native child that is not a React touch target takes the touch
+                  at that point and the Pressable never hears about it. Marking
+                  the visual pointerEvents="none" takes it out of hit-testing
+                  entirely, and the transparent View after it guarantees the
+                  topmost thing under a finger is a view React owns.
+
+                  Same family as the other two Android/iOS splits in this app:
+                  Android clips children that overflow their parent where iOS
+                  draws them, and the native driver refuses layout properties
+                  far more readily on Android. iOS was forgiving here too. */}
+              <View pointerEvents="none" collapsable={false}>
+                <Abuela idle pose={abuelaPose} />
+              </View>
+              <View style={StyleSheet.absoluteFill} collapsable={false} />
             </Pressable>
           )}
 
