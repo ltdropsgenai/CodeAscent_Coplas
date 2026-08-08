@@ -36,6 +36,8 @@ const read = (p) => {
 };
 
 const BEATS = 3;
+/** Fewest lines she may have per language for the Home tap. */
+const MIN_LINES = 6;
 const LANGS = ['es', 'en'];
 
 function must(v, what) {
@@ -48,6 +50,9 @@ function must(v, what) {
 
 const reg = read('src/data/abuelaAssets.ts');
 const errs = [];
+let idleSeam = null;
+let idleWorst = null;
+const lineCount = {};
 
 // 1. Every language has a narration reel, the file exists, and the caption
 //    marks land inside it in order.
@@ -100,6 +105,99 @@ for (const lang of LANGS) {
   }
 }
 
+// 1b. Her Home presence: the idle loop, and a line in every language.
+//
+//     The idle loop is ping-ponged so its last frame neighbours its first. That
+//     property is the whole reason it can loop without showing a cut, and it is
+//     a property of the FILE, not of the code — so it is checked here, at the
+//     resolution that ships, rather than trusted because a build script once
+//     said so.
+{
+  const m = reg.match(/ABUELA_IDLE = require\('([^']+)'\)/);
+  if (!m) {
+    errs.push('registry has no ABUELA_IDLE');
+  } else {
+    const file = join(root, 'src/data', m[1]);
+    if (!existsSync(file)) {
+      errs.push(`the idle loop points at a file that does not exist: ${m[1]}`);
+    } else {
+      const png = (n) => join(root, 'scripts', `.seam-${n}.png`);
+      const shot = (index, out) => spawnSync('ffmpeg',
+        ['-hide_banner', '-nostdin', '-v', 'error', '-y', '-i', file,
+          '-vf', `select=eq(n\\,${index})`, '-vsync', '0', '-frames:v', '1', '-update', '1', out]);
+      const pair = (x, y) => {
+        const r = spawnSync('ffmpeg',
+          ['-hide_banner', '-nostdin', '-v', 'info', '-i', x, '-i', y,
+            '-lavfi', 'psnr', '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+        const mm = String(r.stderr ?? '').match(/average:([\d.]+)/);
+        return mm ? Number(mm[1]) : null;
+      };
+      const nf = Number(String(spawnSync('ffprobe',
+        ['-v', 'error', '-select_streams', 'v:0', '-count_frames',
+          '-show_entries', 'stream=nb_read_frames', '-of', 'csv=p=0', file],
+        { encoding: 'utf8' }).stdout ?? '').trim());
+
+      if (!Number.isFinite(nf) || nf < 20) {
+        errs.push(`ffprobe counted ${nf} frames in the idle loop — this check is measuring nothing`);
+      } else {
+        shot(nf - 1, png('a'));
+        shot(0, png('b'));
+        idleSeam = pair(png('a'), png('b'));
+
+        // Calibrate against the clip, not against a number. PSNR between two
+        // consecutive frames depends on how much moves and how hard it was
+        // compressed; an absolute floor is meaningless across either. An
+        // earlier version of this gate demanded 32 dB and failed a loop that
+        // was fine. What matters is whether the loop step is bigger than the
+        // steps the clip already takes — her blink is the biggest of those.
+        const steps = [];
+        for (let k = 1; k < nf - 2; k += 8) {
+          shot(k, png('c'));
+          shot(k + 1, png('d'));
+          const v = pair(png('c'), png('d'));
+          if (v != null) steps.push(v);
+        }
+        if (idleSeam == null || steps.length < 5) {
+          errs.push('psnr reported nothing for the idle loop — this check is measuring nothing');
+        } else {
+          steps.sort((x, y) => x - y);
+          idleWorst = steps[0];
+          if (idleSeam < idleWorst) {
+            errs.push(`the idle loop point is the biggest jump in the clip ` +
+              `(${idleSeam.toFixed(1)} dB against a worst frame step of ${idleWorst.toFixed(1)}) — that is a cut`);
+          }
+        }
+      }
+    }
+  }
+
+  const lines = reg.match(/ABUELA_LINES[\s\S]*?\n\};/)?.[0];
+  if (!lines) {
+    errs.push('registry has no ABUELA_LINES');
+  } else {
+    for (const lang of LANGS) {
+      const half = lines.match(new RegExp(`\\b${lang}: \\[([\\s\\S]*?)\\]`))?.[1];
+      const files = half ? [...half.matchAll(/require\('([^']+)'\)/g)].map((x) => x[1]) : [];
+      if (!files.length) {
+        errs.push(`she has nothing to say in ${lang} — a tap would open the tutorial in silence`);
+        continue;
+      }
+      // Home is tapped repeatedly, and three lines was reported as too few to
+      // sit behind a button people press more than once. A floor, so a future
+      // edit cannot quietly walk it back down.
+      if (files.length < MIN_LINES) {
+        errs.push(`only ${files.length} ${lang} lines — Home is tapped repeatedly, want at least ${MIN_LINES}`);
+      }
+      lineCount[lang] = files.length;
+      for (const f of files) {
+        if (!existsSync(join(root, 'src/data', f))) {
+          errs.push(`a ${lang} line points at a file that does not exist: ${f}`);
+        }
+      }
+    }
+  }
+}
+
 // 2. Every pose the component can ask for is registered and on disk.
 const comp = read('src/components/Abuela.tsx');
 const poseUnion = must(
@@ -139,6 +237,9 @@ for (const lang of LANGS) {
   const dur = reelSeconds[lang];
   console.log(`reel ${lang}         ${dur ? dur.toFixed(1) + 's' : '—'}  captions at ${Array.isArray(mk) ? mk.join(' / ') : '—'}s`);
 }
+console.log(`idle loop       seam ${idleSeam == null ? '—' : idleSeam.toFixed(1) + ' dB'}` +
+  `${idleWorst == null ? '' : `, worst step in the clip ${idleWorst.toFixed(1)} dB`}`);
+console.log(`home lines      ${LANGS.map((l) => `${l} ${lineCount[l] ?? 0}`).join(' · ')}`);
 console.log(`poses           ${poses.join(', ')}`);
 
 if (errs.length) {

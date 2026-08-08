@@ -46,7 +46,8 @@
  * from the loudnorm attempt a single command.
  */
 import { execFileSync } from 'node:child_process';
-import { readdirSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
+import { readdirSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -101,9 +102,51 @@ function analyse(file, filtered = false) {
 mkdirSync(ORIG, { recursive: true });
 const files = readdirSync(DIR).filter((f) => f.endsWith('.mp3')).sort();
 if (!files.length) { console.error('no voice clips found'); process.exit(1); }
+
+/**
+ * Which originals to keep, and the trap in "keep the first one you saw".
+ *
+ * This script masters FROM scripts/_voice_orig/ so it is safe to re-run: the
+ * gain is always derived from the untouched recording rather than from an
+ * already-levelled one. The first version kept an original only if none was
+ * stored yet — which meant that once a clip had been mastered, RE-RECORDING IT
+ * DID NOTHING. The fresh file in assets/audio/voice/ was overwritten by a
+ * re-master of the stale original, silently, with a success line printed.
+ * It happened: three of Abuela's lines were regenerated and the regenerations
+ * were discarded here.
+ *
+ * The fix needs to tell two things apart that both differ from the original:
+ * the mastered output this script wrote, and a new recording somebody dropped
+ * in. So the hash of what was written is recorded. Anything that is not that
+ * hash is new input, and becomes the original.
+ */
+const STAMPS = join(ORIG, '.mastered.json');
+const md5 = (f) => createHash('md5').update(readFileSync(f)).digest('hex');
+let stamps = {};
+if (existsSync(STAMPS)) {
+  try {
+    stamps = JSON.parse(readFileSync(STAMPS, 'utf8'));
+  } catch {
+    stamps = {};
+  }
+}
+
+const adopted = [];
 for (const f of files) {
   const kept = join(ORIG, f);
-  if (!existsSync(kept)) copyFileSync(join(DIR, f), kept);
+  if (!existsSync(kept)) {
+    copyFileSync(join(DIR, f), kept);
+    continue;
+  }
+  // A file that is not the output we last wrote is a new recording.
+  const stamp = stamps[f];
+  if (stamp && md5(join(DIR, f)) !== stamp) {
+    copyFileSync(join(DIR, f), kept);
+    adopted.push(f);
+  }
+}
+if (adopted.length) {
+  console.log(`re-recorded since the last run, adopted as new originals: ${adopted.join(', ')}\n`);
 }
 
 console.log(
@@ -145,7 +188,10 @@ for (const r of rows) {
 }
 const outs = rows.map((r) => r.afterRms);
 const ins = rows.map((r) => r.beforeRms);
-console.log(`\nRMS spread before  ${(Math.max(...ins) - Math.min(...ins)).toFixed(1)} dB`);
+for (const f of files) stamps[f] = md5(join(DIR, f));
+writeFileSync(STAMPS, JSON.stringify(stamps, null, 2) + '\n');
+
+console.log(`RMS spread before  ${(Math.max(...ins) - Math.min(...ins)).toFixed(1)} dB`);
 console.log(`RMS spread after   ${(Math.max(...outs) - Math.min(...outs)).toFixed(1)} dB`);
 console.log(`worst peak after   ${Math.max(...rows.map((r) => r.afterPeak)).toFixed(1)} dBFS`);
 console.log(`\noriginals in scripts/_voice_orig/ — re-running always masters from those.`);

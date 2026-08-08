@@ -34,7 +34,7 @@ import {
 } from 'react-native';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { colors, radius } from '../theme';
-import { ABUELA_POSES, abuelaReel, type AbuelaLang } from '../data/abuelaAssets';
+import { ABUELA_IDLE, ABUELA_POSES, abuelaReel, type AbuelaLang } from '../data/abuelaAssets';
 
 export type AbuelaPose = 'greeting' | 'proud' | 'delighted' | 'sympathetic' | 'home';
 
@@ -44,6 +44,15 @@ const TIME_INTERVAL = 0.2;
 interface Props {
   /** Play the narration reel for this language. Omit for a still. */
   narrate?: boolean;
+  /**
+   * Loop her idle clip — breathing, blinking, waiting. For Home, where she is
+   * present rather than speaking.
+   *
+   * The clip is played forward then backward by the build script, so its last
+   * frame IS its first frame and the loop point cannot show. Ignored when
+   * `narrate` is set; she does one thing at a time.
+   */
+  idle?: boolean;
   lang?: AbuelaLang;
   /** Shown as a still, and as the fallback whenever the reel cannot play. */
   pose: AbuelaPose;
@@ -60,7 +69,7 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-export function Abuela({ narrate, lang = 'es', pose, muted, onTime, onStill, onEnd, style }: Props) {
+export function Abuela({ narrate, idle, lang = 'es', pose, muted, onTime, onStill, onEnd, style }: Props) {
   const [reduced, setReduced] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -83,14 +92,29 @@ export function Abuela({ narrate, lang = 'es', pose, muted, onTime, onStill, onE
     };
   }, []);
 
-  const src = narrate ? abuelaReel(lang) : undefined;
+  const src = narrate ? abuelaReel(lang) : idle ? ABUELA_IDLE : undefined;
   const useVideo = src != null && !reduced && !failed;
+  // Idle is scenery: it loops, and it is silent whatever the sound setting says.
+  // A portrait in the corner of Home that makes noise is a portrait people turn
+  // the sound off for.
+  const looping = !narrate && !!idle;
 
   const player = useVideoPlayer(useVideo ? src : null, (p) => {
-    p.loop = false;
-    p.muted = !!muted;
+    p.loop = looping;
+    p.muted = looping ? true : !!muted;
     p.timeUpdateEventInterval = TIME_INTERVAL;
   });
+
+  // Idle has no beats, no captions and no end — just start it and leave it.
+  useEffect(() => {
+    if (narrate || !idle || !useVideo || !player) return;
+    try {
+      player.play();
+    } catch {
+      setFailed(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [narrate, idle, useVideo, player]);
 
   useEffect(() => {
     if (!narrate) return;

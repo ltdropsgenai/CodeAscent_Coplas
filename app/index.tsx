@@ -19,6 +19,7 @@ import { GradientButton } from '../src/components/GradientButton';
 import { NavRow } from '../src/components/NavRow';
 import { CardVideo } from '../src/components/CardVideo';
 import { Abuela, type AbuelaPose } from '../src/components/Abuela';
+import { ABUELA_LINES } from '../src/data/abuelaAssets';
 import { ANIMATED_CARD_IDS } from '../src/data/cardVideos';
 import { thumbSource } from '../src/data/cardImages';
 import { getTodaysPuzzle } from '../src/data/puzzles';
@@ -136,7 +137,7 @@ export default function Home() {
   // exactly the trade we're refusing to make.
   const px = (base: number) => Math.round(base * s);
   const tx = (base: number) => Math.max(11, Math.round(base * s));
-  const { soundEnabled, toggleSound, playHomeMusic, stopHomeMusic } = useAudio();
+  const { soundEnabled, toggleSound, playHomeMusic, stopHomeMusic, playLine } = useAudio();
   const puzzle = getTodaysPuzzle();
   const [stats, setStats] = useState<Stats | null>(null);
   const [badges, setBadges] = useState<{ got: number; total: number } | null>(null);
@@ -173,6 +174,36 @@ export default function Home() {
       };
     }, [])
   );
+
+  /**
+   * Tapping her: she says one line, then the tutorial opens.
+   *
+   * The push WAITS for the line. Her narration starts the moment the tutorial
+   * mounts, and two recordings of the same woman talking over each other is
+   * worse than no line at all. playLine resolves on the end of the clip or on
+   * its own cap, so a line that never reports finishing delays the screen by
+   * a beat rather than for ever.
+   *
+   * With sound off there is no line and no wait — the tap is just navigation,
+   * which is what it looks like to someone who turned the sound off.
+   *
+   * The ref guards a second tap while the first is still talking. Without it,
+   * two taps queue two pushes and the tutorial opens twice on the stack.
+   */
+  const talkingRef = useRef(false);
+  const onAbuelaPress = useCallback(async () => {
+    if (talkingRef.current) return;
+    talkingRef.current = true;
+    try {
+      const lines = ABUELA_LINES[lang] ?? [];
+      if (soundEnabled && lines.length) {
+        await playLine(lines[Math.floor(Math.random() * lines.length)]);
+      }
+      router.push('/tutorial');
+    } finally {
+      talkingRef.current = false;
+    }
+  }, [lang, soundEnabled, playLine, router]);
 
   // A different animated card greets you each time the app is opened.
   const [heroId] = useState(
@@ -286,12 +317,21 @@ export default function Home() {
 
               pointerEvents="none" so she never eats a tap meant for a CTA. */}
           {ABUELA_ON_HOME && (
-            <View
-              pointerEvents="none"
+            <Pressable
+              onPress={onAbuelaPress}
+              accessibilityRole="button"
+              accessibilityLabel={t.home.abuelaHint}
+              hitSlop={6}
               style={{ position: 'absolute', top: px(20), right: 0, width: px(ABUELA_W_PT) }}
             >
-              <Abuela pose={abuelaPose} />
-            </View>
+              {/* She is now a target, where the comment above used to say she
+                  must never be one. That still holds for the CTAs: the band she
+                  occupies belongs to the hero card alone, and she can only
+                  reach the card if s > 1.07, which the solver caps at 1. What
+                  changed is that a tap landing on HER now has somewhere to go
+                  instead of falling through to nothing. */}
+              <Abuela idle pose={abuelaPose} />
+            </Pressable>
           )}
 
           <Text style={styles.cardKicker}>{t.home.todaysCopla}</Text>

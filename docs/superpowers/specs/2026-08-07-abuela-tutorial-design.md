@@ -405,3 +405,59 @@ frame of this take. Do not go back to three clips.
   second caption would have changed mid-sentence. Detection is now −38 dB over
   0.15 s. **Correct in the language you happen to check is how this ships.**
   Every candidate pause is printed for exactly that reason.
+
+## Amendment 2026-08-08: she is alive on Home, and answers a tap
+
+She was a still JPEG with `pointerEvents="none"`. Now:
+
+- **An idle loop.** `assets/abuela/idle.mp4` — breathing, blinking, sitting with
+  you. Built by `scripts/fetch-abuela-idle.mjs`, which plays a generated clip
+  forward and then backward with both junction frames dropped, so the last frame
+  is the NEIGHBOUR of the first and the loop point is seamless by construction.
+  Asking a generator to return to its opening pose was tried on the tutorial
+  beats and failed; this does not ask. Reversal is only safe because the motion
+  has no direction — breathing backwards is breathing. It would not be safe for
+  a gesture that goes somewhere. Silent regardless of the sound setting.
+- **A tap plays one of her lines, then opens the tutorial.** Eight lines per
+  language in her own voice, not the celebration pool — that is a different
+  speaker and the illusion dies the moment anyone notices. The push WAITS for
+  the line, because the tutorial's narration starts on mount and two recordings
+  of the same woman over each other is worse than no line. `playLine` resolves
+  on the clip end or a 2.2 s cap. Sound off means no line and no wait. A ref
+  guards the second tap, which would otherwise push the tutorial twice.
+  Nothing gendered in any line: "mija" assumes the player is a girl, so it is
+  out; "mi vida" and "corazón" work for anyone.
+
+She is a touch target now, which the Home layout comment said she must never be.
+That comment was about the CTAs and still holds: her band belongs to the hero
+card alone, and reaching the card needs s > 1.07 against a solver capped at 1.
+
+### The seam gate, and an absolute threshold getting it wrong a third time
+The first version demanded 32 dB and failed a loop for a number nobody had
+measured. **PSNR between consecutive frames depends on how much moves and how
+hard the file was compressed; no absolute floor survives either.** The gate now
+samples the frame-to-frame steps the clip itself takes and fails only if the
+loop point is a bigger jump than any of them — her blink is 31 dB, the seam is
+35. Verified by installing a non-ping-ponged loop: 26.5 dB against a worst step
+of 32.0, and it fails.
+
+The real fix was quality, not the threshold. At CRF 28 the seam genuinely WAS
+the largest step, because of quantisation error at the tail of a GOP. CRF 20
+takes the file from 0.10 MB to 0.33 MB and the seam from 30.8 dB to 35.0.
+
+### master-voice was discarding re-recordings
+It kept an original only if none was stored, so once a clip had been mastered,
+**re-recording it did nothing**: the fresh file was overwritten by a re-master of
+the stale original, silently, with a success line printed. Three of Abuela's
+lines were regenerated and the regenerations were thrown away exactly this way —
+the shipped versions of `abuela_es_1..3` and `abuela_en_1..3` are the first
+renders, not the second. Same words, same voice, so nothing was lost this time.
+
+It now records the md5 of every file it writes, in `scripts/_voice_orig/.mastered.json`.
+A file that is not the output it last wrote is a new recording, and is adopted
+as the original. Verified by swapping a clip for a different one: it reported
+`re-recorded since the last run, adopted as new originals`, and restoring the
+original reproduced the previous output byte for byte.
+
+**The pattern, again:** a script that silently prefers stale input is the same
+family as a checker that reads less than the data it checks. Both report success.

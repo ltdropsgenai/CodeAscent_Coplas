@@ -74,6 +74,12 @@ const WIN_DUCK = 0.22;
  * That unducked bed is the "hum in the background when the voice is played".
  */
 const VOICE_BED_DUCK = 0.15;
+/**
+ * Longest a caller will wait on playLine before moving on. Her Home lines run
+ * about a second; this is the ceiling for a line that never reports finishing,
+ * not a target.
+ */
+const LINE_MAX_MS = 2200;
 const VOICE_VOLUME = 1;
 
 /** The tic-tac bed. Well under the music — it is a presence, not a part. */
@@ -195,6 +201,14 @@ interface AudioValue {
   playWinFanfare: () => void;
   /** One celebratory Spanish exclamation, over the fanfare. */
   playVoice: () => void;
+  /**
+   * Play one specific line, ducking whatever is under it exactly as playVoice
+   * does. Resolves when the line has finished, or after a cap, so a caller that
+   * wants to wait for her to stop talking can — Abuela on Home says something
+   * and only then opens the tutorial, and the tutorial's own narration must not
+   * start on top of her.
+   */
+  playLine: (source: number) => Promise<void>;
   /** Pause whatever music/fanfare is playing. */
   stopMusic: () => void;
 }
@@ -211,6 +225,7 @@ const AudioContext = createContext<AudioValue>({
   playRoundMusic: () => {},
   playWinFanfare: () => {},
   playVoice: () => {},
+  playLine: async () => {},
   stopMusic: () => {},
 });
 
@@ -671,6 +686,56 @@ export function AudioProvider({ children }: { children: ReactNode }) {
    * Bundled, not streamed — a celebration sting that arrives after a network
    * round-trip has already missed the moment it was celebrating.
    */
+  /**
+   * One named line, rather than a random one from the celebration pool.
+   *
+   * Shares playVoice's player and its ducking, so a line and a celebration can
+   * never overlap — the same reason the celebration pool has one player. The
+   * promise resolves on playToEnd, or on a cap, because a caller that awaits a
+   * player event and nothing else waits for ever the first time an audio route
+   * changes mid-line. Every fallback in this app has a timeout for that reason.
+   */
+  async function playLine(source: number): Promise<void> {
+    if (!enabledRef.current) return;
+    try {
+      if (voiceRef.current) {
+        voiceRef.current.remove();
+        voiceRef.current = null;
+      }
+      const p = createAudioPlayer(source);
+      voiceRef.current = p;
+      p.loop = false;
+      p.volume = VOICE_VOLUME;
+      p.play();
+      await new Promise<void>((resolve) => {
+        let done = false;
+        const finish = () => {
+          if (done) return;
+          done = true;
+          resolve();
+        };
+        const timer = setTimeout(finish, LINE_MAX_MS);
+        try {
+          const sub = p.addListener('playbackStatusUpdate', (st: { didJustFinish?: boolean }) => {
+            if (st?.didJustFinish) {
+              clearTimeout(timer);
+              try {
+                sub.remove();
+              } catch {
+                /* ignore */
+              }
+              finish();
+            }
+          });
+        } catch {
+          /* no status events on this platform build — the cap carries it */
+        }
+      });
+    } catch {
+      /* a line that will not play must never block the screen it precedes */
+    }
+  }
+
   function playVoice() {
     if (!enabledRef.current) return;
     if (!VOICE.length) return;
@@ -818,6 +883,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
         setIntroActive,
         playSfx,
         playVoice,
+        playLine,
         playHomeMusic,
         playRoundMusic,
         playWinFanfare,

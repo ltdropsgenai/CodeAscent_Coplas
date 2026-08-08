@@ -28,6 +28,8 @@ const STRINGS = {
     home: {
       tagline: 'Agrupa las cartas de la baraja mexicana.',
       todaysCopla: 'Copla de hoy',
+      /** Screen-reader label for Abuela on Home. She is a button now. */
+      abuelaHint: 'Abuela: escuchar cómo se juega',
       // Two separate features, so two separate buttons. The daily copla is one
       // board a day, identical worldwide; JUGAR is the endless stream.
       playDaily: 'Jugar la copla de hoy',
@@ -265,6 +267,7 @@ const STRINGS = {
     home: {
       tagline: 'Group the cards of the Mexican deck.',
       todaysCopla: "Today's copla",
+      abuelaHint: "Abuela: hear how to play",
       playDaily: "Play today's copla",
       playEndless: 'Endless rounds',
       endlessHint: 'Play as many as you like — every round is built on the spot',
